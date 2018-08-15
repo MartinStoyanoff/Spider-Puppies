@@ -1,12 +1,24 @@
 package com.spidermanteam.spiderpuppies.models;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+
+@Entity
+@Table(name = "telecom_services")
 public class TelecomService {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "type")
     private String type;
+
+    @Column(name = "subscripion_plan")
     private String subscriptionPlan;
+
+    @Column(name = "price")
     private BigDecimal price;
 
 
