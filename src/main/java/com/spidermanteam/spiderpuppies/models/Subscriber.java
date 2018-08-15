@@ -1,12 +1,10 @@
 package com.spidermanteam.spiderpuppies.models;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -36,13 +34,15 @@ public class Subscriber {
     private List<TelecomService> telecomServices;
 
     @Column(name = "first_activation_date")
-    private Date firstServiceActivationDate;
+    private LocalDate firstServiceActivationDate;
 
     @Column(name = "billing_date")
-    private Date billingDate;
+    private LocalDate billingDate;
 
     @Column(name = "client")
     private Client client;
+
+
 
     public Subscriber() {
     }
@@ -103,19 +103,19 @@ public class Subscriber {
         this.telecomServices = telecomServices;
     }
 
-    public Date getFirstServiceActivationDate() {
+    public LocalDate getFirstServiceActivationDate() {
         return firstServiceActivationDate;
     }
 
-    public void setFirstServiceActivationDate(Date firstServiceActivationDate) {
+    public void setFirstServiceActivationDate(LocalDate firstServiceActivationDate) {
         this.firstServiceActivationDate = firstServiceActivationDate;
     }
 
-    public Date getBillingDate() {
+    public LocalDate getBillingDate() {
         return billingDate;
     }
 
-    public void setBillingDate(Date billingDate) {
+    public void setBillingDate(LocalDate billingDate) {
         this.billingDate = billingDate;
     }
 
