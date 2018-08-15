@@ -1,0 +1,129 @@
+package com.spidermanteam.spiderpuppies.models;
+
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.util.Date;
+import java.util.List;
+
+@Entity
+@Table(name = "subscribers")
+public class Subscriber {
+
+    @Id
+    @Column(name = "id")
+    private String id;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "pin")
+    private String personalIdentificationNumber;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "invoices")
+    private List<Invoice> invoices;
+
+    @Column(name = "telecom_services")
+    private List<TelecomService> telecomServices;
+
+    @Column(name = "first_activation_date")
+    private Date firstServiceActivationDate;
+
+    @Column(name = "billing_date")
+    private Date billingDate;
+
+    @Column(name = "client")
+    private Client client;
+
+    public Subscriber() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPersonalIdentificationNumber() {
+        return personalIdentificationNumber;
+    }
+
+    public void setPersonalIdentificationNumber(String personalIdentificationNumber) {
+        this.personalIdentificationNumber = personalIdentificationNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public List<Invoice> getInvoices() {
+        return invoices;
+    }
+
+    public void setInvoices(List<Invoice> invoices) {
+        this.invoices = invoices;
+    }
+
+    public List<TelecomService> getTelecomServices() {
+        return telecomServices;
+    }
+
+    public void setTelecomServices(List<TelecomService> telecomServices) {
+        this.telecomServices = telecomServices;
+    }
+
+    public Date getFirstServiceActivationDate() {
+        return firstServiceActivationDate;
+    }
+
+    public void setFirstServiceActivationDate(Date firstServiceActivationDate) {
+        this.firstServiceActivationDate = firstServiceActivationDate;
+    }
+
+    public Date getBillingDate() {
+        return billingDate;
+    }
+
+    public void setBillingDate(Date billingDate) {
+        this.billingDate = billingDate;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+}
