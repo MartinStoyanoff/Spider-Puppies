@@ -15,7 +15,7 @@ public class HomeController {
         return "client";
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/admin/**")
     public String showAdmin() {
         return "admin";
     }

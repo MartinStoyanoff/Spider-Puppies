@@ -1,6 +1,7 @@
 package com.spidermanteam.spiderpuppies.data;
 
 import com.spidermanteam.spiderpuppies.data.base.ClientRepository;
+import com.spidermanteam.spiderpuppies.models.Authorities;
 import com.spidermanteam.spiderpuppies.models.Client;
 import com.spidermanteam.spiderpuppies.models.User;
 import org.hibernate.Session;
@@ -24,11 +25,13 @@ public class ClientRepositoryImpl implements ClientRepository {
 
     @Override
     public void addClient(Client client) {
-        User user = new User("vesko", "veskoepi4", (byte)1);
-        Client client1= new Client(user, "VeselinG", "5434534534");
+        User user = client.getUser();
+        Authorities authorities = new Authorities(user.getUsername(),"ROLE_ADMIN");
         try(Session session = sessionFactory.openSession()){
             session.beginTransaction();
-            session.save(client1);
+            session.save(user);
+            session.save(authorities);
+            session.save(client);
             session.getTransaction().commit();
         }
         catch (Exception e){
