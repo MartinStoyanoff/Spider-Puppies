@@ -2,6 +2,7 @@ package com.spidermanteam.spiderpuppies.data;
 
 import com.spidermanteam.spiderpuppies.data.base.ClientRepository;
 import com.spidermanteam.spiderpuppies.models.Client;
+import com.spidermanteam.spiderpuppies.models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,11 @@ public class ClientRepositoryImpl implements ClientRepository {
 
     @Override
     public void addClient(Client client) {
+        User user = new User("vesko", "veskoepi4", (byte)1);
+        Client client1= new Client(user, "VeselinG", "5434534534");
         try(Session session = sessionFactory.openSession()){
             session.beginTransaction();
-            session.save(client);
+            session.save(client1);
             session.getTransaction().commit();
         }
         catch (Exception e){

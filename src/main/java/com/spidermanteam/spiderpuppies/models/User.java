@@ -22,6 +22,12 @@ public class User {
     public User() {
     }
 
+    public User(String username, String password, byte enabled) {
+        this.username = username;
+        this.password = password;
+        this.enabled = enabled;
+    }
+
     public String getUsername() {
         return username;
     }
