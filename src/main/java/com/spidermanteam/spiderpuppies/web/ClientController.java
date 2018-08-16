@@ -13,8 +13,12 @@ import java.util.List;
 @RestController
 public class ClientController {
 
-    @Autowired
     private ClientService clientService;
+
+    @Autowired
+    public ClientController(ClientService clientService) {
+        this.clientService = clientService;
+    }
 
     @PostMapping("/admin/add")
     void addClient(Client client){

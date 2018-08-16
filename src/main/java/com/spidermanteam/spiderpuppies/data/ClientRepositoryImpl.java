@@ -13,8 +13,12 @@ import java.util.List;
 @Repository
 public class ClientRepositoryImpl implements ClientRepository {
 
-    @Autowired
     private SessionFactory sessionFactory;
+
+    @Autowired
+    public ClientRepositoryImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
 
     @Override

@@ -7,15 +7,16 @@ import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+
 @Configuration
-public class HibernateConfiguration {
+public class AppConfig2 {
 
     @Bean
     public SessionFactory createSessionFactory(){
         return new org.hibernate.cfg.Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(User.class)
-                .addAnnotatedClass(Authorities.class)
+               .addAnnotatedClass(Authorities.class)
                 .addAnnotatedClass(Client.class)
                 .buildSessionFactory();
     }

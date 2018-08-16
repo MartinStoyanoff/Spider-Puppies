@@ -2,10 +2,16 @@ package com.spidermanteam.spiderpuppies.models;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "clients")
 public class Client {
+
+
+
+    @Id
+    private int id;
 
     @OneToOne
     @JoinColumn(name = "user_id")
@@ -50,4 +56,12 @@ public class Client {
     public void setUnifiedIdentificationCode(String unifiedIdentificationCode) {
         this.unifiedIdentificationCode = unifiedIdentificationCode;
     }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }

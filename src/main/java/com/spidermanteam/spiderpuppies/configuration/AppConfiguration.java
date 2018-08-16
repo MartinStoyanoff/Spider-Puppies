@@ -14,8 +14,12 @@ import java.beans.PropertyVetoException;
 @Configuration
 @PropertySource("classpath:application.properties")
 public class AppConfiguration {
+    private final Environment env;
+
     @Autowired
-    private Environment env;
+    public AppConfiguration(Environment env) {
+        this.env = env;
+    }
 
     @Bean
     public DataSource securityDataSource() {

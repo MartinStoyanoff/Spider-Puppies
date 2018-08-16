@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Table(name = "authorities")
 public class Authorities {
 
+    @Id
     @Column(name = "username")
     private String username;
 
@@ -37,4 +38,5 @@ public class Authorities {
     public void setAuthority(String authority) {
         this.authority = authority;
     }
+
 }

@@ -2,12 +2,14 @@ package com.spidermanteam.spiderpuppies.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
 public class User {
 
+    @Id
     @Column(name = "username")
     private String username;
 
@@ -43,4 +45,5 @@ public class User {
     public void setEnabled(byte enabled) {
         this.enabled = enabled;
     }
+
 }
