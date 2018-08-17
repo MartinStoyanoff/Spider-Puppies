@@ -10,5 +10,11 @@ public interface ClientRepository {
 
     List listAllClients();
 
+    Client findById(int id);
+
+    void deleteClient(Client client);
+
+
+
 
 }
