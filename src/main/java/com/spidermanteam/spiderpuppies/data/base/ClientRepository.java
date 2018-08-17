@@ -10,5 +10,7 @@ public interface ClientRepository {
 
     List listAllClients();
 
+    //TODO other methods to be added
+
 
 }
