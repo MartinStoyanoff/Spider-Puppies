@@ -76,8 +76,6 @@ public class ClientRepositoryImpl implements GenericRepository<Client> {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
-
     }
 
     @Override
