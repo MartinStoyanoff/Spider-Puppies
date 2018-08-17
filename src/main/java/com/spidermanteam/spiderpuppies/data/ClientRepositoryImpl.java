@@ -1,6 +1,5 @@
 package com.spidermanteam.spiderpuppies.data;
 
-import com.spidermanteam.spiderpuppies.data.base.ClientRepository;
 import com.spidermanteam.spiderpuppies.data.base.GenericRepository;
 import com.spidermanteam.spiderpuppies.models.Authorities;
 import com.spidermanteam.spiderpuppies.models.Client;

@@ -4,10 +4,7 @@ import com.spidermanteam.spiderpuppies.models.Admin;
 import com.spidermanteam.spiderpuppies.models.Client;
 import com.spidermanteam.spiderpuppies.services.base.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,6 +26,25 @@ public class AdminController {
     List listAllAdmins(){
         return adminService.listAllAdmins();
     }
+
+    @GetMapping("/admin/findAdminById/{id}")
+    public Admin findAdminById(@PathVariable("id") String idString) {
+        int id = Integer.parseInt(idString);
+        return adminService.findAdminById(id);
+    }
+
+    @PutMapping("/admin/updateAdmin")
+    void updateAdmin(@RequestBody Admin admin){
+        adminService.updateAdmin(admin);
+    }
+
+    @DeleteMapping("/admin/deleteAdmin/{id}")
+    void deleteAdmin(@PathVariable String idString){
+        int id = Integer.parseInt(idString);
+        adminService.deleteAdmin(id);
+    }
+
+
 
 
 }
