@@ -13,7 +13,7 @@ public interface ClientService {
 
     void updateClient(Client client);
 
-    Client findById(int id);
+    Client findClientById(int id);
 
 
 }
