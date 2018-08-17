@@ -9,14 +9,14 @@ import org.springframework.context.annotation.Configuration;
 
 
 @Configuration
-public class AppConfig2 {
+public class HibernateConfig {
 
     @Bean
     public SessionFactory createSessionFactory(){
         return new org.hibernate.cfg.Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(User.class)
-               .addAnnotatedClass(Authorities.class)
+                .addAnnotatedClass(Authorities.class)
                 .addAnnotatedClass(Client.class)
                 .buildSessionFactory();
     }

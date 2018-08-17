@@ -13,11 +13,11 @@ import java.beans.PropertyVetoException;
 
 @Configuration
 @PropertySource("classpath:application.properties")
-public class AppConfiguration {
+public class AppConfig {
     private final Environment env;
 
     @Autowired
-    public AppConfiguration(Environment env) {
+    public AppConfig(Environment env) {
         this.env = env;
     }
 

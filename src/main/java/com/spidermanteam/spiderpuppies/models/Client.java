@@ -2,13 +2,10 @@ package com.spidermanteam.spiderpuppies.models;
 
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "clients")
 public class Client {
-
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
