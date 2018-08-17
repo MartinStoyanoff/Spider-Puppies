@@ -1,9 +1,6 @@
 package com.spidermanteam.spiderpuppies.configuration;
 
-import com.spidermanteam.spiderpuppies.models.Admin;
-import com.spidermanteam.spiderpuppies.models.Authorities;
-import com.spidermanteam.spiderpuppies.models.Client;
-import com.spidermanteam.spiderpuppies.models.User;
+import com.spidermanteam.spiderpuppies.models.*;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +17,7 @@ public class HibernateConfig {
                 .addAnnotatedClass(Authorities.class)
                 .addAnnotatedClass(Client.class)
                 .addAnnotatedClass(Admin.class)
+                .addAnnotatedClass(TelecomService.class)
                 .buildSessionFactory();
     }
 

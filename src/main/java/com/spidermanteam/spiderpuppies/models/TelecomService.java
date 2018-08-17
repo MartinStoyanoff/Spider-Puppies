@@ -21,6 +21,8 @@ public class TelecomService {
     @Column(name = "price")
     private BigDecimal price;
 
+    @Column(name = "paid")
+    private int paid;
 
     public TelecomService() {
     }
@@ -55,5 +57,13 @@ public class TelecomService {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public int getPaid() {
+        return paid;
+    }
+
+    public void setPaid(int paid) {
+        this.paid = paid;
     }
 }
