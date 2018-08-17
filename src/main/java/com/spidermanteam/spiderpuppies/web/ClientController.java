@@ -43,6 +43,7 @@ public class ClientController {
     void deleteClient(@PathVariable("id") String id){
         int clientId = Integer.parseInt(id);
         clientService.deleteClient(clientId);
+
     }
 
 
