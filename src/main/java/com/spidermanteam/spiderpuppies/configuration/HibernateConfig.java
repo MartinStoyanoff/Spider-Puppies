@@ -1,5 +1,6 @@
 package com.spidermanteam.spiderpuppies.configuration;
 
+import com.spidermanteam.spiderpuppies.models.Admin;
 import com.spidermanteam.spiderpuppies.models.Authorities;
 import com.spidermanteam.spiderpuppies.models.Client;
 import com.spidermanteam.spiderpuppies.models.User;
@@ -18,6 +19,7 @@ public class HibernateConfig {
                 .addAnnotatedClass(User.class)
                 .addAnnotatedClass(Authorities.class)
                 .addAnnotatedClass(Client.class)
+                .addAnnotatedClass(Admin.class)
                 .buildSessionFactory();
     }
 

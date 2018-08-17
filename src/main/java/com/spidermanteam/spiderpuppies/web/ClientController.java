@@ -22,12 +22,12 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    @PostMapping("/admin/add")
+    @PostMapping("/admin/addClient")
     void addClient(@RequestBody Client client){
         clientService.addClient(client);
     }
 
-    @GetMapping("/admin/listAll")
+    @GetMapping("/admin/listAllClients")
     List listAllClients(){
        return clientService.listAllClients();
     }
