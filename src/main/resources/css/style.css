@@ -1,0 +1,13 @@
+.admin_menu a{
+    display: block;
+}
+.inline-block{
+    display: inline-block;
+}
+.admin_menu{
+    width: 10%;
+}
+.admin_main{
+    width: 88%;
+    height: 100%;
+}
