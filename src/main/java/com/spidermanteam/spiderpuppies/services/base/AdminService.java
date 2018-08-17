@@ -8,4 +8,10 @@ public interface AdminService {
     void addAdmin(Admin admin);
 
     List listAllAdmins();
+
+    Admin findAdminById(int id);
+
+    void updateAdmin (Admin admin);
+
+    void deleteAdmin (int id);
 }
