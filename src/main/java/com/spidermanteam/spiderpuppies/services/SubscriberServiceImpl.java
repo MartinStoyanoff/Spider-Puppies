@@ -4,9 +4,11 @@ import com.spidermanteam.spiderpuppies.data.base.GenericRepository;
 import com.spidermanteam.spiderpuppies.models.Subscriber;
 import com.spidermanteam.spiderpuppies.services.base.SubscribersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class SubscriberServiceImpl implements SubscribersService {
 
     private GenericRepository<Subscriber> subscriberRepository;
@@ -27,7 +29,7 @@ public class SubscriberServiceImpl implements SubscribersService {
     }
 
     @Override
-    public List listAllSubscriber() {
+    public List listAllSubscribers() {
         return subscriberRepository.listAll();
     }
 

@@ -9,8 +9,11 @@ import java.util.List;
 public class Subscriber {
 
     @Id
-    @Column(name = "id")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "phone")
+    private String phone;
 
     @Column(name = "first_name")
     private String firstName;
@@ -50,13 +53,6 @@ public class Subscriber {
     public Subscriber() {
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -130,5 +126,19 @@ public class Subscriber {
         this.client = client;
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }

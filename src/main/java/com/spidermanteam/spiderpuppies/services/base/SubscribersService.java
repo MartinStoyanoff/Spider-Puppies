@@ -10,7 +10,7 @@ public interface SubscribersService {
 
     Subscriber findSubscriberById(int id);
 
-    List listAllSubscriber();
+    List listAllSubscribers();
 
     void updateSubscriber (Subscriber subscriber);
 
