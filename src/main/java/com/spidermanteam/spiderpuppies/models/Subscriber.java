@@ -28,7 +28,11 @@ public class Subscriber {
     @OneToMany(mappedBy="subscriber")
     private List<Invoice> invoices;
 
-    @ManyToMany(mappedBy = "subscriber")
+    @ManyToMany
+    @JoinTable(
+            name = "services_subscribers",
+            joinColumns =  @JoinColumn(name = "subscriber_id"),
+            inverseJoinColumns = @JoinColumn(name = "service_id"))
     private List<TelecomService> telecomServices;
 
     @Column(name = "first_activation_date")
@@ -125,4 +129,6 @@ public class Subscriber {
     public void setClient(Client client) {
         this.client = client;
     }
+
+
 }

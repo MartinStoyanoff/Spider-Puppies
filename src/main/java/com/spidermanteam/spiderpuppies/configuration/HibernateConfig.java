@@ -13,11 +13,13 @@ public class HibernateConfig {
     public SessionFactory createSessionFactory(){
         return new org.hibernate.cfg.Configuration()
                 .configure("hibernate.cfg.xml")
-                .addAnnotatedClass(User.class)
+                .addAnnotatedClass(Admin.class)
                 .addAnnotatedClass(Authorities.class)
                 .addAnnotatedClass(Client.class)
-                .addAnnotatedClass(Admin.class)
+                .addAnnotatedClass(Invoice.class)
+                .addAnnotatedClass(Subscriber.class)
                 .addAnnotatedClass(TelecomService.class)
+                .addAnnotatedClass(User.class)
                 .buildSessionFactory();
     }
 

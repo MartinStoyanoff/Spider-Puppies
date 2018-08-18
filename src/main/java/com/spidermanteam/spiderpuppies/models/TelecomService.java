@@ -29,8 +29,8 @@ public class TelecomService {
     @ManyToMany
     @JoinTable(
             name = "services_subscribers",
-            joinColumns = { @JoinColumn(name = "service_id") },
-            inverseJoinColumns = { @JoinColumn(name = "subscriber_id")})
+            joinColumns =  @JoinColumn(name = "service_id"),
+            inverseJoinColumns = @JoinColumn(name = "subscriber_id"))
     private List<Subscriber> subscribers;
 
 
@@ -67,6 +67,14 @@ public class TelecomService {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public List<Subscriber> getSubscribers() {
+        return subscribers;
+    }
+
+    public void setSubscribers(List<Subscriber> subscribers) {
+        this.subscribers = subscribers;
     }
 
 }
