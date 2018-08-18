@@ -1,6 +1,10 @@
 package com.spidermanteam.spiderpuppies.models;
 
+import jdk.internal.instrumentation.TypeMapping;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import java.math.BigDecimal;
 
 
@@ -15,10 +19,10 @@ public class TelecomService {
     @Column(name = "type")
     private String type;
 
-    @Column(name = "subscripion_plan")
+    @Column(name = "subscription_plan")
     private String subscriptionPlan;
 
-    @Column(name = "price")
+    @Column(name = "price", columnDefinition = "big_decimal")
     private BigDecimal price;
 
     @Column(name = "paid")
