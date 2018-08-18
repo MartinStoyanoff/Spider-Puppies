@@ -4,11 +4,11 @@ import java.util.List;
 
 public interface GenericRepository<T> {
 
-    List<T> listAll();
+    void create(T model);
 
     T findById(int id);
 
-    void create(T model);
+    List<T> listAll();
 
     void update(T model);
 

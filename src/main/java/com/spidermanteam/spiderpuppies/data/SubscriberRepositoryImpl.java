@@ -2,36 +2,29 @@ package com.spidermanteam.spiderpuppies.data;
 
 import com.spidermanteam.spiderpuppies.data.base.GenericRepository;
 import com.spidermanteam.spiderpuppies.models.Authorities;
-import com.spidermanteam.spiderpuppies.models.Client;
-import com.spidermanteam.spiderpuppies.models.User;
+import com.spidermanteam.spiderpuppies.models.Subscriber;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
-public class ClientRepositoryImpl implements GenericRepository<Client> {
-
+public class SubscriberRepositoryImpl implements GenericRepository<Subscriber> {
     private SessionFactory sessionFactory;
 
     @Autowired
-    public ClientRepositoryImpl(SessionFactory sessionFactory) {
+    public SubscriberRepositoryImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
 
     @Override
-    public void create(Client client) {
-        User user = client.getUser();
-        Authorities authorities = new Authorities(user.getUsername(), "ROLE_ADMIN");
+    public void create(Subscriber subscriber) {
+        
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.save(user);
-            session.save(authorities);
-            session.save(client);
+            session.save(subscriber);
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -40,37 +33,37 @@ public class ClientRepositoryImpl implements GenericRepository<Client> {
     }
 
     @Override
-    public Client findById(int id) {
-        Client client = new Client();
+    public Subscriber findById(int id) {
+        Subscriber subscriber = new Subscriber();
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            client = session.get(Client.class, id);
+            subscriber = session.get(Subscriber.class, id);
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return client;
+        return subscriber;
     }
 
     @Override
-    public List<Client> listAll() {
-        List<Client> clients = new ArrayList<>();
+    public List<Subscriber> listAll() {
+        List<Subscriber> subscribers = new ArrayList<>();
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            clients = session.createQuery("from Client").list();
+            subscribers = session.createQuery("from Subscriber").list();
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return clients;
+        return subscribers;
     }
 
 
     @Override
-    public void update(Client client) {
+    public void update(Subscriber subscriber) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.update(client);
+            session.update(subscriber);
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -82,8 +75,8 @@ public class ClientRepositoryImpl implements GenericRepository<Client> {
 
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            Client client = session.get(Client.class, id);
-            session.delete(client);
+            Subscriber subscriber = session.get(Subscriber.class, id);
+            session.delete(subscriber);
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
