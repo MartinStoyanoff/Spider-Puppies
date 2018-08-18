@@ -26,7 +26,7 @@ public class TelecomService {
     @Column(name = "price", columnDefinition = "big_decimal")
     private BigDecimal price;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "services_subscribers",
             joinColumns =  @JoinColumn(name = "service_id"),

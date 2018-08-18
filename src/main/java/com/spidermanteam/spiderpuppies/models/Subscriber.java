@@ -31,7 +31,7 @@ public class Subscriber {
     @OneToMany(mappedBy="subscriber")
     private List<Invoice> invoices;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "services_subscribers",
             joinColumns =  @JoinColumn(name = "subscriber_id"),

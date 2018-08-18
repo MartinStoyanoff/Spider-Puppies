@@ -27,7 +27,7 @@ public class SubscriberController {
         return subscribersService.listAllSubscribers();
     }
 
-    @GetMapping("/admin/deleteSubscriber/{id}")
+    @GetMapping("/admin/findSubscriberById/{id}")
     Subscriber findSubscriberById(@PathVariable("id") String id){
         int subscriberId = Integer.parseInt(id);
         return subscribersService.findSubscriberById(subscriberId);
