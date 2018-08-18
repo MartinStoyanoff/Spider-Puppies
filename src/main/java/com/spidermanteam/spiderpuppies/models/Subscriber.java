@@ -1,9 +1,6 @@
 package com.spidermanteam.spiderpuppies.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -27,10 +24,11 @@ public class Subscriber {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "invoices")
+
+    @OneToMany(mappedBy="subscriber")
     private List<Invoice> invoices;
 
-    @Column(name = "telecom_services")
+    @ManyToMany(mappedBy = "subscriber")
     private List<TelecomService> telecomServices;
 
     @Column(name = "first_activation_date")
@@ -39,7 +37,8 @@ public class Subscriber {
     @Column(name = "billing_date")
     private LocalDate billingDate;
 
-    @Column(name = "client")
+    @OneToOne
+    @JoinColumn(name = "client")
     private Client client;
 
 

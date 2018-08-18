@@ -6,6 +6,7 @@ import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import java.math.BigDecimal;
+import java.util.List;
 
 
 @Entity
@@ -25,8 +26,13 @@ public class TelecomService {
     @Column(name = "price", columnDefinition = "big_decimal")
     private BigDecimal price;
 
-    @Column(name = "paid")
-    private int paid;
+    @ManyToMany
+    @JoinTable(
+            name = "services_subscribers",
+            joinColumns = { @JoinColumn(name = "service_id") },
+            inverseJoinColumns = { @JoinColumn(name = "subscriber_id")})
+    private List<Subscriber> subscribers;
+
 
     public TelecomService() {
     }
@@ -63,11 +69,4 @@ public class TelecomService {
         this.price = price;
     }
 
-    public int getPaid() {
-        return paid;
-    }
-
-    public void setPaid(int paid) {
-        this.paid = paid;
-    }
 }

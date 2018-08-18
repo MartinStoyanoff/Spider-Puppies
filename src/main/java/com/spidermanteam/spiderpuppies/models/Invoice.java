@@ -6,24 +6,26 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "invoice")
+@Table(name = "invoices")
 public class Invoice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "subscriber")
+    @ManyToOne
+    @JoinColumn(name="subscriber_id")
     private Subscriber subscriber;
 
-    @Column(name = "telecom_services")
-    private List<TelecomService> telecomServices;
+    @OneToOne
+    @JoinColumn(name = "telecom_service")
+    private TelecomService telecomServices;
 
     @Column(name = "status")
     private String status;
 
-    @Column(name = "total_sum")
-    private BigDecimal totalSum;
+    @Column(name = "price")
+    private BigDecimal price;
 
     @Column(name = "currency")
     private String currency;
@@ -55,28 +57,12 @@ public class Invoice {
         this.subscriber = subscriber;
     }
 
-    public List<TelecomService> getTelecomServices() {
-        return telecomServices;
-    }
-
-    public void setTelecomServices(List<TelecomService> telecomServices) {
-        this.telecomServices = telecomServices;
-    }
-
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public BigDecimal getTotalSum() {
-        return totalSum;
-    }
-
-    public void setTotalSum(BigDecimal totalSum) {
-        this.totalSum = totalSum;
     }
 
     public String getCurrency() {
@@ -101,5 +87,21 @@ public class Invoice {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public TelecomService getTelecomServices() {
+        return telecomServices;
+    }
+
+    public void setTelecomServices(TelecomService telecomServices) {
+        this.telecomServices = telecomServices;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }
