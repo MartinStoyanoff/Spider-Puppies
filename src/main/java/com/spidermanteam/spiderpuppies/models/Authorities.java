@@ -11,16 +11,14 @@ public class Authorities {
     @Column(name = "username")
     private String username;
 
-
     @Column(name = "authority")
     private String authority;
 
     public Authorities() {
-
     }
 
     public Authorities(String username, String role) {
-        this.username=username;
+        this.username = username;
         this.authority = role;
     }
 

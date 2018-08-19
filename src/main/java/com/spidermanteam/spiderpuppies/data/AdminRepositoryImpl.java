@@ -22,7 +22,6 @@ public class AdminRepositoryImpl implements GenericRepository<Admin> {
         this.sessionFactory = sessionFactory;
     }
 
-
     @Override
     public void create(Admin admin) {
         User user = admin.getUser();
@@ -40,19 +39,6 @@ public class AdminRepositoryImpl implements GenericRepository<Admin> {
     }
 
     @Override
-    public List<Admin> listAll() {
-        List<Admin> admins = new ArrayList<>();
-        try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
-            admins = session.createQuery("from Admin").list();
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return admins;
-    }
-
-    @Override
     public Admin findById(int id) {
         Admin admin = new Admin();
         try (Session session = sessionFactory.openSession()) {
@@ -63,6 +49,19 @@ public class AdminRepositoryImpl implements GenericRepository<Admin> {
             System.out.println(e.getMessage());
         }
         return admin;
+    }
+
+    @Override
+    public List<Admin> listAll() {
+        List<Admin> admins = new ArrayList<>();
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            admins = session.createQuery("from Admin").list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return admins;
     }
 
     @Override
@@ -78,7 +77,6 @@ public class AdminRepositoryImpl implements GenericRepository<Admin> {
 
     @Override
     public void delete(int id) {
-
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             Admin admin = session.get(Admin.class, id);

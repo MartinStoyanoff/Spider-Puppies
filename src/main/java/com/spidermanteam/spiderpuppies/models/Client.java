@@ -21,7 +21,6 @@ public class Client {
     @Column(name = "uic")
     private String unifiedIdentificationCode;
 
-
     public Client() {
     }
 
@@ -29,6 +28,15 @@ public class Client {
         this.user = user;
         this.fullName = fullName;
         this.unifiedIdentificationCode = unifiedIdentificationCode;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public User getUser() {
@@ -54,14 +62,4 @@ public class Client {
     public void setUnifiedIdentificationCode(String unifiedIdentificationCode) {
         this.unifiedIdentificationCode = unifiedIdentificationCode;
     }
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-
-
 }

@@ -28,13 +28,13 @@ public class Subscriber {
     private String address;
 
 
-    @OneToMany(mappedBy="subscriber")
+    @OneToMany(mappedBy = "subscriber")
     private List<Invoice> invoices;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "services_subscribers",
-            joinColumns =  @JoinColumn(name = "subscriber_id"),
+            joinColumns = @JoinColumn(name = "subscriber_id"),
             inverseJoinColumns = @JoinColumn(name = "service_id"))
     private List<TelecomService> telecomServices;
 
@@ -49,10 +49,25 @@ public class Subscriber {
     private Client client;
 
 
-
     public Subscriber() {
     }
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -124,21 +139,5 @@ public class Subscriber {
 
     public void setClient(Client client) {
         this.client = client;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 }

@@ -38,7 +38,6 @@ public class Invoice {
 
 
     public Invoice() {
-
     }
 
     public long getId() {
@@ -57,12 +56,28 @@ public class Invoice {
         this.subscriber = subscriber;
     }
 
+    public TelecomService getTelecomServices() {
+        return telecomServices;
+    }
+
+    public void setTelecomServices(TelecomService telecomServices) {
+        this.telecomServices = telecomServices;
+    }
+
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public String getCurrency() {
@@ -88,21 +103,4 @@ public class Invoice {
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
-
-    public TelecomService getTelecomServices() {
-        return telecomServices;
-    }
-
-    public void setTelecomServices(TelecomService telecomServices) {
-        this.telecomServices = telecomServices;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
 }

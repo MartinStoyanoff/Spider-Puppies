@@ -24,6 +24,11 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public Client findClientById(int id) {
+        return clientRepository.findById(id);
+    }
+
+    @Override
     public List listAllClients() {
         return clientRepository.listAll();
 
@@ -39,8 +44,4 @@ public class ClientServiceImpl implements ClientService {
         clientRepository.update(client);
     }
 
-    @Override
-    public Client findClientById(int id) {
-        return clientRepository.findById(id);
-    }
 }

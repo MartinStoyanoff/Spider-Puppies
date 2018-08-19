@@ -22,15 +22,16 @@ public class AdminController {
     void addAdmin(@RequestBody Admin admin){
         adminService.addAdmin(admin);
     }
-    @GetMapping("/admin/listAllAdmins")
-    List listAllAdmins(){
-        return adminService.listAllAdmins();
-    }
 
     @GetMapping("/admin/findAdminById/{id}")
     public Admin findAdminById(@PathVariable("id") String idString) {
         int id = Integer.parseInt(idString);
         return adminService.findAdminById(id);
+    }
+
+    @GetMapping("/admin/listAllAdmins")
+    List listAllAdmins(){
+        return adminService.listAllAdmins();
     }
 
     @PutMapping("/admin/updateAdmin")

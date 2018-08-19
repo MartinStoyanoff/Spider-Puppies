@@ -4,7 +4,6 @@ import jdk.internal.instrumentation.TypeMapping;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import javax.validation.constraints.Digits;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class TelecomService {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "services_subscribers",
-            joinColumns =  @JoinColumn(name = "service_id"),
+            joinColumns = @JoinColumn(name = "service_id"),
             inverseJoinColumns = @JoinColumn(name = "subscriber_id"))
     private List<Subscriber> subscribers;
 
@@ -76,5 +75,4 @@ public class TelecomService {
     public void setSubscribers(List<Subscriber> subscribers) {
         this.subscribers = subscribers;
     }
-
 }

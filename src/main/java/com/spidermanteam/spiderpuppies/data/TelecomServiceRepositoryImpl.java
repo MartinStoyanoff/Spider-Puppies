@@ -16,25 +16,20 @@ public class TelecomServiceRepositoryImpl implements GenericRepository<TelecomSe
 
     private SessionFactory sessionFactory;
 
-
     @Autowired
     public TelecomServiceRepositoryImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
-
     @Override
-    public List<TelecomService> listAll() {
-        List<TelecomService> telecomServicess = new ArrayList<>();
-        try (Session session = sessionFactory.openSession()){
+    public void create(TelecomService telecomService) {
+        try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            telecomServicess = session.createQuery("from TelecomService ").list();
+            session.save(telecomService);
             session.getTransaction().commit();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return telecomServicess;
     }
 
     @Override
@@ -51,15 +46,16 @@ public class TelecomServiceRepositoryImpl implements GenericRepository<TelecomSe
     }
 
     @Override
-    public void create(TelecomService telecomService) {
-        try (Session session = sessionFactory.openSession()){
+    public List<TelecomService> listAll() {
+        List<TelecomService> telecomServicess = new ArrayList<>();
+        try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.save(telecomService);
+            telecomServicess = session.createQuery("from TelecomService ").list();
             session.getTransaction().commit();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        return telecomServicess;
     }
 
     @Override

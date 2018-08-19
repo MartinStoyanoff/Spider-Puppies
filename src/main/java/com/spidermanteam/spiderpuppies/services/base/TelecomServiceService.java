@@ -6,7 +6,9 @@ import com.spidermanteam.spiderpuppies.models.TelecomService;
 import java.util.List;
 
 public interface TelecomServiceService {
-    void addTelecomService (TelecomService telecomService);
+    void addTelecomService(TelecomService telecomService);
+
+    TelecomService findTelecomServiceById(int id);
 
     List listAllTelecomServices();
 
@@ -14,5 +16,4 @@ public interface TelecomServiceService {
 
     void updateTelecomService(TelecomService telecomService);
 
-    TelecomService findTelecomServiceById(int id);
 }

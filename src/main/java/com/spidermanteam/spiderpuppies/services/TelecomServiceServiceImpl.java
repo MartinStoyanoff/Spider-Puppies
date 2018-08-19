@@ -25,25 +25,22 @@ public class TelecomServiceServiceImpl implements TelecomServiceService {
     }
 
     @Override
+    public TelecomService findTelecomServiceById(int id) {
+        return telecomServiceRepository.findById(id);
+    }
+
+    @Override
     public List listAllTelecomServices() {
         return telecomServiceRepository.listAll();
+    }
 
+    @Override
+    public void updateTelecomService(TelecomService telecomService) {
+        telecomServiceRepository.update(telecomService);
     }
 
     @Override
     public void deleteTelecomService(int id) {
         telecomServiceRepository.delete(id);
     }
-
-    @Override
-    public void updateTelecomService (TelecomService telecomService) {
-        telecomServiceRepository.update(telecomService);
-    }
-
-    @Override
-    public TelecomService findTelecomServiceById(int id) {
-        return telecomServiceRepository.findById(id);
-    }
-
-
 }

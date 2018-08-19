@@ -22,7 +22,6 @@ public class ClientRepositoryImpl implements GenericRepository<Client> {
         this.sessionFactory = sessionFactory;
     }
 
-
     @Override
     public void create(Client client) {
         User user = client.getUser();
@@ -36,7 +35,6 @@ public class ClientRepositoryImpl implements GenericRepository<Client> {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     @Override

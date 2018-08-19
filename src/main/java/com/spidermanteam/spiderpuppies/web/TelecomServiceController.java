@@ -18,29 +18,29 @@ public class TelecomServiceController {
     }
 
     @PostMapping("/admin/addTelecomService")
-    void addTelecomService(@RequestBody TelecomService telecomService){
+    void addTelecomService(@RequestBody TelecomService telecomService) {
         telecomServiceService.addTelecomService(telecomService);
     }
 
-    @GetMapping("/admin/listAllTelecomServices")
-    List listAllTelecomServices(){
-        return telecomServiceService.listAllTelecomServices();
-    }
-
     @GetMapping("/admin/findTelecomService/{id}")
-    TelecomService findTelecomServiceById(@PathVariable("id") String id){
+    TelecomService findTelecomServiceById(@PathVariable("id") String id) {
         int telecomServiceId = Integer.parseInt(id);
         return telecomServiceService.findTelecomServiceById(telecomServiceId);
     }
 
+    @GetMapping("/admin/listAllTelecomServices")
+    List listAllTelecomServices() {
+        return telecomServiceService.listAllTelecomServices();
+    }
+
     @PutMapping("/admin/updateTelecomService")
-    void updateTelecomService(@RequestBody TelecomService telecomService){
+    void updateTelecomService(@RequestBody TelecomService telecomService) {
         telecomServiceService.updateTelecomService(telecomService);
     }
+
     @DeleteMapping("/admin/deleteTelecomService/{id}")
-    void deleteTelecomService(@PathVariable("id") String id){
+    void deleteTelecomService(@PathVariable("id") String id) {
         int telecomServiceId = Integer.parseInt(id);
         telecomServiceService.deleteTelecomService(telecomServiceId);
-
     }
 }

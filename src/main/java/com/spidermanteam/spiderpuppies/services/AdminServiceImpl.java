@@ -14,8 +14,8 @@ public class AdminServiceImpl implements AdminService {
     private GenericRepository<Admin> adminRepository;
 
     @Autowired
-    public AdminServiceImpl (GenericRepository<Admin> adminRepository){
-        this.adminRepository=adminRepository;
+    public AdminServiceImpl(GenericRepository<Admin> adminRepository) {
+        this.adminRepository = adminRepository;
     }
 
     @Override
@@ -24,13 +24,13 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List listAllAdmins() {
-        return adminRepository.listAll();
+    public Admin findAdminById(int id) {
+        return adminRepository.findById(id);
     }
 
     @Override
-    public Admin findAdminById(int id) {
-        return adminRepository.findById(id);
+    public List listAllAdmins() {
+        return adminRepository.listAll();
     }
 
     @Override

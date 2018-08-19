@@ -23,7 +23,6 @@ public class SubscriberRepositoryImpl implements GenericRepository<Subscriber> {
 
     @Override
     public void create(Subscriber subscriber) {
-        
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             session.save(subscriber);
@@ -31,7 +30,6 @@ public class SubscriberRepositoryImpl implements GenericRepository<Subscriber> {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     @Override
@@ -74,7 +72,6 @@ public class SubscriberRepositoryImpl implements GenericRepository<Subscriber> {
 
     @Override
     public void delete(int id) {
-
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             Subscriber subscriber = session.get(Subscriber.class, id);

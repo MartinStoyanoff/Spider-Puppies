@@ -42,6 +42,5 @@ public class SubscriberServiceImpl implements SubscribersService {
     @Override
     public void deleteSubscriber(int id) {
         subscriberRepository.delete(id);
-
     }
 }

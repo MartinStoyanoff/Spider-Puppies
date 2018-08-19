@@ -5,13 +5,14 @@ import com.spidermanteam.spiderpuppies.models.Admin;
 import java.util.List;
 
 public interface AdminService {
-    void addAdmin(Admin admin);
 
-    List listAllAdmins();
+    void addAdmin(Admin admin);
 
     Admin findAdminById(int id);
 
-    void updateAdmin (Admin admin);
+    List listAllAdmins();
 
-    void deleteAdmin (int id);
+    void updateAdmin(Admin admin);
+
+    void deleteAdmin(int id);
 }
