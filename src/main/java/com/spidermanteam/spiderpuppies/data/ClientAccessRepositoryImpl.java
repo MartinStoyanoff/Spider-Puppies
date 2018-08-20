@@ -6,12 +6,14 @@ import com.spidermanteam.spiderpuppies.models.Subscriber;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class ClientAccessRepositoryImpl implements ClientAccessRepository {
 
     private SessionFactory sessionFactory;
@@ -59,7 +61,7 @@ public class ClientAccessRepositoryImpl implements ClientAccessRepository {
     }
 
     @Override
-    public void payInvoicesById(List<Integer> invoiceIdList) {
+    public void payInvoicesByIdList(List<Integer> invoiceIdList) {
         Invoice invoice;
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
@@ -77,7 +79,7 @@ public class ClientAccessRepositoryImpl implements ClientAccessRepository {
     }
 
     @Override
-    public void payInvoicesByPhones(List<String> phonesList) {
+    public void payInvoicesByPhoneList(List<String> phonesList) {
         List<Invoice> invoiceList = new ArrayList<>();
         Invoice invoice;
         try (Session session = sessionFactory.openSession()) {

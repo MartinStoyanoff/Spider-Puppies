@@ -1,4 +1,4 @@
-package com.spidermanteam.spiderpuppies.data.base;
+package com.spidermanteam.spiderpuppies.services.base;
 
 import com.spidermanteam.spiderpuppies.models.Invoice;
 import com.spidermanteam.spiderpuppies.models.Subscriber;
@@ -6,8 +6,7 @@ import com.spidermanteam.spiderpuppies.models.Subscriber;
 import java.math.BigDecimal;
 import java.util.List;
 
-public interface ClientAccessRepository {
-
+public interface ClientAccessService {
     void payInvoiceById(int invoiceId);
 
     void payInvoiceByPhone(String phone);
