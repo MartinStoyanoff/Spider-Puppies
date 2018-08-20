@@ -49,6 +49,7 @@ public class Subscriber {
     @JoinColumn(name = "client")
     private Client client;
 
+    @Column(name = "all_time_turnover")
     private BigDecimal allTimeTurnover;
 
     public Subscriber() {
