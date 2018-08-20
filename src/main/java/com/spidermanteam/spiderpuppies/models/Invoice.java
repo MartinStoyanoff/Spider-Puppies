@@ -39,6 +39,7 @@ public class Invoice {
     @Column(name = "end_date")
     private LocalDate endDate;
 
+    @Column(name = "payment_date")
     private  LocalDate paymentDate;
 
 
