@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/admin/manageAdmins")
 public class ManageAdminsController {
 
     private AdminService adminService;
@@ -19,31 +19,32 @@ public class ManageAdminsController {
         this.adminService=adminService;
     }
 
-    @PostMapping("/addAdmin")
+    @PostMapping("/add")
     void addAdmin(@RequestBody Admin admin){
         adminService.addAdmin(admin);
     }
 
-    @GetMapping("/admin/findAdminById/{id}")
-    public Admin findAdminById(@PathVariable("id") String idString) {
-        int id = Integer.parseInt(idString);
+    @GetMapping("/findById/{id}")
+    public Admin findAdminById(@PathVariable("id") int id) {
         return adminService.findAdminById(id);
     }
 
-    @GetMapping("/admin/listAllAdmins")
+    @GetMapping("/listAll")
     List listAllAdmins(){
         return adminService.listAllAdmins();
     }
 
-    @PutMapping("/admin/updateAdmin")
+    @PutMapping("/update")
     void updateAdmin(@RequestBody Admin admin){
         adminService.updateAdmin(admin);
+        //TODO:Update password to be solved - through cascade or update in both tables
     }
 
-    @DeleteMapping("/admin/deleteAdmin/{id}")
-    void deleteAdmin(@PathVariable("id") String idString){
-        int id = Integer.parseInt(idString);
+    @DeleteMapping("/delete/{id}")
+    void deleteAdmin(@PathVariable("id") int id){
         adminService.deleteAdmin(id);
+        //TODO:Delete user to be solved - through cascade or update in both tables
+
     }
 
 
