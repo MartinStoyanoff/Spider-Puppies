@@ -25,7 +25,7 @@ public class ClientAccessRepositoryImpl implements ClientAccessRepository {
 
 
     @Override
-    public void payInvoiceById(int invoiceId) {
+    public void payInvoiceById(long invoiceId) {
         Invoice invoice;
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
@@ -41,17 +41,24 @@ public class ClientAccessRepositoryImpl implements ClientAccessRepository {
     }
 
     @Override
-    public void payInvoiceByPhone(String phone) {
-       List<Invoice> invoiceList = new ArrayList<>();
-       Invoice invoice;
+    public void payInvoiceByPhone(String phoneNum) {
+        List<Invoice> invoiceList = new ArrayList<>();
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            String query = String.format("from Invoice where phone like %s",phone);
-            invoiceList = session.createQuery(query).list();
-            invoice = invoiceList.get(0);
-            invoice.setStatus("1");
-            invoice.setPaymentDate(LocalDate.now());
-            session.save(invoice);
+            String query = "from Invoice as i where i.subscriber.phone=:phoneNum";
+            invoiceList = session.createQuery(query)
+                    .setParameter("phoneNum", phoneNum).list();
+            for (Invoice inv : invoiceList
+            ) {
+                if (inv.getSubscriber().getPhone().equals(phoneNum)) {
+                    if (inv.getStatus().equals("0")) {
+                        inv.setStatus("1");
+                        inv.setPaymentDate(LocalDate.now());
+                        session.save(inv);
+                    }
+                }
+            }
+
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -65,8 +72,8 @@ public class ClientAccessRepositoryImpl implements ClientAccessRepository {
         Invoice invoice;
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            for (int id: invoiceIdList
-                 ) {
+            for (int id : invoiceIdList
+            ) {
                 invoice = session.get(Invoice.class, id);
                 invoice.setStatus("1");
                 invoice.setPaymentDate(LocalDate.now());
@@ -84,9 +91,9 @@ public class ClientAccessRepositoryImpl implements ClientAccessRepository {
         Invoice invoice;
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            for (String phone: phonesList
-                 ) {
-                String query = String.format("from Invoice where phone like %s",phone);
+            for (String phone : phonesList
+            ) {
+                String query = String.format("from Invoice where phone like %s", phone);
                 invoiceList = session.createQuery(query).list();
                 invoice = invoiceList.get(0);
                 invoice.setStatus("1");

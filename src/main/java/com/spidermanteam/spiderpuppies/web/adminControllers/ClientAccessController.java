@@ -4,6 +4,7 @@ import com.spidermanteam.spiderpuppies.services.base.ClientAccessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -18,13 +19,13 @@ public class ClientAccessController {
     }
 
     @PutMapping("/payInvoiceById/{id}")
-    public void payInvoiceById(@PathVariable("id") int id){
+    public void payInvoiceById(@PathVariable("id") long id){
         clientAccessService.payInvoiceById(id);
     }
 
-    @PutMapping("/payInvoiceByPhone/{phone}")
-   public void payInvoiceByPhone(@PathVariable("phone") String phone){
-        clientAccessService.payInvoiceByPhone(phone);
+    @PutMapping("/payInvoiceByPhone")
+   public void payInvoiceByPhone(@RequestBody HashMap<String, String> input){
+        clientAccessService.payInvoiceByPhone(input);
     }
 
     @PutMapping("/payInvoiceByIdList")

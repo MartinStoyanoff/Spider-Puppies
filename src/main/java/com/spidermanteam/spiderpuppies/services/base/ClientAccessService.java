@@ -4,12 +4,13 @@ import com.spidermanteam.spiderpuppies.models.Invoice;
 import com.spidermanteam.spiderpuppies.models.Subscriber;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 
 public interface ClientAccessService {
-    void payInvoiceById(int invoiceId);
+    void payInvoiceById(long invoiceId);
 
-    void payInvoiceByPhone(String phone);
+    void payInvoiceByPhone(HashMap<String,String> phone);
 
     void payInvoicesByIdList(List<Integer> invoiceIdList);
 

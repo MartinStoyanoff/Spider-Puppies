@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -21,12 +22,13 @@ public class ClientAccessServiceImpl implements ClientAccessService {
     }
 
     @Override
-    public void payInvoiceById(int invoiceId) {
+    public void payInvoiceById(long invoiceId) {
         clientAccessRepository.payInvoiceById(invoiceId);
     }
 
     @Override
-    public void payInvoiceByPhone(String phone) {
+    public void payInvoiceByPhone(HashMap<String,String> input) {
+        String phone = input.get("phone");
         clientAccessRepository.payInvoiceByPhone(phone);
     }
 
