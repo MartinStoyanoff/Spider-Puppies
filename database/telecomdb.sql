@@ -83,15 +83,23 @@ CREATE TABLE IF NOT EXISTS `invoices` (
   `currency` varchar(50) NOT NULL DEFAULT '0',
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
+  `payment_date` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_invoices_telecom_services` (`telecom_service`),
   KEY `FK_invoices_subscribers` (`subscriber_id`),
   CONSTRAINT `FK_invoices_subscribers` FOREIGN KEY (`subscriber_id`) REFERENCES `subscribers` (`id`),
   CONSTRAINT `FK_invoices_telecom_services` FOREIGN KEY (`telecom_service`) REFERENCES `telecom_services` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Dumping data for table telecomdb.invoices: ~0 rows (approximately)
+-- Dumping data for table telecomdb.invoices: ~6 rows (approximately)
 /*!40000 ALTER TABLE `invoices` DISABLE KEYS */;
+INSERT INTO `invoices` (`id`, `subscriber_id`, `telecom_service`, `status`, `price`, `currency`, `start_date`, `end_date`, `payment_date`) VALUES
+	(1, 1, 23, 0, 0, 'BGN', '0000-00-00', '0000-00-00', '0000-00-00'),
+	(2, 1, 23, 0, 0, 'BGN', '2018-08-20', '0000-00-00', '0000-00-00'),
+	(3, 1, 14, 0, 20, 'BGN', '2018-08-20', '2018-09-20', '0000-00-00'),
+	(4, 1, 15, 0, 20, 'BGN', '2018-08-20', '2018-09-20', '0000-00-00'),
+	(5, 1, 23, 0, 19.55555555555555, 'BGN', '2018-08-20', '2018-09-20', '0000-00-00'),
+	(6, 1, 14, 0, 20, 'BGN', '2018-08-20', '2018-09-20', '0000-00-00');
 /*!40000 ALTER TABLE `invoices` ENABLE KEYS */;
 
 -- Dumping structure for table telecomdb.services_subscribers
@@ -104,10 +112,11 @@ CREATE TABLE IF NOT EXISTS `services_subscribers` (
   CONSTRAINT `FK_telecom_services_subscribers_telecom_services` FOREIGN KEY (`service_id`) REFERENCES `telecom_services` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table telecomdb.services_subscribers: ~1 rows (approximately)
+-- Dumping data for table telecomdb.services_subscribers: ~2 rows (approximately)
 /*!40000 ALTER TABLE `services_subscribers` DISABLE KEYS */;
 INSERT INTO `services_subscribers` (`service_id`, `subscriber_id`) VALUES
-	(23, 1);
+	(23, 1),
+	(14, 1);
 /*!40000 ALTER TABLE `services_subscribers` ENABLE KEYS */;
 
 -- Dumping structure for table telecomdb.subscribers
@@ -121,6 +130,7 @@ CREATE TABLE IF NOT EXISTS `subscribers` (
   `invoice` int(11) DEFAULT NULL,
   `first_activation_date` datetime DEFAULT NULL,
   `billing_date` datetime DEFAULT NULL,
+  `all_time_turnover` double DEFAULT NULL,
   `client` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_subscribers_clients` (`client`),
@@ -131,8 +141,8 @@ CREATE TABLE IF NOT EXISTS `subscribers` (
 
 -- Dumping data for table telecomdb.subscribers: ~1 rows (approximately)
 /*!40000 ALTER TABLE `subscribers` DISABLE KEYS */;
-INSERT INTO `subscribers` (`id`, `phone`, `first_name`, `last_name`, `pin`, `address`, `invoice`, `first_activation_date`, `billing_date`, `client`) VALUES
-	(1, '088833838383', 'Goshko', 'Ubaveca', NULL, 'Mladost Beibeee', NULL, NULL, NULL, NULL);
+INSERT INTO `subscribers` (`id`, `phone`, `first_name`, `last_name`, `pin`, `address`, `invoice`, `first_activation_date`, `billing_date`, `all_time_turnover`, `client`) VALUES
+	(1, '088833838383', 'Goshko', 'Ubaveca', NULL, 'Mladost Beibeee', NULL, NULL, '2018-08-20 16:11:55', NULL, NULL);
 /*!40000 ALTER TABLE `subscribers` ENABLE KEYS */;
 
 -- Dumping structure for table telecomdb.telecom_services
