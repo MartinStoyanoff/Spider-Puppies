@@ -1,4 +1,4 @@
-package com.spidermanteam.spiderpuppies.web;
+package com.spidermanteam.spiderpuppies.web.adminControllers;
 
 import com.spidermanteam.spiderpuppies.models.Subscriber;
 import com.spidermanteam.spiderpuppies.services.base.SubscribersService;
@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class SubscriberController {
+public class ManageSubscribersController {
 
     private SubscribersService subscribersService;
 
     @Autowired
-    public SubscriberController(SubscribersService subscribersService) {
+    public ManageSubscribersController(SubscribersService subscribersService) {
         this.subscribersService = subscribersService;
     }
 

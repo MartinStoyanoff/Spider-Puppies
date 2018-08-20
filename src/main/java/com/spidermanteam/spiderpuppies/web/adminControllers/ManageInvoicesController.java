@@ -1,4 +1,4 @@
-package com.spidermanteam.spiderpuppies.web;
+package com.spidermanteam.spiderpuppies.web.adminControllers;
 
 
 import com.spidermanteam.spiderpuppies.models.Invoice;
@@ -14,14 +14,14 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-public class InvoiceController {
+public class ManageInvoicesController {
 
     private InvoiceService invoiceService;
     private TelecomServiceService telecomService;
     private SubscribersService subscribersService;
 
     @Autowired
-    public InvoiceController(InvoiceService invoiceService, TelecomServiceService telecomService, SubscribersService subscribersService) {
+    public ManageInvoicesController(InvoiceService invoiceService, TelecomServiceService telecomService, SubscribersService subscribersService) {
         this.invoiceService = invoiceService;
         this.telecomService = telecomService;
         this.subscribersService = subscribersService;

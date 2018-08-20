@@ -1,4 +1,4 @@
-package com.spidermanteam.spiderpuppies.web;
+package com.spidermanteam.spiderpuppies.web.adminControllers;
 
 import com.spidermanteam.spiderpuppies.models.TelecomService;
 import com.spidermanteam.spiderpuppies.services.base.TelecomServiceService;
@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class TelecomServiceController {
+public class ManageTelecomServicesController {
 
     private TelecomServiceService telecomServiceService;
 
     @Autowired
-    public TelecomServiceController(TelecomServiceService telecomServiceService) {
+    public ManageTelecomServicesController(TelecomServiceService telecomServiceService) {
         this.telecomServiceService = telecomServiceService;
     }
 

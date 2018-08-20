@@ -1,4 +1,4 @@
-package com.spidermanteam.spiderpuppies.web;
+package com.spidermanteam.spiderpuppies.web.adminControllers;
 
 
 import com.spidermanteam.spiderpuppies.models.Client;
@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class ClientController {
+public class ManageClientsController {
 
     private ClientService clientService;
 
     @Autowired
-    public ClientController(ClientService clientService) {
+    public ManageClientsController(ClientService clientService) {
         this.clientService = clientService;
     }
 

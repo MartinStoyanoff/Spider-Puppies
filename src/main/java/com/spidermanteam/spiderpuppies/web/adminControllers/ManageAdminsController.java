@@ -1,4 +1,4 @@
-package com.spidermanteam.spiderpuppies.web;
+package com.spidermanteam.spiderpuppies.web.adminControllers;
 
 import com.spidermanteam.spiderpuppies.models.Admin;
 import com.spidermanteam.spiderpuppies.models.Client;
@@ -9,16 +9,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class AdminController {
+@RequestMapping("/admin")
+public class ManageAdminsController {
 
     private AdminService adminService;
 
     @Autowired
-    public AdminController (AdminService adminService){
+    public ManageAdminsController(AdminService adminService){
         this.adminService=adminService;
     }
 
-    @PostMapping("/admin/addAdmin")
+    @PostMapping("/addAdmin")
     void addAdmin(@RequestBody Admin admin){
         adminService.addAdmin(admin);
     }
