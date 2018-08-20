@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/admin/manageClients")
 public class ManageClientsController {
 
     private ClientService clientService;
@@ -19,31 +20,29 @@ public class ManageClientsController {
         this.clientService = clientService;
     }
 
-    @PostMapping("/admin/addClient")
+    @PostMapping("/add")
     void addClient(@RequestBody Client client) {
         clientService.addClient(client);
     }
 
-    @GetMapping("/admin/findClientById/{id}")
-    Client findClientById(@PathVariable("id") String id) {
-        int clientId = Integer.parseInt(id);
-        return clientService.findClientById(clientId);
+    @GetMapping("/findById/{id}")
+    Client findClientById(@PathVariable int id) {
+        return clientService.findClientById(id);
     }
 
-    @GetMapping("/admin/listAllClients")
+    @GetMapping("/listAll")
     List listAllClients() {
         return clientService.listAllClients();
     }
 
-    @PutMapping("/admin/updateClient")
+    @PutMapping("/update")
     void updateClient(@RequestBody Client client) {
         clientService.updateClient(client);
     }
 
-    @DeleteMapping("/admin/deleteClient/{id}")
-    void deleteClient(@PathVariable("id") String id) {
-        int clientId = Integer.parseInt(id);
-        clientService.deleteClient(clientId);
+    @DeleteMapping("/delete/{id}")
+    void deleteClient(@PathVariable int id) {
+        clientService.deleteClient(id);
     }
 
 

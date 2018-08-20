@@ -25,7 +25,7 @@ public class ManageAdminsController {
     }
 
     @GetMapping("/findById/{id}")
-    public Admin findAdminById(@PathVariable("id") int id) {
+    public Admin findAdminById(@PathVariable int id) {
         return adminService.findAdminById(id);
     }
 
@@ -41,7 +41,7 @@ public class ManageAdminsController {
     }
 
     @DeleteMapping("/delete/{id}")
-    void deleteAdmin(@PathVariable("id") int id){
+    void deleteAdmin(@PathVariable int id){
         adminService.deleteAdmin(id);
         //TODO:Delete user to be solved - through cascade or update in both tables
 
