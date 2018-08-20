@@ -116,7 +116,8 @@ CREATE TABLE IF NOT EXISTS `services_subscribers` (
 /*!40000 ALTER TABLE `services_subscribers` DISABLE KEYS */;
 INSERT INTO `services_subscribers` (`service_id`, `subscriber_id`) VALUES
 	(23, 1),
-	(14, 1);
+	(14, 1),
+	(12, 1);
 /*!40000 ALTER TABLE `services_subscribers` ENABLE KEYS */;
 
 -- Dumping structure for table telecomdb.subscribers
@@ -130,8 +131,8 @@ CREATE TABLE IF NOT EXISTS `subscribers` (
   `invoice` int(11) DEFAULT NULL,
   `first_activation_date` datetime DEFAULT NULL,
   `billing_date` datetime DEFAULT NULL,
-  `all_time_turnover` double DEFAULT NULL,
   `client` int(11) DEFAULT NULL,
+  `all_time_turnover` double DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_subscribers_clients` (`client`),
   KEY `FK_subscribers_invoices` (`invoice`),
@@ -141,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `subscribers` (
 
 -- Dumping data for table telecomdb.subscribers: ~1 rows (approximately)
 /*!40000 ALTER TABLE `subscribers` DISABLE KEYS */;
-INSERT INTO `subscribers` (`id`, `phone`, `first_name`, `last_name`, `pin`, `address`, `invoice`, `first_activation_date`, `billing_date`, `all_time_turnover`, `client`) VALUES
+INSERT INTO `subscribers` (`id`, `phone`, `first_name`, `last_name`, `pin`, `address`, `invoice`, `first_activation_date`, `billing_date`, `client`, `all_time_turnover`) VALUES
 	(1, '088833838383', 'Goshko', 'Ubaveca', NULL, 'Mladost Beibeee', NULL, NULL, '2018-08-20 16:11:55', NULL, NULL);
 /*!40000 ALTER TABLE `subscribers` ENABLE KEYS */;
 
