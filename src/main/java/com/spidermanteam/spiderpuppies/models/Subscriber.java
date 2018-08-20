@@ -28,7 +28,7 @@ public class Subscriber {
     private String address;
 
 
-    @OneToMany(mappedBy = "subscriber")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "subscriber")
     private List<Invoice> invoices;
 
     @ManyToMany(fetch = FetchType.EAGER)

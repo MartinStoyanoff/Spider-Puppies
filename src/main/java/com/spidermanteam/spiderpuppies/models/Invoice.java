@@ -1,5 +1,7 @@
 package com.spidermanteam.spiderpuppies.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -15,6 +17,7 @@ public class Invoice {
 
     @ManyToOne
     @JoinColumn(name="subscriber_id")
+    @JsonIdentityReference(alwaysAsId = true)
     private Subscriber subscriber;
 
     @OneToOne
@@ -36,8 +39,20 @@ public class Invoice {
     @Column(name = "end_date")
     private LocalDate endDate;
 
+    private  LocalDate paymentDate;
+
 
     public Invoice() {
+    }
+
+    public Invoice(Subscriber subscriber, TelecomService telecomServices, String currency) {
+        this.subscriber = subscriber;
+        this.telecomServices = telecomServices;
+        this.currency = currency;
+        this.status = "0";
+        setStartDate();
+        setPrice();
+        setEndDate();
     }
 
     public long getId() {
@@ -76,8 +91,8 @@ public class Invoice {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setPrice() {
+        this.price = telecomServices.getPrice();
     }
 
     public String getCurrency() {
@@ -92,15 +107,22 @@ public class Invoice {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
+    public void setStartDate() {
+        this.startDate = subscriber.getBillingDate();
     }
 
     public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
+    public void setEndDate() {
+        this.endDate = subscriber.getBillingDate().plusMonths(1);    }
+
+    public LocalDate getPaymentDate() {
+        return paymentDate;
+    }
+
+    public void setPaymentDate(LocalDate paymentDate) {
+        this.paymentDate = paymentDate;
     }
 }
