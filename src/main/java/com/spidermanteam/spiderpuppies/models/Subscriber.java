@@ -1,6 +1,7 @@
 package com.spidermanteam.spiderpuppies.models;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -48,6 +49,7 @@ public class Subscriber {
     @JoinColumn(name = "client")
     private Client client;
 
+    private BigDecimal allTimeTurnover;
 
     public Subscriber() {
     }
@@ -139,5 +141,14 @@ public class Subscriber {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+
+    public BigDecimal getAllTimeTurnover() {
+        return allTimeTurnover;
+    }
+
+    public void setAllTimeTurnover(BigDecimal allTimeTurnover) {
+        this.allTimeTurnover = allTimeTurnover;
     }
 }
