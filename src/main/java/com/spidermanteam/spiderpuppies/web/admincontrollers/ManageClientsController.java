@@ -1,10 +1,9 @@
-package com.spidermanteam.spiderpuppies.web.adminControllers;
+package com.spidermanteam.spiderpuppies.web.admincontrollers;
 
 
 import com.spidermanteam.spiderpuppies.models.Client;
 import com.spidermanteam.spiderpuppies.services.base.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

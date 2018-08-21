@@ -1,4 +1,4 @@
-package com.spidermanteam.spiderpuppies.web.adminControllers.clientcontrollers;
+package com.spidermanteam.spiderpuppies.web.clientcontrollers;
 
 import com.spidermanteam.spiderpuppies.services.base.ClientAccessService;
 import org.springframework.beans.factory.annotation.Autowired;

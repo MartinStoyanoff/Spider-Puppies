@@ -1,6 +1,7 @@
 package com.spidermanteam.spiderpuppies.data;
 
 import com.spidermanteam.spiderpuppies.data.base.GenericRepository;
+import com.spidermanteam.spiderpuppies.data.base.InvoiceRepository;
 import com.spidermanteam.spiderpuppies.models.Invoice;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class InvoiceRepositoryImpl implements GenericRepository<Invoice> {
+public class InvoiceRepositoryImpl implements GenericRepository<Invoice>, InvoiceRepository {
 
 
     private SessionFactory sessionFactory;
@@ -83,5 +84,10 @@ public class InvoiceRepositoryImpl implements GenericRepository<Invoice> {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    @Override
+    public Invoice findInvoicesByPhone(String phone) {
+        return null;
     }
 }

@@ -1,4 +1,4 @@
-package com.spidermanteam.spiderpuppies.web.adminControllers;
+package com.spidermanteam.spiderpuppies.web.admincontrollers;
 
 
 import com.spidermanteam.spiderpuppies.models.Invoice;
