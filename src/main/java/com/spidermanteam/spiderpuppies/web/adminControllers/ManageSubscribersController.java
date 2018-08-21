@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/admin/manage/subscribers")
 public class ManageSubscribersController {
 
     private SubscribersService subscribersService;
@@ -17,30 +18,28 @@ public class ManageSubscribersController {
         this.subscribersService = subscribersService;
     }
 
-    @PostMapping("/admin/addSubscriber")
+    @PostMapping("/add")
     void addSubscriber(@RequestBody Subscriber subscriber) {
         subscribersService.addSubscriber(subscriber);
     }
 
-    @GetMapping("/admin/findSubscriberById/{id}")
-    Subscriber findSubscriberById(@PathVariable("id") String id) {
-        int subscriberId = Integer.parseInt(id);
-        return subscribersService.findSubscriberById(subscriberId);
+    @GetMapping("/findById/{id}")
+    Subscriber findSubscriberById(@PathVariable int id) {
+        return subscribersService.findSubscriberById(id);
     }
 
-    @GetMapping("/admin/listAllSubscribers")
+    @GetMapping("/listAll")
     List listAllSubscribers() {
         return subscribersService.listAllSubscribers();
     }
 
-    @PutMapping("/admin/updateSubscriber")
+    @PutMapping("/update")
     void updateSubscriber(@RequestBody Subscriber subscriber) {
         subscribersService.updateSubscriber(subscriber);
     }
 
-    @DeleteMapping("/admin/deleteSubscriber/{id}")
-    void deleteSubscriber(@PathVariable("id") String id) {
-        int subscriberId = Integer.parseInt(id);
-        subscribersService.deleteSubscriber(subscriberId);
+    @DeleteMapping("/delete/{id}")
+    void deleteSubscriber(@PathVariable int id) {
+        subscribersService.deleteSubscriber(id);
     }
 }
