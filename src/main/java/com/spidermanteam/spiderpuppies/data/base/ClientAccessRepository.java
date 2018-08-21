@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface ClientAccessRepository {
 
-    void payInvoiceById(long invoiceId);
+    void payInvoiceById(int invoiceId);
 
-    void payInvoiceByPhone(String phone);
+    void payInvoicesByPhone(String phone);
 
     void payInvoicesByIdList(List<Integer> invoiceIdList);
 

@@ -8,9 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface ClientAccessService {
-    void payInvoiceById(long invoiceId);
+    void payInvoiceById(int invoiceId);
 
-    void payInvoiceByPhone(HashMap<String,String> phone);
+    void payInvoicesByPhone(HashMap<String,String> phone);
 
     void payInvoicesByIdList(List<Integer> invoiceIdList);
 

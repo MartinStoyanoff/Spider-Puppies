@@ -19,13 +19,13 @@ public class ClientAccessController {
     }
 
     @PutMapping("/payInvoiceById/{id}")
-    public void payInvoiceById(@PathVariable("id") long id){
+    public void payInvoiceById(@PathVariable("id") int id){
         clientAccessService.payInvoiceById(id);
     }
 
-    @PutMapping("/payInvoiceByPhone")
+    @PutMapping("/payInvoicesByPhone")
    public void payInvoiceByPhone(@RequestBody HashMap<String, String> input){
-        clientAccessService.payInvoiceByPhone(input);
+        clientAccessService.payInvoicesByPhone(input);
     }
 
     @PutMapping("/payInvoiceByIdList")

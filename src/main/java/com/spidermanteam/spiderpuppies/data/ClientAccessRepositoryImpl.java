@@ -25,7 +25,7 @@ public class ClientAccessRepositoryImpl implements ClientAccessRepository {
 
 
     @Override
-    public void payInvoiceById(long invoiceId) {
+    public void payInvoiceById(int invoiceId) {
         Invoice invoice;
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
@@ -41,7 +41,7 @@ public class ClientAccessRepositoryImpl implements ClientAccessRepository {
     }
 
     @Override
-    public void payInvoiceByPhone(String phoneNum) {
+    public void payInvoicesByPhone(String phoneNum) {
         List<Invoice> invoiceList = new ArrayList<>();
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
@@ -75,9 +75,11 @@ public class ClientAccessRepositoryImpl implements ClientAccessRepository {
             for (int id : invoiceIdList
             ) {
                 invoice = session.get(Invoice.class, id);
-                invoice.setStatus("1");
-                invoice.setPaymentDate(LocalDate.now());
-                session.save(invoice);
+                if (invoice.getStatus().equals("0")) {
+                    invoice.setStatus("1");
+                    invoice.setPaymentDate(LocalDate.now());
+                    session.save(invoice);
+                }
             }
             session.getTransaction().commit();
         } catch (Exception e) {

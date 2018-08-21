@@ -22,14 +22,14 @@ public class ClientAccessServiceImpl implements ClientAccessService {
     }
 
     @Override
-    public void payInvoiceById(long invoiceId) {
+    public void payInvoiceById(int invoiceId) {
         clientAccessRepository.payInvoiceById(invoiceId);
     }
 
     @Override
-    public void payInvoiceByPhone(HashMap<String,String> input) {
+    public void payInvoicesByPhone(HashMap<String,String> input) {
         String phone = input.get("phone");
-        clientAccessRepository.payInvoiceByPhone(phone);
+        clientAccessRepository.payInvoicesByPhone(phone);
     }
 
     @Override
