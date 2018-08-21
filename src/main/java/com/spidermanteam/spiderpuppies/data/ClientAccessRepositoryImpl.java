@@ -95,12 +95,17 @@ public class ClientAccessRepositoryImpl implements ClientAccessRepository {
             session.beginTransaction();
             for (String phone : phonesList
             ) {
-                String query = String.format("from Invoice where phone like %s", phone);
-                invoiceList = session.createQuery(query).list();
-                invoice = invoiceList.get(0);
-                invoice.setStatus("1");
-                invoice.setPaymentDate(LocalDate.now());
-                session.save(invoice);
+                String query = "from Invoice as i where i.subscriber.phone=:phoneNum and i.status=:status";
+                invoiceList = session.createQuery(query)
+                        .setParameter("phoneNum", phone)
+                        .setParameter("status","0").list();
+                for (Invoice inv: invoiceList
+                     )
+                if(inv.getStatus().equals("0")){
+                    inv.setStatus("1");
+                    inv.setPaymentDate(LocalDate.now());
+                    session.save(inv);
+                }
             }
             session.getTransaction().commit();
         } catch (Exception e) {
