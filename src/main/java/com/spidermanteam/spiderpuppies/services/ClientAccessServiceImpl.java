@@ -39,6 +39,8 @@ public class ClientAccessServiceImpl implements ClientAccessService {
             Subscriber subscriber = invoice.getSubscriber();
             BigDecimal currentTurnover = subscriber.getAllTimeTurnover();
             subscriber.setAllTimeTurnover(currentTurnover.add(price));
+
+            subscriberRepository.update(subscriber);
             invoiceRepository.update(invoice);
         }
     }
@@ -54,11 +56,8 @@ public class ClientAccessServiceImpl implements ClientAccessService {
                 BigDecimal price = invoice.getPrice();
                 Subscriber subscriber = invoice.getSubscriber();
                 BigDecimal currentTurnover = subscriber.getAllTimeTurnover();
-                if (currentTurnover == null) {
-                    subscriber.setAllTimeTurnover(price);
-                } else {
-                    subscriber.setAllTimeTurnover(currentTurnover.add(price));
-                }
+                subscriber.setAllTimeTurnover(currentTurnover.add(price));
+
                 subscriberRepository.update(subscriber);
                 invoiceRepository.update(invoice);
 
@@ -68,7 +67,22 @@ public class ClientAccessServiceImpl implements ClientAccessService {
 
     @Override
     public void payInvoicesByIdList(List<Integer> invoiceIdList) {
-        clientAccessRepository.payInvoicesByIdList(invoiceIdList);
+        for (int id : invoiceIdList
+        ) {
+            Invoice invoice = invoiceRepository.findById(id);
+
+            if (invoice.getStatus().equals("0")) {
+                invoice.setStatus("1");
+                invoice.setPaymentDate(LocalDate.now());
+                BigDecimal price = invoice.getPrice();
+                Subscriber subscriber = invoice.getSubscriber();
+                BigDecimal currentTurnover = subscriber.getAllTimeTurnover();
+                subscriber.setAllTimeTurnover(currentTurnover.add(price));
+
+                subscriberRepository.update(subscriber);
+                invoiceRepository.update(invoice);
+            }
+        }
     }
 
     @Override
