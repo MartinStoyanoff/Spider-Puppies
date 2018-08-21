@@ -1,4 +1,4 @@
-package com.spidermanteam.spiderpuppies.web.adminControllers;
+package com.spidermanteam.spiderpuppies.web.adminControllers.clientcontrollers;
 
 import com.spidermanteam.spiderpuppies.services.base.ClientAccessService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +9,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/aclient")
-public class ClientAccessController {
+public class ClientController {
 
     private ClientAccessService clientAccessService;
 
     @Autowired
-    public ClientAccessController(ClientAccessService clientAccessService) {
+    public ClientController(ClientAccessService clientAccessService) {
         this.clientAccessService = clientAccessService;
     }
 
