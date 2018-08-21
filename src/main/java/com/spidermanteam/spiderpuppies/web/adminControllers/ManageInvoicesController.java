@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
+@RequestMapping("/admin/manage/invoices")
 public class ManageInvoicesController {
 
     private InvoiceService invoiceService;
@@ -27,40 +28,38 @@ public class ManageInvoicesController {
         this.subscribersService = subscribersService;
     }
 
+    //TODO: implement custom serializer or additional models
 
-    @PostMapping("/admin/addInvoice")
+    @PostMapping("/add")
     void addInvoice(@RequestBody HashMap<String, String> input) {
         Subscriber subscriber = subscribersService.findSubscriberById(Integer.parseInt(input.get("subscriber")));
-      List<TelecomService> list = subscriber.getTelecomServices();
-        for (TelecomService ts: list
-             ) {
+        List<TelecomService> list = subscriber.getTelecomServices();
+        for (TelecomService ts : list
+        ) {
             String currency = input.get("currency");
             Invoice invoiceAdd = new Invoice(subscriber, ts, currency);
             invoiceService.addInvoice(invoiceAdd);
-
         }
 
     }
 
-    @GetMapping("/admin/findInvoiceById/{id}")
-    public Invoice findInvoiceById(@PathVariable("id") int id) {
+    @GetMapping("/findById/{id}")
+    public Invoice findInvoiceById(@PathVariable int id) {
         return invoiceService.findInvoiceById(id);
     }
 
-    @GetMapping("/admin/listAllInvoices")
+    @GetMapping("/listAll")
     List listAllInvoice() {
         return invoiceService.listAllInvoices();
     }
 
-    @PutMapping("/admin/updateInvoice")
+    @PutMapping("/update")
     void updateInvoice(@RequestBody Invoice invoice) {
         invoiceService.updateInvoice(invoice);
     }
 
-    @DeleteMapping("/admin/deleteInvoice/{id}")
-    void deleteInvoice(@PathVariable("id") int id) {
+    @DeleteMapping("/delete/{id}")
+    void deleteInvoice(@PathVariable int id) {
         invoiceService.deleteInvoice(id);
     }
-
-
 }
