@@ -1,6 +1,7 @@
 package com.spidermanteam.spiderpuppies.services;
 
 import com.spidermanteam.spiderpuppies.data.base.ClientAccessRepository;
+import com.spidermanteam.spiderpuppies.data.base.GenericRepository;
 import com.spidermanteam.spiderpuppies.models.Invoice;
 import com.spidermanteam.spiderpuppies.models.Subscriber;
 import com.spidermanteam.spiderpuppies.services.base.ClientAccessService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,15 +17,29 @@ import java.util.List;
 public class ClientAccessServiceImpl implements ClientAccessService {
 
     private ClientAccessRepository clientAccessRepository;
+    private GenericRepository<Invoice>  invoiceRepository;
+    private GenericRepository<Subscriber> subscriberRepository;
 
     @Autowired
-    public ClientAccessServiceImpl(ClientAccessRepository clientAccessRepository) {
+    public ClientAccessServiceImpl(ClientAccessRepository clientAccessRepository, GenericRepository<Invoice> invoiceRepository, GenericRepository<Subscriber> subscriberRepository) {
         this.clientAccessRepository = clientAccessRepository;
+        this.invoiceRepository = invoiceRepository;
+        this.subscriberRepository = subscriberRepository;
     }
+
 
     @Override
     public void payInvoiceById(int invoiceId) {
-        clientAccessRepository.payInvoiceById(invoiceId);
+        Invoice invoice = invoiceRepository.findById(invoiceId);
+        if(invoice.getStatus().equals("0")) {
+            invoice.setStatus("1");
+            invoice.setPaymentDate(LocalDate.now());
+            BigDecimal price = invoice.getPrice();
+            Subscriber subscriber = invoice.getSubscriber();
+            BigDecimal currentTurnover = subscriber.getAllTimeTurnover();
+            subscriber.setAllTimeTurnover(currentTurnover.add(price));
+            invoiceRepository.update(invoice);
+        }
     }
 
     @Override
