@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               10.3.8-MariaDB - mariadb.org binary distribution
+-- Server version:               10.3.7-MariaDB - mariadb.org binary distribution
 -- Server OS:                    Win64
 -- HeidiSQL Version:             9.4.0.5125
 -- --------------------------------------------------------
@@ -10,11 +10,6 @@
 /*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-
-
--- Dumping database structure for telecomdb
-CREATE DATABASE IF NOT EXISTS `telecomdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `telecomdb`;
 
 -- Dumping structure for table telecomdb.admins
 CREATE TABLE IF NOT EXISTS `admins` (
@@ -27,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `admins` (
   CONSTRAINT `FK_admins_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Dumping data for table telecomdb.admins: ~1 rows (approximately)
+-- Dumping data for table telecomdb.admins: ~0 rows (approximately)
 /*!40000 ALTER TABLE `admins` DISABLE KEYS */;
 INSERT INTO `admins` (`id`, `user_id`, `e_mail`, `first_login`) VALUES
 	(3, 'TestUser1', 'abv@ssss.fff', 0);
@@ -96,10 +91,16 @@ CREATE TABLE IF NOT EXISTS `invoices` (
   KEY `FK_invoices_subscribers` (`subscriber_id`),
   CONSTRAINT `FK_invoices_subscribers` FOREIGN KEY (`subscriber_id`) REFERENCES `subscribers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_invoices_telecom_services` FOREIGN KEY (`telecom_service`) REFERENCES `telecom_services` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
--- Dumping data for table telecomdb.invoices: ~9 rows (approximately)
+-- Dumping data for table telecomdb.invoices: ~5 rows (approximately)
 /*!40000 ALTER TABLE `invoices` DISABLE KEYS */;
+INSERT INTO `invoices` (`id`, `subscriber_id`, `telecom_service`, `status`, `price`, `currency`, `start_date`, `end_date`, `payment_date`) VALUES
+	(16, 2, 13, 1, 19, 'BGN', '2018-07-16', '2018-08-16', '2018-08-21'),
+	(17, 3, 10, 0, 9, 'BGN', '2018-07-16', '2018-08-16', '2018-08-21'),
+	(18, 2, 13, 0, 19, 'BGN', '2018-07-16', '2018-08-16', '2018-08-21'),
+	(19, 2, 13, 1, 19, 'BGN', '2018-07-16', '2018-08-16', '2018-08-21'),
+	(20, 3, 10, 0, 9, 'BGN', '2018-07-16', '2018-08-16', '2018-08-21');
 /*!40000 ALTER TABLE `invoices` ENABLE KEYS */;
 
 -- Dumping structure for table telecomdb.services_subscribers
@@ -112,8 +113,11 @@ CREATE TABLE IF NOT EXISTS `services_subscribers` (
   CONSTRAINT `FK_telecom_services_subscribers_telecom_services` FOREIGN KEY (`service_id`) REFERENCES `telecom_services` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table telecomdb.services_subscribers: ~3 rows (approximately)
+-- Dumping data for table telecomdb.services_subscribers: ~2 rows (approximately)
 /*!40000 ALTER TABLE `services_subscribers` DISABLE KEYS */;
+INSERT INTO `services_subscribers` (`service_id`, `subscriber_id`) VALUES
+	(10, 3),
+	(13, 2);
 /*!40000 ALTER TABLE `services_subscribers` ENABLE KEYS */;
 
 -- Dumping structure for table telecomdb.subscribers
@@ -128,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `subscribers` (
   `first_activation_date` date DEFAULT NULL,
   `billing_date` date DEFAULT NULL,
   `client` int(11) DEFAULT NULL,
-  `all_time_turnover` double DEFAULT NULL,
+  `all_time_turnover` double NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `phone` (`phone`),
   KEY `FK_subscribers_clients` (`client`),
@@ -137,11 +141,11 @@ CREATE TABLE IF NOT EXISTS `subscribers` (
   CONSTRAINT `FK_subscribers_invoices` FOREIGN KEY (`invoice`) REFERENCES `invoices` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Dumping data for table telecomdb.subscribers: ~3 rows (approximately)
+-- Dumping data for table telecomdb.subscribers: ~2 rows (approximately)
 /*!40000 ALTER TABLE `subscribers` DISABLE KEYS */;
 INSERT INTO `subscribers` (`id`, `phone`, `first_name`, `last_name`, `pin`, `address`, `invoice`, `first_activation_date`, `billing_date`, `client`, `all_time_turnover`) VALUES
-	(2, '0897902770', 'Martin', 'Ivanov', '9933881133', 'gore na chereshata', NULL, '2015-07-16', '2018-07-16', 9, NULL),
-	(3, '0897220145', 'Veselin', 'Georgiev', '2114124490', 'dolu pod chereshata', NULL, '2015-07-16', '2018-07-16', 12, NULL);
+	(2, '0897902770', 'Martin', 'Ivanov', '9933881133', 'gore na chereshata', NULL, '2015-07-16', '2018-07-16', 9, 0),
+	(3, '0897220145', 'Veselin', 'Georgiev', '2114124490', 'dolu pod chereshata', NULL, '2015-07-16', '2018-07-16', 12, 0);
 /*!40000 ALTER TABLE `subscribers` ENABLE KEYS */;
 
 -- Dumping structure for table telecomdb.telecom_services

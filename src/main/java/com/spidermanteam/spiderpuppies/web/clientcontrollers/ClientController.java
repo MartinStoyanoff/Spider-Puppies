@@ -25,7 +25,8 @@ public class ClientController {
 
     @PutMapping("/payInvoicesByPhone")
    public void payInvoiceByPhone(@RequestBody HashMap<String, String> input){
-        clientAccessService.payInvoicesByPhone(input);
+        String phone = input.get("phone");
+        clientAccessService.payInvoicesByPhone(phone);
     }
 
     @PutMapping("/payInvoiceByIdList")

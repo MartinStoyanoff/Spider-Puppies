@@ -2,6 +2,7 @@ package com.spidermanteam.spiderpuppies.services;
 
 import com.spidermanteam.spiderpuppies.data.base.ClientAccessRepository;
 import com.spidermanteam.spiderpuppies.data.base.GenericRepository;
+import com.spidermanteam.spiderpuppies.data.base.InvoiceRepository;
 import com.spidermanteam.spiderpuppies.models.Invoice;
 import com.spidermanteam.spiderpuppies.models.Subscriber;
 import com.spidermanteam.spiderpuppies.services.base.ClientAccessService;
@@ -17,11 +18,11 @@ import java.util.List;
 public class ClientAccessServiceImpl implements ClientAccessService {
 
     private ClientAccessRepository clientAccessRepository;
-    private GenericRepository<Invoice>  invoiceRepository;
+    private InvoiceRepository invoiceRepository;
     private GenericRepository<Subscriber> subscriberRepository;
 
     @Autowired
-    public ClientAccessServiceImpl(ClientAccessRepository clientAccessRepository, GenericRepository<Invoice> invoiceRepository, GenericRepository<Subscriber> subscriberRepository) {
+    public ClientAccessServiceImpl(ClientAccessRepository clientAccessRepository, InvoiceRepository invoiceRepository, GenericRepository<Subscriber> subscriberRepository) {
         this.clientAccessRepository = clientAccessRepository;
         this.invoiceRepository = invoiceRepository;
         this.subscriberRepository = subscriberRepository;
@@ -31,26 +32,57 @@ public class ClientAccessServiceImpl implements ClientAccessService {
     @Override
     public void payInvoiceById(int invoiceId) {
         Invoice invoice = invoiceRepository.findById(invoiceId);
-        if(invoice.getStatus().equals("0")) {
+        if (invoice.getStatus().equals("0")) {
             invoice.setStatus("1");
             invoice.setPaymentDate(LocalDate.now());
             BigDecimal price = invoice.getPrice();
             Subscriber subscriber = invoice.getSubscriber();
             BigDecimal currentTurnover = subscriber.getAllTimeTurnover();
             subscriber.setAllTimeTurnover(currentTurnover.add(price));
+
+            subscriberRepository.update(subscriber);
             invoiceRepository.update(invoice);
         }
     }
 
     @Override
-    public void payInvoicesByPhone(HashMap<String,String> input) {
-        String phone = input.get("phone");
-        clientAccessRepository.payInvoicesByPhone(phone);
+    public void payInvoicesByPhone(String phone) {
+        List<Invoice> invoiceList = invoiceRepository.findInvoicesByPhone(phone);
+        for (Invoice invoice : invoiceList
+        ) {
+            if (invoice.getStatus().equals("0")) {
+                invoice.setStatus("1");
+                invoice.setPaymentDate(LocalDate.now());
+                BigDecimal price = invoice.getPrice();
+                Subscriber subscriber = invoice.getSubscriber();
+                BigDecimal currentTurnover = subscriber.getAllTimeTurnover();
+                subscriber.setAllTimeTurnover(currentTurnover.add(price));
+
+                subscriberRepository.update(subscriber);
+                invoiceRepository.update(invoice);
+
+            }
+        }
     }
 
     @Override
     public void payInvoicesByIdList(List<Integer> invoiceIdList) {
-        clientAccessRepository.payInvoicesByIdList(invoiceIdList);
+        for (int id : invoiceIdList
+        ) {
+            Invoice invoice = invoiceRepository.findById(id);
+
+            if (invoice.getStatus().equals("0")) {
+                invoice.setStatus("1");
+                invoice.setPaymentDate(LocalDate.now());
+                BigDecimal price = invoice.getPrice();
+                Subscriber subscriber = invoice.getSubscriber();
+                BigDecimal currentTurnover = subscriber.getAllTimeTurnover();
+                subscriber.setAllTimeTurnover(currentTurnover.add(price));
+
+                subscriberRepository.update(subscriber);
+                invoiceRepository.update(invoice);
+            }
+        }
     }
 
     @Override

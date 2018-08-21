@@ -10,7 +10,7 @@ import java.util.List;
 public interface ClientAccessService {
     void payInvoiceById(int invoiceId);
 
-    void payInvoicesByPhone(HashMap<String,String> phone);
+    void payInvoicesByPhone(String phone);
 
     void payInvoicesByIdList(List<Integer> invoiceIdList);
 
