@@ -56,7 +56,7 @@ public class Invoice {
         setEndDate();
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
