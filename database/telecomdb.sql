@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               10.3.7-MariaDB - mariadb.org binary distribution
+-- Server version:               10.3.8-MariaDB - mariadb.org binary distribution
 -- Server OS:                    Win64
 -- HeidiSQL Version:             9.4.0.5125
 -- --------------------------------------------------------
@@ -11,6 +11,11 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+
+-- Dumping database structure for telecomdb
+CREATE DATABASE IF NOT EXISTS `telecomdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `telecomdb`;
+
 -- Dumping structure for table telecomdb.admins
 CREATE TABLE IF NOT EXISTS `admins` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -19,13 +24,13 @@ CREATE TABLE IF NOT EXISTS `admins` (
   `first_login` tinyint(4) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `FK_admins_users` (`user_id`),
-  CONSTRAINT `FK_admins_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  CONSTRAINT `FK_admins_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table telecomdb.admins: ~1 rows (approximately)
 /*!40000 ALTER TABLE `admins` DISABLE KEYS */;
 INSERT INTO `admins` (`id`, `user_id`, `e_mail`, `first_login`) VALUES
-	(2, 'administrator', 'gosho@ot.pochivkata', 0);
+	(3, 'TestUser1', 'abv@ssss.fff', 0);
 /*!40000 ALTER TABLE `admins` ENABLE KEYS */;
 
 -- Dumping structure for table telecomdb.authorities
@@ -33,14 +38,15 @@ CREATE TABLE IF NOT EXISTS `authorities` (
   `username` varchar(50) NOT NULL,
   `authority` varchar(50) NOT NULL,
   UNIQUE KEY `username_authority` (`username`,`authority`),
-  CONSTRAINT `FK__users` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
+  CONSTRAINT `FK__users` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table telecomdb.authorities: ~10 rows (approximately)
+-- Dumping data for table telecomdb.authorities: ~14 rows (approximately)
 /*!40000 ALTER TABLE `authorities` DISABLE KEYS */;
 INSERT INTO `authorities` (`username`, `authority`) VALUES
-	('admin', 'ROLE_ADMIN'),
-	('administrator', 'ROLE_ADMIN'),
+	('Allianz', 'ROLE_ADMIN'),
+	('DSK', 'ROLE_ADMIN'),
+	('FiBank', 'ROLE_ADMIN'),
 	('generic_client', 'ROLE_ADMIN'),
 	('gosho', 'ROLE_CLIENT'),
 	('Ivan', 'ROLE_ADMIN'),
@@ -48,7 +54,10 @@ INSERT INTO `authorities` (`username`, `authority`) VALUES
 	('Kiro', 'ROLE_ADMIN'),
 	('misho', 'ROLE_CLIENT'),
 	('mitko', 'ROLE_ADMIN'),
-	('pesho', 'ROLE_ADMIN');
+	('pesho', 'ROLE_ADMIN'),
+	('RBB', 'ROLE_ADMIN'),
+	('TestUser1', 'ROLE_ADMIN'),
+	('TestUser2', 'ROLE_ADMIN');
 /*!40000 ALTER TABLE `authorities` ENABLE KEYS */;
 
 -- Dumping structure for table telecomdb.clients
@@ -59,18 +68,16 @@ CREATE TABLE IF NOT EXISTS `clients` (
   `uic` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_clients_users` (`user_id`),
-  CONSTRAINT `FK_clients_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+  CONSTRAINT `FK_clients_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
--- Dumping data for table telecomdb.clients: ~6 rows (approximately)
+-- Dumping data for table telecomdb.clients: ~4 rows (approximately)
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
 INSERT INTO `clients` (`id`, `user_id`, `full_name`, `uic`) VALUES
-	(1, 'pesho', 'pesho', '122423534'),
-	(3, 'mitko', 'MitkoBombata', '5434534534'),
-	(4, 'Ivan', 'Test', '44444'),
-	(5, 'Kiro', 'Test', '44444'),
-	(6, 'Ivcho', 'Test', '44444'),
-	(7, 'generic_client', 'Test', '44444');
+	(8, 'Allianz', 'Allianz Bank Bulgaria', '128001319'),
+	(9, 'FiBank', 'First Investment Bank', '831094393'),
+	(10, 'DSK', 'DSK Bank', '121830616'),
+	(12, 'RBB', 'Raiffeisen Bank Bulgaria', '831558413');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 
 -- Dumping structure for table telecomdb.invoices
@@ -87,19 +94,12 @@ CREATE TABLE IF NOT EXISTS `invoices` (
   PRIMARY KEY (`id`),
   KEY `FK_invoices_telecom_services` (`telecom_service`),
   KEY `FK_invoices_subscribers` (`subscriber_id`),
-  CONSTRAINT `FK_invoices_subscribers` FOREIGN KEY (`subscriber_id`) REFERENCES `subscribers` (`id`),
-  CONSTRAINT `FK_invoices_telecom_services` FOREIGN KEY (`telecom_service`) REFERENCES `telecom_services` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  CONSTRAINT `FK_invoices_subscribers` FOREIGN KEY (`subscriber_id`) REFERENCES `subscribers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_invoices_telecom_services` FOREIGN KEY (`telecom_service`) REFERENCES `telecom_services` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
--- Dumping data for table telecomdb.invoices: ~6 rows (approximately)
+-- Dumping data for table telecomdb.invoices: ~9 rows (approximately)
 /*!40000 ALTER TABLE `invoices` DISABLE KEYS */;
-INSERT INTO `invoices` (`id`, `subscriber_id`, `telecom_service`, `status`, `price`, `currency`, `start_date`, `end_date`, `payment_date`) VALUES
-	(1, 1, 23, 0, 0, 'BGN', '0000-00-00', '0000-00-00', '0000-00-00'),
-	(2, 1, 23, 0, 0, 'BGN', '2018-08-20', '0000-00-00', '0000-00-00'),
-	(3, 1, 14, 0, 20, 'BGN', '2018-08-20', '2018-09-20', '0000-00-00'),
-	(4, 1, 15, 0, 20, 'BGN', '2018-08-20', '2018-09-20', '0000-00-00'),
-	(5, 1, 23, 0, 19.55555555555555, 'BGN', '2018-08-20', '2018-09-20', '0000-00-00'),
-	(6, 1, 14, 0, 20, 'BGN', '2018-08-20', '2018-09-20', '0000-00-00');
 /*!40000 ALTER TABLE `invoices` ENABLE KEYS */;
 
 -- Dumping structure for table telecomdb.services_subscribers
@@ -108,16 +108,12 @@ CREATE TABLE IF NOT EXISTS `services_subscribers` (
   `subscriber_id` int(11) DEFAULT NULL,
   KEY `FK_telecom_services_subscribers_telecom_services` (`service_id`),
   KEY `FK_telecom_services_subscribers_subscribers` (`subscriber_id`),
-  CONSTRAINT `FK_telecom_services_subscribers_subscribers` FOREIGN KEY (`subscriber_id`) REFERENCES `subscribers` (`id`),
-  CONSTRAINT `FK_telecom_services_subscribers_telecom_services` FOREIGN KEY (`service_id`) REFERENCES `telecom_services` (`id`)
+  CONSTRAINT `FK_telecom_services_subscribers_subscribers` FOREIGN KEY (`subscriber_id`) REFERENCES `subscribers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_telecom_services_subscribers_telecom_services` FOREIGN KEY (`service_id`) REFERENCES `telecom_services` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table telecomdb.services_subscribers: ~2 rows (approximately)
+-- Dumping data for table telecomdb.services_subscribers: ~3 rows (approximately)
 /*!40000 ALTER TABLE `services_subscribers` DISABLE KEYS */;
-INSERT INTO `services_subscribers` (`service_id`, `subscriber_id`) VALUES
-	(23, 1),
-	(14, 1),
-	(12, 1);
 /*!40000 ALTER TABLE `services_subscribers` ENABLE KEYS */;
 
 -- Dumping structure for table telecomdb.subscribers
@@ -129,21 +125,23 @@ CREATE TABLE IF NOT EXISTS `subscribers` (
   `pin` varchar(50) DEFAULT NULL,
   `address` varchar(50) DEFAULT NULL,
   `invoice` int(11) DEFAULT NULL,
-  `first_activation_date` datetime DEFAULT NULL,
-  `billing_date` datetime DEFAULT NULL,
+  `first_activation_date` date DEFAULT NULL,
+  `billing_date` date DEFAULT NULL,
   `client` int(11) DEFAULT NULL,
   `all_time_turnover` double DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `phone` (`phone`),
   KEY `FK_subscribers_clients` (`client`),
   KEY `FK_subscribers_invoices` (`invoice`),
-  CONSTRAINT `FK_subscribers_clients` FOREIGN KEY (`client`) REFERENCES `clients` (`id`),
-  CONSTRAINT `FK_subscribers_invoices` FOREIGN KEY (`invoice`) REFERENCES `invoices` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  CONSTRAINT `FK_subscribers_clients` FOREIGN KEY (`client`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_subscribers_invoices` FOREIGN KEY (`invoice`) REFERENCES `invoices` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Dumping data for table telecomdb.subscribers: ~1 rows (approximately)
+-- Dumping data for table telecomdb.subscribers: ~3 rows (approximately)
 /*!40000 ALTER TABLE `subscribers` DISABLE KEYS */;
 INSERT INTO `subscribers` (`id`, `phone`, `first_name`, `last_name`, `pin`, `address`, `invoice`, `first_activation_date`, `billing_date`, `client`, `all_time_turnover`) VALUES
-	(1, '088833838383', 'Goshko', 'Ubaveca', NULL, 'Mladost Beibeee', NULL, NULL, '2018-08-20 16:11:55', NULL, NULL);
+	(2, '0897902770', 'Martin', 'Ivanov', '9933881133', 'gore na chereshata', NULL, '2015-07-16', '2018-07-16', 9, NULL),
+	(3, '0897220145', 'Veselin', 'Georgiev', '2114124490', 'dolu pod chereshata', NULL, '2015-07-16', '2018-07-16', 12, NULL);
 /*!40000 ALTER TABLE `subscribers` ENABLE KEYS */;
 
 -- Dumping structure for table telecomdb.telecom_services
@@ -189,11 +187,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table telecomdb.users: ~11 rows (approximately)
+-- Dumping data for table telecomdb.users: ~17 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`username`, `password`, `enabled`) VALUES
 	('admin', '{noop}admin', 1),
 	('administrator', '{noop}admins', 1),
+	('Allianz', '{noop}ClientPasswod1', 1),
+	('DSK', '{noop}dsk', 1),
+	('FiBank', '{noop}first', 1),
 	('generic_client', 'Test', 1),
 	('gosho', '{noop}pass2', 1),
 	('Ivan', 'Test', 1),
@@ -202,6 +203,9 @@ INSERT INTO `users` (`username`, `password`, `enabled`) VALUES
 	('misho', '{noop}pass3', 1),
 	('mitko', '{noop}neepi4', 1),
 	('pesho', '{noop}pass1', 1),
+	('RBB', '{noop}rbb', 1),
+	('TestUser1', '{noop}TestPassword1', 1),
+	('TestUser2', '{noop}TestPassword2', 1),
 	('vesko', '{noop}veskoepi4', 1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
