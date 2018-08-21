@@ -25,49 +25,6 @@ public class ClientAccessRepositoryImpl implements ClientAccessRepository {
 
 
     @Override
-    public void payInvoiceById(int invoiceId) {
-        Invoice invoice;
-        try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
-            invoice = session.get(Invoice.class, invoiceId);
-            invoice.setStatus("1");
-            invoice.setPaymentDate(LocalDate.now());
-            session.save(invoice);
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-    }
-
-    @Override
-    public void payInvoicesByPhone(String phoneNum) {
-        List<Invoice> invoiceList = new ArrayList<>();
-        try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
-            String query = "from Invoice as i where i.subscriber.phone=:phoneNum";
-            invoiceList = session.createQuery(query)
-                    .setParameter("phoneNum", phoneNum).list();
-            for (Invoice inv : invoiceList
-            ) {
-                if (inv.getSubscriber().getPhone().equals(phoneNum)) {
-                    if (inv.getStatus().equals("0")) {
-                        inv.setStatus("1");
-                        inv.setPaymentDate(LocalDate.now());
-                        session.save(inv);
-                    }
-                }
-            }
-
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-
-    }
-
-    @Override
     public void payInvoicesByIdList(List<Integer> invoiceIdList) {
         Invoice invoice;
         try (Session session = sessionFactory.openSession()) {

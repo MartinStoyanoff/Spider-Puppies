@@ -87,7 +87,17 @@ public class InvoiceRepositoryImpl implements GenericRepository<Invoice>, Invoic
     }
 
     @Override
-    public Invoice findInvoicesByPhone(String phone) {
-        return null;
+    public List<Invoice> findInvoicesByPhone(String phone) {
+        List<Invoice> invoiceList = new ArrayList<>();
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            String query = "from Invoice as i where i.subscriber.phone=:phoneNum";
+            invoiceList = session.createQuery(query)
+                    .setParameter("phoneNum", phone).list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return invoiceList;
     }
 }
