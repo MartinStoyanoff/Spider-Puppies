@@ -40,14 +40,12 @@ public class MappingHelper {
         String personalIdentificationNumber = subscriber.getPersonalIdentificationNumber();
         String address = subscriber.getAddress();
         List<Invoice> invoices = subscriber.getInvoices();
-        List<InvoiceReport> invoiceReportList = new ArrayList<>();
 
+        List<InvoiceReport> invoiceReportList = new ArrayList<>();
         for (Invoice inv:invoices
              ) {
             InvoiceReport invReport = MappingHelper.mapInvoiceToInvoiceReport(inv);
             invoiceReportList.add(invReport);
-
-
         }
 
         LocalDate firstServiceActivationDate = subscriber.getFirstServiceActivationDate();

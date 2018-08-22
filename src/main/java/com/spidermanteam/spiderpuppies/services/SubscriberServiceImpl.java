@@ -27,11 +27,7 @@ public class SubscriberServiceImpl implements SubscribersService {
     @Override
     public Subscriber findSubscriberById(int id) {
         Subscriber subscriber = subscriberRepository.findById(id);
-
-        System.out.println(subscriber.getFirstName());
         List<Invoice> invoiceList = subscriber.getInvoices();
-
-
         return subscriberRepository.findById(id);
     }
 
