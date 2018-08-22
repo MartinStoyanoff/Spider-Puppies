@@ -1,6 +1,7 @@
 package com.spidermanteam.spiderpuppies.services;
 
 import com.spidermanteam.spiderpuppies.data.base.GenericRepository;
+import com.spidermanteam.spiderpuppies.models.Invoice;
 import com.spidermanteam.spiderpuppies.models.Subscriber;
 import com.spidermanteam.spiderpuppies.services.base.SubscribersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,12 @@ public class SubscriberServiceImpl implements SubscribersService {
 
     @Override
     public Subscriber findSubscriberById(int id) {
+        Subscriber subscriber = subscriberRepository.findById(id);
+
+        System.out.println(subscriber.getFirstName());
+        List<Invoice> invoiceList = subscriber.getInvoices();
+
+
         return subscriberRepository.findById(id);
     }
 

@@ -29,10 +29,10 @@ public class Subscriber {
     private String address;
 
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "subscriber")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "subscriber")
     private List<Invoice> invoices;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
             name = "services_subscribers",
             joinColumns = @JoinColumn(name = "subscriber_id"),

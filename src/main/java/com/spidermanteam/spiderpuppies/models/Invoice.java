@@ -15,12 +15,12 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="subscriber_id")
     @JsonIdentityReference(alwaysAsId = true)
     private Subscriber subscriber;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "telecom_service")
     private TelecomService telecomServices;
 

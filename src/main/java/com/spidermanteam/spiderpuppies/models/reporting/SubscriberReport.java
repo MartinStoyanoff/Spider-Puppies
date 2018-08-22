@@ -16,8 +16,8 @@ public class SubscriberReport {
     private String lastName;
     private String personalIdentificationNumber;
     private String address;
-    private List<Invoice> invoices;
-    private List<TelecomService> telecomServices;
+    private List<InvoiceReport> invoices;
+//    private List<TelecomService> telecomServices;
     private LocalDate firstServiceActivationDate;
     private LocalDate billingDate;
     private Client client;
@@ -26,7 +26,7 @@ public class SubscriberReport {
     public SubscriberReport() {
     }
 
-    public SubscriberReport(int id, String phone, String firstName, String lastName, String personalIdentificationNumber, String address, List<Invoice> invoices, List<TelecomService> telecomServices, LocalDate firstServiceActivationDate, LocalDate billingDate, Client client, BigDecimal allTimeTurnover) {
+    public SubscriberReport(int id, String phone, String firstName, String lastName, String personalIdentificationNumber, String address, List<InvoiceReport> invoices, LocalDate firstServiceActivationDate, LocalDate billingDate, Client client, BigDecimal allTimeTurnover) {
         this.id = id;
         this.phone = phone;
         this.firstName = firstName;
@@ -34,7 +34,7 @@ public class SubscriberReport {
         this.personalIdentificationNumber = personalIdentificationNumber;
         this.address = address;
         this.invoices = invoices;
-        this.telecomServices = telecomServices;
+//        this.telecomServices = telecomServices;
         this.firstServiceActivationDate = firstServiceActivationDate;
         this.billingDate = billingDate;
         this.client = client;
@@ -89,22 +89,22 @@ public class SubscriberReport {
         this.address = address;
     }
 
-    public List<Invoice> getInvoices() {
+    public List<InvoiceReport> getInvoices() {
         return invoices;
     }
 
-    public void setInvoices(List<Invoice> invoices) {
+    public void setInvoices(List<InvoiceReport> invoices) {
         this.invoices = invoices;
     }
 
-    public List<TelecomService> getTelecomServices() {
-        return telecomServices;
-    }
-
-    public void setTelecomServices(List<TelecomService> telecomServices) {
-        this.telecomServices = telecomServices;
-    }
-
+//    public List<TelecomService> getTelecomServices() {
+//        return telecomServices;
+//    }
+//
+//    public void setTelecomServices(List<TelecomService> telecomServices) {
+//        this.telecomServices = telecomServices;
+//    }
+//
     public LocalDate getFirstServiceActivationDate() {
         return firstServiceActivationDate;
     }

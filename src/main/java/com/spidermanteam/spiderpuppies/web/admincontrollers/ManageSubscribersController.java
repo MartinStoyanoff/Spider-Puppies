@@ -1,6 +1,8 @@
 package com.spidermanteam.spiderpuppies.web.admincontrollers;
 
 import com.spidermanteam.spiderpuppies.models.Subscriber;
+import com.spidermanteam.spiderpuppies.models.reporting.SubscriberReport;
+import com.spidermanteam.spiderpuppies.objectmapping.MappingHelper;
 import com.spidermanteam.spiderpuppies.services.base.SubscribersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +26,9 @@ public class ManageSubscribersController {
     }
 
     @GetMapping("/findById/{id}")
-    Subscriber findSubscriberById(@PathVariable int id) {
-        return subscribersService.findSubscriberById(id);
+    SubscriberReport findSubscriberById(@PathVariable int id) {
+        Subscriber subscriber = subscribersService.findSubscriberById(id);
+        return MappingHelper.mapSubscriberToSubscriberReport(subscriber);
     }
 
     @GetMapping("/listAll")
