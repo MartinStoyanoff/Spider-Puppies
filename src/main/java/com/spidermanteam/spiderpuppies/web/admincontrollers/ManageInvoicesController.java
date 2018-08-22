@@ -12,6 +12,7 @@ import com.spidermanteam.spiderpuppies.services.base.TelecomServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -48,14 +49,21 @@ public class ManageInvoicesController {
     @GetMapping("/findById/{id}")
     public InvoiceReport findInvoiceById(@PathVariable int id) {
         Invoice invoice = invoiceService.findInvoiceById(id);
-        MappingHelper mappingHelper = new MappingHelper();
-        InvoiceReport invoiceReport = mappingHelper.mapInvoiceToInvoiceReport(invoice);
-        return invoiceReport ;
+        return MappingHelper.mapInvoiceToInvoiceReport(invoice);
     }
 
     @GetMapping("/listAll")
     List listAllInvoice() {
-        return invoiceService.listAllInvoices();
+        List<Invoice> invoiceList = invoiceService.listAllInvoices();
+        List<InvoiceReport> invoiceReportList = new ArrayList<>();
+        for (Invoice invoice:invoiceList
+             ) {
+
+            InvoiceReport invoiceReport = MappingHelper.mapInvoiceToInvoiceReport(invoice);
+            invoiceReportList.add(invoiceReport);
+
+        }
+        return invoiceReportList;
     }
 
     @PutMapping("/update")
