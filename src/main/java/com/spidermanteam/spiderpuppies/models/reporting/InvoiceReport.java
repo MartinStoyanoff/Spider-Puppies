@@ -9,7 +9,7 @@ public class InvoiceReport {
 
     private String subscriberName;
 
-    private String getSubscriberPhone;
+    private String subscriberPhone;
 
     private String telecomServiceType;
 
@@ -30,7 +30,7 @@ public class InvoiceReport {
     public InvoiceReport(int id, String subscriberName, String getSubscriberPhone, String telecomServiceType, String telecomServiceSubscriptionPlan, String status, BigDecimal price, String currency, LocalDate startDate, LocalDate endDate, LocalDate paymentDate) {
         this.id = id;
         this.subscriberName = subscriberName;
-        this.getSubscriberPhone = getSubscriberPhone;
+        this.subscriberPhone = getSubscriberPhone;
         this.telecomServiceType = telecomServiceType;
         this.telecomServiceSubscriptionPlan = telecomServiceSubscriptionPlan;
         this.status = status;
@@ -60,12 +60,12 @@ public class InvoiceReport {
         this.subscriberName = subscriberName;
     }
 
-    public String getGetSubscriberPhone() {
-        return getSubscriberPhone;
+    public String getSubscriberPhone() {
+        return subscriberPhone;
     }
 
-    public void setGetSubscriberPhone(String getSubscriberPhone) {
-        this.getSubscriberPhone = getSubscriberPhone;
+    public void setSubscriberPhone(String subscriberPhone) {
+        this.subscriberPhone = subscriberPhone;
     }
 
     public String getTelecomServiceType() {

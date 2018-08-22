@@ -27,18 +27,8 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public Invoice findInvoiceById(int id) {
-
-        Invoice one = invoiceRepository.findById(18);
-        System.out.println(one.getId());
-        System.out.println(one.getSubscriber().getFirstName());
-        System.out.println(one.getSubscriber().getPhone());
-        System.out.println(one.getTelecomServices().getType());
-
-
         return invoiceRepository.findById(id);
     }
-
-
 
     @Override
     public List listAllInvoices() {

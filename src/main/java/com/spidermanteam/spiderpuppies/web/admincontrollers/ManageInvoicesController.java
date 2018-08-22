@@ -1,6 +1,8 @@
 package com.spidermanteam.spiderpuppies.web.admincontrollers;
 
 
+import com.spidermanteam.spiderpuppies.models.reporting.InvoiceReport;
+import com.spidermanteam.spiderpuppies.objectmapping.*;
 import com.spidermanteam.spiderpuppies.models.Invoice;
 import com.spidermanteam.spiderpuppies.models.Subscriber;
 import com.spidermanteam.spiderpuppies.models.TelecomService;
@@ -44,8 +46,11 @@ public class ManageInvoicesController {
     }
 
     @GetMapping("/findById/{id}")
-    public Invoice findInvoiceById(@PathVariable int id) {
-        return invoiceService.findInvoiceById(id);
+    public InvoiceReport findInvoiceById(@PathVariable int id) {
+        Invoice invoice = invoiceService.findInvoiceById(id);
+        MappingHelper mappingHelper = new MappingHelper();
+        InvoiceReport invoiceReport = mappingHelper.mapInvoiceToInvoiceReport(invoice);
+        return invoiceReport ;
     }
 
     @GetMapping("/listAll")
