@@ -1,5 +1,6 @@
 package com.spidermanteam.spiderpuppies.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jdk.internal.instrumentation.TypeMapping;
 import org.hibernate.annotations.Type;
 
@@ -25,6 +26,7 @@ public class TelecomService {
     @Column(name = "price", columnDefinition = "big_decimal")
     private BigDecimal price;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "services_subscribers",

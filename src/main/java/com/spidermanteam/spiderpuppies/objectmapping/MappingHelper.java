@@ -47,12 +47,13 @@ public class MappingHelper {
             InvoiceReport invReport = MappingHelper.mapInvoiceToInvoiceReport(inv);
             invoiceReportList.add(invReport);
         }
+        List<TelecomService> telecomServices = subscriber.getTelecomServices();
 
         LocalDate firstServiceActivationDate = subscriber.getFirstServiceActivationDate();
         LocalDate billingDate = subscriber.getBillingDate();
         Client client = subscriber.getClient();
         BigDecimal allTimeTurnover = subscriber.getAllTimeTurnover();
 
-        return new SubscriberReport(id, phone, firstName, lastName, personalIdentificationNumber, address, invoiceReportList , firstServiceActivationDate, billingDate, client, allTimeTurnover);
+        return new SubscriberReport(id, phone, firstName, lastName, personalIdentificationNumber, address, invoiceReportList , telecomServices, firstServiceActivationDate, billingDate, client, allTimeTurnover);
     }
 }
