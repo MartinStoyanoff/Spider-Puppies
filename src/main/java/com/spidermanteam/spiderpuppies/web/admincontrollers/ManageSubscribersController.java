@@ -52,13 +52,12 @@ public class ManageSubscribersController {
     List<SubscriberReport> listAllForDefinedPeriod(@RequestBody List<LocalDate> dates){
         List<SubscriberReport> subscribersList= new ArrayList();
         LocalDate startDate = dates.get(0);
-        LocalDate endtDate = dates.get(1);
-        List<Subscriber> subscribers = subscribersService.listAllForDefinedPeriod(startDate, endtDate);
+        LocalDate endDate = dates.get(1);
+        List<Subscriber> subscribers = subscribersService.listAllForDefinedPeriod(startDate, endDate);
         for (Subscriber sub: subscribers) {
             SubscriberReport subscriberReport = MappingHelper.mapSubscriberToSubscriberReport(sub);
             subscribersList.add(subscriberReport);
         }
         return subscribersList;
     }
-
 }
