@@ -93,17 +93,17 @@ public class ClientAccessServiceImpl implements ClientAccessService {
     }
 
     @Override
-    public void payAllUnpaidInvoiceByClient(int clientId) {
+    public void payAllPendingInvoicesByClient(int clientId) {
 
     }
 
     @Override
-    public List<Invoice> listAllUnpaidInvoiceById(int clientId) {
-        return null;
+    public List<Invoice> listAllPendingInvoicesByClientId(int clientId) {
+        return invoiceRepository.findAllPendingInvoicesByClientId(clientId);
     }
 
     @Override
-    public List<Invoice> listAllPaidInvoicesById(int clientId) {
+    public List<Invoice> listAllInvoicesByClientId(int clientId) {
         return null;
     }
 

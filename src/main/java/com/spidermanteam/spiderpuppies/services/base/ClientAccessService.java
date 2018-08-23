@@ -16,11 +16,11 @@ public interface ClientAccessService {
 
     void payInvoicesByPhoneList(List<String> phonesList);
 
-    void payAllUnpaidInvoiceByClient(int clientId);
+    void payAllPendingInvoicesByClient(int clientId);
 
-    List<Invoice> listAllUnpaidInvoiceById(int clientId);
+    List<Invoice> listAllPendingInvoicesByClientId(int clientId);
 
-    List<Invoice> listAllPaidInvoicesById(int clientId);
+    List<Invoice> listAllInvoicesByClientId(int clientId);
 
     Subscriber getSubscriberByPhone(String phone);
 
