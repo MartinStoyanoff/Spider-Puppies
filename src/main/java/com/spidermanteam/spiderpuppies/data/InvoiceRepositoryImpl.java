@@ -100,4 +100,35 @@ public class InvoiceRepositoryImpl implements GenericRepository<Invoice>, Invoic
         }
         return invoiceList;
     }
+
+    @Override
+    public List<Invoice> findAllPendingInvoicesByClientId(int id) {
+        List<Invoice> invoiceList = new ArrayList<>();
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            String query = "from Invoice as i where i.subscriber.client.id=:bankId and i.status=:status";
+            invoiceList = session.createQuery(query)
+                    .setParameter("bankId", id)
+                    .setParameter("status", 0).list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return invoiceList;
+    }
+
+    @Override
+    public List<Invoice> findAllInvoicesByClientId(int id) {
+        List<Invoice> invoiceList = new ArrayList<>();
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            String query = "from Invoice as i where i.subscriber.client.id=:bankId";
+            invoiceList = session.createQuery(query)
+                    .setParameter("bankId", id).list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return invoiceList;
+    }
 }

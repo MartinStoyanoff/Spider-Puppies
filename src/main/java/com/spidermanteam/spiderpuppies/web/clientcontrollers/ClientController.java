@@ -29,6 +29,7 @@ public class ClientController {
         clientAccessService.payInvoicesByPhone(phone);
     }
 
+
     @PutMapping("/payInvoiceByIdList")
     void payInvoicesByIdList(@RequestBody List<Integer> idList){
         clientAccessService.payInvoicesByIdList(idList);

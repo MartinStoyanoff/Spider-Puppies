@@ -16,5 +16,9 @@ public interface InvoiceService {
 
     void updateInvoice (Invoice invoice);
 
+    List<Invoice> findAllPendingInvoicesByClientId(int id);
+
+    List<Invoice> findAllInvoicesByClientId(int id);
+
 
 }

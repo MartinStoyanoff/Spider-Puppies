@@ -1,6 +1,7 @@
 package com.spidermanteam.spiderpuppies.services;
 
 import com.spidermanteam.spiderpuppies.data.base.GenericRepository;
+import com.spidermanteam.spiderpuppies.data.base.InvoiceRepository;
 import com.spidermanteam.spiderpuppies.models.Invoice;
 import com.spidermanteam.spiderpuppies.services.base.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,10 @@ import java.util.List;
 @Service
 public class InvoiceServiceImpl implements InvoiceService {
 
-    private GenericRepository<Invoice> invoiceRepository;
+    private InvoiceRepository invoiceRepository;
 
     @Autowired
-    public InvoiceServiceImpl(GenericRepository<Invoice> invoiceRepository) {
+    public InvoiceServiceImpl(InvoiceRepository invoiceRepository) {
         this.invoiceRepository = invoiceRepository;
     }
 
@@ -45,5 +46,15 @@ public class InvoiceServiceImpl implements InvoiceService {
     public void updateInvoice(Invoice invoice) {
         invoiceRepository.update(invoice);
 
+    }
+
+    @Override
+    public List<Invoice> findAllPendingInvoicesByClientId(int id) {
+        return invoiceRepository.findAllPendingInvoicesByClientId(id);
+    }
+
+    @Override
+    public List<Invoice> findAllInvoicesByClientId(int id) {
+        return invoiceRepository.findAllInvoicesByClientId(id);
     }
 }
