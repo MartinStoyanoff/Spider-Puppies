@@ -5,6 +5,7 @@ import com.spidermanteam.spiderpuppies.models.Invoice;
 import com.spidermanteam.spiderpuppies.models.Subscriber;
 import com.spidermanteam.spiderpuppies.models.TelecomService;
 import com.spidermanteam.spiderpuppies.models.reporting.InvoiceReport;
+import com.spidermanteam.spiderpuppies.models.reporting.PaymentLine;
 import com.spidermanteam.spiderpuppies.models.reporting.SubscriberReport;
 
 import java.math.BigDecimal;
@@ -55,5 +56,25 @@ public class MappingHelper {
         BigDecimal allTimeTurnover = subscriber.getAllTimeTurnover();
 
         return new SubscriberReport(id, phone, firstName, lastName, personalIdentificationNumber, address, invoiceReportList , telecomServices, firstServiceActivationDate, billingDate, client, allTimeTurnover);
+    }
+
+    public static List<PaymentLine> mapSubscriberToPaymentLines(List<Subscriber> subscriberList){
+        List<PaymentLine> paymentLines = new ArrayList<>();
+        for (Subscriber sub: subscriberList) {
+
+            List<TelecomService> telecomServices = sub.getTelecomServices();
+            for (TelecomService ts : telecomServices) {
+                int subscriberId = sub.getId();
+                String subscriberPhone = sub.getPhone();
+                String serviceType = ts.getType();
+                String subscriptionPlan = ts.getSubscriptionPlan();
+                BigDecimal price = ts.getPrice();
+                String currency = "BGN";
+
+                PaymentLine line = new PaymentLine(subscriberId, subscriberPhone, serviceType, subscriptionPlan, price, currency);
+                paymentLines.add(line);
+            }
+        }
+        return paymentLines;
     }
 }

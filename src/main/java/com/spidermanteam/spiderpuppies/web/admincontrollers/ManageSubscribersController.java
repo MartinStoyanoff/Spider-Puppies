@@ -1,6 +1,7 @@
 package com.spidermanteam.spiderpuppies.web.admincontrollers;
 
 import com.spidermanteam.spiderpuppies.models.Subscriber;
+import com.spidermanteam.spiderpuppies.models.reporting.PaymentLine;
 import com.spidermanteam.spiderpuppies.models.reporting.SubscriberReport;
 import com.spidermanteam.spiderpuppies.objectmapping.MappingHelper;
 import com.spidermanteam.spiderpuppies.services.base.SubscribersService;
@@ -49,15 +50,11 @@ public class ManageSubscribersController {
     }
 
     @PostMapping("/listAllDuePayments")
-    List<SubscriberReport> listAllForDefinedPeriod(@RequestBody List<LocalDate> dates){
-        List<SubscriberReport> subscribersList= new ArrayList();
+    List listAllForDefinedPeriod(@RequestBody List<LocalDate> dates) {
+        List<PaymentLine> subscribersList = new ArrayList();
         LocalDate startDate = dates.get(0);
         LocalDate endDate = dates.get(1);
-        List<Subscriber> subscribers = subscribersService.listAllForDefinedPeriod(startDate, endDate);
-        for (Subscriber sub: subscribers) {
-            SubscriberReport subscriberReport = MappingHelper.mapSubscriberToSubscriberReport(sub);
-            subscribersList.add(subscriberReport);
-        }
-        return subscribersList;
+        List subscribers = subscribersService.listAllForDefinedPeriod(startDate, endDate);
+        return MappingHelper.mapSubscriberToPaymentLines(subscribers);
     }
 }
