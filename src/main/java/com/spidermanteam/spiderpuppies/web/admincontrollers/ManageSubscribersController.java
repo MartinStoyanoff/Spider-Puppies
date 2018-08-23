@@ -8,6 +8,7 @@ import com.spidermanteam.spiderpuppies.services.base.SubscribersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,5 +57,15 @@ public class ManageSubscribersController {
         LocalDate endDate = dates.get(1);
         List subscribers = subscribersService.listAllForDefinedPeriod(startDate, endDate);
         return MappingHelper.mapSubscriberToPaymentLines(subscribers);
+    }
+
+    @GetMapping("/getMaxAmount/{id}")
+    public BigDecimal getHighestPaidSumBySubscriber(@PathVariable int id){
+        return subscribersService.getHighestPaidSumBySubscriber(id);
+    }
+
+    @GetMapping("/getAvgAmount/{id}")
+    public BigDecimal getAveragePaidSumBySubscriber(@PathVariable int id){
+        return subscribersService.getAveragePaidSumBySubscriber(id);
     }
 }

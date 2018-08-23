@@ -12,6 +12,7 @@ import com.spidermanteam.spiderpuppies.services.base.TelecomServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,13 +38,11 @@ public class ManageInvoicesController {
     void addInvoice(@RequestBody HashMap<String, String> input) {
         Subscriber subscriber = subscribersService.findSubscriberById(Integer.parseInt(input.get("subscriber")));
         List<TelecomService> list = subscriber.getTelecomServices();
-        for (TelecomService ts : list
-        ) {
+        for (TelecomService ts : list) {
             String currency = input.get("currency");
             Invoice invoiceAdd = new Invoice(subscriber, ts, currency);
             invoiceService.addInvoice(invoiceAdd);
         }
-
     }
 
     @GetMapping("/findById/{id}")
@@ -80,4 +79,6 @@ public class ManageInvoicesController {
     void generateBulkPayment (@RequestBody List<Integer> subscribersIdList){
         invoiceService.generateBulkPayment(subscribersIdList);
     }
+
+
 }

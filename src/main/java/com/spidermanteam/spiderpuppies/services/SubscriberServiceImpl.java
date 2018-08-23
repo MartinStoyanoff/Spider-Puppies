@@ -8,6 +8,7 @@ import com.spidermanteam.spiderpuppies.services.base.SubscribersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -52,5 +53,15 @@ public class SubscriberServiceImpl implements SubscribersService {
     @Override
     public List listAllForDefinedPeriod(LocalDate start, LocalDate end) {
         return subscriberRepository.findAllForDefinedPeriod(start, end);
+    }
+
+    @Override
+    public BigDecimal getHighestPaidSumBySubscriber(int id) {
+        return subscriberRepository.getHighestPaidSumBySubscriber(id);
+    }
+
+    @Override
+    public BigDecimal getAveragePaidSumBySubscriber(int id) {
+        return subscriberRepository.getAveragePaidSumBySubscriber(id);
     }
 }

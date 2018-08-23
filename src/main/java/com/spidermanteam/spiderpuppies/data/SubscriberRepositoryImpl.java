@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -100,4 +101,39 @@ public class SubscriberRepositoryImpl implements SubscriberRepository {
         }
         return subscribers;
     }
+
+    @Override
+    public BigDecimal getHighestPaidSumBySubscriber(int id) {
+        BigDecimal amount = null;
+        try (Session session = sessionFactory.openSession()){
+            session.beginTransaction();
+            List<BigDecimal> max = session.createQuery("select max(i.price) from Subscriber as s join Invoice as i on s.id=i.subscriber.id where i.status=:status")
+                    .setParameter("status", "1")
+                    .list();
+            amount = max.get(0);
+            session.getTransaction().commit();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return amount;
+    }
+
+    @Override
+    public BigDecimal getAveragePaidSumBySubscriber(int id) {
+        BigDecimal amount = null;
+        try (Session session = sessionFactory.openSession()){
+            session.beginTransaction();
+            List<Double> max = session.createQuery("select avg(i.price) from Subscriber as s join Invoice as i on s.id=i.subscriber.id where i.status=:status")
+                    .setParameter("status", "1")
+                    .list();
+            amount =  BigDecimal.valueOf(max.get(0));
+            session.getTransaction().commit();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return amount;
+    }
+
 }
