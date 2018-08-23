@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class InvoiceRepositoryImpl implements GenericRepository<Invoice>, InvoiceRepository {
+public class InvoiceRepositoryImpl implements InvoiceRepository {
 
 
     private SessionFactory sessionFactory;
@@ -125,6 +125,27 @@ public class InvoiceRepositoryImpl implements GenericRepository<Invoice>, Invoic
             String query = "from Invoice as i where i.subscriber.client.id=:clientId";
             invoiceList = session.createQuery(query)
                     .setParameter("clientId", id).list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return invoiceList;
+    }
+
+    @Override
+    public List<Invoice> findLastTenPaymentsBySubscriberId(int id) {
+        List invoiceList = new ArrayList<>();
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+
+            invoiceList = session.createQuery("from Invoice as i " +
+                    "where i.status=:status " +
+                    "and i.subscriber.id=:id "+
+                    "order by i.paymentDate desc")
+                    .setParameter("status", "1")
+                    .setParameter("id", id)
+                    .setMaxResults(3)
+                    .list();
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());

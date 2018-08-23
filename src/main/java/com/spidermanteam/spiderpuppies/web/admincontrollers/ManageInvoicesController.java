@@ -80,5 +80,15 @@ public class ManageInvoicesController {
         invoiceService.generateBulkPayment(subscribersIdList);
     }
 
-
+    @GetMapping("/lastTen/{id}")
+    public List<InvoiceReport> findLastTenPaymentsBySubscriber(@PathVariable int id){
+        Subscriber subscriber = subscribersService.findSubscriberById(id);
+        List<Invoice> invoices = invoiceService.findLastTenPaymentsBySubscriberId(subscriber.getId());
+        List<InvoiceReport> invoiceReports = new ArrayList();
+        for (Invoice inv: invoices) {
+            InvoiceReport invoiceReport = MappingHelper.mapInvoiceToInvoiceReport(inv);
+            invoiceReports.add(invoiceReport);
+        }
+        return invoiceReports;
+    }
 }

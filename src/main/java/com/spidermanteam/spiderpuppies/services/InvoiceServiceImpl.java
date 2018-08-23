@@ -6,12 +6,15 @@ import com.spidermanteam.spiderpuppies.data.base.SubscriberRepository;
 import com.spidermanteam.spiderpuppies.models.Invoice;
 import com.spidermanteam.spiderpuppies.models.Subscriber;
 import com.spidermanteam.spiderpuppies.models.TelecomService;
+import com.spidermanteam.spiderpuppies.models.reporting.InvoiceReport;
+import com.spidermanteam.spiderpuppies.objectmapping.MappingHelper;
 import com.spidermanteam.spiderpuppies.services.base.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -80,5 +83,10 @@ public class InvoiceServiceImpl implements InvoiceService {
             subscriber.setBillingDate(newBillingDate);
             subscriberRepository.update(subscriber);
         }
+    }
+
+    @Override
+    public List<Invoice> findLastTenPaymentsBySubscriberId(int id) {
+        return invoiceRepository.findLastTenPaymentsBySubscriberId(id);
     }
 }
