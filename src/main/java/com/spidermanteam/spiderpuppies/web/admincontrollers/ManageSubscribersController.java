@@ -7,6 +7,8 @@ import com.spidermanteam.spiderpuppies.services.base.SubscribersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -45,4 +47,18 @@ public class ManageSubscribersController {
     void deleteSubscriber(@PathVariable int id) {
         subscribersService.deleteSubscriber(id);
     }
+
+    @PostMapping("/listAllDuePayments")
+    List<SubscriberReport> listAllForDefinedPeriod(@RequestBody List<LocalDate> dates){
+        List<SubscriberReport> subscribersList= new ArrayList();
+        LocalDate startDate = dates.get(0);
+        LocalDate endtDate = dates.get(1);
+        List<Subscriber> subscribers = subscribersService.listAllForDefinedPeriod(startDate, endtDate);
+        for (Subscriber sub: subscribers) {
+            SubscriberReport subscriberReport = MappingHelper.mapSubscriberToSubscriberReport(sub);
+            subscribersList.add(subscriberReport);
+        }
+        return subscribersList;
+    }
+
 }

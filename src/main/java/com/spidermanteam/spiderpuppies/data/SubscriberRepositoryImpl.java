@@ -1,6 +1,7 @@
 package com.spidermanteam.spiderpuppies.data;
 
 import com.spidermanteam.spiderpuppies.data.base.GenericRepository;
+import com.spidermanteam.spiderpuppies.data.base.SubscriberRepository;
 import com.spidermanteam.spiderpuppies.models.Authorities;
 import com.spidermanteam.spiderpuppies.models.Subscriber;
 import org.hibernate.Session;
@@ -8,11 +9,12 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class SubscriberRepositoryImpl implements GenericRepository<Subscriber> {
+public class SubscriberRepositoryImpl implements SubscriberRepository {
     private SessionFactory sessionFactory;
 
     @Autowired
@@ -80,5 +82,22 @@ public class SubscriberRepositoryImpl implements GenericRepository<Subscriber> {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    @Override
+    public List<Subscriber> findAllForDefinedPeriod(LocalDate start, LocalDate end) {
+        List subscribers = new ArrayList<>();
+        try (Session session = sessionFactory.openSession()){
+            session.beginTransaction();
+            subscribers = session.createQuery("from Subscriber as s where s.billingDate>=:startDate and s.billingDate<=:endDate")
+                    .setParameter("startDate", start)
+                    .setParameter("endDate", end).list();
+            session.getTransaction().commit();
+
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return subscribers;
     }
 }
