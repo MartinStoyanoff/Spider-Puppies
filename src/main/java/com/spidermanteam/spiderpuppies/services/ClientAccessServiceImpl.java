@@ -104,7 +104,7 @@ public class ClientAccessServiceImpl implements ClientAccessService {
 
     @Override
     public List<Invoice> listAllInvoicesByClientId(int clientId) {
-        return null;
+        return invoiceRepository.findAllInvoicesByClientId(clientId);
     }
 
     @Override

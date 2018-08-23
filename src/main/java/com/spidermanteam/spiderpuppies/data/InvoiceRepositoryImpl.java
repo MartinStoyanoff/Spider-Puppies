@@ -106,10 +106,10 @@ public class InvoiceRepositoryImpl implements GenericRepository<Invoice>, Invoic
         List<Invoice> invoiceList = new ArrayList<>();
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            String query = "from Invoice as i where i.subscriber.client.id=:bankId and i.status=:status";
+            String query = "from Invoice as i where i.subscriber.client.id=:clientId and i.status=:status";
             invoiceList = session.createQuery(query)
-                    .setParameter("bankId", id)
-                    .setParameter("status", 0).list();
+                    .setParameter("clientId", id)
+                    .setParameter("status", "0").list();
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -122,9 +122,9 @@ public class InvoiceRepositoryImpl implements GenericRepository<Invoice>, Invoic
         List<Invoice> invoiceList = new ArrayList<>();
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            String query = "from Invoice as i where i.subscriber.client.id=:bankId";
+            String query = "from Invoice as i where i.subscriber.client.id=:clientId";
             invoiceList = session.createQuery(query)
-                    .setParameter("bankId", id).list();
+                    .setParameter("clientId", id).list();
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
