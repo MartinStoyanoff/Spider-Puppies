@@ -75,4 +75,9 @@ public class ManageInvoicesController {
     void deleteInvoice(@PathVariable int id) {
         invoiceService.deleteInvoice(id);
     }
+
+    @PostMapping("/bulkgenerate")
+    void generateBulkPayment (@RequestBody List<Integer> subscribersIdList){
+        invoiceService.generateBulkPayment(subscribersIdList);
+    }
 }

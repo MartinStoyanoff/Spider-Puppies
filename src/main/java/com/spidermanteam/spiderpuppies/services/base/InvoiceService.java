@@ -20,5 +20,7 @@ public interface InvoiceService {
 
     List<Invoice> findAllInvoicesByClientId(int id);
 
+    void generateBulkPayment(List<Integer> subscribersIdList);
+
 
 }
