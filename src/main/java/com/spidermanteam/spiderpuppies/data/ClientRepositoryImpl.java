@@ -68,6 +68,15 @@ public class ClientRepositoryImpl implements GenericRepository<Client> {
     public void update(Client client) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
+            int id = client.getId();
+            Client client1 = session.get(Client.class, id);
+            String oldUser = client1.getUser().getUsername();
+            Authorities oldAuthority = new Authorities(oldUser, "ROLE_CLIENT");
+            Authorities newAuthority = new Authorities(client.getUser().getUsername(), "ROLE_CLIENT");
+            User user = client.getUser();
+            session.delete(oldAuthority);
+            session.save(newAuthority);
+            session.update(user);
             session.update(client);
             session.getTransaction().commit();
         } catch (Exception e) {
@@ -81,6 +90,11 @@ public class ClientRepositoryImpl implements GenericRepository<Client> {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             Client client = session.get(Client.class, id);
+            User user = client.getUser();
+            Authorities authority = new Authorities(user.getUsername(),"ROLE_CLIENT");
+            session.delete(client);
+            session.delete(authority);
+            session.delete(user);
             session.delete(client);
             session.getTransaction().commit();
         } catch (Exception e) {

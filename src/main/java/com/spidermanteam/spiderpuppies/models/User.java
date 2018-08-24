@@ -1,15 +1,15 @@
 package com.spidermanteam.spiderpuppies.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
 public class User {
 
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private int id;
+
     @Column(name = "username")
     private String username;
 
@@ -26,6 +26,14 @@ public class User {
         this.username = username;
         this.password = password;
         this.enabled = enabled;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {

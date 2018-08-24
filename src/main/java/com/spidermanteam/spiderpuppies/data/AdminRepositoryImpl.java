@@ -68,6 +68,8 @@ public class AdminRepositoryImpl implements GenericRepository<Admin> {
     public void update(Admin admin) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
+            User user = admin.getUser();
+            session.update(user);
             session.update(admin);
             session.getTransaction().commit();
         } catch (Exception e) {
@@ -80,7 +82,11 @@ public class AdminRepositoryImpl implements GenericRepository<Admin> {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             Admin admin = session.get(Admin.class, id);
+            User user = admin.getUser();
+            Authorities authority = new Authorities(user.getUsername(),"ROLE_ADMIN");
             session.delete(admin);
+            session.delete(authority);
+            session.delete(user);
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
