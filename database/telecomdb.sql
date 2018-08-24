@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               10.3.7-MariaDB - mariadb.org binary distribution
+-- Server version:               10.3.8-MariaDB - mariadb.org binary distribution
 -- Server OS:                    Win64
 -- HeidiSQL Version:             9.4.0.5125
 -- --------------------------------------------------------
@@ -11,39 +11,43 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+
+-- Dumping database structure for telecomdb
+CREATE DATABASE IF NOT EXISTS `telecomdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `telecomdb`;
+
 -- Dumping structure for table telecomdb.admins
 CREATE TABLE IF NOT EXISTS `admins` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` varchar(50) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `e_mail` varchar(50) NOT NULL,
   `first_login` tinyint(4) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `FK_admins_users` (`user_id`),
-  CONSTRAINT `FK_admins_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  CONSTRAINT `FK_admins_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
--- Dumping data for table telecomdb.admins: ~0 rows (approximately)
+-- Dumping data for table telecomdb.admins: ~1 rows (approximately)
 /*!40000 ALTER TABLE `admins` DISABLE KEYS */;
 INSERT INTO `admins` (`id`, `user_id`, `e_mail`, `first_login`) VALUES
-	(3, 'TestUser1', 'abv@ssss.fff', 0);
+	(7, 19, 'gosho@palavnik.bg', 0);
 /*!40000 ALTER TABLE `admins` ENABLE KEYS */;
 
 -- Dumping structure for table telecomdb.authorities
 CREATE TABLE IF NOT EXISTS `authorities` (
   `username` varchar(50) NOT NULL,
   `authority` varchar(50) NOT NULL,
-  UNIQUE KEY `username_authority` (`username`,`authority`),
-  CONSTRAINT `FK__users` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+  UNIQUE KEY `username_authority` (`username`,`authority`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table telecomdb.authorities: ~14 rows (approximately)
 /*!40000 ALTER TABLE `authorities` DISABLE KEYS */;
 INSERT INTO `authorities` (`username`, `authority`) VALUES
-	('Allianz', 'ROLE_ADMIN'),
-	('DSK', 'ROLE_ADMIN'),
+	('Allianz', 'ROLE_CLIENT'),
 	('FiBank', 'ROLE_ADMIN'),
 	('generic_client', 'ROLE_ADMIN'),
 	('gosho', 'ROLE_CLIENT'),
+	('GoshoPalaviq', 'ROLE_ADMIN'),
 	('Ivan', 'ROLE_ADMIN'),
 	('Ivcho', 'ROLE_ADMIN'),
 	('Kiro', 'ROLE_ADMIN'),
@@ -58,21 +62,20 @@ INSERT INTO `authorities` (`username`, `authority`) VALUES
 -- Dumping structure for table telecomdb.clients
 CREATE TABLE IF NOT EXISTS `clients` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` varchar(50) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `full_name` varchar(255) DEFAULT NULL,
   `uic` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_clients_users` (`user_id`),
-  CONSTRAINT `FK_clients_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `FK_clients_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
--- Dumping data for table telecomdb.clients: ~4 rows (approximately)
+-- Dumping data for table telecomdb.clients: ~3 rows (approximately)
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
 INSERT INTO `clients` (`id`, `user_id`, `full_name`, `uic`) VALUES
-	(8, 'Allianz', 'Allianz Bank Bulgaria', '128001319'),
-	(9, 'FiBank', 'First Investment Bank', '831094393'),
-	(10, 'DSK', 'DSK Bank', '121830616'),
-	(12, 'RBB', 'Raiffeisen Bank Bulgaria', '831558413');
+	(8, 3, 'Allianz Bank Bulgaria ', '1433192423'),
+	(9, 4, 'First Investment Bank', '831094393'),
+	(12, 13, 'RBB Bank Bulgaria ', '1433555192423');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 
 -- Dumping structure for table telecomdb.invoices
@@ -185,32 +188,33 @@ INSERT INTO `telecom_services` (`id`, `type`, `subscription_plan`, `price`) VALU
 
 -- Dumping structure for table telecomdb.users
 CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` varchar(68) NOT NULL,
   `enabled` tinyint(4) NOT NULL,
-  PRIMARY KEY (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table telecomdb.users: ~17 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`username`, `password`, `enabled`) VALUES
-	('admin', '{noop}admin', 1),
-	('administrator', '{noop}admins', 1),
-	('Allianz', '{noop}ClientPasswod1', 1),
-	('DSK', '{noop}dsk', 1),
-	('FiBank', '{noop}first', 1),
-	('generic_client', 'Test', 1),
-	('gosho', '{noop}pass2', 1),
-	('Ivan', 'Test', 1),
-	('Ivcho', 'Test', 1),
-	('Kiro', 'Test', 1),
-	('misho', '{noop}pass3', 1),
-	('mitko', '{noop}neepi4', 1),
-	('pesho', '{noop}pass1', 1),
-	('RBB', '{noop}rbb', 1),
-	('TestUser1', '{noop}TestPassword1', 1),
-	('TestUser2', '{noop}TestPassword2', 1),
-	('vesko', '{noop}veskoepi4', 1);
+INSERT INTO `users` (`id`, `username`, `password`, `enabled`) VALUES
+	(1, 'admin', '{noop}admin', 1),
+	(2, 'administrator', '{noop}admins', 1),
+	(3, 'Allianz', '{noop}ClientPasswod1', 1),
+	(4, 'FiBank', '{noop}first', 1),
+	(5, 'generic_client', 'Test', 1),
+	(6, 'gosho', '{noop}pass2', 1),
+	(7, 'Ivan', 'Test', 1),
+	(8, 'Ivcho', 'Test', 1),
+	(9, 'Kiro', 'Test', 1),
+	(10, 'misho', '{noop}pass3', 1),
+	(11, 'mitko', '{noop}neepi4', 1),
+	(12, 'pesho', '{noop}pass1', 1),
+	(13, 'Raiffeisen', '{noop}rrr', 1),
+	(14, 'TestUser2', '{noop}TestPassword2', 1),
+	(15, 'vesko', '{noop}veskoepi4', 1),
+	(16, 'TestUser1', '{noop}TestPassword1', 1),
+	(19, 'GoshoPalaviq', '{noop}Test', 1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
