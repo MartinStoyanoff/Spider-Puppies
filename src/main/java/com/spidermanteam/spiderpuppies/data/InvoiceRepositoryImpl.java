@@ -144,7 +144,7 @@ public class InvoiceRepositoryImpl implements InvoiceRepository {
                     "order by i.paymentDate desc")
                     .setParameter("status", "1")
                     .setParameter("id", id)
-                    .setMaxResults(3)
+                    .setMaxResults(10)
                     .list();
             session.getTransaction().commit();
         } catch (Exception e) {

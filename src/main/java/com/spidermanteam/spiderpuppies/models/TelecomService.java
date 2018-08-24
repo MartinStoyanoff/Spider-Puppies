@@ -38,6 +38,13 @@ public class TelecomService {
     public TelecomService() {
     }
 
+    public TelecomService(String type, String subscriptionPlan, BigDecimal price, List<Subscriber> subscribers) {
+        this.type = type;
+        this.subscriptionPlan = subscriptionPlan;
+        this.price = price;
+        this.subscribers = subscribers;
+    }
+
     public int getId() {
         return id;
     }

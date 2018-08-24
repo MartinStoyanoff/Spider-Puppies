@@ -16,7 +16,7 @@ public class Invoice {
     private int id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="subscriber_id")
+    @JoinColumn(name = "subscriber_id")
     @JsonIdentityReference(alwaysAsId = true)
     private Subscriber subscriber;
 
@@ -40,7 +40,7 @@ public class Invoice {
     private LocalDate endDate;
 
     @Column(name = "payment_date")
-    private  LocalDate paymentDate;
+    private LocalDate paymentDate;
 
 
     public Invoice() {
@@ -117,7 +117,8 @@ public class Invoice {
     }
 
     public void setEndDate() {
-        this.endDate = subscriber.getBillingDate().plusMonths(1);    }
+        this.endDate = subscriber.getBillingDate().plusMonths(1);
+    }
 
     public LocalDate getPaymentDate() {
         return paymentDate;
