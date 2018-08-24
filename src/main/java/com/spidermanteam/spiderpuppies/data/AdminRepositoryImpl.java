@@ -66,9 +66,23 @@ public class AdminRepositoryImpl implements GenericRepository<Admin> {
 
     @Override
     public void update(Admin admin) {
+        User oldUser = null ;
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
+            Admin admin1 = session.get(Admin.class, admin.getId());
+            oldUser = admin1.getUser();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            Authorities oldAuthority = new Authorities(oldUser.getUsername(), "ROLE_ADMIN");
+            Authorities newAuthority = new Authorities(admin.getUser().getUsername(), "ROLE_ADMIN");
             User user = admin.getUser();
+            session.delete(oldAuthority);
+            session.save(newAuthority);
             session.update(user);
             session.update(admin);
             session.getTransaction().commit();

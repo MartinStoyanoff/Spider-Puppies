@@ -25,7 +25,7 @@ public class ClientRepositoryImpl implements GenericRepository<Client> {
     @Override
     public void create(Client client) {
         User user = client.getUser();
-        Authorities authorities = new Authorities(user.getUsername(), "ROLE_ADMIN");
+        Authorities authorities = new Authorities(user.getUsername(), "ROLE_CLIENT");
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             session.save(user);
@@ -66,12 +66,19 @@ public class ClientRepositoryImpl implements GenericRepository<Client> {
 
     @Override
     public void update(Client client) {
+        User oldUser = null ;
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            int id = client.getId();
-            Client client1 = session.get(Client.class, id);
-            String oldUser = client1.getUser().getUsername();
-            Authorities oldAuthority = new Authorities(oldUser, "ROLE_CLIENT");
+            Client client1 = session.get(Client.class, client.getId());
+            oldUser = client1.getUser();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            Authorities oldAuthority = new Authorities(oldUser.getUsername(), "ROLE_CLIENT");
             Authorities newAuthority = new Authorities(client.getUser().getUsername(), "ROLE_CLIENT");
             User user = client.getUser();
             session.delete(oldAuthority);
