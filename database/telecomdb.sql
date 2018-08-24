@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               10.3.8-MariaDB - mariadb.org binary distribution
+-- Server version:               10.3.7-MariaDB - mariadb.org binary distribution
 -- Server OS:                    Win64
 -- HeidiSQL Version:             9.4.0.5125
 -- --------------------------------------------------------
@@ -25,9 +25,9 @@ CREATE TABLE IF NOT EXISTS `admins` (
   PRIMARY KEY (`id`),
   KEY `FK_admins_users` (`user_id`),
   CONSTRAINT `FK_admins_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Dumping data for table telecomdb.admins: ~1 rows (approximately)
+-- Dumping data for table telecomdb.admins: ~0 rows (approximately)
 /*!40000 ALTER TABLE `admins` DISABLE KEYS */;
 INSERT INTO `admins` (`id`, `user_id`, `e_mail`, `first_login`) VALUES
 	(7, 19, 'gosho@palavnik.bg', 0);
@@ -44,17 +44,18 @@ CREATE TABLE IF NOT EXISTS `authorities` (
 /*!40000 ALTER TABLE `authorities` DISABLE KEYS */;
 INSERT INTO `authorities` (`username`, `authority`) VALUES
 	('Allianz', 'ROLE_CLIENT'),
+	('Dragan', 'ROLE_CLIENT'),
 	('FiBank', 'ROLE_ADMIN'),
 	('generic_client', 'ROLE_ADMIN'),
 	('gosho', 'ROLE_CLIENT'),
 	('GoshoPalaviq', 'ROLE_ADMIN'),
-	('Ivan', 'ROLE_ADMIN'),
 	('Ivcho', 'ROLE_ADMIN'),
 	('Kiro', 'ROLE_ADMIN'),
 	('misho', 'ROLE_CLIENT'),
 	('mitko', 'ROLE_ADMIN'),
 	('pesho', 'ROLE_ADMIN'),
 	('RBB', 'ROLE_ADMIN'),
+	('Societe', 'ROLE_CLIENT'),
 	('TestUser1', 'ROLE_ADMIN'),
 	('TestUser2', 'ROLE_ADMIN');
 /*!40000 ALTER TABLE `authorities` ENABLE KEYS */;
@@ -68,14 +69,15 @@ CREATE TABLE IF NOT EXISTS `clients` (
   PRIMARY KEY (`id`),
   KEY `FK_clients_users` (`user_id`),
   CONSTRAINT `FK_clients_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table telecomdb.clients: ~3 rows (approximately)
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
 INSERT INTO `clients` (`id`, `user_id`, `full_name`, `uic`) VALUES
 	(8, 3, 'Allianz Bank Bulgaria ', '1433192423'),
 	(9, 4, 'First Investment Bank', '831094393'),
-	(12, 13, 'RBB Bank Bulgaria ', '1433555192423');
+	(12, 13, 'Dragan', '444'),
+	(14, 22, 'Sociate', '8888888888');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 
 -- Dumping structure for table telecomdb.invoices
@@ -193,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(68) NOT NULL,
   `enabled` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table telecomdb.users: ~17 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
@@ -210,11 +212,12 @@ INSERT INTO `users` (`id`, `username`, `password`, `enabled`) VALUES
 	(10, 'misho', '{noop}pass3', 1),
 	(11, 'mitko', '{noop}neepi4', 1),
 	(12, 'pesho', '{noop}pass1', 1),
-	(13, 'Raiffeisen', '{noop}rrr', 1),
+	(13, 'Dragan', '{noop}pass', 1),
 	(14, 'TestUser2', '{noop}TestPassword2', 1),
 	(15, 'vesko', '{noop}veskoepi4', 1),
 	(16, 'TestUser1', '{noop}TestPassword1', 1),
-	(19, 'GoshoPalaviq', '{noop}Test', 1);
+	(19, 'GoshoPalaviq', '{noop}Test', 1),
+	(22, 'Societe', '{noop}pass', 1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
