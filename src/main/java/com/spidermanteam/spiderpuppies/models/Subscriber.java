@@ -56,6 +56,20 @@ public class Subscriber {
     }
 
 
+    public Subscriber(String phone, String firstName, String lastName, String personalIdentificationNumber, String address, List<Invoice> invoices, List<TelecomService> telecomServices, LocalDate firstServiceActivationDate, LocalDate billingDate, Client client, BigDecimal allTimeTurnover) {
+        this.phone = phone;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.personalIdentificationNumber = personalIdentificationNumber;
+        this.address = address;
+        this.invoices = invoices;
+        this.telecomServices = telecomServices;
+        this.firstServiceActivationDate = firstServiceActivationDate;
+        this.billingDate = billingDate;
+        this.client = client;
+        this.allTimeTurnover = allTimeTurnover;
+    }
+
     public int getId() {
         return id;
     }
