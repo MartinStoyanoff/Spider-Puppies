@@ -16,6 +16,8 @@ public interface InvoiceRepository extends GenericRepository<Invoice> {
 
     List<Invoice> findAllInvoicesByClientId(int clientId);
 
-    List<Invoice> findLastTenPaymentsBySubscriberId(int id);
+    List<Invoice> findLastTenPaymentsBySubscriberId(int subscriberId);
+
+    List<Invoice> findLastTenPaymentsByClientId(int clientId);
 
 }

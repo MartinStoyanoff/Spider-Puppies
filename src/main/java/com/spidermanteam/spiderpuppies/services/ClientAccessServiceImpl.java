@@ -3,6 +3,7 @@ package com.spidermanteam.spiderpuppies.services;
 import com.spidermanteam.spiderpuppies.data.base.ClientAccessRepository;
 import com.spidermanteam.spiderpuppies.data.base.GenericRepository;
 import com.spidermanteam.spiderpuppies.data.base.InvoiceRepository;
+import com.spidermanteam.spiderpuppies.data.base.SubscriberRepository;
 import com.spidermanteam.spiderpuppies.models.Invoice;
 import com.spidermanteam.spiderpuppies.models.Subscriber;
 import com.spidermanteam.spiderpuppies.models.reporting.PaymentReport;
@@ -21,10 +22,10 @@ import java.util.List;
 public class ClientAccessServiceImpl implements ClientAccessService {
 
     private InvoiceRepository invoiceRepository;
-    private GenericRepository<Subscriber> subscriberRepository;
+    private SubscriberRepository subscriberRepository;
 
     @Autowired
-    public ClientAccessServiceImpl(InvoiceRepository invoiceRepository, GenericRepository<Subscriber> subscriberRepository) {
+    public ClientAccessServiceImpl(InvoiceRepository invoiceRepository, SubscriberRepository subscriberRepository) {
         this.invoiceRepository = invoiceRepository;
         this.subscriberRepository = subscriberRepository;
     }
@@ -108,17 +109,17 @@ public class ClientAccessServiceImpl implements ClientAccessService {
     }
 
     @Override
-    public BigDecimal getMaxPriceBySubscriberPhone(String phone) {
+    public BigDecimal getMaxPriceBySubscriberId(int subscriberId) {
         return null;
     }
 
     @Override
-    public BigDecimal getAvgPriceBySubscriberPhone(String phone) {
+    public BigDecimal getAvgPriceBySubscriberId(int subscriberId) {
         return null;
     }
 
     @Override
-    public List<Invoice> getLastTenPaidInvoiceBySubscriberPhone(String phone) {
+    public List<Invoice> getLastTenPaidInvoiceBySubscriberId(int subscriberId) {
         return null;
     }
 
@@ -134,7 +135,7 @@ public class ClientAccessServiceImpl implements ClientAccessService {
 
     @Override
     public List<Invoice> getLastTenPaidInvoiceByClient(int clientId) {
-        return null;
+        return invoiceRepository.findLastTenPaymentsByClientId(clientId);
     }
 
     private PaymentReport payInvoice(Invoice invoice, PaymentReport paymentReport) {

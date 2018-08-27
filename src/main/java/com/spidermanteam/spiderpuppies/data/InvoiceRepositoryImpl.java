@@ -186,4 +186,25 @@ public class InvoiceRepositoryImpl implements InvoiceRepository {
         }
         return invoiceList;
     }
+
+    @Override
+    public List<Invoice> findLastTenPaymentsByClientId(int clientId) {
+        List invoiceList = new ArrayList<>();
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+
+            invoiceList = session.createQuery("from Invoice as i " +
+                    "where i.status=:status " +
+                    "and i.subscriber.id=:id "+
+                    "order by i.paymentDate desc")
+                    .setParameter("status", "1")
+                    .setParameter("id", clientId)
+                    .setMaxResults(10)
+                    .list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return invoiceList;
+    }
 }

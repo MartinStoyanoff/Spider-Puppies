@@ -13,4 +13,6 @@ public interface SubscriberRepository extends GenericRepository<Subscriber> {
 
     BigDecimal getAveragePaidSumBySubscriber (int id);
 
+    Subscriber getSubscriberByPhoneAndClientId(String phone, int clientId);
+
 }

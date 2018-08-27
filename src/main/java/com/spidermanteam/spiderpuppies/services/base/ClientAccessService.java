@@ -26,11 +26,11 @@ public interface ClientAccessService {
 
     Subscriber getSubscriberByPhone(String phone);
 
-    BigDecimal getMaxPriceBySubscriberPhone(String phone);
+    BigDecimal getMaxPriceBySubscriberId(int subscriberId);
 
-    BigDecimal getAvgPriceBySubscriberPhone(String phone);
+    BigDecimal getAvgPriceBySubscriberId(int subscriberId);
 
-    List<Invoice> getLastTenPaidInvoiceBySubscriberPhone(String phone);
+    List<Invoice> getLastTenPaidInvoiceBySubscriberId(int subscriberId);
 
     BigDecimal getMaxPriceFromAllSubscribers(int clientId);
 
