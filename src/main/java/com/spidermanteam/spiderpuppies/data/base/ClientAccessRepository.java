@@ -9,6 +9,7 @@ import java.util.List;
 public interface ClientAccessRepository {
 
 
+
     void payInvoicesByIdList(List<Integer> invoiceIdList);
 
     void payInvoicesByPhoneList(List<String> phonesList);

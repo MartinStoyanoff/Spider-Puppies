@@ -6,11 +6,15 @@ import java.util.List;
 
 public interface InvoiceRepository extends GenericRepository<Invoice> {
 
+    Invoice findByIdAndClientId(int id, int clientId);
+
+    List<Invoice> findInvoicesByPhoneAndClientId(String phone, int clientId);
+
     List<Invoice> findInvoicesByPhone(String phone);
 
-    List<Invoice> findAllPendingInvoicesByClientId(int id);
+    List<Invoice> findAllPendingInvoicesByClientId(int clientId);
 
-    List<Invoice> findAllInvoicesByClientId(int id);
+    List<Invoice> findAllInvoicesByClientId(int clientId);
 
     List<Invoice> findLastTenPaymentsBySubscriberId(int id);
 

@@ -22,26 +22,29 @@ public class ClientController {
         this.clientAccessService = clientAccessService;
     }
 
-    @PutMapping("/payInvoiceById/{id}")
-    public void payInvoiceById(@PathVariable("id") int id) {
-        clientAccessService.payInvoiceById(id);
+    @PutMapping("/payInvoiceById/{id}/{clientId}")
+    public void payInvoiceById(@PathVariable("id") int id, @PathVariable("clientId") int clientId) {
+        clientAccessService.payInvoiceByIdAndClientId(id,clientId);
     }
 
     @PutMapping("/payInvoicesByPhone")
     public void payInvoiceByPhone(@RequestBody HashMap<String, String> input) {
         String phone = input.get("phone");
-        clientAccessService.payInvoicesByPhone(phone);
+        int clientId = 2;//HAVE TO CHECK HOW TO GET THE CLIENT ID
+        clientAccessService.payInvoicesByPhoneAndClientId(phone,clientId);
     }
 
 
     @PutMapping("/payInvoiceByIdList")
     void payInvoicesByIdList(@RequestBody List<Integer> idList) {
-        clientAccessService.payInvoicesByIdList(idList);
+        int clientId = 2;//HAVE TO CHECK HOW TO GET THE CLIENT ID
+        clientAccessService.payInvoicesByIdListAndClientId(idList, clientId);
     }
 
     @PutMapping("/payInvoicesByPhoneList")
     void payInvoicesByPhoneList(@RequestBody List<String> phonesList) {
-        clientAccessService.payInvoicesByPhoneList(phonesList);
+        int clientId = 2;//HAVE TO CHECK HOW TO GET THE CLIENT ID
+        clientAccessService.payInvoicesByPhoneListAndClientId(phonesList,clientId);
     }
 
     @GetMapping("/invoice/findAllPendingByClientId/{id}")

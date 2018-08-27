@@ -49,6 +49,24 @@ public class InvoiceRepositoryImpl implements InvoiceRepository {
     }
 
     @Override
+    public Invoice findByIdAndClientId(int id, int clientId){
+        Invoice invoice = new Invoice();
+        List<Invoice> invoiceList = new ArrayList<>();
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            String query = "from Invoice as i where i.id=:id and i.subscriber.client.id=:clientId";
+            invoiceList = session.createQuery(query)
+                    .setParameter("clientId", clientId)
+                    .setParameter("id",id).list();
+            invoice = invoiceList.get(0);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return invoice;
+    }
+
+    @Override
     public List<Invoice> listAll() {
         List<Invoice> invoices = new ArrayList<>();
         try (Session session = sessionFactory.openSession()) {
@@ -94,6 +112,22 @@ public class InvoiceRepositoryImpl implements InvoiceRepository {
             String query = "from Invoice as i where i.subscriber.phone=:phoneNum";
             invoiceList = session.createQuery(query)
                     .setParameter("phoneNum", phone).list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return invoiceList;
+    }
+
+    @Override
+    public List<Invoice> findInvoicesByPhoneAndClientId(String phone, int clientId) {
+        List<Invoice> invoiceList = new ArrayList<>();
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            String query = "from Invoice as i where i.subscriber.phone=:phoneNum and i.subscriber.client.id=:clientId";
+            invoiceList = session.createQuery(query)
+                    .setParameter("phoneNum", phone)
+                    .setParameter("clientId", clientId).list();
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -2,21 +2,26 @@ package com.spidermanteam.spiderpuppies.services.base;
 
 import com.spidermanteam.spiderpuppies.models.Invoice;
 import com.spidermanteam.spiderpuppies.models.Subscriber;
+import com.spidermanteam.spiderpuppies.models.reporting.PaymentReport;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 
 public interface ClientAccessService {
-    void payInvoiceById(int invoiceId);
 
-    void payInvoicesByPhone(String phone);
+    PaymentReport payInvoiceByIdAndClientId(int invoiceId, int clientId);
 
-    void payInvoicesByIdList(List<Integer> invoiceIdList);
+    List<PaymentReport> payInvoicesByPhoneAndClientId(String phone, int clientId);
 
-    void payInvoicesByPhoneList(List<String> phonesList);
 
-    void payAllPendingInvoicesByClient(int clientId);
+
+
+    List<PaymentReport> payInvoicesByIdListAndClientId(List<Integer> invoiceIdList, int clientId);
+
+    List<PaymentReport> payInvoicesByPhoneListAndClientId(List<String> phonesList, int clientId);
+
+    List<PaymentReport> payAllPendingInvoicesByClient(int clientId);
 
     List<Invoice> listAllPendingInvoicesByClientId(int clientId);
 
