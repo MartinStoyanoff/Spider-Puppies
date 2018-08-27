@@ -139,13 +139,13 @@ public class SubscriberRepositoryImpl implements SubscriberRepository {
     @Override
     public Subscriber getSubscriberByPhoneAndClientId(String phone, int clientId) {
         Subscriber subscriber = new Subscriber();
-        List<Subscriber> subscriberList = new ArrayList<>();
+        List subscriberList;
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             subscriberList = session.createQuery("from Subscriber as s where s.phone=:phone and s.client.id=:id")
             .setParameter("phone",phone)
                     .setParameter("id",clientId).list();
-            subscriber=subscriberList.get(0);
+            subscriber=(Subscriber) subscriberList.get(0);
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());

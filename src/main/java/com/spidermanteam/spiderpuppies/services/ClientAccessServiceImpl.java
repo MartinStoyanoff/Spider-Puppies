@@ -104,33 +104,23 @@ public class ClientAccessServiceImpl implements ClientAccessService {
     }
 
     @Override
-    public Subscriber getSubscriberByPhone(String phone) {
-        return null;
+    public Subscriber getSubscriberByPhoneAndClientId(String phone, int clientId) {
+        return subscriberRepository.getSubscriberByPhoneAndClientId(phone, clientId);
     }
 
     @Override
     public BigDecimal getMaxPriceBySubscriberId(int subscriberId) {
-        return null;
+        return subscriberRepository.getHighestPaidSumBySubscriber(subscriberId);
     }
 
     @Override
     public BigDecimal getAvgPriceBySubscriberId(int subscriberId) {
-        return null;
+        return subscriberRepository.getAveragePaidSumBySubscriber(subscriberId);
     }
 
     @Override
     public List<Invoice> getLastTenPaidInvoiceBySubscriberId(int subscriberId) {
-        return null;
-    }
-
-    @Override
-    public BigDecimal getMaxPriceFromAllSubscribers(int clientId) {
-        return null;
-    }
-
-    @Override
-    public BigDecimal getAvgPriceFromSubscribers(int clientId) {
-        return null;
+        return invoiceRepository.findLastTenPaymentsBySubscriberId(subscriberId);
     }
 
     @Override
@@ -138,7 +128,16 @@ public class ClientAccessServiceImpl implements ClientAccessService {
         return invoiceRepository.findLastTenPaymentsByClientId(clientId);
     }
 
+
     private PaymentReport payInvoice(Invoice invoice, PaymentReport paymentReport) {
+        if (!currencyCheck(invoice)) {
+            currencyConverter(invoice);
+            if (invoice.getCurrency().contains("Not_Supported")) {
+                paymentReport.setStatus(PaymentReportStatus.FAILED_INVOICE_CURRENCY_NOT_SUPPORTED);
+                return paymentReport;
+            }
+
+        }
 
         if (invoice.getStatus().equals("0")) {
             invoice.setStatus("1");
@@ -161,4 +160,32 @@ public class ClientAccessServiceImpl implements ClientAccessService {
         }
         return paymentReport;
     }
+
+    private boolean currencyCheck(Invoice invoice) {
+        return invoice.getCurrency().toLowerCase().equals("bgn");
+    }
+
+    private void currencyConverter(Invoice invoice) {
+        BigDecimal invoicePrice = invoice.getPrice();
+        switch (invoice.getCurrency().toLowerCase()) {
+            case "eur":
+                invoicePrice = invoicePrice.multiply(BigDecimal.valueOf(1.95582));
+                break;
+            case "gbp":
+                invoicePrice = invoicePrice.multiply(BigDecimal.valueOf(2.16833));
+                break;
+            case "usd":
+                invoicePrice = invoicePrice.multiply(BigDecimal.valueOf(1.68781));
+                break;
+            case "chf":
+                invoicePrice = invoicePrice.multiply(BigDecimal.valueOf(1.71594));
+                break;
+            default:
+                String updateCurrency = invoice.getCurrency() + "Not_Supported";
+                invoice.setCurrency(updateCurrency);
+        }
+        invoice.getTelecomServices().setPrice(invoicePrice);
+        invoice.setCurrency("BGN");
+    }
+
 }

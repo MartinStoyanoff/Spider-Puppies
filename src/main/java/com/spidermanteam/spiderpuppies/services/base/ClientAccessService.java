@@ -24,17 +24,13 @@ public interface ClientAccessService {
 
     List<Invoice> listAllInvoicesByClientId(int clientId);
 
-    Subscriber getSubscriberByPhone(String phone);
+    Subscriber getSubscriberByPhoneAndClientId(String phone, int clientId);
 
     BigDecimal getMaxPriceBySubscriberId(int subscriberId);
 
     BigDecimal getAvgPriceBySubscriberId(int subscriberId);
 
     List<Invoice> getLastTenPaidInvoiceBySubscriberId(int subscriberId);
-
-    BigDecimal getMaxPriceFromAllSubscribers(int clientId);
-
-    BigDecimal getAvgPriceFromSubscribers(int clientId);
 
     List<Invoice> getLastTenPaidInvoiceByClient(int clientId);
 
