@@ -2,6 +2,7 @@ package com.spidermanteam.spiderpuppies.web.clientcontrollers;
 
 import com.spidermanteam.spiderpuppies.models.Invoice;
 import com.spidermanteam.spiderpuppies.models.reporting.InvoiceReport;
+import com.spidermanteam.spiderpuppies.models.reporting.PaymentReport;
 import com.spidermanteam.spiderpuppies.objectmapping.MappingHelper;
 import com.spidermanteam.spiderpuppies.services.base.ClientAccessService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,28 +24,28 @@ public class ClientController {
     }
 
     @PutMapping("/payInvoiceById/{id}/{clientId}")
-    public void payInvoiceById(@PathVariable("id") int id, @PathVariable("clientId") int clientId) {
-        clientAccessService.payInvoiceByIdAndClientId(id,clientId);
+    public PaymentReport payInvoiceById(@PathVariable("id") int id, @PathVariable("clientId") int clientId) {
+        return clientAccessService.payInvoiceByIdAndClientId(id, clientId);
     }
 
     @PutMapping("/payInvoicesByPhone")
-    public void payInvoiceByPhone(@RequestBody HashMap<String, String> input) {
+    public List<PaymentReport> payInvoiceByPhone(@RequestBody HashMap<String, String> input) {
         String phone = input.get("phone");
         int clientId = 2;//HAVE TO CHECK HOW TO GET THE CLIENT ID
-        clientAccessService.payInvoicesByPhoneAndClientId(phone,clientId);
+        return clientAccessService.payInvoicesByPhoneAndClientId(phone, clientId);
     }
 
 
     @PutMapping("/payInvoiceByIdList")
-    void payInvoicesByIdList(@RequestBody List<Integer> idList) {
+    public List<PaymentReport> payInvoicesByIdList(@RequestBody List<Integer> idList) {
         int clientId = 2;//HAVE TO CHECK HOW TO GET THE CLIENT ID
-        clientAccessService.payInvoicesByIdListAndClientId(idList, clientId);
+        return clientAccessService.payInvoicesByIdListAndClientId(idList, clientId);
     }
 
     @PutMapping("/payInvoicesByPhoneList")
-    void payInvoicesByPhoneList(@RequestBody List<String> phonesList) {
+    public List<PaymentReport> payInvoicesByPhoneList(@RequestBody List<String> phonesList) {
         int clientId = 2;//HAVE TO CHECK HOW TO GET THE CLIENT ID
-        clientAccessService.payInvoicesByPhoneListAndClientId(phonesList,clientId);
+        return clientAccessService.payInvoicesByPhoneListAndClientId(phonesList, clientId);
     }
 
     @GetMapping("/invoice/findAllPendingByClientId/{id}")

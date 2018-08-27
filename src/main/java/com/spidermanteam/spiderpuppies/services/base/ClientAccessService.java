@@ -14,9 +14,6 @@ public interface ClientAccessService {
 
     List<PaymentReport> payInvoicesByPhoneAndClientId(String phone, int clientId);
 
-
-
-
     List<PaymentReport> payInvoicesByIdListAndClientId(List<Integer> invoiceIdList, int clientId);
 
     List<PaymentReport> payInvoicesByPhoneListAndClientId(List<String> phonesList, int clientId);
