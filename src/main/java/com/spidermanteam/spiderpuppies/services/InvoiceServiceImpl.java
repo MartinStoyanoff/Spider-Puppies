@@ -9,12 +9,15 @@ import com.spidermanteam.spiderpuppies.models.TelecomService;
 import com.spidermanteam.spiderpuppies.models.reporting.InvoiceReport;
 import com.spidermanteam.spiderpuppies.objectmapping.MappingHelper;
 import com.spidermanteam.spiderpuppies.services.base.InvoiceService;
+import com.spidermanteam.spiderpuppies.services.base.TelecomServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -31,8 +34,25 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 
     @Override
-    public void addInvoice(Invoice invoice) {
-        invoiceRepository.create(invoice);
+    public void addInvoice(String subscriberId, String currency) {
+        Subscriber subscriber = subscriberRepository.findById(Integer.parseInt(subscriberId));
+        BigDecimal exchangeRate = BigDecimal.valueOf(1);
+        if (!currency.toLowerCase().equals("bgn")) {
+            exchangeRate = getExchangeRateToBGN(currency);
+        }
+
+        List<TelecomService> telecomServiceList = subscriber.getTelecomServices();
+        for (TelecomService ts : telecomServiceList
+        ) {
+            BigDecimal price = ts.getPrice().divide(exchangeRate, 5, 5);
+            Invoice invoice = new Invoice(subscriber, ts, price, currency);
+            invoiceRepository.create(invoice);
+        }
+
+        LocalDate billingDate = subscriber.getBillingDate();
+        LocalDate newBillingDate = billingDate.plusMonths(1);
+        subscriber.setBillingDate(newBillingDate);
+        subscriberRepository.update(subscriber);
 
     }
 
@@ -69,24 +89,37 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
-    public void generateBulkPayment(List<Integer> subscribersIdList) {
-        for (int id : subscribersIdList) {
-            Subscriber subscriber = subscriberRepository.findById(id);
-            List<TelecomService> telecomServices = subscriber.getTelecomServices();
-            String currency = "BGN";
-            for (TelecomService ts : telecomServices) {
-                Invoice invoice = new Invoice(subscriber, ts, currency);
-                invoiceRepository.create(invoice);
-            }
-            LocalDate billingDate = subscriber.getBillingDate();
-            LocalDate newBillingDate = billingDate.plusMonths(1);
-            subscriber.setBillingDate(newBillingDate);
-            subscriberRepository.update(subscriber);
+    public void generateBulkPayment(List<HashMap<String, String>> invoiceInfoList) {
+        for (HashMap<String, String> invoiceInfo : invoiceInfoList) {
+            String subscriberId = invoiceInfo.get("id");
+            String currency = invoiceInfo.get("currency");
+            addInvoice(subscriberId, currency);
         }
     }
 
     @Override
     public List<Invoice> findLastTenPaymentsBySubscriberId(int id) {
         return invoiceRepository.findLastTenPaymentsBySubscriberId(id);
+    }
+
+    private BigDecimal getExchangeRateToBGN(String currency) {
+        BigDecimal exchangeRate;
+        switch (currency.toLowerCase()) {
+            case "eur":
+                exchangeRate = (BigDecimal.valueOf(1.95583));
+                break;
+            case "gbp":
+                exchangeRate = (BigDecimal.valueOf(2.16833));
+                break;
+            case "usd":
+                exchangeRate = (BigDecimal.valueOf(1.68781));
+                break;
+            case "chf":
+                exchangeRate = (BigDecimal.valueOf(1.71594));
+                break;
+            default:
+                exchangeRate = BigDecimal.valueOf(1);
+        }
+        return exchangeRate;
     }
 }

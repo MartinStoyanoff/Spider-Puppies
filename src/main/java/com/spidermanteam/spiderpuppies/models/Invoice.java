@@ -46,13 +46,13 @@ public class Invoice {
     public Invoice() {
     }
 
-    public Invoice(Subscriber subscriber, TelecomService telecomServices, String currency) {
+    public Invoice(Subscriber subscriber, TelecomService telecomServices, BigDecimal price, String currency) {
         this.subscriber = subscriber;
         this.telecomServices = telecomServices;
         this.currency = currency;
         this.status = "0";
+        this.price = price;
         setStartDate();
-        setPrice();
         setEndDate();
     }
 
@@ -92,8 +92,8 @@ public class Invoice {
         return price;
     }
 
-    public void setPrice() {
-        this.price = telecomServices.getPrice();
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public String getCurrency() {

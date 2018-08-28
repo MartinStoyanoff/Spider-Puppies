@@ -36,13 +36,8 @@ public class ManageInvoicesController {
 
     @PostMapping("/add")
     void addInvoice(@RequestBody HashMap<String, String> input) {
-        Subscriber subscriber = subscribersService.findSubscriberById(Integer.parseInt(input.get("subscriber")));
-        List<TelecomService> list = subscriber.getTelecomServices();
-        for (TelecomService ts : list) {
-            String currency = input.get("currency");
-            Invoice invoiceAdd = new Invoice(subscriber, ts, currency);
-            invoiceService.addInvoice(invoiceAdd);
-        }
+        invoiceService.addInvoice(input);
+
     }
 
     @GetMapping("/findById/{id}")
@@ -55,8 +50,8 @@ public class ManageInvoicesController {
     List listAllInvoice() {
         List<Invoice> invoiceList = invoiceService.listAllInvoices();
         List<InvoiceReport> invoiceReportList = new ArrayList<>();
-        for (Invoice invoice:invoiceList
-             ) {
+        for (Invoice invoice : invoiceList
+        ) {
 
             InvoiceReport invoiceReport = MappingHelper.mapInvoiceToInvoiceReport(invoice);
             invoiceReportList.add(invoiceReport);
@@ -76,16 +71,16 @@ public class ManageInvoicesController {
     }
 
     @PostMapping("/bulkgenerate")
-    void generateBulkPayment (@RequestBody List<Integer> subscribersIdList){
+    void generateBulkPayment(@RequestBody List<HashMap<String,String>> subscribersIdList) {
         invoiceService.generateBulkPayment(subscribersIdList);
     }
 
     @GetMapping("/lastTen/{id}")
-    public List<InvoiceReport> findLastTenPaymentsBySubscriber(@PathVariable int id){
+    public List<InvoiceReport> findLastTenPaymentsBySubscriber(@PathVariable int id) {
         Subscriber subscriber = subscribersService.findSubscriberById(id);
         List<Invoice> invoices = invoiceService.findLastTenPaymentsBySubscriberId(subscriber.getId());
         List<InvoiceReport> invoiceReports = new ArrayList();
-        for (Invoice inv: invoices) {
+        for (Invoice inv : invoices) {
             InvoiceReport invoiceReport = MappingHelper.mapInvoiceToInvoiceReport(inv);
             invoiceReports.add(invoiceReport);
         }

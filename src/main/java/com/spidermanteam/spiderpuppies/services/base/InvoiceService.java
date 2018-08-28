@@ -3,10 +3,11 @@ package com.spidermanteam.spiderpuppies.services.base;
 import com.spidermanteam.spiderpuppies.models.Invoice;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface InvoiceService {
-    void addInvoice(Invoice invoice);
+    void addInvoice(String subscriberId, String currency);
 
     Invoice findInvoiceById(int id);
 
@@ -20,7 +21,7 @@ public interface InvoiceService {
 
     List<Invoice> findAllInvoicesByClientId(int id);
 
-    void generateBulkPayment(List<Integer> subscribersIdList);
+    void generateBulkPayment(List<HashMap<String,String>> invoiceInfoList);
 
     List<Invoice> findLastTenPaymentsBySubscriberId (int id);
 

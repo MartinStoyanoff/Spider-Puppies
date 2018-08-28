@@ -169,7 +169,7 @@ public class ClientAccessServiceImpl implements ClientAccessService {
         BigDecimal invoicePrice = invoice.getPrice();
         switch (invoice.getCurrency().toLowerCase()) {
             case "eur":
-                invoicePrice = invoicePrice.multiply(BigDecimal.valueOf(1.95582));
+                invoicePrice = invoicePrice.multiply(BigDecimal.valueOf(1.95583));
                 break;
             case "gbp":
                 invoicePrice = invoicePrice.multiply(BigDecimal.valueOf(2.16833));
