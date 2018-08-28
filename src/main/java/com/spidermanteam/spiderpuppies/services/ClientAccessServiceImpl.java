@@ -128,10 +128,16 @@ public class ClientAccessServiceImpl implements ClientAccessService {
         return invoiceRepository.findLastTenPaymentsByClientId(clientId);
     }
 
+    @Override
+    public List<Subscriber> getTenBestSubscribersByTurnoverAndClientId(int clientId) {
+        return subscriberRepository.getTenBestSubscribersByTurnoverAndClientId(clientId);
+    }
 
-    private PaymentReport payInvoice(Invoice invoice, PaymentReport paymentReport) {
+
+    @Override
+    public PaymentReport payInvoice(Invoice invoice, PaymentReport paymentReport) {
         if (!currencyCheck(invoice)) {
-            currencyConverter(invoice);
+            invoiceCurrencyConverter(invoice);
             if (invoice.getCurrency().contains("Not_Supported")) {
                 paymentReport.setStatus(PaymentReportStatus.FAILED_INVOICE_CURRENCY_NOT_SUPPORTED);
                 return paymentReport;
@@ -161,11 +167,13 @@ public class ClientAccessServiceImpl implements ClientAccessService {
         return paymentReport;
     }
 
-    private boolean currencyCheck(Invoice invoice) {
+    @Override
+    public boolean currencyCheck(Invoice invoice) {
         return invoice.getCurrency().toLowerCase().equals("bgn");
     }
 
-    private void currencyConverter(Invoice invoice) {
+    @Override
+    public void invoiceCurrencyConverter(Invoice invoice) {
         BigDecimal invoicePrice = invoice.getPrice();
         switch (invoice.getCurrency().toLowerCase()) {
             case "eur":
@@ -186,11 +194,6 @@ public class ClientAccessServiceImpl implements ClientAccessService {
         }
         invoice.getTelecomServices().setPrice(invoicePrice);
         invoice.setCurrency("BGN");
-    }
-
-    @Override
-    public List<Subscriber> getTenBestSubscribersByTurnoverAndClientId(int clientId) {
-        return subscriberRepository.getTenBestSubscribersByTurnoverAndClientId(clientId);
     }
 
 }
