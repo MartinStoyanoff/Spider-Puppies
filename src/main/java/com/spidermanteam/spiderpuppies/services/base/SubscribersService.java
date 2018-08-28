@@ -24,4 +24,6 @@ public interface SubscribersService {
 
     BigDecimal getAveragePaidSumBySubscriber(int id);
 
+    void addTelecomServiceToSubscriber(int subscriberId, int telecomServiceId);
+
 }
