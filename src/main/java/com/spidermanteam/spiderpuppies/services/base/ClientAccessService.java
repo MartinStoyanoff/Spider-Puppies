@@ -34,5 +34,7 @@ public interface ClientAccessService {
 
     List<Invoice> getLastTenPaidInvoiceByClient(int clientId);
 
+    List<Subscriber> getTenBestSubscribersByTurnoverAndClientId(int clientId);
+
 
 }

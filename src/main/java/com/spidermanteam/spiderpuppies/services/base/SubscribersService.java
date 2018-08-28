@@ -23,4 +23,5 @@ public interface SubscribersService {
     BigDecimal getHighestPaidSumBySubscriber(int id);
 
     BigDecimal getAveragePaidSumBySubscriber(int id);
+
 }

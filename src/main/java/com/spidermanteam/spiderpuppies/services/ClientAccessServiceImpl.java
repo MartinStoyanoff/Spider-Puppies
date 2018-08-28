@@ -188,4 +188,9 @@ public class ClientAccessServiceImpl implements ClientAccessService {
         invoice.setCurrency("BGN");
     }
 
+    @Override
+    public List<Subscriber> getTenBestSubscribersByTurnoverAndClientId(int clientId) {
+        return subscriberRepository.getTenBestSubscribersByTurnoverAndClientId(clientId);
+    }
+
 }

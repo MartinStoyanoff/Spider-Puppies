@@ -153,4 +153,24 @@ public class SubscriberRepositoryImpl implements SubscriberRepository {
         return subscriber;
     }
 
-}
+    @Override
+    public List<Subscriber> getTenBestSubscribersByTurnoverAndClientId(int clientId) {
+        List subscriberList = new ArrayList();
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+
+            subscriberList = session.createQuery("from Subscriber as s " +
+                    "where s.client.id=:clientId " +
+                    "order by s.allTimeTurnover desc")
+                    .setParameter("clientId", "1")
+                    .setMaxResults(10)
+                    .list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return subscriberList;
+    }
+    }
+
+

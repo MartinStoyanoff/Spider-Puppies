@@ -64,4 +64,5 @@ public class SubscriberServiceImpl implements SubscribersService {
     public BigDecimal getAveragePaidSumBySubscriber(int id) {
         return subscriberRepository.getAveragePaidSumBySubscriber(id);
     }
+
 }
