@@ -36,7 +36,9 @@ public class ManageInvoicesController {
 
     @PostMapping("/add")
     void addInvoice(@RequestBody HashMap<String, String> input) {
-        invoiceService.addInvoice(input);
+        String subscriberId = input.get("id");
+        String currency = input.get("currency");
+        invoiceService.addInvoice(subscriberId,currency);
 
     }
 
