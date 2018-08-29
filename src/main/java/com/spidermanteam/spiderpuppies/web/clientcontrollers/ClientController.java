@@ -1,8 +1,10 @@
 package com.spidermanteam.spiderpuppies.web.clientcontrollers;
 
 import com.spidermanteam.spiderpuppies.models.Invoice;
+import com.spidermanteam.spiderpuppies.models.Subscriber;
 import com.spidermanteam.spiderpuppies.models.reporting.InvoiceReport;
 import com.spidermanteam.spiderpuppies.models.reporting.PaymentReport;
+import com.spidermanteam.spiderpuppies.models.reporting.SubscriberReport;
 import com.spidermanteam.spiderpuppies.objectmapping.MappingHelper;
 import com.spidermanteam.spiderpuppies.services.base.ClientAccessService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +65,7 @@ public class ClientController {
     }
 
     @GetMapping("/invoice/findAllByClientId/{id}")
-    List<InvoiceReport> findAllInvoicesByClientId(@PathVariable("id") int id) {
+    List<InvoiceReport> findAllInvoicesByClientId(@PathVariable int id) {
         List<Invoice> invoiceList = clientAccessService.listAllInvoicesByClientId(id);
         List<InvoiceReport> invoiceReportList = new ArrayList<>();
         for (Invoice inv : invoiceList
@@ -74,6 +76,18 @@ public class ClientController {
 
         }
         return invoiceReportList;
+    }
+
+    @GetMapping("/subscribers/getTenBest/{id}")
+    List<SubscriberReport> getTenBestSubscribersByTurnoverAndClientId(@PathVariable("id") int id) {
+        List<Subscriber> subscriberList = clientAccessService.getTenBestSubscribersByTurnoverAndClientId(id);
+        List<SubscriberReport> bestTenSubscribersList = new ArrayList<>();
+        for (Subscriber sub : subscriberList
+        ) {
+            SubscriberReport subReport = MappingHelper.mapSubscriberToSubscriberReport(sub);
+            bestTenSubscribersList.add(subReport);
+        }
+        return bestTenSubscribersList;
     }
 
 }

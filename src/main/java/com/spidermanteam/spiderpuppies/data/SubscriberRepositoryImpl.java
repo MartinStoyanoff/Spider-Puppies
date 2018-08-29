@@ -162,7 +162,7 @@ public class SubscriberRepositoryImpl implements SubscriberRepository {
             subscriberList = session.createQuery("from Subscriber as s " +
                     "where s.client.id=:clientId " +
                     "order by s.allTimeTurnover desc")
-                    .setParameter("clientId", "1")
+                    .setParameter("clientId", clientId)
                     .setMaxResults(10)
                     .list();
             session.getTransaction().commit();
