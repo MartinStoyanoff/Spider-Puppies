@@ -38,13 +38,13 @@ public class ClientController {
 
     @PutMapping("/payInvoiceByIdList")
     public List<PaymentReport> payInvoicesByIdList(@RequestBody List<Integer> idList) {
-        int clientId = 2;//HAVE TO CHECK HOW TO GET THE CLIENT ID
+        int clientId = 9;//HAVE TO CHECK HOW TO GET THE CLIENT ID
         return clientAccessService.payInvoicesByIdListAndClientId(idList, clientId);
     }
 
     @PutMapping("/payInvoicesByPhoneList")
     public List<PaymentReport> payInvoicesByPhoneList(@RequestBody List<String> phonesList) {
-        int clientId = 2;//HAVE TO CHECK HOW TO GET THE CLIENT ID
+        int clientId = 9;//HAVE TO CHECK HOW TO GET THE CLIENT ID
         return clientAccessService.payInvoicesByPhoneListAndClientId(phonesList, clientId);
     }
 

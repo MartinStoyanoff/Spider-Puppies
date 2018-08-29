@@ -76,7 +76,8 @@ public class SubscriberServiceImpl implements SubscribersService {
     }
 
     @Override
-    public void addTelecomServiceToSubscriber(int subscriberId, int telecomServiceId) {
+    public void addTelecomServiceToSubscriber(int subscriberId, int telecomServiceId
+    ) {
         Subscriber subscriber = subscriberRepository.findById(subscriberId);
         TelecomService telecomService = telecomServiceRepository.findById(telecomServiceId);
         LocalDate billingDate = subscriber.getBillingDate();
@@ -100,6 +101,7 @@ public class SubscriberServiceImpl implements SubscribersService {
 
         }
         subscriber.getTelecomServices().add(telecomService);
+
         subscriber.setBillingDate(currentDay.plusMonths(1));
 
     }

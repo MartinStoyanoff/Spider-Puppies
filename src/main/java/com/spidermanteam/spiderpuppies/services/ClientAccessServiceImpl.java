@@ -159,7 +159,7 @@ public class ClientAccessServiceImpl implements ClientAccessService {
             subscriberRepository.update(subscriber);
             invoiceRepository.update(invoice);
         }
-        if (invoice.getStatus().equals("1")) {
+        else if (invoice.getStatus().equals("1")) {
             paymentReport.setPhoneNum(invoice.getSubscriber().getPhone());
             paymentReport.setInvoiceId(invoice.getId());
             paymentReport.setStatus(PaymentReportStatus.FAILED_ALREADY_PAID);
