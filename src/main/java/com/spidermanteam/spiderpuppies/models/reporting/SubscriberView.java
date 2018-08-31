@@ -1,14 +1,15 @@
 package com.spidermanteam.spiderpuppies.models.reporting;
 
-import com.spidermanteam.spiderpuppies.models.Client;
 import com.spidermanteam.spiderpuppies.models.Invoice;
+import com.spidermanteam.spiderpuppies.models.Subscriber;
 import com.spidermanteam.spiderpuppies.models.TelecomService;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
-public class SubscriberReport {
+public class SubscriberView {
 
     private int id;
     private String phone;
@@ -16,29 +17,33 @@ public class SubscriberReport {
     private String lastName;
     private String personalIdentificationNumber;
     private String address;
-    private List<InvoiceReport> invoices;
+    private List<InvoiceView> invoices;
     private List<TelecomService> telecomServices;
     private LocalDate firstServiceActivationDate;
     private LocalDate billingDate;
-    private Client client;
     private BigDecimal allTimeTurnover;
 
-    public SubscriberReport() {
+    public SubscriberView() {
     }
 
-    public SubscriberReport(int id, String phone, String firstName, String lastName, String personalIdentificationNumber, String address, List<InvoiceReport> invoices, List<TelecomService> telecomServices, LocalDate firstServiceActivationDate, LocalDate billingDate, Client client, BigDecimal allTimeTurnover) {
-        this.id = id;
-        this.phone = phone;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.personalIdentificationNumber = personalIdentificationNumber;
-        this.address = address;
-        this.invoices = invoices;
-        this.telecomServices = telecomServices;
-        this.firstServiceActivationDate = firstServiceActivationDate;
-        this.billingDate = billingDate;
-        this.client = client;
-        this.allTimeTurnover = allTimeTurnover;
+    public SubscriberView(Subscriber subscriber) {
+        this.id = subscriber.getId();
+        this.phone = subscriber.getPhone();
+        this.firstName = subscriber.getFirstName();
+        this.lastName = subscriber.getLastName();
+        this.personalIdentificationNumber = subscriber.getPersonalIdentificationNumber();
+        this.address = subscriber.getAddress();
+        List<Invoice> subscriberInvoices = subscriber.getInvoices();
+        this.invoices = new ArrayList<>();
+        for (Invoice inv : subscriberInvoices
+        ) {
+            InvoiceView invReport = new InvoiceView(inv);
+            invoices.add(invReport);
+        }
+        this.telecomServices = subscriber.getTelecomServices();
+        this.firstServiceActivationDate = subscriber.getFirstServiceActivationDate();
+        this.billingDate = subscriber.getBillingDate();
+        this.allTimeTurnover = subscriber.getAllTimeTurnover();
     }
 
     public int getId() {
@@ -89,11 +94,11 @@ public class SubscriberReport {
         this.address = address;
     }
 
-    public List<InvoiceReport> getInvoices() {
+    public List<InvoiceView> getInvoices() {
         return invoices;
     }
 
-    public void setInvoices(List<InvoiceReport> invoices) {
+    public void setInvoices(List<InvoiceView> invoices) {
         this.invoices = invoices;
     }
 
@@ -119,14 +124,6 @@ public class SubscriberReport {
 
     public void setBillingDate(LocalDate billingDate) {
         this.billingDate = billingDate;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
     }
 
     public BigDecimal getAllTimeTurnover() {

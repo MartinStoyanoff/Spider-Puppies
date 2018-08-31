@@ -1,18 +1,15 @@
 package com.spidermanteam.spiderpuppies.web.admincontrollers;
 
 
-import com.spidermanteam.spiderpuppies.models.reporting.InvoiceReport;
-import com.spidermanteam.spiderpuppies.objectmapping.*;
+import com.spidermanteam.spiderpuppies.models.reporting.InvoiceView;
 import com.spidermanteam.spiderpuppies.models.Invoice;
 import com.spidermanteam.spiderpuppies.models.Subscriber;
-import com.spidermanteam.spiderpuppies.models.TelecomService;
 import com.spidermanteam.spiderpuppies.services.base.InvoiceService;
 import com.spidermanteam.spiderpuppies.services.base.SubscribersService;
 import com.spidermanteam.spiderpuppies.services.base.TelecomServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,23 +40,23 @@ public class ManageInvoicesController {
     }
 
     @GetMapping("/findById/{id}")
-    public InvoiceReport findInvoiceById(@PathVariable int id) {
+    public InvoiceView findInvoiceById(@PathVariable int id) {
         Invoice invoice = invoiceService.findInvoiceById(id);
-        return MappingHelper.mapInvoiceToInvoiceReport(invoice);
+        return new InvoiceView(invoice);
     }
 
     @GetMapping("/listAll")
     List listAllInvoice() {
         List<Invoice> invoiceList = invoiceService.listAllInvoices();
-        List<InvoiceReport> invoiceReportList = new ArrayList<>();
+        List<InvoiceView> invoiceViewList = new ArrayList<>();
         for (Invoice invoice : invoiceList
         ) {
 
-            InvoiceReport invoiceReport = MappingHelper.mapInvoiceToInvoiceReport(invoice);
-            invoiceReportList.add(invoiceReport);
+            InvoiceView invoiceView = new InvoiceView(invoice);
+            invoiceViewList.add(invoiceView);
 
         }
-        return invoiceReportList;
+        return invoiceViewList;
     }
 
     @PutMapping("/update")
@@ -78,14 +75,14 @@ public class ManageInvoicesController {
     }
 
     @GetMapping("/lastTen/{id}")
-    public List<InvoiceReport> findLastTenPaymentsBySubscriber(@PathVariable int id) {
+    public List<InvoiceView> findLastTenPaymentsBySubscriber(@PathVariable int id) {
         Subscriber subscriber = subscribersService.findSubscriberById(id);
         List<Invoice> invoices = invoiceService.findLastTenPaymentsBySubscriberId(subscriber.getId());
-        List<InvoiceReport> invoiceReports = new ArrayList();
+        List<InvoiceView> invoiceViews = new ArrayList();
         for (Invoice inv : invoices) {
-            InvoiceReport invoiceReport = MappingHelper.mapInvoiceToInvoiceReport(inv);
-            invoiceReports.add(invoiceReport);
+            InvoiceView invoiceView = new InvoiceView(inv);
+            invoiceViews.add(invoiceView);
         }
-        return invoiceReports;
+        return invoiceViews;
     }
 }

@@ -1,7 +1,5 @@
 package com.spidermanteam.spiderpuppies.services;
 
-import com.spidermanteam.spiderpuppies.data.base.ClientAccessRepository;
-import com.spidermanteam.spiderpuppies.data.base.GenericRepository;
 import com.spidermanteam.spiderpuppies.data.base.InvoiceRepository;
 import com.spidermanteam.spiderpuppies.data.base.SubscriberRepository;
 import com.spidermanteam.spiderpuppies.models.Invoice;
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -192,8 +189,13 @@ public class ClientAccessServiceImpl implements ClientAccessService {
                 String updateCurrency = invoice.getCurrency() + "Not_Supported";
                 invoice.setCurrency(updateCurrency);
         }
-        invoice.getTelecomServices().setPrice(invoicePrice);
+        invoice.getTelecomService().setPrice(invoicePrice);
         invoice.setCurrency("BGN");
+    }
+
+    @Override
+    public BigDecimal getAveragePaidSumBySubscriber(int id) {
+        return subscriberRepository.getAveragePaidSumBySubscriber(id);
     }
 
 }

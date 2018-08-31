@@ -17,7 +17,7 @@ $(document).ready(function () {
 
         },
         error: function () {
-            console.log("Unsuccessfull request");
+            console.log("Unsuccessful request");
 
         }
 
@@ -64,7 +64,7 @@ $("#payment-button").on("click", function payInvoiceByIdList() {
 
                 },
                 error: function () {
-                    console.log("Unsuccessfull request");
+                    console.log("Unsuccessful request");
 
                 }
 
@@ -72,7 +72,7 @@ $("#payment-button").on("click", function payInvoiceByIdList() {
 
         },
         error: function () {
-            console.log("Unsuccessfull request");
+            console.log("Unsuccessful request");
 
         }
 

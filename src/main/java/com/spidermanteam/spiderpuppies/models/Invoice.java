@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Table(name = "invoices")
@@ -22,7 +21,7 @@ public class Invoice {
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "telecom_service")
-    private TelecomService telecomServices;
+    private TelecomService telecomService;
 
     @Column(name = "status")
     private String status;
@@ -48,7 +47,7 @@ public class Invoice {
 
     public Invoice(Subscriber subscriber, TelecomService telecomServices, BigDecimal price, String currency) {
         this.subscriber = subscriber;
-        this.telecomServices = telecomServices;
+        this.telecomService = telecomServices;
         this.currency = currency;
         this.status = "0";
         this.price = price;
@@ -72,12 +71,12 @@ public class Invoice {
         this.subscriber = subscriber;
     }
 
-    public TelecomService getTelecomServices() {
-        return telecomServices;
+    public TelecomService getTelecomService() {
+        return telecomService;
     }
 
-    public void setTelecomServices(TelecomService telecomServices) {
-        this.telecomServices = telecomServices;
+    public void setTelecomService(TelecomService telecomServices) {
+        this.telecomService = telecomServices;
     }
 
     public String getStatus() {

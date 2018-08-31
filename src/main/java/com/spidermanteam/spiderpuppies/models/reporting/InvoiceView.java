@@ -1,9 +1,11 @@
 package com.spidermanteam.spiderpuppies.models.reporting;
 
+import com.spidermanteam.spiderpuppies.models.Invoice;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class InvoiceReport {
+public class InvoiceView {
 
     private int id;
 
@@ -27,21 +29,21 @@ public class InvoiceReport {
 
     private LocalDate paymentDate;
 
-    public InvoiceReport(int id, String subscriberName, String getSubscriberPhone, String telecomServiceType, String telecomServiceSubscriptionPlan, String status, BigDecimal price, String currency, LocalDate startDate, LocalDate endDate, LocalDate paymentDate) {
-        this.id = id;
-        this.subscriberName = subscriberName;
-        this.subscriberPhone = getSubscriberPhone;
-        this.telecomServiceType = telecomServiceType;
-        this.telecomServiceSubscriptionPlan = telecomServiceSubscriptionPlan;
-        this.status = status;
-        this.price = price;
-        this.currency = currency;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.paymentDate = paymentDate;
+    public InvoiceView(Invoice invoice) {
+        this.id = invoice.getId();
+        this.subscriberName = invoice.getSubscriber().getFirstName()+" "+ invoice.getSubscriber().getLastName();
+        this.subscriberPhone = invoice.getSubscriber().getPhone();
+        this.telecomServiceType = invoice.getTelecomService().getType();
+        this.telecomServiceSubscriptionPlan = invoice.getTelecomService().getSubscriptionPlan();
+        this.status = invoice.getStatus();
+        this.price = invoice.getPrice();
+        this.currency = invoice.getCurrency();
+        this.startDate = invoice.getStartDate();
+        this.endDate = invoice.getEndDate();
+        this.paymentDate = invoice.getPaymentDate();
     }
 
-    public InvoiceReport() {
+    public InvoiceView() {
     }
 
     public int getId() {

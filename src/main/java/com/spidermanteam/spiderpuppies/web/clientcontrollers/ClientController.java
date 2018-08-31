@@ -2,14 +2,15 @@ package com.spidermanteam.spiderpuppies.web.clientcontrollers;
 
 import com.spidermanteam.spiderpuppies.models.Invoice;
 import com.spidermanteam.spiderpuppies.models.Subscriber;
-import com.spidermanteam.spiderpuppies.models.reporting.InvoiceReport;
+import com.spidermanteam.spiderpuppies.models.reporting.InvoiceView;
 import com.spidermanteam.spiderpuppies.models.reporting.PaymentReport;
-import com.spidermanteam.spiderpuppies.models.reporting.SubscriberReport;
-import com.spidermanteam.spiderpuppies.objectmapping.MappingHelper;
+import com.spidermanteam.spiderpuppies.models.reporting.SubscriberShortView;
+import com.spidermanteam.spiderpuppies.models.reporting.SubscriberView;
 import com.spidermanteam.spiderpuppies.services.base.ClientAccessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,40 +52,42 @@ public class ClientController {
     }
 
     @GetMapping("/invoice/findAllPendingByClientId/{id}")
-    List<InvoiceReport> findAllPendingInvoicesByClientId(@PathVariable("id") int id) {
+    List<InvoiceView> findAllPendingInvoicesByClientId(@PathVariable("id") int id) {
         List<Invoice> invoiceList = clientAccessService.listAllPendingInvoicesByClientId(id);
-        List<InvoiceReport> invoiceReportList = new ArrayList<>();
+        List<InvoiceView> invoiceViewList = new ArrayList<>();
         for (Invoice inv : invoiceList
         ) {
-            InvoiceReport invoiceReport = MappingHelper.mapInvoiceToInvoiceReport(inv);
-            invoiceReportList.add(invoiceReport);
+            InvoiceView invoiceView = new InvoiceView(inv);
+            invoiceViewList.add(invoiceView);
 
 
         }
-        return invoiceReportList;
+        return invoiceViewList;
     }
 
     @GetMapping("/invoice/findAllByClientId/{id}")
-    List<InvoiceReport> findAllInvoicesByClientId(@PathVariable int id) {
+    List<InvoiceView> findAllInvoicesByClientId(@PathVariable int id) {
         List<Invoice> invoiceList = clientAccessService.listAllInvoicesByClientId(id);
-        List<InvoiceReport> invoiceReportList = new ArrayList<>();
+        List<InvoiceView> invoiceViewList = new ArrayList<>();
         for (Invoice inv : invoiceList
         ) {
-            InvoiceReport invoiceReport = MappingHelper.mapInvoiceToInvoiceReport(inv);
-            invoiceReportList.add(invoiceReport);
+            InvoiceView invoiceView = new InvoiceView(inv);
+            invoiceViewList.add(invoiceView);
 
 
         }
-        return invoiceReportList;
+        return invoiceViewList;
     }
 
     @GetMapping("/subscribers/getTenBest/{id}")
-    List<SubscriberReport> getTenBestSubscribersByTurnoverAndClientId(@PathVariable("id") int id) {
+    List<SubscriberShortView> getTenBestSubscribersByTurnoverAndClientId(@PathVariable("id") int id) {
         List<Subscriber> subscriberList = clientAccessService.getTenBestSubscribersByTurnoverAndClientId(id);
-        List<SubscriberReport> bestTenSubscribersList = new ArrayList<>();
+        List<SubscriberShortView> bestTenSubscribersList = new ArrayList<>();
         for (Subscriber sub : subscriberList
         ) {
-            SubscriberReport subReport = MappingHelper.mapSubscriberToSubscriberReport(sub);
+            String name = sub.getFirstName()+" "+sub.getLastName();
+            BigDecimal avgPerMonth = clientAccessService.getAvgPriceBySubscriberId(sub.getId());
+            SubscriberShortView subReport = new SubscriberShortView(sub.getPhone(),name, avgPerMonth,sub.getAllTimeTurnover());
             bestTenSubscribersList.add(subReport);
         }
         return bestTenSubscribersList;

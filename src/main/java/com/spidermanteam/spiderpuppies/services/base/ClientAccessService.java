@@ -42,5 +42,7 @@ public interface ClientAccessService {
 
     void invoiceCurrencyConverter(Invoice invoice);
 
+    BigDecimal getAveragePaidSumBySubscriber(int id);
+
 
 }

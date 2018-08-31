@@ -38,7 +38,7 @@ public class InvoiceService_Tests{
         TelecomService telecomService = new TelecomService("Type", "SubsPlan", BigDecimal.valueOf(0.00), new ArrayList<>());
         LocalDate date = LocalDate.now();
         Subscriber subscriber = new Subscriber("SubscPhone", "FirstName", "LastName", "PIN", "Address", new ArrayList<>(), new ArrayList<>(), date, date, client, BigDecimal.valueOf(0.00));
-        invoice = new Invoice(subscriber, telecomService, "BGN");
+        invoice = new Invoice(subscriber, telecomService, BigDecimal.TEN, "BGN");
         invoice.setId(1);
 
 
@@ -104,6 +104,18 @@ public class InvoiceService_Tests{
         Assert.assertEquals(invoices.size(),result.size());
 
     }
+
+    public void payInvoice_WhenInvoiceIsPresented_ShouldReturnInvoiceStatus1 (){
+
+        //Arrange
+        Invoice invoiceForPayment = new Invoice();
+
+        //Act
+
+
+
+    }
+
 
 }
 
