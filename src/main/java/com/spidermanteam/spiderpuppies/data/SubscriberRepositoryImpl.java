@@ -172,16 +172,12 @@ public class SubscriberRepositoryImpl implements SubscriberRepository {
     @Override
     public List<Subscriber> getAllSubscribersWithPendingInvoiceByClientId(int clientId) {
         List<Subscriber> subscriberList = new ArrayList();
-        String status = "0";
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
 
-            subscriberList = session.createQuery("from Subscriber as s " +
-                    "join Invoice as i on i.subscriber.id=s.id " +
-                    "where s.client.id=:clientId " +
-                    "and i.status=:status")
+            subscriberList = session.createQuery("from Subscriber as s join Invoice as i on s.id=i.subscriber.id where s.client.id=:clientId i.status=:status")
                     .setParameter("clientId", clientId)
-                    .setParameter("status",status)
+                    .setParameter("status","0")
                     .list();
             session.getTransaction().commit();
         } catch (Exception e) {
