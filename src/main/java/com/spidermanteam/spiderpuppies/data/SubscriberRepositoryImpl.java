@@ -171,7 +171,7 @@ public class SubscriberRepositoryImpl implements SubscriberRepository {
 
     @Override
     public List<Subscriber> getAllSubscribersWithPendingInvoiceByClientId(int clientId) {
-        List subscriberList = new ArrayList();
+        List<Subscriber> subscriberList = new ArrayList();
         String status = "0";
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
