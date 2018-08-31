@@ -2,13 +2,13 @@ $(document).ready(function () {
     $("#top-ten-container").empty();
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/aclient/subscribers/getTenBestByTurnover/9",
+        url: "http://localhost:8080/aclient/subscribers/getTenBest/9",
         success: function (data) {
-            var tbody = $("#top-ten-container-container"),
-                props = ["subscriberPhone", "telecomServiceType", "telecomServiceSubscriptionPlan", "price", "currency"];
+            console.log(data);
+            var tbody = $("#top-ten-container"),
+                props = ["phone", "name", "avgPerMonth", "allTimeTurnover"];
             $.each(data, function (i, data) {
                 var tr = $('<tr>');
-                $('<input' + " value=" + data["id"] + ' type="checkbox" checked="checked">').appendTo(tr);
                 $.each(props, function (i, prop) {
                     $('<td>').html(data[prop]).appendTo(tr);
                 });
