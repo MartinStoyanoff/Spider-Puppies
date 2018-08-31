@@ -50,6 +50,12 @@ public class ManageSubscribersController {
         subscribersService.deleteSubscriber(id);
     }
 
+    /*
+    * /admin/bulkpayment
+    *
+    * /admin/singlepayment - Load Button -
+    *
+    * */
     @PostMapping("/listAllDuePayments")
     List listAllForDefinedPeriod(@RequestBody List<LocalDate> dates) {
         List<PaymentLine> subscribersList = new ArrayList();

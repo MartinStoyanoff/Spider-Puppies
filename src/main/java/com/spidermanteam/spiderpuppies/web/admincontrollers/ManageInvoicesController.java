@@ -69,6 +69,9 @@ public class ManageInvoicesController {
         invoiceService.deleteInvoice(id);
     }
 
+    /*
+    * /admin/bulkpayment - Generate Button
+    * */
     @PostMapping("/bulkgenerate")
     void generateBulkPayment(@RequestBody List<HashMap<String,String>> subscribersIdList) {
         invoiceService.generateBulkPayment(subscribersIdList);
