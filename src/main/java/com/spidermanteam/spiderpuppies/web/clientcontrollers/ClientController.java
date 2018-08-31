@@ -62,6 +62,7 @@ public class ClientController {
 
 
         }
+
         return invoiceViewList;
     }
 
@@ -85,12 +86,24 @@ public class ClientController {
         List<SubscriberShortView> bestTenSubscribersList = new ArrayList<>();
         for (Subscriber sub : subscriberList
         ) {
-            String name = sub.getFirstName()+" "+sub.getLastName();
+            String name = sub.getFirstName() + " " + sub.getLastName();
             BigDecimal avgPerMonth = clientAccessService.getAvgPriceBySubscriberId(sub.getId());
-            SubscriberShortView subReport = new SubscriberShortView(sub.getPhone(),name, avgPerMonth,sub.getAllTimeTurnover());
+            SubscriberShortView subReport = new SubscriberShortView(sub.getPhone(), name, avgPerMonth, sub.getAllTimeTurnover());
             bestTenSubscribersList.add(subReport);
         }
         return bestTenSubscribersList;
+    }
+
+    @GetMapping("/subscribers/getAllWithPendingInvoice/{id}")
+    List<String> getAllWithPendingInvoice(@PathVariable("id") int id) {
+        List<Subscriber> subscriberList = clientAccessService.getAllSubscribersWithPendingInvoiceByClientId(id);
+        List<String> subscriberPhoneNumbers = new ArrayList<>();
+
+        for (Subscriber sub : subscriberList
+        ) {
+            subscriberPhoneNumbers.add(sub.getPhone());
+        }
+        return subscriberPhoneNumbers;
     }
 
 }

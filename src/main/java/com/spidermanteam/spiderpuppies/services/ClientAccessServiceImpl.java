@@ -6,6 +6,7 @@ import com.spidermanteam.spiderpuppies.models.Invoice;
 import com.spidermanteam.spiderpuppies.models.Subscriber;
 import com.spidermanteam.spiderpuppies.models.reporting.PaymentReport;
 import com.spidermanteam.spiderpuppies.models.reporting.PaymentReportStatus;
+import com.spidermanteam.spiderpuppies.models.reporting.SubscriberView;
 import com.spidermanteam.spiderpuppies.services.base.ClientAccessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -196,6 +197,12 @@ public class ClientAccessServiceImpl implements ClientAccessService {
     @Override
     public BigDecimal getAveragePaidSumBySubscriber(int id) {
         return subscriberRepository.getAveragePaidSumBySubscriber(id);
+    }
+
+    @Override
+    public List<Subscriber> getAllSubscribersWithPendingInvoiceByClientId(int clientId) {
+        List<Subscriber> subscriberList = subscriberRepository.getAllSubscribersWithPendingInvoiceByClientId(clientId);
+        return subscriberList;
     }
 
 }

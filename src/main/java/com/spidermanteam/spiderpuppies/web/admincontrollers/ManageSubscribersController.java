@@ -74,4 +74,6 @@ public class ManageSubscribersController {
     public BigDecimal getAveragePaidSumBySubscriber(@PathVariable int id){
         return subscribersService.getAveragePaidSumBySubscriber(id);
     }
+
+
 }

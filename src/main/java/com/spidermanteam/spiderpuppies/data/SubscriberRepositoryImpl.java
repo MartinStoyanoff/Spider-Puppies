@@ -88,15 +88,14 @@ public class SubscriberRepositoryImpl implements SubscriberRepository {
     @Override
     public List<Subscriber> findAllForDefinedPeriod(LocalDate start, LocalDate end) {
         List subscribers = new ArrayList<>();
-        try (Session session = sessionFactory.openSession()){
+        try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             subscribers = session.createQuery("from Subscriber as s where s.billingDate>=:startDate and s.billingDate<=:endDate")
                     .setParameter("startDate", start)
                     .setParameter("endDate", end).list();
             session.getTransaction().commit();
 
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return subscribers;
@@ -105,15 +104,14 @@ public class SubscriberRepositoryImpl implements SubscriberRepository {
     @Override
     public BigDecimal getHighestPaidSumBySubscriber(int id) {
         BigDecimal amount = null;
-        try (Session session = sessionFactory.openSession()){
+        try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             List<BigDecimal> max = session.createQuery("select max(i.price) from Subscriber as s join Invoice as i on s.id=i.subscriber.id where i.status=:status")
                     .setParameter("status", "1")
                     .list();
             amount = max.get(0);
             session.getTransaction().commit();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return amount;
@@ -122,15 +120,14 @@ public class SubscriberRepositoryImpl implements SubscriberRepository {
     @Override
     public BigDecimal getAveragePaidSumBySubscriber(int id) {
         BigDecimal amount = null;
-        try (Session session = sessionFactory.openSession()){
+        try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             List<Double> max = session.createQuery("select avg(i.price) from Subscriber as s join Invoice as i on s.id=i.subscriber.id where i.status=:status")
                     .setParameter("status", "1")
                     .list();
-            amount =  BigDecimal.valueOf(max.get(0));
+            amount = BigDecimal.valueOf(max.get(0));
             session.getTransaction().commit();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return amount;
@@ -143,9 +140,9 @@ public class SubscriberRepositoryImpl implements SubscriberRepository {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             subscriberList = session.createQuery("from Subscriber as s where s.phone=:phone and s.client.id=:id")
-            .setParameter("phone",phone)
-                    .setParameter("id",clientId).list();
-            subscriber=(Subscriber) subscriberList.get(0);
+                    .setParameter("phone", phone)
+                    .setParameter("id", clientId).list();
+            subscriber = (Subscriber) subscriberList.get(0);
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -171,6 +168,27 @@ public class SubscriberRepositoryImpl implements SubscriberRepository {
         }
         return subscriberList;
     }
+
+    @Override
+    public List<Subscriber> getAllSubscribersWithPendingInvoiceByClientId(int clientId) {
+        List subscriberList = new ArrayList();
+        String status = "0";
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+
+            subscriberList = session.createQuery("from Subscriber as s " +
+                    "join Invoice as i on i.subscriber.id=s.id " +
+                    "where s.client.id=:clientId " +
+                    "and i.status=:status")
+                    .setParameter("clientId", clientId)
+                    .setParameter("status",status)
+                    .list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return subscriberList;
     }
+}
 
 

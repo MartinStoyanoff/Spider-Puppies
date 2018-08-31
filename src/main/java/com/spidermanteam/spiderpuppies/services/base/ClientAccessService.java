@@ -44,5 +44,7 @@ public interface ClientAccessService {
 
     BigDecimal getAveragePaidSumBySubscriber(int id);
 
+    List<Subscriber> getAllSubscribersWithPendingInvoiceByClientId(int clientId);
+
 
 }
