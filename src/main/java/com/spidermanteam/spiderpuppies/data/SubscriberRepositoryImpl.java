@@ -175,7 +175,7 @@ public class SubscriberRepositoryImpl implements SubscriberRepository {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
 
-            subscriberList = session.createQuery("from Subscriber as s join Invoice as i on s.id=i.subscriber.id where s.client.id=:clientId i.status=:status")
+            subscriberList = session.createQuery("from Subscriber as s join Invoice as i on s.id=i.subscriber.id where s.client.id=:clientId and i.status=:status")
                     .setParameter("clientId", clientId)
                     .setParameter("status","0")
                     .list();
