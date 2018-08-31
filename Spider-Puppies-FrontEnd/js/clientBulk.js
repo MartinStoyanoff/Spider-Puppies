@@ -8,7 +8,7 @@ $(document).ready(function () {
                 props = ["subscriberPhone", "telecomServiceType", "telecomServiceSubscriptionPlan", "price", "currency"];
             $.each(data, function (i, data) {
                 var tr = $('<tr>');
-                $('<input' + " value=" + data["id"] + ' type="checkbox" checked="checked">').appendTo(tr);
+                $('<input' + " value=" + data["id"] + ' type="checkbox" class="form-check-input" checked="checked">').appendTo(tr);
                 $.each(props, function (i, prop) {
                     $('<td>').html(data[prop]).appendTo(tr);
                 });
