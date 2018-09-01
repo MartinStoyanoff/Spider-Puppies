@@ -31,7 +31,7 @@
                     <a id="bulk-button" href="clientBulkPayment.html">Bulk payment</a>
                 </li>
                 <li>
-                    <a id="subscriber-button" href="#">Payment for subscriber</a>
+                    <a id="subscriber-button" href="clientSinglePayment.html">Payment for subscriber</a>
                 </li>
                 <li>
                     <a id="logout-button" href="#">Logout</a>
@@ -41,7 +41,7 @@
     </div>
 </header>
 <main>
-    <div>Top 10 Subscribers with biggest turnover</div>
+    <h3>Top 10 Subscribers with biggest turnover</h3>
     <div class="table-container">
         <table class="table table-striped">
             <thead class="thead-dark">
@@ -53,6 +53,23 @@
             </tr>
             </thead>
             <tbody id="top-ten-container"></tbody>
+        </table>
+    </div>
+    <hr>
+    <h3>Last 10 paid invoices</h3>
+    <div class="table-container">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Invoice</th>
+                <th scope="col">Subscriber</th>
+                <th scope="col">Telecom Service</th>
+                <th scope="col">Plan</th>
+                <th scope="col">Sum</th>
+                <th scope="col">Currency</th>
+            </tr>
+            </thead>
+            <tbody id="bulk-container"></tbody>
         </table>
     </div>
 </main>

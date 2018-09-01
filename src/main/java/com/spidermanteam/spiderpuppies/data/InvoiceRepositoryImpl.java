@@ -195,7 +195,7 @@ public class InvoiceRepositoryImpl implements InvoiceRepository {
 
             invoiceList = session.createQuery("from Invoice as i " +
                     "where i.status=:status " +
-                    "and i.subscriber.id=:id "+
+                    "and i.subscriber.client.id=:id "+
                     "order by i.paymentDate desc")
                     .setParameter("status", "1")
                     .setParameter("id", clientId)
@@ -206,5 +206,23 @@ public class InvoiceRepositoryImpl implements InvoiceRepository {
             System.out.println(e.getMessage());
         }
         return invoiceList;
+    }
+
+    @Override
+    public List<Invoice> findDueInvoicesByPhone(String phone) {
+        {
+            List<Invoice> invoiceList = new ArrayList<>();
+            try (Session session = sessionFactory.openSession()) {
+                session.beginTransaction();
+                String query = "from Invoice as i where i.subscriber.phone=:phoneNum and i.status=:status";
+                invoiceList = session.createQuery(query)
+                        .setParameter("phoneNum", phone)
+                        .setParameter("status", "0").list();
+                session.getTransaction().commit();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            return invoiceList;
+        }
     }
 }

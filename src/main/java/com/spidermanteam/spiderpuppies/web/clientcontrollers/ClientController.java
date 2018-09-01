@@ -98,7 +98,7 @@ public class ClientController {
     @GetMapping("/subscribers/getAllWithPendingInvoice/{id}")
     HashSet<String> getAllWithPendingInvoice(@PathVariable("id") int id) {
         List<Invoice> invoices = clientAccessService.listAllPendingInvoicesByClientId(id);
-       HashSet<String> subscriberPhoneNumbers = new HashSet<>();
+        HashSet<String> subscriberPhoneNumbers = new HashSet<>();
 
         for (Invoice inv : invoices
         ) {
@@ -106,6 +106,34 @@ public class ClientController {
         }
         return subscriberPhoneNumbers;
     }
+
+    @GetMapping("/invoices/findDueInvoice/{phone}")
+    List<InvoiceView> findDueInvoicesByPhone(@PathVariable String phone) {
+        List<Invoice> invoiceList = clientAccessService.findDueInvoicesByPhone(phone);
+        List<InvoiceView> invoiceViewList = new ArrayList<>();
+
+        for (Invoice inv : invoiceList
+        ) {
+
+            invoiceViewList.add(new InvoiceView(inv));
+
+        }
+
+        return invoiceViewList;
+
+    }
+
+    @GetMapping("/invoice/getLastTenPaid/{id}")
+    List<InvoiceView> invoiceViewList(@PathVariable int id) {
+        List<Invoice> invoiceList = clientAccessService.getLastTenPaidInvoiceByClient(id);
+        List<InvoiceView> invoiceViewList = new ArrayList<>();
+        for (Invoice inv : invoiceList
+        ) {
+            invoiceViewList.add(new InvoiceView(inv));
+        }
+        return invoiceViewList;
+    }
+
 
 }
 
