@@ -190,7 +190,7 @@ public class ClientAccessServiceImpl implements ClientAccessService {
                 String updateCurrency = invoice.getCurrency() + "Not_Supported";
                 invoice.setCurrency(updateCurrency);
         }
-        invoice.getTelecomService().setPrice(invoicePrice);
+        invoice.setPrice(invoicePrice);
         invoice.setCurrency("BGN");
     }
 
