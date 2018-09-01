@@ -21,7 +21,7 @@ public interface InvoiceService {
 
     List<Invoice> findAllInvoicesByClientId(int id);
 
-    void generateBulkPayment(List<HashMap<String,String>> invoiceInfoList);
+    void generateBulkPayment(HashMap<String,String> invoiceInfoList);
 
     List<Invoice> findLastTenPaymentsBySubscriberId (int id);
 

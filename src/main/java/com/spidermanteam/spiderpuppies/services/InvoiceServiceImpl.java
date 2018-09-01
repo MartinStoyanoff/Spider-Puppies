@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class InvoiceServiceImpl implements InvoiceService {
@@ -83,10 +84,10 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
-    public void generateBulkPayment(List<HashMap<String, String>> invoiceInfoList) {
-        for (HashMap<String, String> invoiceInfo : invoiceInfoList) {
-            String subscriberId = invoiceInfo.get("id");
-            String currency = invoiceInfo.get("currency");
+    public void generateBulkPayment(HashMap<String, String> invoiceInfoList) {
+        for (Map.Entry<String,String> entry:invoiceInfoList.entrySet()) {
+            String subscriberId = entry.getKey();
+            String currency = entry.getValue();
             addInvoice(subscriberId, currency);
         }
     }

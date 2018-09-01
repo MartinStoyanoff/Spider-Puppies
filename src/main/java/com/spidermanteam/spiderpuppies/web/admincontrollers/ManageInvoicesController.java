@@ -1,6 +1,7 @@
 package com.spidermanteam.spiderpuppies.web.admincontrollers;
 
 
+import com.spidermanteam.spiderpuppies.models.reporting.InvoiceRequestModel;
 import com.spidermanteam.spiderpuppies.models.reporting.InvoiceView;
 import com.spidermanteam.spiderpuppies.models.Invoice;
 import com.spidermanteam.spiderpuppies.models.Subscriber;
@@ -73,8 +74,18 @@ public class ManageInvoicesController {
     * /admin/bulkpayment - Generate Button
     * */
     @PostMapping("/bulkgenerate")
-    void generateBulkPayment(@RequestBody List<HashMap<String,String>> subscribersIdList) {
-        invoiceService.generateBulkPayment(subscribersIdList);
+    void generateBulkPayment(@RequestBody List<InvoiceRequestModel> subscribersIdList) {
+
+        HashMap<String,String> hashMap = new HashMap<>();
+
+
+
+        for (InvoiceRequestModel inv: subscribersIdList
+             ) {
+            hashMap.put(inv.getSubscriberId(),inv.getCurrency());
+
+        }
+        invoiceService.generateBulkPayment(hashMap);
     }
 
     @GetMapping("/lastTen/{id}")

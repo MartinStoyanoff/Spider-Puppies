@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,11 +58,14 @@ public class ManageSubscribersController {
     *
     * */
     @PostMapping("/listAllDuePayments")
-    List listAllForDefinedPeriod(@RequestBody List<LocalDate> dates) {
+    List listAllForDefinedPeriod(@RequestBody List<String> dates) {
         List<PaymentLine> subscribersList = new ArrayList();
-        LocalDate startDate = dates.get(0);
-        LocalDate endDate = dates.get(1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+
+        LocalDate startDate = LocalDate.parse(dates.get(0), formatter);
+        LocalDate endDate = LocalDate.parse(dates.get(1), formatter);
         List subscribers = subscribersService.listAllForDefinedPeriod(startDate, endDate);
+
         return MappingHelper.mapSubscriberToPaymentLines(subscribers);
     }
 
