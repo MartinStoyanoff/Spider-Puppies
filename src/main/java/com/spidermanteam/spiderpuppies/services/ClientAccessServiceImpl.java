@@ -199,10 +199,5 @@ public class ClientAccessServiceImpl implements ClientAccessService {
         return subscriberRepository.getAveragePaidSumBySubscriber(id);
     }
 
-    @Override
-    public List<Subscriber> getAllSubscribersWithPendingInvoiceByClientId(int clientId) {
-        List<Subscriber> subscriberList = subscriberRepository.getAllSubscribersWithPendingInvoiceByClientId(clientId);
-        return subscriberList;
-    }
 
 }

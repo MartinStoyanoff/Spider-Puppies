@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 @RestController
@@ -95,13 +96,13 @@ public class ClientController {
     }
 
     @GetMapping("/subscribers/getAllWithPendingInvoice/{id}")
-    List<String> getAllWithPendingInvoice(@PathVariable("id") int id) {
-        List<Subscriber> subscriberList = clientAccessService.getAllSubscribersWithPendingInvoiceByClientId(id);
-        List<String> subscriberPhoneNumbers = new ArrayList<>();
+    HashSet<String> getAllWithPendingInvoice(@PathVariable("id") int id) {
+        List<Invoice> invoices = clientAccessService.listAllPendingInvoicesByClientId(id);
+       HashSet<String> subscriberPhoneNumbers = new HashSet<>();
 
-        for (Subscriber sub : subscriberList
+        for (Invoice inv : invoices
         ) {
-            subscriberPhoneNumbers.add(sub.getPhone());
+            subscriberPhoneNumbers.add(inv.getSubscriber().getPhone());
         }
         return subscriberPhoneNumbers;
     }

@@ -3,6 +3,7 @@ package com.spidermanteam.spiderpuppies.data;
 import com.spidermanteam.spiderpuppies.data.base.GenericRepository;
 import com.spidermanteam.spiderpuppies.data.base.SubscriberRepository;
 import com.spidermanteam.spiderpuppies.models.Authorities;
+import com.spidermanteam.spiderpuppies.models.Invoice;
 import com.spidermanteam.spiderpuppies.models.Subscriber;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -171,19 +172,20 @@ public class SubscriberRepositoryImpl implements SubscriberRepository {
 
     @Override
     public List<Subscriber> getAllSubscribersWithPendingInvoiceByClientId(int clientId) {
-        List<Subscriber> subscriberList = new ArrayList();
+        List<Invoice> subscriberList = new ArrayList();
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
 
-            subscriberList = session.createQuery("from Subscriber as s join Invoice as i on s.id=i.subscriber.id where s.client.id=:clientId and i.status=:status")
+            subscriberList =session.createQuery("from Invoice where Invoice.status=:status and Invoice.subscriber.client.id=:clientId")
                     .setParameter("clientId", clientId)
-                    .setParameter("status","0")
-                    .list();
+                    .setParameter("status",0)
+                    .getResultList();
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return subscriberList;
+        System.out.println(subscriberList.get(0));
+        return null;
     }
 }
 

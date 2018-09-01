@@ -24,10 +24,12 @@ $(document).ready(function () {
         type: 'GET',
         url: "http://localhost:8080/aclient/subscribers/getAllWithPendingInvoice/9",
         success: function (data) {
+            console.log(data);
             var tbody = $("#myDropdown");
-            $.each(data, function (i, data) {
-                tbody.append ($('<a href="#"'+ data[i]+'</a>'));
-            });
+            for (var num in data)
+            {
+                tbody.append ('<a href="#">'+data[num]+'</a>');
+            };
 
         },
         error: function () {
@@ -37,9 +39,8 @@ $(document).ready(function () {
 
     })
 });
-$("#myDropdown a").on("click", function () {
-    var phone = $(this).val();
+
+ $('#myDropdown').on('click', 'a', function() {
+    var phone = $(this).text();
     console.log(phone);
-
-
-})
+});
