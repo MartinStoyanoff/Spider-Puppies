@@ -29,8 +29,7 @@ $("#select-all-button").on("click", function () {
 
 $('#myDropdown').on('click', 'a', function () {
     var phone = $(this).text();
-    $("#myDropdown").toggle();
-    $("#bulk-container").empty();
+     $("#bulk-container").empty();
 
     var invoices = $.ajax({
         type: 'GET',
