@@ -1,3 +1,5 @@
+var inputText = [];
+
 $("#create-admin").on("click", function () {
     $("#add-admin-form").toggle();
 })
@@ -38,27 +40,18 @@ function adminLoad() {
         type: 'GET',
         url: "http://localhost:8080/admin/manage/admins/listAll",
         success: function (data) {
-            console.log(data);
             var tbody = $("#bulk-container")
             data.forEach(function (admin) {
 
                 var userId = admin["id"];
                 var username = admin["user"]["username"];
                 var eMail = admin["eMail"];
-                var enabled = admin["user"]["enabled"];
-                var enabledString;
-                if (enabled === 1) {
-                    enabledString = "Yes"
-                }
-                else {
-                    enabledString = "No"
-                }
                 var tr = $('<tr>');
-                var userNameInput = "<input value=" + username + " type=\"text\" disabled='disabled'>";
 
-                $('<td>').html(userNameInput).appendTo(tr);
+                $('<td>').html(username).appendTo(tr);
                 $('<td>').html(eMail).appendTo(tr);
-                $('<td>').html(enabledString).appendTo(tr);
+
+
                 var editButton = "<button id='edit-button' value=" + userId + "> Edit </button>";
                 var deleteButton = "<button id='delete-button' value=" + userId + "> Delete </button>";
                 $('<td>').html(editButton + deleteButton).appendTo(tr);
@@ -74,7 +67,6 @@ function adminLoad() {
 
 $("#bulk-container").on("click", "#delete-button", function () {
     var id = this.getAttribute("value")
-    console.log(id);
     var deleteUser = $.ajax({
         type: 'DELETE',
         url: "http://localhost:8080/admin/manage/admins/delete/" + id,
@@ -91,9 +83,51 @@ $("#bulk-container").on("click", "#delete-button", function () {
 
 $("#bulk-container").on("click", "#edit-button", function () {
     var id = this.getAttribute("value");
-    this.text("UPDATE");
-    var td = this.parents("tr");
+    $(this).text("Update");
+    this.setAttribute("id", "update-button")
+    $(this).parents("tr").find("td:not(:last-child)").each(function () {
+        var text = $(this).text();
 
-    console.log(td);
+        if (text.indexOf("@") > 0) {
+            $(this).html('<input type="email" class="form-control" value="' + $(this).text() + '">');
 
+        }
+        else {
+            $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+        }
+
+
+    });
+
+
+});
+$("#bulk-container").on("click", "#update-button", function () {
+    $(this).parents("tr").find("td:not(:last-child)").each(function () {
+        var updatedUsername = $(this.firstChild).val();
+        var updateEmail = $(this.nextSibling.firstChild).val();
+        inputText.push(updatedUsername);
+        inputText.push(updateEmail);
+
+    })
+    var id = this.getAttribute("value");
+    var username = inputText[0];
+    var email = inputText[1];
+    var enabled = 1;
+    var firstLogin = 1;
+    var user = {username: username, password: "null", enabled: enabled}
+    var admin = {id: id, user: user, eMail: email, firstLogin: firstLogin}
+
+    var updateAdmin = $.ajax({
+        type: 'PUT',
+        url: "http://localhost:8080/admin/manage/admins/update",
+        contentType: "application/json",
+        data: JSON.stringify(admin),
+        success: function () {
+            adminLoad();
+
+        },
+        error: function () {
+            console.log("Unsuccessful request");
+        }
+    })
 });

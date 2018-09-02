@@ -78,9 +78,11 @@ public class AdminRepositoryImpl implements GenericRepository<Admin> {
 
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
+            User user = admin.getUser();
             Authorities oldAuthority = new Authorities(oldUser.getUsername(), "ROLE_ADMIN");
             Authorities newAuthority = new Authorities(admin.getUser().getUsername(), "ROLE_ADMIN");
-            User user = admin.getUser();
+            user.setPassword(oldUser.getPassword());
+            user.setId(oldUser.getId());
             session.delete(oldAuthority);
             session.save(newAuthority);
             session.update(user);
