@@ -79,5 +79,20 @@ public class ManageSubscribersController {
         return subscribersService.getAveragePaidSumBySubscriber(id);
     }
 
+    @GetMapping("/getAllSubscribersInBillingPeriod")
+    public List<String> getAllSubscribersInBillingPeriod (@RequestBody List<String> dates){
+        List<String> subscribersList = new ArrayList();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate startDate = LocalDate.parse(dates.get(0), formatter);
+        LocalDate endDate = LocalDate.parse(dates.get(1), formatter);
+        List <Subscriber> subscribers = subscribersService.listAllForDefinedPeriod(startDate, endDate);
+
+        for (Subscriber sub: subscribers) {
+            String phone = sub.getPhone();
+            subscribersList.add(phone);
+
+        }
+        return subscribersList;
+    }
 
 }

@@ -39,10 +39,10 @@
                     <a id="home-button" href="adminHome.html">Home</a>
                 </li>
                 <li>
-                    <a id="bulk-button" href="#">Generate Bulk payment</a>
+                    <a id="bulk-button" href="adminBulkPayment.html">Generate Bulk payment</a>
                 </li>
                 <li>
-                    <a id="subscriber-button" href="adminSinglePayment.html">Generate Single Payment</a>
+                    <a id="subscriber-button" href="#">Generate Single Payment</a>
                 </li>
                 <li>
                     <a id="manage-admin-button" href="manageAdmins.html">Manage Admins</a>
@@ -69,20 +69,26 @@
             $('input[name="daterange"]').daterangepicker();
         });
     </script>
-
-    <button type="button" id="proceed"> proceed </button>
+    
+    <button type="button" id="proceed"> Load subscribers </button>
+    <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Select number</button>
+        <div id="myDropdown" class="dropdown-content">
+            <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+        </div>
+    </div>
     <div>
-    <ul class="nav">
-        <li>
-            <a id="select-all" href="#">Select all</a>
-        </li>
-        <li>
-            <a id="select-none" href="#">Select none</a>
-        </li>
-        <li>
-            <a id="generate-payment-button" href="#">Generate payments</a>
-        </li>
-    </ul>
+        <ul class="nav">
+            <li>
+                <a id="select-all" href="#">Select all</a>
+            </li>
+            <li>
+                <a id="select-none" href="#">Select none</a>
+            </li>
+            <li>
+                <a id="generate-payment-button" href="#">Generate payments</a>
+            </li>
+        </ul>
     </div>
     </div>
     <div class="table-container">
