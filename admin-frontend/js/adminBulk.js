@@ -44,7 +44,7 @@ $("#generate-payment-button").on("click", function generateBulkPayment() {
         var subscriberId = $(this).val();
         var currency = $(this.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling).text();
 
-        var invoiceInfo = {subscriberId: subscriberId, currency: "EUR"};
+        var invoiceInfo = {subscriberId: subscriberId, currency: currency};
 
         allVals.push(invoiceInfo);
 

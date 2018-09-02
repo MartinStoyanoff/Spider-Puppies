@@ -79,7 +79,7 @@ public class ManageSubscribersController {
         return subscribersService.getAveragePaidSumBySubscriber(id);
     }
 
-    @GetMapping("/getAllSubscribersInBillingPeriod")
+    @PostMapping("/getAllSubscribersInBillingPeriod")
     public List<String> getAllSubscribersInBillingPeriod (@RequestBody List<String> dates){
         List<String> subscribersList = new ArrayList();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
@@ -95,4 +95,11 @@ public class ManageSubscribersController {
         return subscribersList;
     }
 
+    @GetMapping ("/getSubscriberDuePaymentsByPhone/{phone}")
+    List<PaymentLine> getSubscriberDuePaymentsByPhone (@PathVariable String phone){
+        Subscriber subscriber = subscribersService.getSubscriberByPhone(phone);
+        List<Subscriber> subscribers = new ArrayList<>();
+        subscribers.add(subscriber);
+        return MappingHelper.mapSubscriberToPaymentLines(subscribers);
+    }
 }

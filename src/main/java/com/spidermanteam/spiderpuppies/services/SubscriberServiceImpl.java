@@ -106,4 +106,9 @@ public class SubscriberServiceImpl implements SubscribersService {
 
     }
 
+    @Override
+    public Subscriber getSubscriberByPhone(String phone) {
+        return subscriberRepository.getSubscriberByPhone(phone);
+    }
+
 }

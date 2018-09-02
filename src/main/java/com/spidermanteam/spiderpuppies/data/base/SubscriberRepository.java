@@ -20,4 +20,8 @@ public interface SubscriberRepository extends GenericRepository<Subscriber> {
 
     List<Subscriber> getAllSubscribersWithPendingInvoiceByClientId(int clientId);
 
+    Subscriber getSubscriberByPhone(String phone);
+
+
+
 }

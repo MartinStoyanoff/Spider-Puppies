@@ -190,6 +190,23 @@ public class SubscriberRepositoryImpl implements SubscriberRepository {
         System.out.println(subscriberList.get(0));
         return null;
     }
+
+    @Override
+    public Subscriber getSubscriberByPhone(String phone) {
+        Subscriber subscriber = new Subscriber();
+        List subscriberList;
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            subscriberList = session.createQuery("from Subscriber as s where s.phone=:phone")
+                    .setParameter("phone", phone)
+                    .list();
+            subscriber = (Subscriber) subscriberList.get(0);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return subscriber;
+    }
 }
 
 

@@ -26,4 +26,6 @@ public interface SubscribersService {
 
     void addTelecomServiceToSubscriber(int subscriberId, int telecomServiceId);
 
+    Subscriber getSubscriberByPhone(String phone);
+
 }
