@@ -26,6 +26,9 @@ $(document).ready(function () {
                 tbody.append(tr);
             });
         },
+        error: function () {
+            console.log("Unsuccessful request");
+        }
     })
 })
 
