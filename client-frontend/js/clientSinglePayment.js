@@ -43,7 +43,6 @@ $(document).ready(function () {
  $('#myDropdown').on('click', 'a', function() {
     var phone = $(this).text();
     $("#myDropdown").toggle();
-    $("#myDropdown").toggle();
     $("#bulk-container").empty();
     
     var invoices = $.ajax({

@@ -109,6 +109,7 @@ $("#generate-payment-button").on("click", function () {
         success: function (data) {
             $('#bulk-container').empty();
             console.log("Invoices Generated");
+            $("#myDropdown a").remove();//TODO check how to delete only subscriber number
         },
         error: function () {
             $('#bulk-container').empty();
