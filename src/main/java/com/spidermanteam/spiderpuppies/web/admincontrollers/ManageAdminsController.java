@@ -45,7 +45,11 @@ public class ManageAdminsController {
         //TODO:Delete user to be solved - through cascade or update in both tables
 
     }
+    @PutMapping("/changePassword")
+    void changePassword(@RequestBody List<String> passwordUpdateInfo){
+        adminService.changeAdminPassword(passwordUpdateInfo);
 
+    }
 
 
 

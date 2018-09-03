@@ -18,7 +18,9 @@ $("#proceed").on("click", function () {
                 $.each(props, function (i, prop) {
                     $('<td>').html(data[prop]).appendTo(tr);
                 });
-                $('<td class="currency"value =' + data["currency"] + ' >').html(data["currency"]).appendTo(tr);
+                var currency = '<select><option value="BGN">BGN</option> <option value="EUR">EUR</option><option value="USD">USD</option><option value="CHF">CHF</option> </select>'
+                $('<td>').html(currency).appendTo(tr);
+
                 tbody.append(tr);
             });
 
@@ -40,12 +42,11 @@ $("#select-all").on("click", function () {
 
 $("#generate-payment-button").on("click", function generateBulkPayment() {
     var allVals = [];
-    $('#bulk-container :checked').each(function () {
+    $('#bulk-container input:checked').each(function () {
         var subscriberId = $(this).val();
-        var currency = $(this.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling).text();
-
+        var currency = $(this.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild).val();
         var invoiceInfo = {subscriberId: subscriberId, currency: currency};
-
+        console.log(invoiceInfo);
         allVals.push(invoiceInfo);
 
     });

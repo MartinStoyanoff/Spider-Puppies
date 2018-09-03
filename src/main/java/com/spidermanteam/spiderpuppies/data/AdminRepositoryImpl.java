@@ -1,5 +1,6 @@
 package com.spidermanteam.spiderpuppies.data;
 
+import com.spidermanteam.spiderpuppies.data.base.AdminRepository;
 import com.spidermanteam.spiderpuppies.data.base.GenericRepository;
 import com.spidermanteam.spiderpuppies.models.Admin;
 import com.spidermanteam.spiderpuppies.models.Authorities;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class AdminRepositoryImpl implements GenericRepository<Admin> {
+public class AdminRepositoryImpl implements AdminRepository {
 
     private SessionFactory sessionFactory;
 
@@ -103,6 +104,19 @@ public class AdminRepositoryImpl implements GenericRepository<Admin> {
             session.delete(admin);
             session.delete(authority);
             session.delete(user);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void updateAdminPassword(Admin admin) {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            User user = admin.getUser();
+            session.update(user);
+            session.update(admin);
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());

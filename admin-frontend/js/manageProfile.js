@@ -1,9 +1,5 @@
 var inputText = [];
 
-$("#reset-password").on("click", function () {
-    $("#reset-password-form").toggle();
-});
-
 $(document).ready(function () {
     adminLoad();
 
@@ -33,7 +29,7 @@ function adminLoad() {
 
             var oldPassword = '<input id="old-password" type="password" placeholder="Old password">';
             var newPassword = '<input id="new-password" type="password" placeholder="New password">'
-            var resetButton = "<button id='reset-password-button' value=" + userId + "> Reset password</button>";
+            var resetButton = "<button id='change-password-button' value=" + userId + "> Change password</button>";
 
             $('<td>').html(oldPassword).appendTo(trPassword);
             $('<td>').html(newPassword).appendTo(trPassword);
@@ -95,4 +91,27 @@ $("#bulk-container").on("click", "#update-button", function () {
             console.log("Unsuccessful request");
         }
     })
+});
+$("#bulk-container").on("click","#change-password-button", function () {
+   var adminId = $("#change-password-button").val();
+   var oldPassword = $("#old-password").val();
+   var newPassword = $("#new-password").val();
+   var passwordUpdateInfo = [adminId,oldPassword,newPassword];
+    console.log(passwordUpdateInfo);
+
+    var updateAdmin = $.ajax({
+        type: 'PUT',
+        url: "http://localhost:8080/admin/manage/admins/changePassword",
+        contentType: "application/json",
+        data: JSON.stringify(passwordUpdateInfo),
+        success: function () {
+            console.log("Successful request");
+
+        },
+        error: function () {
+            console.log("Unsuccessful request");
+        }
+    })
+
+
 });

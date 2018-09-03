@@ -35,14 +35,15 @@ $('#myDropdown').on('click', 'a', function () {
         type: 'GET',
         url: "http://localhost:8080/admin/manage/subscribers/getSubscriberDuePaymentsByPhone/" + phone,
         success: function (data) {
-            console.log(data);
             var tbody = $("#bulk-container"),
-                props = ["subscriberId", "subscriberPhone", "serviceType", "subscriptionPlan", "price", "currency"];
+                props = ["subscriberId", "subscriberPhone", "serviceType", "subscriptionPlan", "price",];
             $.each(data, function (i, data) {
                 var tr = $('<tr>');
                 $.each(props, function (i, prop) {
                     $('<td>').html(data[prop]).appendTo(tr);
                 });
+                var currency = '<select><option value="BGN">BGN</option> <option value="EUR">EUR</option><option value="USD">USD</option><option value="CHF">CHF</option> </select>'
+                $('<td>').html(currency).appendTo(tr);
                 tbody.append(tr);
             });
 
@@ -62,8 +63,6 @@ $("#proceed").on("click", function () {
     var startDate = dates[0];
     var endDate = dates[1];
 
-    console.log(startDate);
-    console.log(endDate);
     $("#bulk-container").empty();
     var invoices = $.ajax({
         type: 'POST',
@@ -71,7 +70,6 @@ $("#proceed").on("click", function () {
         contentType: "application/json",
         data: JSON.stringify(dates),
         success: function (data) {
-            console.log(data);
             var tbody = $("#myDropdown");
             for (var num in data) {
                 tbody.append('<a href="#" class="phones">' + data[num] + '</a>');
@@ -89,14 +87,12 @@ $("#proceed").on("click", function () {
 
 $("#generate-payment-button").on("click", function () {
     var allVals = [];
-    var invoiceInfo = {}
-    $('#bulk-container tr').each(function (i, tr) {
-
-        var subscriberId = $('#bulk-container tr td:first-child').html();
-        var currency = $('#bulk-container tr td:last-child').html();
+    $('#bulk-container tr').each(function () {
+        var subscriberId = $(this.firstChild).html();
+        var currency = $(this.lastChild.firstChild).val();
         var invoiceInfo = {subscriberId: subscriberId, currency: currency};
-
         allVals.push(invoiceInfo);
+
 
     });
     var payment = $.ajax({
