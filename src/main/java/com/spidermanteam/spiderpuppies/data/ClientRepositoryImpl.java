@@ -81,6 +81,8 @@ public class ClientRepositoryImpl implements GenericRepository<Client> {
             Authorities oldAuthority = new Authorities(oldUser.getUsername(), "ROLE_CLIENT");
             Authorities newAuthority = new Authorities(client.getUser().getUsername(), "ROLE_CLIENT");
             User user = client.getUser();
+            user.setId(oldUser.getId());
+            user.setPassword(oldUser.getPassword());
             session.delete(oldAuthority);
             session.save(newAuthority);
             session.update(user);
