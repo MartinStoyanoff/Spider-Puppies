@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Spider ONE</title>
-    <link rel="stylesheet" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
             crossorigin="anonymous"></script>
@@ -16,19 +16,21 @@
     <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
 
     <!-- Include Date Range Picker -->
     <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css"/>
+    <link rel="stylesheet" href="../css/style.css">
 
 
 </head>
 
 <body>
-<header>
+
+<header class="sticky-top ">
     <div class="header-panel">
-        <div class="logo"><img width="100%" src="img/Logo.png" alt=""></div>
-        <h1>WELCOME TO SPIDER ONE</h1>
     </div>
     <div>
         <nav>
@@ -37,7 +39,7 @@
                     <a id="home-button" href="adminHome.html">Home</a>
                 </li>
                 <li>
-                    <a id="bulk-button" href="adminBulkPayment.html">Generate Bulk payment</a>
+                    <a id="bulk-button" href="#">Generate Bulk payment</a>
                 </li>
                 <li>
                     <a id="subscriber-button" href="adminSinglePayment.html">Generate Single Payment</a>
@@ -46,7 +48,7 @@
                     <a id="manage-admin-button" href="manageAdmins.html">Manage Admins</a>
                 </li>
                 <li>
-                    <a id="manage-clients-button" href="#">Manage Clients</a>
+                    <a id="manage-clients-button" href="manageClients.html">Manage Clients</a>
                 </li>
                 <li>
                     <a id="manage-profile-button" href="manageProfile.html">Manage Profile</a>
@@ -58,37 +60,62 @@
         </nav>
     </div>
 </header>
-<main>
-    <div>
+<div class="wrapper">
+
+    <main>
+        <div> select billing period</div>
+        <div class="input-group mb-3 col-md-4">
+            <input id="daterange" name="daterange" value="01/01/2015 - 10/12/2018" type="text" class="form-control"
+                   placeholder="Select dates">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary btn-border-grey" type="button" id="button-addon2">Proceed
+                </button>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $(function () {
+                $('input[name="daterange"]').daterangepicker();
+            });
+        </script>
+
+        <button type="button" id="proceed"> proceed</button>
         <div>
-            <button id="create-client">Create new client</button>
+            <ul class="nav">
+                <li>
+                    <a id="select-all" href="#">Select all</a>
+                </li>
+                <li>
+                    <a id="select-none" href="#">Select none</a>
+                </li>
+                <li>
+                    <a id="generate-payment-button" href="#">Generate payments</a>
+                </li>
+            </ul>
         </div>
-        <div id="add-client-form" style="display:none">
-            <input id="username" type="text" placeholder="username">
-            <input id="password" type="password" placeholder="password">
-            <input id="full-name" type="text" placeholder="full name">
-            <input id="uic" type="text" placeholder="UIC">
-            <button id="add-client">Add Client</button>
+        <div class="table-container">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Select</th>
+                    <th scope="col">Subscriber</th>
+                    <th scope="col">Telecom Service</th>
+                    <th scope="col">Plan</th>
+                    <th scope="col">Sum</th>
+                    <th scope="col">Currency</th>
+                </tr>
+                </thead>
+                <tbody id="bulk-container"></tbody>
+            </table>
         </div>
-    </div>
-    <div class="table-container">
-        <table class="table table-striped">
-            <thead class="thead-dark">
-            <tr>
-                <th scope="col">Username</th>
-                <th scope="col">Full name</th>
-                <th scope="col">UIC</th>
-                <th scope="col">Actions</th>
-            </tr>
-            </thead>
-            <tbody id="bulk-container"></tbody>
-        </table>
-    </div>
+</div>
+<footer>
+
+</footer>
 </main>
+</div>
 
-
-<footer></footer>
-<script src="js/manageClients.js" type="text/javascript"></script>
+<script src="js/adminBulk.js" type="text/javascript"></script>
 </body>
 
 </html>
