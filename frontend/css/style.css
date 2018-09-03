@@ -1,4 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
 
+body{
+    font-family: Ubuntu, sans-serif;
+}
+
+.wrapper{
+    padding: 0 1%;
+    box-sizing: border-box;
+    font-family: Ubuntu, sans-serif;
+}
+header {
+    background: #57b846;
+}
 .logo {
     width: 100px;
 }
@@ -35,10 +48,10 @@ h1 {
 .nav a {
     display: inline-block;
     text-decoration: none;
-    color: rgb(32, 32, 87);
     font-weight: bold;
-    font-size: 22px;
+    font-size: 16px;
     padding: 15px;
+    color:white;;
 }
 
 table {
@@ -117,3 +130,12 @@ tbody {
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+
+.btn-border-grey{
+    border: 1px solid #6c757d;
+}
+
+.btn-border-grey:hover{
+    color:white;
+    font-weight: 500;
+}
