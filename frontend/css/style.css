@@ -51,7 +51,12 @@ h1 {
     font-weight: bold;
     font-size: 16px;
     padding: 15px;
-    color:white;;
+}
+header .nav a {
+    color: #ffffff;   
+}
+header .nav li a:hover {
+    color: #57b846;
 }
 
 table {
@@ -65,9 +70,24 @@ tbody {
     font-size: 16px;
 
 }
+.nav-holder {
+    max-width: 66%;
+}
+.table-container {
+    max-width: 66%;
+}
+.table-container th {
+    font-size: 14px;
+    text-align: center;
+}
 
-.table-container{
-    width: 60%;
+/* BTNS */
+.btn-border-green {
+    border: 1px solid #57b846;
+}
+.btn-border-green:hover {
+    background: #57b846;
+    color: #ffffff;
 }
 
 
@@ -138,4 +158,17 @@ tbody {
 .btn-border-grey:hover{
     color:white;
     font-weight: 500;
+}
+
+
+/* DATEPICKER */
+.applyBtn {
+    display: none;
+}
+.cancelBtn {
+    display: none;
+}
+.daterangepicker .calendar th, 
+.daterangepicker .calendar td {
+    font-size: 12px;
 }

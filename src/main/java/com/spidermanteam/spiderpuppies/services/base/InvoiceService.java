@@ -3,6 +3,7 @@ package com.spidermanteam.spiderpuppies.services.base;
 import com.spidermanteam.spiderpuppies.models.Invoice;
 
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,5 +26,5 @@ public interface InvoiceService {
 
     List<Invoice> findLastTenPaymentsBySubscriberId (int id);
 
-
+    BigDecimal getExchangeRateToBGN(String currency);
 }
