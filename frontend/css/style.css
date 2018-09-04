@@ -27,6 +27,15 @@ header {
 h1 {
     color: rgb(32, 32, 87);
 }
+.flex {
+    display: flex;
+}
+.left-content {
+    width: 66%;
+}
+.right-content {
+    width: 30%;
+}
 
 .nav ul {
     height: 100%;
@@ -76,6 +85,12 @@ tbody {
 .table-container {
     max-width: 66%;
 }
+.left-content .nav-holder {
+    max-width: 100%;
+}
+.left-content .table-container {
+    max-width: 100%;
+}
 .table-container th {
     font-size: 14px;
     text-align: center;
@@ -93,10 +108,12 @@ tbody {
 
 /* Dropdown Button */
 .dropbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
+    padding: 6px 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    background: #57b846;
+    color: #ffffff;
+    border-radius: 4px;
     border: none;
     cursor: pointer;
 }
@@ -131,6 +148,7 @@ tbody {
 .dropdown-content {
     display: none;
     position: absolute;
+    top: 100%;
     background-color: #f6f6f6;
     min-width: 230px;
     border: 1px solid #ddd;
