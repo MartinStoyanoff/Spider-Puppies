@@ -6,6 +6,7 @@ import com.spidermanteam.spiderpuppies.models.reporting.SubscriberView;
 import com.spidermanteam.spiderpuppies.objectmapping.MappingHelper;
 import com.spidermanteam.spiderpuppies.services.base.SubscribersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -15,7 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/admin/manage/subscribers")
+@PreAuthorize("hasRole('ROLE_ADMIN')")
+@RequestMapping("/secure/admin/manage/subscribers")
 public class ManageSubscribersController {
 
     private SubscribersService subscribersService;
