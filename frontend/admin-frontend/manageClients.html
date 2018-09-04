@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Spider ONE</title>
-    <link rel="stylesheet" href="../css/style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
             crossorigin="anonymous"></script>
@@ -13,22 +12,21 @@
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!-- Include Required Prerequisites -->
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css"/>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css"/>
 
     <!-- Include Date Range Picker -->
-    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css"/>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css"/>
+    <link rel="stylesheet" href="../css/style.css">
 
 
 </head>
 
 <body>
-<header>
+<header class="sticky-top">
     <div class="header-panel">
-        <div class="logo"><img width="100%" src="../img/Logo.png" alt=""></div>
-        <h1>WELCOME TO SPIDER ONE</h1>
     </div>
     <div>
         <nav>
@@ -58,17 +56,28 @@
         </nav>
     </div>
 </header>
-<main>
+<main class="wrapper">
     <div>
-        <div>
-            <button id="create-client">Create new client</button>
+        <div class="my-4">
+            <button id="create-client" type="button" class="btn btn-outline-success btn-border-green">Create new client</button>
+
         </div>
         <div id="add-client-form" style="display:none">
-            <input id="username" type="text" placeholder="username">
-            <input id="password" type="password" placeholder="password">
-            <input id="full-name" type="text" placeholder="full name">
-            <input id="uic" type="text" placeholder="UIC">
-            <button id="add-client">Add Client</button>
+            <div class="row m-0 p-0 col-8">
+                <div class="input-group input-group-sm mb-4 mr-3 col-4">
+                    <input id="username"  type="text" class="form-control" placeholder="username">
+                </div>
+                <div class="input-group input-group-sm mb-4 mr-3 col-4">
+                    <input id="password" type="password"  class="form-control" placeholder="password">
+                </div>
+                <div class="input-group input-group-sm mb-4 mr-3 col-4">
+                    <input id="full-name" type="text"  class="form-control" placeholder="full name">
+                </div>
+                <div class="input-group input-group-sm mb-4 mr-3 col-4">
+                    <input id="uic" type="text"  class="form-control" placeholder="UIC">
+                </div>
+            </div>
+            <button id="add-client"  type="button" class="btn btn-success mb-4">Add Client</button>
         </div>
     </div>
     <div class="table-container">
