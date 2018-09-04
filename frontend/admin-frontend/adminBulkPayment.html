@@ -2,151 +2,151 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Spider ONE</title>
-    <script src="https://code.jquery.com/jquery-3.3.1.js"
-            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-            crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Spider ONE</title>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <!-- Include Required Prerequisites -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!-- Include Required Prerequisites -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 
 
-    <!-- Include Date Range Picker -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css"/>
-    <link rel="stylesheet" href="../css/style.css">
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css"/>
+
+	<link rel="stylesheet" href="../css/style.css">
 
 
 </head>
 
 <body>
-
-<header class="sticky-top ">
-    <div class="header-panel">
-    </div>
-    <div>
-        <nav>
-            <ul class="nav">
-                <li>
-                    <a id="home-button" href="adminHome.html">Home</a>
-                </li>
-                <li>
-                    <a id="bulk-button" href="#">Generate Bulk payment</a>
-                </li>
-                <li>
-                    <a id="subscriber-button" href="adminSinglePayment.html">Generate Single Payment</a>
-                </li>
-                <li>
-                    <a id="manage-admin-button" href="manageAdmins.html">Manage Admins</a>
-                </li>
-                <li>
-                    <a id="manage-clients-button" href="manageClients.html">Manage Clients</a>
-                </li>
-                <li>
-                    <a id="manage-profile-button" href="manageProfile.html">Manage Profile</a>
-                </li>
-                <li>
-                    <a id="logout-button" href="#">Logout</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+<header class="sticky-top mb-4">
+	<div class="header-panel">
+	</div>
+	<div>
+		<nav>
+			<ul class="nav">
+				<li>
+					<a id="home-button" href="adminHome.html">Home</a>
+				</li>
+				<li>
+					<a id="bulk-button" href="#">Generate Bulk payment</a>
+				</li>
+				<li>
+					<a id="subscriber-button" href="adminSinglePayment.html">Generate Single Payment</a>
+				</li>
+				<li>
+					<a id="manage-admin-button" href="manageAdmins.html">Manage Admins</a>
+				</li>
+				<li>
+					<a id="manage-clients-button" href="manageClients.html">Manage Clients</a>
+				</li>
+				<li>
+					<a id="manage-profile-button" href="manageProfile.html">Manage Profile</a>
+				</li>
+				<li>
+					<a id="logout-button" href="#">Logout</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
 </header>
 <div class="wrapper">
 
-    <main>
-        <p class="pt-3">Select billing period</p>
-        <div class="input-group mb-3 col-md-4">
-            <input id="daterange" name="daterange" value="Select dates" type="text" class="form-control" placeholder="Select dates">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary btn-border-grey" type="button" id="proceed">Proceed
-                </button>
-            </div>
-        </div>
+	<main>
+		<p class="pt-3">Select billing period</p>
+		<div class="input-group mb-3 col-md-4">
+			<input id="daterange" name="daterange" value="Select dates" type="text" class="form-control" placeholder="Select dates">  
+			<div class="input-group-append"> 
+				<button class="btn btn-outline-secondary btn-border-grey" type="button" id="proceed">Proceed
+				</button>
+			</div>
+		</div>
 
-        <script type="text/javascript">
-            $(function () {
-                $('input[name="daterange"]').daterangepicker();
-            });
-        </script>
+		<script type="text/javascript">
+			$(function () {
+				$('input[name="daterange"]').daterangepicker();
+			});
+		</script>
 
-        <div class="nav-holder">
-            <ul class="nav nav-tabs" >
-                <li class="nav-item">
-                    <a class="nav-link" id="select-all" href="#">Select all</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="select-none" href="#">Select none</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="generate-payment-button" href="#">Generate payments</a>
-                </li>
-            </ul>
-        </div>
-        <div class="table-container">
-            <table class="table table-striped table-hover">
-                <thead class="">
-                <tr>
-                    <th scope="col">Select</th>
-                    <th scope="col">Subscriber</th>
-                    <th scope="col">Telecom Service</th>
-                    <th scope="col">Plan</th>
-                    <th scope="col">Sum</th>
-                    <th scope="col">Currency</th>
-                </tr>
-                </thead>
-                <tbody id="bulk-container" >
-                <tr>
-                    <td><input type="checkbox" name="" type="checkbox" class="form-check-input" checked="checked"></td>
-                    <td>0888888888</td>
-                    <td>TV</td>
-                    <td>max</td>
-                    <td>1999999999999</td>
-                    <td><select><option value="BGN">BGN</option> <option value="EUR">EUR</option><option value="USD">USD</option><option value="CHF">CHF</option> </select></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="" type="checkbox" class="form-check-input" checked="checked"></td>
-                    <td>0888888888</td>
-                    <td>TV</td>
-                    <td>max</td>
-                    <td>1999999999999</td>
-                    <td><select><option value="BGN">BGN</option> <option value="EUR">EUR</option><option value="USD">USD</option><option value="CHF">CHF</option> </select></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="" type="checkbox" class="form-check-input" checked="checked"></td>
-                    <td>0888888888</td>
-                    <td>TV</td>
-                    <td>max</td>
-                    <td>1999999999999</td>
-                    <td><select><option value="BGN">BGN</option> <option value="EUR">EUR</option><option value="USD">USD</option><option value="CHF">CHF</option> </select></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="" type="checkbox" class="form-check-input" checked="checked"></td>
-                    <td>0888888888</td>
-                    <td>TV</td>
-                    <td>max</td>
-                    <td>1999999999999</td>
-                    <td><select><option value="BGN">BGN</option> <option value="EUR">EUR</option><option value="USD">USD</option><option value="CHF">CHF</option> </select></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="" type="checkbox" class="form-check-input" checked="checked"></td>
-                    <td>0888888888</td>
-                    <td>TV</td>
-                    <td>max</td>
-                    <td>1999999999999</td>
-                    <td><select><option value="BGN">BGN</option> <option value="EUR">EUR</option><option value="USD">USD</option><option value="CHF">CHF</option> </select></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+		<div class="nav-holder">
+			<ul class="nav nav-tabs" >
+				<li class="nav-item">
+					<a class="nav-link" id="select-all" href="#">Select all</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="select-none" href="#">Select none</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="generate-payment-button" href="#">Generate payments</a>
+				</li>
+			</ul>
+		</div>
+		<div class="table-container">
+			<table class="table table-striped table-hover table-bordered">
+				<thead class="thead-dark">
+				<tr>
+					<th scope="col">Select</th>
+					<th scope="col">Subscriber</th>
+					<th scope="col">Telecom Service</th>
+					<th scope="col">Plan</th>
+					<th scope="col">Sum</th>
+					<th scope="col">Currency</th>
+				</tr>
+				</thead>
+				<tbody id="bulk-container" >
+					<tr>
+						<td><input type="checkbox" name="" type="checkbox" class="form-check-input" checked="checked"></td>
+						<td>0888888888</td>
+						<td>TV</td>
+						<td>max</td>
+						<td>1999999999999</td>
+						<td><select><option value="BGN">BGN</option> <option value="EUR">EUR</option><option value="USD">USD</option><option value="CHF">CHF</option> </select></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="" type="checkbox" class="form-check-input" checked="checked"></td>
+						<td>0888888888</td>
+						<td>TV</td>
+						<td>max</td>
+						<td>1999999999999</td>
+						<td><select><option value="BGN">BGN</option> <option value="EUR">EUR</option><option value="USD">USD</option><option value="CHF">CHF</option> </select></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="" type="checkbox" class="form-check-input" checked="checked"></td>
+						<td>0888888888</td>
+						<td>TV</td>
+						<td>max</td>
+						<td>1999999999999</td>
+						<td><select><option value="BGN">BGN</option> <option value="EUR">EUR</option><option value="USD">USD</option><option value="CHF">CHF</option> </select></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="" type="checkbox" class="form-check-input" checked="checked"></td>
+						<td>0888888888</td>
+						<td>TV</td>
+						<td>max</td>
+						<td>1999999999999</td>
+						<td><select><option value="BGN">BGN</option> <option value="EUR">EUR</option><option value="USD">USD</option><option value="CHF">CHF</option> </select></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="" type="checkbox" class="form-check-input" checked="checked"></td>
+						<td>0888888888</td>
+						<td>TV</td>
+						<td>max</td>
+						<td>1999999999999</td>
+						<td><select><option value="BGN">BGN</option> <option value="EUR">EUR</option><option value="USD">USD</option><option value="CHF">CHF</option> </select></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 </div>
 <footer>
 

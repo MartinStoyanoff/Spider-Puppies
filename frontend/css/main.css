@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
-
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 * {
 	margin: 0px; 
 	padding: 0px; 
@@ -175,7 +175,7 @@ iframe {
 }
 
 .login100-form-title {
-  font-family: JosefinSans-Bold;
+  font-family: Josefin Sans;
   font-size: 30px;
   color: #fff;
   line-height: 1.2;

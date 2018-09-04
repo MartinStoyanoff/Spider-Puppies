@@ -97,7 +97,8 @@ public class InvoiceServiceImpl implements InvoiceService {
         return invoiceRepository.findLastTenPaymentsBySubscriberId(id);
     }
 
-    private BigDecimal getExchangeRateToBGN(String currency) {
+    @Override
+    public BigDecimal getExchangeRateToBGN(String currency) {
         BigDecimal exchangeRate;
         switch (currency.toLowerCase()) {
             case "eur":

@@ -1,6 +1,5 @@
 package com.spidermanteam.spiderpuppies.services.invoice;
 
-import com.spidermanteam.spiderpuppies.SpiderPuppiesApplicationTests;
 import com.spidermanteam.spiderpuppies.data.base.InvoiceRepository;
 import com.spidermanteam.spiderpuppies.data.base.SubscriberRepository;
 import com.spidermanteam.spiderpuppies.models.*;
@@ -13,16 +12,15 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.math.BigDecimal;
-import java.rmi.NoSuchObjectException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class InvoiceService_Tests{
+public class InvoiceService_tests {
 
     @Mock
     InvoiceRepository mockRepository;
@@ -31,6 +29,7 @@ public class InvoiceService_Tests{
 
     private InvoiceServiceImpl invoiceService;
     private Invoice invoice;
+
 
     @Before
     public void beforeTest() {
@@ -41,10 +40,8 @@ public class InvoiceService_Tests{
         invoice = new Invoice(subscriber, telecomService, BigDecimal.TEN, "BGN");
         invoice.setId(1);
 
-
         when(mockRepository.findById(1))
                 .thenReturn(invoice);
-
 
         invoiceService = new InvoiceServiceImpl(mockRepository, subscriberRepository);
     }
@@ -75,7 +72,7 @@ public class InvoiceService_Tests{
         when(mockRepository.listAll()).thenReturn(invoices);
         List result = invoiceService.listAllInvoices();
 
-       //Assert
+        //Assert
         Assert.assertEquals(invoices.size(),result.size());
     }
     @Test
@@ -105,21 +102,19 @@ public class InvoiceService_Tests{
 
     }
 
-    public void payInvoice_WhenInvoiceIsPresented_ShouldReturnInvoiceStatus1 (){
+    @Test
+    public void getExchangeRateToBGN_whenCurrencyEURIsProvided_shouldReturnConvertedNumberInBGN(){
 
         //Arrange
-        Invoice invoiceForPayment = new Invoice();
+        String currency = "EUR";
+        BigDecimal EURtoBGNrate = BigDecimal.valueOf(1.95583);
 
         //Act
+        BigDecimal result = invoiceService.getExchangeRateToBGN(currency);
 
-
-
+        //Assert
+        Assert.assertEquals(EURtoBGNrate, result);
     }
 
 
 }
-
-
-
-
-
