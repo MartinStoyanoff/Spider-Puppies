@@ -16,37 +16,31 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
 @Configuration
 @EnableGlobalMethodSecurity(
         prePostEnabled = true,
-        securedEnabled =true)
+        securedEnabled = true)
 @EnableWebSecurity
 public class JwtSecurity extends WebSecurityConfigurerAdapter {
-
 
 
     @Autowired
     private MyJWTUserDetailsService userService;
 
 
-
-
     @Bean
-    public PasswordEncoder  passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    public BCryptPasswordEncoder passwordEncoder() {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder;
     }
 
 
-
     @Autowired
-    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .userDetailsService(userService)
+   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(this.userService)
                 .passwordEncoder(passwordEncoder());
     }
 
@@ -66,7 +60,7 @@ public class JwtSecurity extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public JwtTokenProvider jwtTokenProvider(){
+    public JwtTokenProvider jwtTokenProvider() {
         return new JwtTokenProvider();
     }
 

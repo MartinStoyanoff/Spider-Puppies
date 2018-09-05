@@ -1,12 +1,9 @@
 package com.spidermanteam.spiderpuppies.web.admincontrollers;
 
-import com.spidermanteam.spiderpuppies.models.User;
-import com.spidermanteam.spiderpuppies.security.models.JwtUser;
 import com.spidermanteam.spiderpuppies.services.base.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -20,9 +17,13 @@ public class LoginController {
         this.loginService = loginService;
     }
 
-    @PostMapping(value = "/login")
+    @PostMapping(value = "/ng/login")
     public String login(@RequestBody List<String> userdetails) throws Exception {
-      String token =  loginService.authenticateClient(userdetails);
-        return token;
+        System.out.println(userdetails.get(0));
+        System.out.println(userdetails.get(1));
+        String token =  loginService.authenticateClient(userdetails);
+
+        System.out.println(token);
+      return token;
     }
 }

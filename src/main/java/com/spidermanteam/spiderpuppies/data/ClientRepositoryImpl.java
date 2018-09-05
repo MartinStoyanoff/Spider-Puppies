@@ -1,9 +1,9 @@
 package com.spidermanteam.spiderpuppies.data;
 
 import com.spidermanteam.spiderpuppies.data.base.GenericRepository;
+import com.spidermanteam.spiderpuppies.models.User;
 import com.spidermanteam.spiderpuppies.models.Authorities;
 import com.spidermanteam.spiderpuppies.models.Client;
-import com.spidermanteam.spiderpuppies.models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

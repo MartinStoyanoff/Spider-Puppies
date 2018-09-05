@@ -2,8 +2,8 @@ package com.spidermanteam.spiderpuppies.security.service;
 
 import com.spidermanteam.spiderpuppies.data.base.AuthoritiesRepository;
 import com.spidermanteam.spiderpuppies.data.base.UserRepository;
-import com.spidermanteam.spiderpuppies.models.Authorities;
 import com.spidermanteam.spiderpuppies.models.User;
+import com.spidermanteam.spiderpuppies.models.Authorities;
 import com.spidermanteam.spiderpuppies.security.models.JwtUser;
 import com.spidermanteam.spiderpuppies.security.models.JwtUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;

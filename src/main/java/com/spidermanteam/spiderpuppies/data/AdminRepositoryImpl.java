@@ -1,15 +1,13 @@
 package com.spidermanteam.spiderpuppies.data;
 
 import com.spidermanteam.spiderpuppies.data.base.AdminRepository;
-import com.spidermanteam.spiderpuppies.data.base.GenericRepository;
 import com.spidermanteam.spiderpuppies.models.Admin;
-import com.spidermanteam.spiderpuppies.models.Authorities;
 import com.spidermanteam.spiderpuppies.models.User;
+import com.spidermanteam.spiderpuppies.models.Authorities;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -20,10 +18,10 @@ public class AdminRepositoryImpl implements AdminRepository {
 
     private SessionFactory sessionFactory;
 
-    private PasswordEncoder passwordEncoder;
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    public AdminRepositoryImpl(SessionFactory sessionFactory, PasswordEncoder passwordEncoder) {
+    public AdminRepositoryImpl(SessionFactory sessionFactory, BCryptPasswordEncoder passwordEncoder) {
         this.sessionFactory = sessionFactory;
         this.passwordEncoder = passwordEncoder;
     }
@@ -32,7 +30,9 @@ public class AdminRepositoryImpl implements AdminRepository {
     public void create(Admin admin) {
         User user = admin.getUser();
         String encryptPass = passwordEncoder.encode(user.getPassword());
+        System.out.println(user.getPassword());
         user.setPassword(encryptPass);
+        System.out.println(encryptPass);
         Authorities authorities = new Authorities(user.getUsername(), "ROLE_ADMIN");
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();

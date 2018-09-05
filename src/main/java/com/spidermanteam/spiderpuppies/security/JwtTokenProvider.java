@@ -1,22 +1,11 @@
 package com.spidermanteam.spiderpuppies.security;
 
-import com.spidermanteam.spiderpuppies.models.User;
-import com.spidermanteam.spiderpuppies.security.models.JwtToken;
-import com.spidermanteam.spiderpuppies.security.models.JwtUser;
 import com.spidermanteam.spiderpuppies.security.models.JwtUserDetails;
 import io.jsonwebtoken.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
-import java.util.List;
 
 @Component
 public class JwtTokenProvider {

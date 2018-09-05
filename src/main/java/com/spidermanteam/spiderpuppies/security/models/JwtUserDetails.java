@@ -9,18 +9,18 @@ import java.util.Collections;
 import java.util.Set;
 
 public class JwtUserDetails implements UserDetails {
-    private int id;
+    private Long id;
     private String userName;
     private String password;
 
     private Collection<? extends GrantedAuthority> authorities;
 
 
-    public JwtUserDetails(int id, String userName, String password, Set<SimpleGrantedAuthority> grantedAuthorities) {
+    public JwtUserDetails(Long id, String userName, String password, Set<SimpleGrantedAuthority> grantedAuthorities) {
 
         this.userName = userName;
         this.id = id;
-        this.password= getPassword();
+        this.password= password;
         this.authorities = grantedAuthorities;
     }
 
@@ -73,7 +73,7 @@ public class JwtUserDetails implements UserDetails {
         return userName;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -89,7 +89,7 @@ public class JwtUserDetails implements UserDetails {
         this.authorities = authorities;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
