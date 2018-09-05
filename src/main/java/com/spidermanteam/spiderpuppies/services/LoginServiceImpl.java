@@ -4,40 +4,50 @@ import com.spidermanteam.spiderpuppies.data.base.AuthoritiesRepository;
 import com.spidermanteam.spiderpuppies.data.base.UserRepository;
 import com.spidermanteam.spiderpuppies.models.Authorities;
 import com.spidermanteam.spiderpuppies.models.User;
-import com.spidermanteam.spiderpuppies.security.JwtGenerator;
+import com.spidermanteam.spiderpuppies.security.JwtTokenProvider;
 import com.spidermanteam.spiderpuppies.services.base.LoginService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import javax.validation.Valid;
+import java.util.List;
 
 @Service
 public class LoginServiceImpl implements LoginService {
 
 
-    private JwtGenerator jwtGenerator;
-    private UserRepository userRepository;
-    private AuthoritiesRepository authoritiesRepository;
+    private AuthenticationManager authenticationManager;
+    private JwtTokenProvider tokenProvider;
 
-    public LoginServiceImpl(JwtGenerator jwtGenerator, UserRepository userRepository, AuthoritiesRepository authoritiesRepository) {
-        this.jwtGenerator = jwtGenerator;
-        this.userRepository = userRepository;
-        this.authoritiesRepository = authoritiesRepository;
+
+    @Autowired
+    public LoginServiceImpl(AuthenticationManager authenticationManager, JwtTokenProvider tokenProvider) {
+        this.authenticationManager = authenticationManager;
+        this.tokenProvider = tokenProvider;
     }
 
     @Override
-    public User loginCheckUserByUserNameAndPassword(String username,String password) {
-       return userRepository.getUserByUserNameAndPassWord(username,password);
-    }
+    public String authenticateClient(List<String> singInInfo) {
 
-    @Override
-    public String generatorToken(User user) {
-        Authorities authorities = authoritiesRepository.getAuthoritiesByUserName(user.getUsername());
-        String role = authorities.getAuthority();
-        return jwtGenerator.generate(user,role);
-    }
 
-    @Override
-    public String getRoleByUsername(String username) {
-      Authorities  authorities = authoritiesRepository.getAuthoritiesByUserName(username);
-      String role = authorities.getAuthority();
-        return role;
+        UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(
+                singInInfo.get(0), singInInfo.get(1));
+
+
+        Authentication authentication = authenticationManager.authenticate(authRequest);
+
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        String jwt = tokenProvider.generateToken(authentication);
+        return jwt;
+
     }
 }

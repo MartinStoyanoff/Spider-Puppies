@@ -4,6 +4,7 @@ import com.spidermanteam.spiderpuppies.models.*;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 
@@ -12,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class HibernateConfig {
 
     @Bean
-    public SessionFactory createSessionFactory(){
+    public SessionFactory createSessionFactory() {
         return new org.hibernate.cfg.Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Admin.class)
@@ -23,6 +24,10 @@ public class HibernateConfig {
                 .addAnnotatedClass(TelecomService.class)
                 .addAnnotatedClass(User.class)
                 .buildSessionFactory();
+    }
+    @Bean
+    BCryptPasswordEncoder passwordEncoder(){
+        return passwordEncoder();
     }
 
 }
