@@ -5,7 +5,6 @@ import com.spidermanteam.spiderpuppies.models.Subscriber;
 import com.spidermanteam.spiderpuppies.models.reporting.PaymentReport;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
 
 public interface ClientAccessService {

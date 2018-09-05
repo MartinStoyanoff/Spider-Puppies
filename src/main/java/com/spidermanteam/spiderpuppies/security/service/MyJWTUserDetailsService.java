@@ -20,15 +20,14 @@ public class MyJWTUserDetailsService implements UserDetailsService {
     private static final String INVALID_USER = "Invalid user";
 
 
-    UserRepository userRepository;
+    private AuthoritiesRepository authoritiesRepository;
+    private UserRepository userRepository;
 
     @Autowired
     public MyJWTUserDetailsService(UserRepository userRepository, AuthoritiesRepository authoritiesRepository) {
         this.userRepository = userRepository;
         this.authoritiesRepository = authoritiesRepository;
     }
-
-    AuthoritiesRepository authoritiesRepository;
 
 
     public MyJWTUserDetailsService() {

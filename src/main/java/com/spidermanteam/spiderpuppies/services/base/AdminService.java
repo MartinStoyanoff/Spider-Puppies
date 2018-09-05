@@ -17,4 +17,5 @@ public interface AdminService {
     void deleteAdmin(int id);
 
     void changeAdminPassword(List<String> passwordUpdateInfo);
+
 }

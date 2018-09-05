@@ -12,15 +12,14 @@ public class JwtTokenProvider {
 
     private static String jwtSecret = "BrightSuperSecret";
 
-
-    private static String  jwtExpirationInMs = "604800000";
+    private static int  jwtExpirationInMs = 250000;
 
     public String generateToken(Authentication authentication){
         JwtUserDetails userDetails = (JwtUserDetails) authentication.getPrincipal();
 
         Date dateNow = new Date();
 
-        Date expireDate = new Date(dateNow.getTime() + Integer.parseInt(jwtExpirationInMs));
+        Date expireDate = new Date(dateNow.getTime() + jwtExpirationInMs);
 
         return Jwts.builder()
                 .setSubject(Long.toString(userDetails.getId()))
@@ -40,7 +39,7 @@ public class JwtTokenProvider {
         return Long.parseLong(claims.getSubject());
     }
 
-    public boolean validateToken(String token){
+    boolean validateToken(String token){
         try{
             Jwts.parser()
                     .setSigningKey(jwtSecret)
@@ -51,4 +50,5 @@ public class JwtTokenProvider {
         }
         return false;
     }
+
 }
