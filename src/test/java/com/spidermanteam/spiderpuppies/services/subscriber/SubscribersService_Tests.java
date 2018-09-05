@@ -6,7 +6,6 @@ import com.spidermanteam.spiderpuppies.data.base.SubscriberRepository;
 import com.spidermanteam.spiderpuppies.models.Subscriber;
 import com.spidermanteam.spiderpuppies.models.TelecomService;
 import com.spidermanteam.spiderpuppies.services.SubscriberServiceImpl;
-import com.spidermanteam.spiderpuppies.services.base.SubscribersService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -135,9 +134,6 @@ public class SubscribersService_Tests {
 
         Assert.assertEquals(averageSum,actualAverageSum);
     }
-
-
-
 }
 
 
