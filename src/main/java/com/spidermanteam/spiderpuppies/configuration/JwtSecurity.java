@@ -1,68 +1,104 @@
 package com.spidermanteam.spiderpuppies.configuration;
 
 import com.spidermanteam.spiderpuppies.security.JwtAuthenticationEntryPoint;
-import com.spidermanteam.spiderpuppies.security.JwtAuthenticationProvider;
-import com.spidermanteam.spiderpuppies.security.JwtAuthenticationTokenFilter;
-import com.spidermanteam.spiderpuppies.security.JwtSuccessHandler;
+import com.spidermanteam.spiderpuppies.security.JwtTokenFilter;
+import com.spidermanteam.spiderpuppies.security.JwtTokenProvider;
+import com.spidermanteam.spiderpuppies.security.service.MyJWTUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.config.BeanIds;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import java.util.Collections;
 
-@EnableGlobalMethodSecurity(prePostEnabled  = true, securedEnabled = true)
-@EnableWebSecurity
 @Configuration
+@EnableGlobalMethodSecurity(
+        prePostEnabled = true,
+        securedEnabled =true)
+@EnableWebSecurity
 public class JwtSecurity extends WebSecurityConfigurerAdapter {
 
 
+
     @Autowired
-    private JwtAuthenticationProvider authenticationProvider;
-    @Autowired
-    private JwtAuthenticationEntryPoint entryPoint;
+    private MyJWTUserDetailsService userService;
+
+
+
 
     @Bean
-    public AuthenticationManager authenticationManager() {
-        return new ProviderManager(Collections.singletonList(authenticationProvider));
-    }
-    @Bean
-    public PasswordEncoder passwordEncoder() {
+    public PasswordEncoder  passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    @Bean
-    public JwtAuthenticationTokenFilter authenticationTokenFilter() {
-        JwtAuthenticationTokenFilter filter = new JwtAuthenticationTokenFilter();
-        filter.setAuthenticationManager(authenticationManager());
-        filter.setAuthenticationSuccessHandler(new JwtSuccessHandler());
-        return filter;
+
+
+
+    @Autowired
+    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .userDetailsService(userService)
+                .passwordEncoder(passwordEncoder());
     }
 
 
+    @Bean(BeanIds.AUTHENTICATION_MANAGER)
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 
-        http.cors()
+    @Autowired
+    private JwtAuthenticationEntryPoint unauthorizedHandler;
+
+    @Bean
+    public JwtTokenFilter jwtAuthenticationFilter() {
+        return new JwtTokenFilter();
+    }
+
+    @Bean
+    public JwtTokenProvider jwtTokenProvider(){
+        return new JwtTokenProvider();
+    }
+
+    @Override
+    public void configure(final HttpSecurity http) throws Exception {
+        http
+                .cors()
                 .and()
                 .csrf()
                 .disable()
-                .authorizeRequests().antMatchers("**/secure/**").authenticated()
+                .exceptionHandling()
+                .authenticationEntryPoint(unauthorizedHandler)
                 .and()
-                .exceptionHandling().authenticationEntryPoint(entryPoint)
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .authorizeRequests()
+                .antMatchers("/",
+                        "/favicon.ico",
+                        "/**/*.png",
+                        "/**/*.gif",
+                        "/**/*.svg",
+                        "/**/*.jpg",
+                        "/**/*.html",
+                        "/**/*.css",
+                        "/**/*.js")
+                .permitAll()
+                .antMatchers("/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated();
 
-        http.addFilterBefore(authenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-        http.headers().cacheControl();
-
+        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }

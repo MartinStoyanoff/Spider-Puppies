@@ -1,9 +1,6 @@
 package com.spidermanteam.spiderpuppies.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jdk.internal.instrumentation.TypeMapping;
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;

@@ -20,15 +20,9 @@ public class LoginController {
         this.loginService = loginService;
     }
 
-    @PostMapping(value = "/admin/login")
-    @ResponseBody
-    public JwtUser generateTokenOnLogin(@RequestBody List<String> userdetails, HttpServletResponse response) throws Exception {
-       String userName = userdetails.get(0);
-       String password = userdetails.get(1);
-        User loggedUser = loginService.loginCheckUserByUserNameAndPassword(userName,password);
-        String token = "Token " + loginService.generatorToken(loggedUser);
-        String userNameForRole = loggedUser.getUsername();
-        String role = loginService.getRoleByUsername(userNameForRole);
-        return new JwtUser(loggedUser, token, role);
+    @PostMapping(value = "/login")
+    public String login(@RequestBody List<String> userdetails) throws Exception {
+      String token =  loginService.authenticateClient(userdetails);
+        return token;
     }
 }

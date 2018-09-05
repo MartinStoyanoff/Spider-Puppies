@@ -8,6 +8,8 @@ import com.spidermanteam.spiderpuppies.models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -18,14 +20,19 @@ public class AdminRepositoryImpl implements AdminRepository {
 
     private SessionFactory sessionFactory;
 
+    private PasswordEncoder passwordEncoder;
+
     @Autowired
-    public AdminRepositoryImpl(SessionFactory sessionFactory) {
+    public AdminRepositoryImpl(SessionFactory sessionFactory, PasswordEncoder passwordEncoder) {
         this.sessionFactory = sessionFactory;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public void create(Admin admin) {
         User user = admin.getUser();
+        String encryptPass = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encryptPass);
         Authorities authorities = new Authorities(user.getUsername(), "ROLE_ADMIN");
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
@@ -67,7 +74,7 @@ public class AdminRepositoryImpl implements AdminRepository {
 
     @Override
     public void update(Admin admin) {
-        User oldUser = null ;
+        User oldUser = null;
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             Admin admin1 = session.get(Admin.class, admin.getId());
@@ -100,7 +107,7 @@ public class AdminRepositoryImpl implements AdminRepository {
             session.beginTransaction();
             Admin admin = session.get(Admin.class, id);
             User user = admin.getUser();
-            Authorities authority = new Authorities(user.getUsername(),"ROLE_ADMIN");
+            Authorities authority = new Authorities(user.getUsername(), "ROLE_ADMIN");
             session.delete(admin);
             session.delete(authority);
             session.delete(user);
