@@ -27,7 +27,7 @@ public class HibernateConfig {
     }
     @Bean
     BCryptPasswordEncoder passwordEncoder(){
-        return passwordEncoder();
+        return new BCryptPasswordEncoder();
     }
 
 }
