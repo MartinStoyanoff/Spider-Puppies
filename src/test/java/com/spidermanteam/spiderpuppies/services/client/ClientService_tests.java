@@ -1,5 +1,6 @@
 package com.spidermanteam.spiderpuppies.services.client;
 
+import com.spidermanteam.spiderpuppies.data.base.ClientRepository;
 import com.spidermanteam.spiderpuppies.data.base.GenericRepository;
 import com.spidermanteam.spiderpuppies.models.Client;
 import com.spidermanteam.spiderpuppies.services.ClientServiceImpl;
@@ -20,7 +21,7 @@ import static org.mockito.Mockito.*;
 public class ClientService_tests {
 
     @Mock
-    GenericRepository<Client> clientRepository;
+    ClientRepository clientRepository;
 
     private ClientServiceImpl clientService;
 
