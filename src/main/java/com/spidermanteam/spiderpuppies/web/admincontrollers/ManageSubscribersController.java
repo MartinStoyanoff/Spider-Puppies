@@ -16,8 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@PreAuthorize("hasRole('ROLE_ADMIN')")
-@RequestMapping("/secure/admin/manage/subscribers")
+@RequestMapping("/admin/manage/subscribers")
 public class ManageSubscribersController {
 
     private SubscribersService subscribersService;
