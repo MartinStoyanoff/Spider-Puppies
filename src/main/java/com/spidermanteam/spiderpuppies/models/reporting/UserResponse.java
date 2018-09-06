@@ -2,7 +2,7 @@ package com.spidermanteam.spiderpuppies.models.reporting;
 
 public class UserResponse {
 
-    private Long id;
+    private int id;
     private String userName;
     private String role;
     private String token;
@@ -10,18 +10,18 @@ public class UserResponse {
     public UserResponse() {
     }
 
-    public UserResponse(Long id, String userName, String role, String token) {
+    public UserResponse(int id, String userName, String role, String token) {
         this.id = id;
         this.userName = userName;
         this.role = role;
         this.token = token;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

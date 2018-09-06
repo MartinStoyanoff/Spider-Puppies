@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface LoginService {
 
-    public String authenticateClient(List<String> singInInfo);
+    String authenticateClient(List<String> singInInfo);
 
 }

@@ -18,4 +18,6 @@ public interface AdminService {
 
     void changeAdminPassword(List<String> passwordUpdateInfo);
 
+    Admin findAdminByUserUsername(String username);
+
 }

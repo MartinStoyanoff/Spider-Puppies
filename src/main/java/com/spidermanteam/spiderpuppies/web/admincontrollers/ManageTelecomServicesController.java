@@ -3,11 +3,13 @@ package com.spidermanteam.spiderpuppies.web.admincontrollers;
 import com.spidermanteam.spiderpuppies.models.TelecomService;
 import com.spidermanteam.spiderpuppies.services.base.TelecomServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class ManageTelecomServicesController {
 
     private TelecomServiceService telecomServiceService;

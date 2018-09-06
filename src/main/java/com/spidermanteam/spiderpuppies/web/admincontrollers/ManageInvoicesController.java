@@ -9,6 +9,7 @@ import com.spidermanteam.spiderpuppies.services.base.InvoiceService;
 import com.spidermanteam.spiderpuppies.services.base.SubscribersService;
 import com.spidermanteam.spiderpuppies.services.base.TelecomServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 @RequestMapping("/admin/manage/invoices")
 public class ManageInvoicesController {
 

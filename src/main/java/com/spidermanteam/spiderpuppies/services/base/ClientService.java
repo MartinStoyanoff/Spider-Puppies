@@ -15,5 +15,7 @@ public interface ClientService {
 
     void updateClient(Client client);
 
+    Client findClientByUserUsername(String username);
+
 
 }

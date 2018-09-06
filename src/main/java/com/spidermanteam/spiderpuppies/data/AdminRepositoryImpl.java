@@ -129,4 +129,22 @@ public class AdminRepositoryImpl implements AdminRepository {
             System.out.println(e.getMessage());
         }
     }
+
+    @Override
+    public Admin findAdminByUserUsername(String username) {
+        Admin admin = new Admin();
+        List<Admin> adminList = new ArrayList<>();
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            String query = "from Admin as a where a.user.username=:userName";
+            adminList = session.createQuery(query)
+                    .setParameter("userName", username).list();
+            session.getTransaction().commit();
+            admin = adminList.get(0);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
+        }
+        return admin;
+    }
 }

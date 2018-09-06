@@ -1,5 +1,6 @@
 package com.spidermanteam.spiderpuppies.data;
 
+import com.spidermanteam.spiderpuppies.data.base.ClientRepository;
 import com.spidermanteam.spiderpuppies.data.base.GenericRepository;
 import com.spidermanteam.spiderpuppies.models.User;
 import com.spidermanteam.spiderpuppies.models.Authorities;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class ClientRepositoryImpl implements GenericRepository<Client> {
+public class ClientRepositoryImpl implements ClientRepository {
 
     private SessionFactory sessionFactory;
 
@@ -112,5 +113,23 @@ public class ClientRepositoryImpl implements GenericRepository<Client> {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    @Override
+    public Client findClientByUserUserName(String username) {
+        Client client = new Client();
+        List<Client> adminList = new ArrayList<>();
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            String query = "from Client as c where c.user.username=:userName";
+            adminList = session.createQuery(query)
+                    .setParameter("userName", username).list();
+            session.getTransaction().commit();
+            client = adminList.get(0);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
+        }
+        return client;
     }
 }

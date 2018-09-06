@@ -20,7 +20,11 @@ $("#sign-in-button").on("click", function (e) {
             var token = data["token"];
 
             if (role.includes("First")) {
-                window.location.href = "/changePassword.html";
+                localStorage.setItem("adminId", adminId);
+                localStorage.setItem("userName", userName);
+                localStorage.setItem("role", role);
+                localStorage.setItem("token", token);
+                window.location.href = "/Spider-Puppies/frontend/admin-frontend/change-password.html";
             } else {
                 localStorage.setItem("adminId", adminId);
                 localStorage.setItem("userName", userName);

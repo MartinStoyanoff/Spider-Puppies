@@ -12,18 +12,18 @@ public class JwtTokenProvider {
 
     private static String jwtSecret = "BrightSuperSecret";
 
-    private static int  jwtExpirationInMs = 250000;
+    private static String  jwtExpirationInMs = "9000000";
 
     public String generateToken(Authentication authentication){
         JwtUserDetails userDetails = (JwtUserDetails) authentication.getPrincipal();
 
         Date dateNow = new Date();
 
-        Date expireDate = new Date(dateNow.getTime() + jwtExpirationInMs);
+        Date expireDate = new Date(dateNow.getTime() + Integer.parseInt(jwtExpirationInMs));
 
         return Jwts.builder()
                 .setSubject(Long.toString(userDetails.getId()))
-                .setIssuedAt(new Date())
+                .setIssuedAt(dateNow)
                 .setExpiration(expireDate)
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();

@@ -49,7 +49,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void changeAdminPassword(List<String> passwordUpdateInfo) {
         int adminId = Integer.parseInt(passwordUpdateInfo.get(0));
-        String oldPassword = passwordEncoder.encode(passwordUpdateInfo.get(1));
+        String oldPassword = passwordUpdateInfo.get(1);
         String newPassword = passwordEncoder.encode(passwordUpdateInfo.get(2));
 
 
@@ -57,11 +57,17 @@ public class AdminServiceImpl implements AdminService {
 
         String adminPass = admin.getUser().getPassword();
 
-        if(adminPass.equals(oldPassword)){
+        if(passwordEncoder.matches(oldPassword,adminPass)){
             admin.getUser().setPassword(newPassword);
+            admin.setFirstLogin(0);
             adminRepository.updateAdminPassword(admin);
             System.out.println(admin.getUser().getPassword());
         }
 
+    }
+
+    @Override
+    public Admin findAdminByUserUsername(String username) {
+        return adminRepository.findAdminByUserUsername(username);
     }
 }
