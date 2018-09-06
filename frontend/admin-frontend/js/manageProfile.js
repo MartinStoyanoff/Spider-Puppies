@@ -6,10 +6,14 @@ $(document).ready(function () {
 });
 
 function adminLoad() {
+    var adminId = localStorage.getItem("adminId")
     $("#bulk-container").empty();
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/admin/manage/admins/findById/28",
+        url: "http://localhost:8080/admin/manage/admins/findById/"+adminId,
+        headers: {
+            "Authorization" : "Bearer "+ localStorage.getItem("token")
+        },
         success: function (admin) {
             var tbody = $("#bulk-container")
             var userId = admin["id"];
@@ -83,6 +87,9 @@ $("#bulk-container").on("click", "#update-button", function () {
     var updateAdmin = $.ajax({
         type: 'PUT',
         url: "http://localhost:8080/admin/manage/admins/update",
+        headers: {
+            "Authorization" : "Bearer "+ localStorage.getItem("token")
+        },
         contentType: "application/json",
         data: JSON.stringify(admin),
         success: function () {
@@ -104,6 +111,9 @@ $("#bulk-container").on("click","#change-password-button", function () {
     var updateAdmin = $.ajax({
         type: 'PUT',
         url: "http://localhost:8080/admin/manage/admins/changePassword",
+        headers: {
+            "Authorization" : "Bearer "+ localStorage.getItem("token")
+        },
         contentType: "application/json",
         data: JSON.stringify(passwordUpdateInfo),
         success: function () {

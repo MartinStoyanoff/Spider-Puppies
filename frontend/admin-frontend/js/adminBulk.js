@@ -7,6 +7,9 @@ $("#proceed").on("click", function () {
     var invoices = $.ajax({
         type: 'POST',
         url: "http://localhost:8080/admin/manage/subscribers/listAllDuePayments",
+        headers: {
+            "Authorization" : "Bearer "+ localStorage.getItem("token")
+        },
         contentType: "application/json",
         data: JSON.stringify(dates),
         success: function (data) {
@@ -56,6 +59,9 @@ $("#generate-payment-button").on("click", function generateBulkPayment() {
         crossOrigin: true,
         type: 'POST',
         url: "http://localhost:8080/admin/manage/invoices/bulkgenerate",
+        headers: {
+            "Authorization" : "Bearer "+ localStorage.getItem("token")
+        },
         contentType: "application/json",
         data: JSON.stringify(allVals),
         success: function (data) {

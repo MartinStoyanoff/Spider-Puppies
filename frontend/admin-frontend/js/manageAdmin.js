@@ -21,6 +21,9 @@ $("#add-admin").on("click", function () {
         crossOrigin: true,
         type: 'POST',
         url: "http://localhost:8080/admin/manage/admins/add",
+        headers: {
+            "Authorization" : "Bearer "+ localStorage.getItem("token")
+        },
         contentType: "application/json",
         data: JSON.stringify(admin),
         success: function () {
@@ -39,6 +42,9 @@ function adminLoad() {
     var invoices = $.ajax({
         type: 'GET',
         url: "http://localhost:8080/admin/manage/admins/listAll",
+        headers: {
+            "Authorization" : "Bearer "+ localStorage.getItem("token")
+        },
         success: function (data) {
             var tbody = $("#bulk-container")
             data.forEach(function (admin) {
@@ -70,6 +76,9 @@ $("#bulk-container").on("click", "#delete-button", function () {
     var deleteUser = $.ajax({
         type: 'DELETE',
         url: "http://localhost:8080/admin/manage/admins/delete/" + id,
+        headers: {
+            "Authorization" : "Bearer "+ localStorage.getItem("token")
+        },
         success: function () {
             adminLoad();
 
@@ -120,6 +129,9 @@ $("#bulk-container").on("click", "#update-button", function () {
     var updateAdmin = $.ajax({
         type: 'PUT',
         url: "http://localhost:8080/admin/manage/admins/update",
+        headers: {
+            "Authorization" : "Bearer "+ localStorage.getItem("token")
+        },
         contentType: "application/json",
         data: JSON.stringify(admin),
         success: function () {

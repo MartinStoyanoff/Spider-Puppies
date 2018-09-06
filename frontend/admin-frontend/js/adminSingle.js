@@ -35,6 +35,9 @@ $('#myDropdown').on('click', 'a', function () {
     var invoices = $.ajax({
         type: 'GET',
         url: "http://localhost:8080/admin/manage/subscribers/getSubscriberDuePaymentsByPhone/" + phone,
+        headers: {
+            "Authorization" : "Bearer "+ localStorage.getItem("token")
+        },
         success: function (data) {
             var tbody = $("#bulk-container"),
                 props = ["subscriberId", "subscriberPhone", "serviceType", "subscriptionPlan", "price",];
@@ -68,6 +71,9 @@ $("#proceed").on("click", function () {
     var invoices = $.ajax({
         type: 'POST',
         url: "http://localhost:8080/admin/manage/subscribers/getAllSubscribersInBillingPeriod",
+        headers: {
+            "Authorization" : "Bearer "+ localStorage.getItem("token")
+        },
         contentType: "application/json",
         data: JSON.stringify(dates),
         success: function (data) {
@@ -100,6 +106,9 @@ $("#generate-payment-button").on("click", function () {
         crossOrigin: true,
         type: 'POST',
         url: "http://localhost:8080/admin/manage/invoices/bulkgenerate",
+        headers: {
+            "Authorization" : "Bearer "+ localStorage.getItem("token")
+        },
         contentType: "application/json",
         data: JSON.stringify(allVals),
         success: function (data) {

@@ -21,6 +21,9 @@ $("#add-client").on("click", function () {
         crossOrigin: true,
         type: 'POST',
         url: "http://localhost:8080/admin/manage/clients/add",
+        headers: {
+            "Authorization" : "Bearer "+ localStorage.getItem("token")
+        },
         contentType: "application/json",
         data: JSON.stringify(client),
         success: function () {
@@ -40,6 +43,9 @@ function clientLoad() {
     var invoices = $.ajax({
         type: 'GET',
         url: "http://localhost:8080/admin/manage/clients/listAll",
+        headers: {
+            "Authorization" : "Bearer "+ localStorage.getItem("token")
+        },
         success: function (data) {
             var tbody = $("#bulk-container")
             data.forEach(function (client) {
@@ -73,6 +79,9 @@ $("#bulk-container").on("click", "#delete-button", function () {
     var deleteUser = $.ajax({
         type: 'DELETE',
         url: "http://localhost:8080/admin/manage/clients/delete/" + id,
+        headers: {
+            "Authorization" : "Bearer "+ localStorage.getItem("token")
+        },
         success: function () {
             clientLoad();
 
@@ -126,6 +135,9 @@ $("#bulk-container").on("click", "#update-button", function () {
     var updateAdmin = $.ajax({
         type: 'PUT',
         url: "http://localhost:8080/admin/manage/clients/update",
+        headers: {
+            "Authorization" : "Bearer "+ localStorage.getItem("token")
+        },
         contentType: "application/json",
         data: JSON.stringify(client),
         success: function () {
