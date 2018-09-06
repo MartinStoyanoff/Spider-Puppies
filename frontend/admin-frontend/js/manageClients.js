@@ -114,9 +114,7 @@ $("#bulk-container").on("click", "#update-button", function () {
     $(this).parents("tr").find("td:not(:last-child)").each(function () {
         var updatedUsername = $(this.firstChild).val();
         var updateFullName = $(this.nextSibling.firstChild).val();
-        console.log(updateFullName);
         var updateUIC = $(this.fir).siblings("#uic").val();
-        console.log(updateUIC);
         inputText.push(updatedUsername);
         inputText.push(updateFullName);
         inputText.push(updateUIC);

@@ -7,7 +7,6 @@ $(document).ready(function () {
             "Authorization" : "Bearer "+ localStorage.getItem("token")
         },
         success: function (data) {
-            console.log(data);
             var tbody = $("#top-ten-container"),
                 props = ["phone", "name", "avgPerMonth", "allTimeTurnover"];
             $.each(data, function (i, data) {

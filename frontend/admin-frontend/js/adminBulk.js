@@ -47,11 +47,8 @@ $("#generate-payment-button").on("click", function generateBulkPayment() {
     var allVals = [];
     $('#bulk-container input:checked').each(function () {
         var subscriberId = $(this).val();
-        console.log(subscriberId);
         var currency = $(this).closest("tr").find("option:selected").val();
-        console.log(currency);
         var invoiceInfo = {subscriberId: subscriberId, currency: currency};
-        console.log(invoiceInfo);
         allVals.push(invoiceInfo);
 
     });
