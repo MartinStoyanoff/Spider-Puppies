@@ -2,7 +2,7 @@ $(document).ready(function () {
     $("#top-ten-container").empty();
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/aclient/subscribers/getTenBest/9",
+        url: "http://localhost:8080/admin/home/topTenSubscribers",
         success: function (data) {
             console.log(data);
             var tbody = $("#top-ten-container"),
@@ -16,7 +16,7 @@ $(document).ready(function () {
                     }
 
                     else
-                    $('<td>').html(data[prop]).appendTo(tr);
+                        $('<td>').html(data[prop]).appendTo(tr);
                 });
                 tbody.append(tr);
             });
@@ -27,10 +27,10 @@ $(document).ready(function () {
 
         }
 
-    })
+    });
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/aclient/invoice/getLastTenPaid/9",
+        url: "http://localhost:8080/admin/home/lastTenInvoices",
         success: function (data) {
             var tbody = $("#bulk-container"),
                 props = ["id","subscriberPhone", "telecomServiceType", "telecomServiceSubscriptionPlan", "price", "currency"];

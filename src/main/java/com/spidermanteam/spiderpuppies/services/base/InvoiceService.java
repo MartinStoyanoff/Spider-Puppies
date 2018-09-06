@@ -26,5 +26,7 @@ public interface InvoiceService {
 
     List<Invoice> findLastTenPaymentsBySubscriberId (int id);
 
+    List<Invoice> findLastTenPayments ();
+
     BigDecimal getExchangeRateToBGN(String currency);
 }

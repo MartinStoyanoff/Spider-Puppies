@@ -130,6 +130,11 @@ public class ClientAccessServiceImpl implements ClientAccessService {
         return subscriberRepository.getTenBestSubscribersByTurnoverAndClientId(clientId);
     }
 
+    @Override
+    public List<Subscriber> getTenBestSubscribersByTurnover() {
+        return subscriberRepository.getTenBestSubscribersByTurnover();
+    }
+
 
     @Override
     public PaymentReport payInvoice(Invoice invoice, PaymentReport paymentReport) {
