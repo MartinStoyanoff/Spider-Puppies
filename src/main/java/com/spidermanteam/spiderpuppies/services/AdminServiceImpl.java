@@ -4,6 +4,7 @@ import com.spidermanteam.spiderpuppies.data.base.AdminRepository;
 import com.spidermanteam.spiderpuppies.models.Admin;
 import com.spidermanteam.spiderpuppies.services.base.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,10 +13,12 @@ import java.util.List;
 public class AdminServiceImpl implements AdminService {
 
     private AdminRepository adminRepository;
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    public AdminServiceImpl(AdminRepository adminRepository) {
+    public AdminServiceImpl(AdminRepository adminRepository, BCryptPasswordEncoder passwordEncoder) {
         this.adminRepository = adminRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -46,9 +49,9 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void changeAdminPassword(List<String> passwordUpdateInfo) {
         int adminId = Integer.parseInt(passwordUpdateInfo.get(0));
-        String oldPassword = passwordUpdateInfo.get(1);
-        String newPassword = passwordUpdateInfo.get(2);
-        System.out.println(newPassword);
+        String oldPassword = passwordEncoder.encode(passwordUpdateInfo.get(1));
+        String newPassword = passwordEncoder.encode(passwordUpdateInfo.get(2));
+
 
         Admin admin = adminRepository.findById(adminId);
 

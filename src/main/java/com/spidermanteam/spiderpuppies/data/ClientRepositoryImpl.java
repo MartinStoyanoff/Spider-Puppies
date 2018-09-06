@@ -7,6 +7,7 @@ import com.spidermanteam.spiderpuppies.models.Client;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -17,14 +18,17 @@ public class ClientRepositoryImpl implements GenericRepository<Client> {
 
     private SessionFactory sessionFactory;
 
-    @Autowired
-    public ClientRepositoryImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+    private BCryptPasswordEncoder passwordEncoder;
 
+    @Autowired
+    public ClientRepositoryImpl(SessionFactory sessionFactory, BCryptPasswordEncoder passwordEncoder) {
+        this.sessionFactory = sessionFactory;
+        this.passwordEncoder = passwordEncoder;
+    }
     @Override
     public void create(Client client) {
         User user = client.getUser();
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         Authorities authorities = new Authorities(user.getUsername(), "ROLE_CLIENT");
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();

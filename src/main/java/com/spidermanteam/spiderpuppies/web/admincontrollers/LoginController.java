@@ -42,8 +42,13 @@ public class LoginController {
         String token = loginService.authenticateClient(userDetails);
         Long userId = jwtTokenProvider.getUserIdFromJwt(token);
         User user = userService.findById(userId);
-        String role = userService.findUserRoleByUserId(userId);
-
+        int firstLogin = user.getEnabled();
+        String role = null;
+        if (firstLogin == 1) {
+            role = userService.findUserRoleByUserId(userId) + ":FirstLogin";
+        } else {
+            role = userService.findUserRoleByUserId(userId);
+        }
         return new UserResponse(userId, user.getUsername(), role, token);
     }
 

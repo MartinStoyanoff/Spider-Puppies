@@ -88,7 +88,7 @@ public class JwtSecurity extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/**/*.js")
                 .permitAll()
-                .antMatchers("/**")
+                .antMatchers("/login/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated();
