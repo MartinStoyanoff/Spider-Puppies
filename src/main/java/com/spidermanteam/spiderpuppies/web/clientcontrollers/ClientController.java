@@ -5,6 +5,7 @@ import com.spidermanteam.spiderpuppies.models.Subscriber;
 import com.spidermanteam.spiderpuppies.models.reporting.InvoiceView;
 import com.spidermanteam.spiderpuppies.models.reporting.PaymentReport;
 import com.spidermanteam.spiderpuppies.models.reporting.SubscriberShortView;
+import com.spidermanteam.spiderpuppies.models.reporting.SubscriberView;
 import com.spidermanteam.spiderpuppies.services.base.ClientAccessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -135,7 +136,13 @@ public class ClientController {
         return invoiceViewList;
     }
 
-
+    @GetMapping("/subscribers/findSubscriberFullInfoByPhone")
+    SubscriberView findSubscriberFullInfoByPhoneAndClientId(@RequestBody List<String> requestInfo){
+        int clientId = Integer.parseInt(requestInfo.get(0));
+        String subscribersPhone = requestInfo.get(1);
+        Subscriber subscriber = clientAccessService.getSubscriberByPhoneAndClientId(subscribersPhone,clientId);
+        return new SubscriberView(subscriber);
+    }
 }
 
 

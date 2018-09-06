@@ -104,4 +104,5 @@ public class ManageSubscribersController {
         subscribers.add(subscriber);
         return MappingHelper.mapSubscriberToPaymentLines(subscribers);
     }
+
 }
