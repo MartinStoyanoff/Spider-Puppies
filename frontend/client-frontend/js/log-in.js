@@ -14,12 +14,12 @@ $("#sign-in-button").on("click", function (e) {
         contentType: "application/json",
         data: JSON.stringify(userDetails),
         success: function (data) {
-            var adminId = data["id"];
+            var clientId = data["id"];
             var userName = data["userName"];
             var role = data["role"];
             var token = data["token"];
 
-            localStorage.setItem("adminId", adminId);
+            localStorage.setItem("clientId", clientId);
             localStorage.setItem("userName", userName);
             localStorage.setItem("role", role);
             localStorage.setItem("token", token);

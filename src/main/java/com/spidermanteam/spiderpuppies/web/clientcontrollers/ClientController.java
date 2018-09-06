@@ -7,6 +7,7 @@ import com.spidermanteam.spiderpuppies.models.reporting.PaymentReport;
 import com.spidermanteam.spiderpuppies.models.reporting.SubscriberShortView;
 import com.spidermanteam.spiderpuppies.services.base.ClientAccessService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -16,6 +17,7 @@ import java.util.HashSet;
 import java.util.List;
 
 @RestController
+@PreAuthorize("hasRole('ROLE_CLIENT')")
 @RequestMapping("/aclient")
 public class ClientController {
 
