@@ -8,9 +8,11 @@ import com.spidermanteam.spiderpuppies.models.reporting.SubscriberShortView;
 import com.spidermanteam.spiderpuppies.models.reporting.SubscriberView;
 import com.spidermanteam.spiderpuppies.services.base.ClientAccessService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,8 +45,8 @@ public class ClientController {
 
 
     @PutMapping("/invoice/payByIdList")
-    public List<PaymentReport> payInvoicesByIdList(@RequestBody List<Integer> idList) {
-        int clientId = 9;//HAVE TO CHECK HOW TO GET THE CLIENT ID
+    public List<PaymentReport> payInvoicesByIdList(@RequestBody List<Integer> idList, HttpServletRequest request) {
+        int clientId = Integer.parseInt(request.getHeader("id"));
         return clientAccessService.payInvoicesByIdListAndClientId(idList, clientId);
     }
 
@@ -125,9 +127,9 @@ public class ClientController {
 
 
     @GetMapping("/subscribers/findSubscriberFullInfoByPhone")
-    SubscriberView findSubscriberFullInfoByPhoneAndClientId(@RequestBody List<String> requestInfo){
-        int clientId = Integer.parseInt(requestInfo.get(0));
-        String subscribersPhone = requestInfo.get(1);
+    SubscriberView findSubscriberFullInfoByPhoneAndClientId(HttpServletRequest request){
+        int clientId = Integer.parseInt(request.getHeader("id"));
+        String subscribersPhone = request.getHeader("phone");
         Subscriber subscriber = clientAccessService.getSubscriberByPhoneAndClientId(subscribersPhone,clientId);
         return new SubscriberView(subscriber);
     }

@@ -1,8 +1,12 @@
 $(document).ready(function () {
     $("#bulk-container").empty();
+    var clientId = localStorage.getItem("clientId")
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/aclient/invoice/findAllPendingByClientId/9",
+        url: "http://localhost:8080/client/invoice/findAllPendingByClientId/"+clientId,
+        headers: {
+            "Authorization" : "Bearer "+ localStorage.getItem("token")
+        },
         success: function (data) {
             var tbody = $("#bulk-container"),
                 props = ["subscriberPhone", "telecomServiceType", "telecomServiceSubscriptionPlan", "price", "currency"];
@@ -38,10 +42,15 @@ $("#payment-button").on("click", function payInvoiceByIdList() {
     $('#bulk-container :checked').each(function () {
         allVals.push($(this).val());
     });
+    var clientId = localStorage.getItem("clientId");
     var payment = $.ajax({
         crossOrigin: true,
         type: 'PUT',
-        url: "http://localhost:8080/aclient/payInvoiceByIdList",
+        url: "http://localhost:8080/client/invoice/payByIdList",
+        headers: {
+            "id" : clientId,
+            "Authorization" : "Bearer "+ localStorage.getItem("token")
+        },
         contentType: "application/json",
         data: JSON.stringify(allVals),
         success: function (data) {
@@ -71,4 +80,4 @@ $("#payment-button").on("click", function payInvoiceByIdList() {
     })
 
 
-})
+});

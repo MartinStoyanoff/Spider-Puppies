@@ -24,7 +24,7 @@ $("#sign-in-button").on("click", function (e) {
             localStorage.setItem("role", role);
             localStorage.setItem("token", token);
 
-            window.location.href = "/Spider-Puppies/frontend/admin-frontend/clientHome.html";
+            window.location.href = "/Spider-Puppies/frontend/client-frontend/clientHome.html";
 
         }
         , error: function () {

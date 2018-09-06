@@ -3,6 +3,7 @@ package com.spidermanteam.spiderpuppies.models;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -53,6 +54,9 @@ public class Subscriber {
     private BigDecimal allTimeTurnover;
 
     public Subscriber() {
+
+        this.invoices = new ArrayList<>();
+        this.telecomServices = new ArrayList<>();
     }
 
 

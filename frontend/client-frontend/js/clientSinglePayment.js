@@ -20,9 +20,13 @@ function filterFunction() {
 }
 
 $(document).ready(function () {
+    var clientId = localStorage.getItem("clientId");
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/aclient/subscribers/getAllWithPendingInvoice/9",
+        url: "http://localhost:8080/client/subscribers/getAllWithPendingInvoice/"+clientId,
+        headers: {
+            "Authorization" : "Bearer "+ localStorage.getItem("token")
+        },
         success: function (data) {
             console.log(data);
             var tbody = $("#myDropdown");
@@ -47,7 +51,10 @@ $(document).ready(function () {
     
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/aclient/invoices/findDueInvoice/"+phone,
+        url: "http://localhost:8080/client/invoices/findDueInvoice/"+phone,
+        headers: {
+            "Authorization" : "Bearer "+ localStorage.getItem("token")
+        },
         success: function (data) {
             console.log(data);
             var tbody = $("#bulk-container"),
@@ -84,10 +91,15 @@ $("#payment-button").on("click", function payInvoiceByIdList() {
     $('#bulk-container :checked').each(function () {
         allVals.push($(this).val());
     });
+    var clientId = localStorage.getItem("clientId");
     var payment = $.ajax({
         crossOrigin: true,
         type: 'PUT',
-        url: "http://localhost:8080/aclient/payInvoiceByIdList",
+        url: "http://localhost:8080/client/invoice/payByIdList",
+        headers: {
+            "id" : clientId,
+            "Authorization" : "Bearer "+ localStorage.getItem("token")
+        },
         contentType: "application/json",
         data: JSON.stringify(allVals),
         success: function (data) {
@@ -117,4 +129,4 @@ $("#payment-button").on("click", function payInvoiceByIdList() {
     })
 
 
-})
+});

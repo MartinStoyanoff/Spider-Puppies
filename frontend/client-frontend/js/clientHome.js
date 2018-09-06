@@ -1,14 +1,13 @@
 $(document).ready(function () {
     $("#top-ten-container").empty();
     var clientId = localStorage.getItem("clientId")
-    var invoices = $.ajax({
+    var getTenBest = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/aclient/subscribers/getTenBest/"+clientId,
+        url: "http://localhost:8080/client/subscribers/getTenBest/"+clientId,
         headers: {
             "Authorization" : "Bearer "+ localStorage.getItem("token")
         },
         success: function (data) {
-            console.log(data);
             var tbody = $("#top-ten-container"),
                 props = ["phone", "name", "avgPerMonth", "allTimeTurnover"];
             $.each(data, function (i, data) {
@@ -32,9 +31,9 @@ $(document).ready(function () {
         }
 
     })
-    var invoices = $.ajax({
+    var lastTePaid = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/aclient/invoice/getLastTenPaid/"+clientId,
+        url: "http://localhost:8080/client/invoices/getLastTenPaid/"+clientId,
         headers: {
             "Authorization" : "Bearer "+ localStorage.getItem("token")
         },

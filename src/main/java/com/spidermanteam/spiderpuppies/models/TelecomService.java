@@ -3,6 +3,7 @@ package com.spidermanteam.spiderpuppies.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,6 +34,7 @@ public class TelecomService {
 
 
     public TelecomService() {
+        this.subscribers = new ArrayList<>();
     }
 
     public TelecomService(String type, String subscriptionPlan, BigDecimal price, List<Subscriber> subscribers) {
