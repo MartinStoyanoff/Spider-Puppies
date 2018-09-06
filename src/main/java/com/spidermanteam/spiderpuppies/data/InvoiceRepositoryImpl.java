@@ -209,6 +209,25 @@ public class InvoiceRepositoryImpl implements InvoiceRepository {
     }
 
     @Override
+    public List<Invoice> findLastTenPayments() {
+        List invoiceList = new ArrayList<>();
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+
+            invoiceList = session.createQuery("from Invoice as i " +
+                    "where i.status=:status " +
+                    "order by i.paymentDate desc")
+                    .setParameter("status", "1")
+                    .setMaxResults(10)
+                    .list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return invoiceList;
+    }
+
+    @Override
     public List<Invoice> findDueInvoicesByPhone(String phone) {
         {
             List<Invoice> invoiceList = new ArrayList<>();

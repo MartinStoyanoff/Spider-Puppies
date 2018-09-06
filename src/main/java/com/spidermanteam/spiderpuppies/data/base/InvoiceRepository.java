@@ -20,6 +20,8 @@ public interface InvoiceRepository extends GenericRepository<Invoice> {
 
     List<Invoice> findLastTenPaymentsByClientId(int clientId);
 
+    List<Invoice> findLastTenPayments();
+
     List<Invoice> findDueInvoicesByPhone(String phone);
 
 }

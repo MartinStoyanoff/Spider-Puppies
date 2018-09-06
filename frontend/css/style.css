@@ -201,3 +201,25 @@ tbody {
     color: white;
     border: 1px solid red;
 }
+
+.left-home-content {
+    width: 49%;
+}
+.right-home-content {
+    width: 49%;
+}
+
+.left-table-container {
+    width: 100%;
+}
+.right-table-container {
+    width: 100%;
+}
+.thead-dark{
+    font-size:16px;
+    text-align: center;
+}
+
+.thead-dark th{
+    text-align: center;
+}

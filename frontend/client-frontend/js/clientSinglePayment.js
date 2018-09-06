@@ -42,7 +42,7 @@ $(document).ready(function () {
 
  $('#myDropdown').on('click', 'a', function() {
     var phone = $(this).text();
-    $("#myDropdown").toggle();
+     myFunction();
     $("#bulk-container").empty();
     
     var invoices = $.ajax({
@@ -54,7 +54,7 @@ $(document).ready(function () {
                 props = ["subscriberPhone", "telecomServiceType", "telecomServiceSubscriptionPlan", "price", "currency"];
             $.each(data, function (i, data) {
                 var tr = $('<tr>');
-                $('<input' + " value=" + data["id"] + ' type="checkbox" class="form-check-input" checked="checked">').appendTo(tr);
+                $('<td><input' + " value=" + data["id"] + ' type="checkbox" class="form-check-input" checked="checked">').appendTo(tr);
                 $.each(props, function (i, prop) {
                     $('<td>').html(data[prop]).appendTo(tr);
                 });
@@ -97,16 +97,8 @@ $("#payment-button").on("click", function payInvoiceByIdList() {
                 type: 'GET',
                 url: "http://localhost:8080/aclient/invoice/findAllPendingByClientId/9",
                 success: function (data) {
-                    var tbody = $("#bulk-container"),
-                        props = ["subscriberPhone", "telecomServiceType", "telecomServiceSubscriptionPlan", "price", "currency"];
-                    $.each(data, function (i, data) {
-                        var tr = $('<tr>');
-                        $('<input' + " value=" + data["id"] + ' type="checkbox" checked="checked">').appendTo(tr);
-                        $.each(props, function (i, prop) {
-                            $('<td>').html(data[prop]).appendTo(tr);
-                        });
-                        tbody.append(tr);
-                    });
+                        $('#bulk-container').empty();
+                        console.log("Invoices Paid Successfully");
 
                 },
                 error: function () {

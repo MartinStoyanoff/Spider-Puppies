@@ -35,6 +35,8 @@ public interface ClientAccessService {
 
     List<Subscriber> getTenBestSubscribersByTurnoverAndClientId(int clientId);
 
+    List<Subscriber> getTenBestSubscribersByTurnover();
+
     PaymentReport payInvoice(Invoice invoice, PaymentReport paymentReport);
 
     boolean currencyCheck(Invoice invoice);

@@ -18,6 +18,8 @@ public interface SubscriberRepository extends GenericRepository<Subscriber> {
 
     List<Subscriber> getTenBestSubscribersByTurnoverAndClientId(int clientId);
 
+    List<Subscriber> getTenBestSubscribersByTurnover();
+
     List<Subscriber> getAllSubscribersWithPendingInvoiceByClientId(int clientId);
 
     Subscriber getSubscriberByPhone(String phone);

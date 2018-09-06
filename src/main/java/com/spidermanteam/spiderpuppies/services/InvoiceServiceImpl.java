@@ -98,6 +98,11 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
+    public List<Invoice> findLastTenPayments() {
+        return invoiceRepository.findLastTenPayments();
+    }
+
+    @Override
     public BigDecimal getExchangeRateToBGN(String currency) {
         BigDecimal exchangeRate;
         switch (currency.toLowerCase()) {
