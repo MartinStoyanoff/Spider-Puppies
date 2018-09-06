@@ -75,10 +75,12 @@ public class AdminRepositoryImpl implements AdminRepository {
     @Override
     public void update(Admin admin) {
         User oldUser = null;
+        Admin oldAdmin = null;
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             Admin admin1 = session.get(Admin.class, admin.getId());
             oldUser = admin1.getUser();
+            oldAdmin=admin1;
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -86,6 +88,7 @@ public class AdminRepositoryImpl implements AdminRepository {
 
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
+            admin.setFirstLogin(oldAdmin.getFirstLogin());
             User user = admin.getUser();
             Authorities oldAuthority = new Authorities(oldUser.getUsername(), "ROLE_ADMIN");
             Authorities newAuthority = new Authorities(admin.getUser().getUsername(), "ROLE_ADMIN");

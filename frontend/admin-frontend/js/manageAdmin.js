@@ -122,9 +122,8 @@ $("#bulk-container").on("click", "#update-button", function () {
     var username = inputText[0];
     var email = inputText[1];
     var enabled = 1;
-    var firstLogin = 1;
     var user = {username: username, password: "null", enabled: enabled}
-    var admin = {id: id, user: user, eMail: email, firstLogin: firstLogin}
+    var admin = {id: id, user: user, eMail: email, firstLogin: null}
 
     var updateAdmin = $.ajax({
         type: 'PUT',
@@ -135,6 +134,7 @@ $("#bulk-container").on("click", "#update-button", function () {
         contentType: "application/json",
         data: JSON.stringify(admin),
         success: function () {
+            inputText = [];
             adminLoad();
 
         },
