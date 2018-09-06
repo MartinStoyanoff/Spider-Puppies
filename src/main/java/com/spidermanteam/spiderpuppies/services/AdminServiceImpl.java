@@ -61,7 +61,6 @@ public class AdminServiceImpl implements AdminService {
             admin.getUser().setPassword(newPassword);
             admin.setFirstLogin(0);
             adminRepository.updateAdminPassword(admin);
-            System.out.println(admin.getUser().getPassword());
         }
 
     }
