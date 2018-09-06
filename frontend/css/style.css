@@ -190,3 +190,14 @@ tbody {
 .daterangepicker .calendar td {
     font-size: 12px;
 }
+
+.btn-border-red{
+    border: 1px solid red;
+    color:red;
+}
+
+.btn-border-red:hover{
+    background:red;
+    color: white;
+    border: 1px solid red;
+}

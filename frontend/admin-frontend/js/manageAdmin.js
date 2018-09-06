@@ -52,8 +52,8 @@ function adminLoad() {
                 $('<td>').html(eMail).appendTo(tr);
 
 
-                var editButton = "<button id='edit-button' value=" + userId + "> Edit </button>";
-                var deleteButton = "<button id='delete-button' value=" + userId + "> Delete </button>";
+                var editButton = "<button class='btn btn-outline-success btn-border-green' id='edit-button' value=" + userId + "> Edit </button>";
+                var deleteButton = "<button class='btn btn-outline-success btn-border-red'id='delete-button' value=" + userId + "> Delete </button>";
                 $('<td>').html(editButton + deleteButton).appendTo(tr);
 
                 tbody.append(tr);

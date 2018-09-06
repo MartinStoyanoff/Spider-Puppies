@@ -14,7 +14,7 @@ $("#proceed").on("click", function () {
                 props = ["subscriberPhone", "serviceType", "subscriptionPlan", "price"];
             $.each(data, function (i, data) {
                 var tr = $('<tr>');
-                $('<input' + " value=" + data["subscriberId"] + ' type="checkbox" class="form-check-input" checked="checked">').appendTo(tr);
+                $('<td><input' + " value=" + data["subscriberId"] + ' type="checkbox" class="form-check-input" checked="checked">').appendTo(tr);
                 $.each(props, function (i, prop) {
                     $('<td>').html(data[prop]).appendTo(tr);
                 });
@@ -44,7 +44,9 @@ $("#generate-payment-button").on("click", function generateBulkPayment() {
     var allVals = [];
     $('#bulk-container input:checked').each(function () {
         var subscriberId = $(this).val();
-        var currency = $(this.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild).val();
+        console.log(subscriberId);
+        var currency = $(this).closest("tr").find("option:selected").val();
+        console.log(currency);
         var invoiceInfo = {subscriberId: subscriberId, currency: currency};
         console.log(invoiceInfo);
         allVals.push(invoiceInfo);

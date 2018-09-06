@@ -9,27 +9,29 @@ function adminLoad() {
     $("#bulk-container").empty();
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/admin/manage/admins/findById/14",
+        url: "http://localhost:8080/admin/manage/admins/findById/28",
         success: function (admin) {
             var tbody = $("#bulk-container")
             var userId = admin["id"];
-            var username = admin["user"]["username"];
-            var eMail = admin["eMail"];
+            // var username = admin["user"]["username"];
+            var username = "Martin";
+            // var eMail = admin["eMail"];
+            var eMail = "ivanov";
             var tr = $('<tr>');
 
             $('<td>').html(username).appendTo(tr);
             $('<td>').html(eMail).appendTo(tr);
 
-            var editButton = "<button id='edit-button' value=" + userId + "> Edit </button>";
+            var editButton = "<button class='btn btn-outline-success btn-border-green' id='edit-button' value=" + userId + "> Edit </button>";
             $('<td>').html(editButton).appendTo(tr);
 
             tbody.append(tr);
 
             var trPassword = $('<tr>');
 
-            var oldPassword = '<input id="old-password" type="password" placeholder="Old password">';
-            var newPassword = '<input id="new-password" type="password" placeholder="New password">'
-            var resetButton = "<button id='change-password-button' value=" + userId + "> Change password</button>";
+            var oldPassword = '<input class="form-control" id="old-password" type="password" placeholder="Old password">';
+            var newPassword = '<input class="form-control" id="new-password" type="password" placeholder="New password">'
+            var resetButton = "<button class='btn btn-outline-success btn-border-red' id='change-password-button' value=" + userId + "> Change password</button>";
 
             $('<td>').html(oldPassword).appendTo(trPassword);
             $('<td>').html(newPassword).appendTo(trPassword);
