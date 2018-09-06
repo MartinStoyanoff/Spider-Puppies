@@ -108,7 +108,6 @@ public class ClientRepositoryImpl implements GenericRepository<Client> {
             session.delete(client);
             session.delete(authority);
             session.delete(user);
-            session.delete(client);
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
