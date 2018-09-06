@@ -141,6 +141,7 @@ $("#bulk-container").on("click", "#update-button", function () {
         contentType: "application/json",
         data: JSON.stringify(client),
         success: function () {
+            inputText = [];
             clientLoad();
 
         },

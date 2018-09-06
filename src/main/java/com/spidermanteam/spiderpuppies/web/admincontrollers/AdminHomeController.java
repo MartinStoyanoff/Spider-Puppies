@@ -7,6 +7,7 @@ import com.spidermanteam.spiderpuppies.models.reporting.SubscriberShortView;
 import com.spidermanteam.spiderpuppies.services.base.ClientAccessService;
 import com.spidermanteam.spiderpuppies.services.base.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 @RequestMapping("/admin")
 public class AdminHomeController {
 

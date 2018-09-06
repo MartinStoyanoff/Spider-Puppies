@@ -17,10 +17,8 @@ function adminLoad() {
         success: function (admin) {
             var tbody = $("#bulk-container")
             var userId = admin["id"];
-            // var username = admin["user"]["username"];
-            var username = "Martin";
-            // var eMail = admin["eMail"];
-            var eMail = "ivanov";
+            var username = admin["user"]["username"];
+            var eMail = admin["eMail"];
             var tr = $('<tr>');
 
             $('<td>').html(username).appendTo(tr);
@@ -93,6 +91,7 @@ $("#bulk-container").on("click", "#update-button", function () {
         contentType: "application/json",
         data: JSON.stringify(admin),
         success: function () {
+            inputText = [];
             adminLoad();
 
         },
@@ -106,7 +105,6 @@ $("#bulk-container").on("click","#change-password-button", function () {
    var oldPassword = $("#old-password").val();
    var newPassword = $("#new-password").val();
    var passwordUpdateInfo = [adminId,oldPassword,newPassword];
-    console.log(passwordUpdateInfo);
 
     var updateAdmin = $.ajax({
         type: 'PUT',
@@ -117,7 +115,7 @@ $("#bulk-container").on("click","#change-password-button", function () {
         contentType: "application/json",
         data: JSON.stringify(passwordUpdateInfo),
         success: function () {
-            console.log("Successful request");
+            window.location.href = "/Spider-Puppies/frontend/admin-frontend/log-in.html";
 
         },
         error: function () {
