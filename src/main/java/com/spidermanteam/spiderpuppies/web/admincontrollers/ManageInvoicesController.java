@@ -32,8 +32,6 @@ public class ManageInvoicesController {
         this.subscribersService = subscribersService;
     }
 
-    //TODO: implement custom serializer or additional models
-
     @PostMapping("/add")
     void addInvoice(@RequestBody HashMap<String, String> input) {
         String subscriberId = input.get("id");
@@ -52,12 +50,9 @@ public class ManageInvoicesController {
     List listAllInvoice() {
         List<Invoice> invoiceList = invoiceService.listAllInvoices();
         List<InvoiceView> invoiceViewList = new ArrayList<>();
-        for (Invoice invoice : invoiceList
-        ) {
-
+        for (Invoice invoice : invoiceList) {
             InvoiceView invoiceView = new InvoiceView(invoice);
             invoiceViewList.add(invoiceView);
-
         }
         return invoiceViewList;
     }
@@ -80,12 +75,8 @@ public class ManageInvoicesController {
 
         HashMap<String,String> hashMap = new HashMap<>();
 
-
-
-        for (InvoiceRequestModel inv: subscribersIdList
-             ) {
+        for (InvoiceRequestModel inv: subscribersIdList) {
             hashMap.put(inv.getSubscriberId(),inv.getCurrency());
-
         }
         invoiceService.generateBulkPayment(hashMap);
     }
@@ -101,5 +92,4 @@ public class ManageInvoicesController {
         }
         return invoiceViews;
     }
-
 }

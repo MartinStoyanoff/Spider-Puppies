@@ -38,13 +38,11 @@ public class ManageAdminsController {
     @PutMapping("/update")
     void updateAdmin(@RequestBody Admin admin){
         adminService.updateAdmin(admin);
-        //TODO:Update password to be solved - through cascade or update in both tables
     }
 
     @DeleteMapping("/delete/{id}")
     void deleteAdmin(@PathVariable int id){
         adminService.deleteAdmin(id);
-        //TODO:Delete user to be solved - through cascade or update in both tables
 
     }
     @PutMapping("/changePassword")

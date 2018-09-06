@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping ("/login")
 public class LoginController {
 
     private LoginService loginService;
@@ -33,7 +33,7 @@ public class LoginController {
         this.clientService = clientService;
     }
 
-    @PostMapping(value = "/login/admin")
+    @PostMapping(value = "/admin")
     public UserResponse adminLogin(@RequestBody List<String> userDetails) throws Exception {
         Admin admin = adminService.findAdminByUserUsername(userDetails.get(0));
         String token = loginService.authenticateClient(userDetails);
@@ -50,7 +50,7 @@ public class LoginController {
 
     }
 
-    @PostMapping(value = "/login/client")
+    @PostMapping(value = "/client")
     public UserResponse clientLogin(@RequestBody List<String> userDetails) throws Exception {
         Client client = clientService.findClientByUserUsername(userDetails.get(0));
         String token = loginService.authenticateClient(userDetails);

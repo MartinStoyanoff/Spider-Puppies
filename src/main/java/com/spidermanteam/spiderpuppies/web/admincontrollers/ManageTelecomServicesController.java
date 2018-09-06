@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @PreAuthorize("hasRole('ROLE_ADMIN')")
+@RequestMapping("/admin/manage/telecomServices")
 public class ManageTelecomServicesController {
 
     private TelecomServiceService telecomServiceService;
@@ -19,28 +20,28 @@ public class ManageTelecomServicesController {
         this.telecomServiceService = telecomServiceService;
     }
 
-    @PostMapping("/admin/addTelecomService")
+    @PostMapping("/add")
     void addTelecomService(@RequestBody TelecomService telecomService) {
         telecomServiceService.addTelecomService(telecomService);
     }
 
-    @GetMapping("/admin/findTelecomService/{id}")
+    @GetMapping("/findById/{id}")
     TelecomService findTelecomServiceById(@PathVariable("id") String id) {
         int telecomServiceId = Integer.parseInt(id);
         return telecomServiceService.findTelecomServiceById(telecomServiceId);
     }
 
-    @GetMapping("/admin/listAllTelecomServices")
+    @GetMapping("/listAll")
     List listAllTelecomServices() {
         return telecomServiceService.listAllTelecomServices();
     }
 
-    @PutMapping("/admin/updateTelecomService")
+    @PutMapping("/update")
     void updateTelecomService(@RequestBody TelecomService telecomService) {
         telecomServiceService.updateTelecomService(telecomService);
     }
 
-    @DeleteMapping("/admin/deleteTelecomService/{id}")
+    @DeleteMapping("/delete/{id}")
     void deleteTelecomService(@PathVariable("id") String id) {
         int telecomServiceId = Integer.parseInt(id);
         telecomServiceService.deleteTelecomService(telecomServiceId);
