@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +25,11 @@ public class AdminService_tests {
     AdminRepository adminRepository;
 
     private AdminServiceImpl adminService;
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Before
     public void beforeTest() {
-        adminService = new AdminServiceImpl(adminRepository);
+        adminService = new AdminServiceImpl(adminRepository, passwordEncoder);
     }
 
     @Test
