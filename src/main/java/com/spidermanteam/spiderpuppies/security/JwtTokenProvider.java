@@ -2,6 +2,7 @@ package com.spidermanteam.spiderpuppies.security;
 
 import com.spidermanteam.spiderpuppies.security.models.JwtUserDetails;
 import io.jsonwebtoken.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
@@ -10,9 +11,11 @@ import java.util.Date;
 @Component
 public class JwtTokenProvider {
 
-  private static String jwtSecret = "BrightSuperSecret";
+  @Value("${jwt.secret}")
+  private String secret;
 
-  private static String jwtExpirationInMs = "9000000";
+  @Value("${jwt.expiration}")
+  private String jwtExpirationInMs;
 
   public String generateToken(Authentication authentication) {
     JwtUserDetails userDetails = (JwtUserDetails) authentication.getPrincipal();
@@ -25,23 +28,14 @@ public class JwtTokenProvider {
         .setSubject(Long.toString(userDetails.getId()))
         .setIssuedAt(dateNow)
         .setExpiration(expireDate)
-        .signWith(SignatureAlgorithm.HS512, jwtSecret)
+        .signWith(SignatureAlgorithm.HS512, secret)
         .compact();
-  }
-
-  public Long getUserIdFromJwt(String token) {
-    Claims claims = Jwts.parser()
-        .setSigningKey(jwtSecret)
-        .parseClaimsJws(token)
-        .getBody();
-
-    return Long.parseLong(claims.getSubject());
   }
 
   boolean validateToken(String token) {
     try {
       Jwts.parser()
-          .setSigningKey(jwtSecret)
+          .setSigningKey(secret)
           .parseClaimsJws(token);
       return true;
     } catch (SignatureException | IllegalArgumentException | UnsupportedJwtException | ExpiredJwtException | MalformedJwtException ex) {

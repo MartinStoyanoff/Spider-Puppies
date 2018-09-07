@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @PreAuthorize("hasRole('ROLE_ADMIN')")
-@RequestMapping("/admin/manage/clients")
+@RequestMapping("api/clients")
 public class ManageClientsController {
 
   private ClientService clientService;

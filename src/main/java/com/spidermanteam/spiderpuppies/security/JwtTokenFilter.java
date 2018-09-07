@@ -18,10 +18,17 @@ import java.io.IOException;
 public class JwtTokenFilter extends OncePerRequestFilter {
 
   private static final String header = "Authorization";
-  @Autowired
-  MyJWTUserDetailsService userService;
-  @Autowired
+
+  private MyJWTUserDetailsService userService;
+  private JwtParser jwtParser;
   private JwtTokenProvider jwtTokenProvider;
+
+  @Autowired
+  public JwtTokenFilter(MyJWTUserDetailsService userService, JwtParser jwtParser, JwtTokenProvider jwtTokenProvider) {
+    this.userService = userService;
+    this.jwtParser = jwtParser;
+    this.jwtTokenProvider = jwtTokenProvider;
+  }
 
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -30,7 +37,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
       String token = getTokenString(request);
 
       if (StringUtils.hasText(token) && jwtTokenProvider.validateToken(token)) {
-        Long userId = jwtTokenProvider.getUserIdFromJwt(token);
+        Long userId = jwtParser.getUserIdFromToken(token);
 
         UserDetails userDetails = userService.loadUserById(userId);
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());

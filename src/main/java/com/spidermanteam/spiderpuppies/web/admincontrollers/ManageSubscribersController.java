@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @PreAuthorize("hasRole('ROLE_ADMIN')")
-@RequestMapping("/admin/manage/subscribers")
+@RequestMapping("/api/subscribers")
 public class ManageSubscribersController {
 
   private SubscribersService subscribersService;
@@ -71,17 +71,17 @@ public class ManageSubscribersController {
     return MappingHelper.mapSubscriberToPaymentLines(subscribers);
   }
 
-  @GetMapping("/getMaxAmount/{id}")
+  @GetMapping("/getMaxAmountById/{id}")
   public BigDecimal getHighestPaidSumBySubscriber(@PathVariable int id) {
     return subscribersService.getHighestPaidSumBySubscriber(id);
   }
 
-  @GetMapping("/getAvgAmount/{id}")
+  @GetMapping("/getAvgAmountById/{id}")
   public BigDecimal getAveragePaidSumBySubscriber(@PathVariable int id) {
     return subscribersService.getAveragePaidSumBySubscriber(id);
   }
 
-  @PostMapping("/getAllSubscribersInBillingPeriod")
+  @PostMapping("/listAllInBillingPeriod")
   public List<String> getAllSubscribersInBillingPeriod(@RequestBody List<String> dates) {
     List<String> subscribersList = new ArrayList();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
@@ -96,7 +96,7 @@ public class ManageSubscribersController {
     return subscribersList;
   }
 
-  @GetMapping("/getSubscriberDuePaymentsByPhone/{phone}")
+  @GetMapping("/listDuePaymentsByPhone/{phone}")
   List<PaymentLine> getSubscriberDuePaymentsByPhone(@PathVariable String phone) {
     Subscriber subscriber = subscribersService.getSubscriberByPhone(phone);
     List<Subscriber> subscribers = new ArrayList<>();

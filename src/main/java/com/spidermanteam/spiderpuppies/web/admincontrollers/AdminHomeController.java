@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @PreAuthorize("hasRole('ROLE_ADMIN')")
-@RequestMapping("/admin/home")
+@RequestMapping("/api")
 public class AdminHomeController {
 
   private InvoiceService invoiceService;
@@ -52,4 +52,5 @@ public class AdminHomeController {
     }
     return bestTenSubscribersList;
   }
+
 }

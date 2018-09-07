@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @PreAuthorize("hasRole('ROLE_ADMIN')")
-@RequestMapping("/admin/manage/invoices")
+@RequestMapping("/api/invoices")
 public class ManageInvoicesController {
 
   private InvoiceService invoiceService;

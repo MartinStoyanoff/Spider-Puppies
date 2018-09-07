@@ -22,15 +22,13 @@ import java.util.List;
 public class LoginController {
 
   private LoginService loginService;
-  private JwtTokenProvider jwtTokenProvider;
   private UserService userService;
   private AdminService adminService;
   private ClientService clientService;
 
   @Autowired
-  public LoginController(LoginService loginService, JwtTokenProvider jwtTokenProvider, UserService userService, AdminService adminService, ClientService clientService) {
+  public LoginController(LoginService loginService, UserService userService, AdminService adminService, ClientService clientService) {
     this.loginService = loginService;
-    this.jwtTokenProvider = jwtTokenProvider;
     this.userService = userService;
     this.adminService = adminService;
     this.clientService = clientService;
@@ -40,7 +38,7 @@ public class LoginController {
   public UserResponse adminLogin(@RequestBody List<String> userDetails) throws Exception {
     Admin admin = adminService.findAdminByUserUsername(userDetails.get(0));
     String token = loginService.authenticateClient(userDetails);
-    Long userId = jwtTokenProvider.getUserIdFromJwt(token);
+    Long userId = admin.getUser().getId();
     User user = userService.findById(userId);
     int firstLogin = admin.getFirstLogin();
     String role = null;
@@ -57,7 +55,7 @@ public class LoginController {
   public UserResponse clientLogin(@RequestBody List<String> userDetails) throws Exception {
     Client client = clientService.findClientByUserUsername(userDetails.get(0));
     String token = loginService.authenticateClient(userDetails);
-    Long userId = jwtTokenProvider.getUserIdFromJwt(token);
+    Long userId = client.getUser().getId();
     User user = userService.findById(userId);
     int firstLogin = user.getEnabled();
     String role = role = userService.findUserRoleByUserId(userId);
