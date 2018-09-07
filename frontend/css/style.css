@@ -223,3 +223,7 @@ tbody {
 .thead-dark th{
     text-align: center;
 }
+
+.table-container-services{
+    width: 99%;
+}
