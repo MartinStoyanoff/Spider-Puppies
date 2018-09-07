@@ -55,4 +55,9 @@ $(document).ready(function () {
         }
 
     })
-})
+});
+
+$("#logout-button").on("click", function () {
+    localStorage.clear();
+    window.location.href = "../client-frontend/client-log-in.html";
+});
