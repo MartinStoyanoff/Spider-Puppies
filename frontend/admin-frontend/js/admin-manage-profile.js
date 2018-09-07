@@ -6,16 +6,16 @@ $(document).ready(function () {
 });
 
 function adminLoad() {
-    var adminId = localStorage.getItem("adminId")
+    var adminId = localStorage.getItem("adminId");
     $("#bulk-container").empty();
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/admin/manage/admins/findById/" + adminId,
+        url: "http://localhost:8080/api/admins/findById/" + adminId,
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
         success: function (admin) {
-            var tbody = $("#bulk-container")
+            var tbody = $("#bulk-container");
             var userId = admin["id"];
             var username = admin["user"]["username"];
             var eMail = admin["eMail"];
@@ -49,7 +49,7 @@ function adminLoad() {
 $("#bulk-container").on("click", "#edit-button", function () {
     var id = this.getAttribute("value");
     $(this).text("Update");
-    this.setAttribute("id", "update-button")
+    this.setAttribute("id", "update-button");
     $(this).parents("tr").find("td:not(:last-child)").each(function () {
         var text = $(this).text();
 
@@ -73,7 +73,7 @@ $("#bulk-container").on("click", "#update-button", function () {
         inputText.push(updatedUsername);
         inputText.push(updateEmail);
 
-    })
+    });
     var id = this.getAttribute("value");
     var username = inputText[0];
     var email = inputText[1];
@@ -84,7 +84,7 @@ $("#bulk-container").on("click", "#update-button", function () {
 
     var updateAdmin = $.ajax({
         type: 'PUT',
-        url: "http://localhost:8080/admin/manage/admins/update",
+        url: "http://localhost:8080/api/admins/update",
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
@@ -108,7 +108,7 @@ $("#bulk-container").on("click", "#change-password-button", function () {
 
     var updateAdmin = $.ajax({
         type: 'PUT',
-        url: "http://localhost:8080/admin/manage/admins/changePassword",
+        url: "http://localhost:8080/api/admins/changePassword",
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },

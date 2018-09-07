@@ -1,8 +1,8 @@
 $(document).ready(function () {
     $("#top-ten-container").empty();
-    var invoices = $.ajax({
+    var topTenSubscribers = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/admin/home/topTenSubscribers",
+        url: "http://localhost:8080/api/topTenSubscribers",
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
@@ -30,9 +30,9 @@ $(document).ready(function () {
         }
 
     });
-    var invoices = $.ajax({
+    var lastTenInvoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/admin/home/lastTenInvoices",
+        url: "http://localhost:8080/api/lastTenInvoices",
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
@@ -43,7 +43,7 @@ $(document).ready(function () {
                 var tr = $('<tr>');
                 $.each(props, function (i, prop) {
                     if (prop === "price") {
-                        var num = data[prop].toFixed(2)
+                        var num = data[prop].toFixed(2);
                         $('<td>').html(num).appendTo(tr);
                     }
                     else
@@ -59,4 +59,4 @@ $(document).ready(function () {
         }
 
     })
-})
+});

@@ -34,7 +34,7 @@ $('#myDropdown').on('click', 'a', function () {
 
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/admin/manage/subscribers/getSubscriberDuePaymentsByPhone/" + phone,
+        url: "http://localhost:8080/api/subscribers/getSubscriberDuePaymentsByPhone/" + phone,
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
@@ -70,7 +70,7 @@ $("#proceed").on("click", function () {
     $("#bulk-container").empty();
     var invoices = $.ajax({
         type: 'POST',
-        url: "http://localhost:8080/admin/manage/subscribers/getAllSubscribersInBillingPeriod",
+        url: "http://localhost:8080/api/subscribers/getAllSubscribersInBillingPeriod",
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
@@ -81,7 +81,6 @@ $("#proceed").on("click", function () {
             for (var num in data) {
                 tbody.append('<a href="#" class="phones">' + data[num] + '</a>');
             }
-            ;
 
         },
         error: function () {
@@ -105,7 +104,7 @@ $("#generate-payment-button").on("click", function () {
     var payment = $.ajax({
         crossOrigin: true,
         type: 'POST',
-        url: "http://localhost:8080/admin/manage/invoices/bulkgenerate",
+        url: "http://localhost:8080/api/invoices/bulkgenerate",
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
@@ -128,4 +127,4 @@ $("#generate-payment-button").on("click", function () {
     })
 
 
-})
+});

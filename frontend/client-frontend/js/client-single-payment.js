@@ -23,7 +23,7 @@ $(document).ready(function () {
     var clientId = localStorage.getItem("clientId");
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/subscribers/getAllWithPendingInvoice/" + clientId,
+        url: "http://localhost:8080/api/subscribers/getAllWithPendingInvoice/" + clientId,
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
@@ -54,7 +54,7 @@ $('#myDropdown').on('click', 'a', function () {
 
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/invoices/findDueInvoice/" + phone,
+        url: "http://localhost:8080/api/invoices/findDueInvoice/" + phone,
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
@@ -75,11 +75,9 @@ $('#myDropdown').on('click', 'a', function () {
             console.log(phone);
             var personalDetails = $.ajax({
                 type: 'GET',
-                url: "http://localhost:8080/subscribers/findSubscriberFullInfoByPhone",
+                url: "http://localhost:8080/api/subscribers/findSubscriberFullInfoByPhone/"+clientId+"/"+phone,
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem("token"),
-                    "id": clientId,
-                    "phone": phone
                 },
                 success: function (data) {
                     $('#subscriber-info-container').removeAttr("style");
@@ -181,9 +179,8 @@ $("#payment-button").on("click", function payInvoiceByIdList() {
     var payment = $.ajax({
         crossOrigin: true,
         type: 'PUT',
-        url: "http://localhost:8080/invoice/payByIdList",
+        url: "http://localhost:8080/api/invoice/payByIdList"+clientId,
         headers: {
-            "id": clientId,
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
         contentType: "application/json",
@@ -193,7 +190,7 @@ $("#payment-button").on("click", function payInvoiceByIdList() {
             $("#bulk-container").empty();
             var invoices = $.ajax({
                 type: 'GET',
-                url: "http://localhost:8080/invoice/findAllPendingByClientId/"+clientId,
+                url: "http://localhost:8080/api/invoice/findAllPendingByClientId/"+clientId,
                 success: function (data) {
                     $('#bulk-container').empty();
                     console.log("Invoices Paid Successfully");

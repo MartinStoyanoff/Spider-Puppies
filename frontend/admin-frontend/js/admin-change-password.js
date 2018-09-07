@@ -11,7 +11,7 @@ $("#change-password-button").on("click", function (e) {
     var adminLogin = $.ajax({
         crossOrigin: true,
         type: 'PUT',
-        url: "http://localhost:8080/admin/manage/admins/changePassword",
+        url: "http://localhost:8080/api/admins/changePassword",
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },

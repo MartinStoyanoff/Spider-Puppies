@@ -10,7 +10,7 @@ $("#sign-in-button").on("click", function (e) {
     var adminLogin = $.ajax({
         crossOrigin: true,
         type: 'POST',
-        url: "http://localhost:8080/login/admin",
+        url: "http://localhost:8080/api/login/admin",
         contentType: "application/json",
         data: JSON.stringify(userDetails),
         success: function (data) {

@@ -132,11 +132,9 @@ public class ClientController {
     return subscriberPhoneNumbers;
   }
 
-  @GetMapping("/subscribers/findSubscriberFullInfoByPhone")
-  SubscriberView findSubscriberFullInfoByPhoneAndClientId(HttpServletRequest request) {
-    int clientId = jwtParser.getClientIdByUsernameFromToken(request);
-    String subscribersPhone = request.getHeader("phone");
-    Subscriber subscriber = clientAccessService.getSubscriberByPhoneAndClientId(subscribersPhone, clientId);
+  @GetMapping("/subscribers/findSubscriberFullInfoByPhone//{id}/{phone}")
+  SubscriberView findSubscriberFullInfoByPhoneAndClientId(@RequestParam int subscriberId, @RequestParam String subscriberPhone) {
+    Subscriber subscriber = clientAccessService.getSubscriberByPhoneAndClientId(subscriberPhone,subscriberId);
     return new SubscriberView(subscriber);
   }
 }

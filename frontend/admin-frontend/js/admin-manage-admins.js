@@ -20,7 +20,7 @@ $("#add-admin").on("click", function () {
     var addAdmin = $.ajax({
         crossOrigin: true,
         type: 'POST',
-        url: "http://localhost:8080/admin/manage/admins/add",
+        url: "http://localhost:8080/api/admins/add",
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
@@ -41,7 +41,7 @@ function adminLoad() {
     $("#bulk-container").empty();
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/admin/manage/admins/listAll",
+        url: "http://localhost:8080/api/admins/listAll",
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
@@ -75,7 +75,7 @@ $("#bulk-container").on("click", "#delete-button", function () {
     var id = this.getAttribute("value")
     var deleteUser = $.ajax({
         type: 'DELETE',
-        url: "http://localhost:8080/admin/manage/admins/delete/" + id,
+        url: "http://localhost:8080/api/admins/delete/" + id,
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
@@ -127,7 +127,7 @@ $("#bulk-container").on("click", "#update-button", function () {
 
     var updateAdmin = $.ajax({
         type: 'PUT',
-        url: "http://localhost:8080/admin/manage/admins/update",
+        url: "http://localhost:8080/api/admins/update",
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },

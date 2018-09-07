@@ -2,7 +2,7 @@ var inputText = [];
 
 $("#create-client").on("click", function () {
     $("#add-client-form").toggle();
-})
+});
 $(document).ready(function () {
     clientLoad();
 
@@ -20,7 +20,7 @@ $("#add-client").on("click", function () {
     var addClient = $.ajax({
         crossOrigin: true,
         type: 'POST',
-        url: "http://localhost:8080/admin/manage/clients/add",
+        url: "http://localhost:8080/api/clients/add",
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
@@ -42,7 +42,7 @@ function clientLoad() {
     $("#bulk-container").empty();
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/admin/manage/clients/listAll",
+        url: "http://localhost:8080/api/clients/listAll",
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
@@ -75,10 +75,10 @@ function clientLoad() {
 }
 
 $("#bulk-container").on("click", "#delete-button", function () {
-    var id = this.getAttribute("value")
+    var id = this.getAttribute("value");
     var deleteUser = $.ajax({
         type: 'DELETE',
-        url: "http://localhost:8080/admin/manage/clients/delete/" + id,
+        url: "http://localhost:8080/api/clients/delete/" + id,
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
@@ -96,7 +96,7 @@ $("#bulk-container").on("click", "#delete-button", function () {
 $("#bulk-container").on("click", "#edit-button", function () {
     var id = this.getAttribute("value");
     $(this).text("Update");
-    this.setAttribute("id", "update-button")
+    this.setAttribute("id", "update-button");
     $(this).parents("tr").find("td:not(:last-child)").each(function () {
         var text = $(this).text();
 
@@ -127,12 +127,12 @@ $("#bulk-container").on("click", "#update-button", function () {
     var unifiedIdentificationCode = inputText[4];
     var enabled = 1;
     var firstLogin = 1;
-    var user = {username: username, password: "null", enabled: enabled}
-    var client = {id: id, user: user, fullName: fullName, unifiedIdentificationCode: unifiedIdentificationCode}
+    var user = {username: username, password: "null", enabled: enabled};
+    var client = {id: id, user: user, fullName: fullName, unifiedIdentificationCode: unifiedIdentificationCode};
 
     var updateAdmin = $.ajax({
         type: 'PUT',
-        url: "http://localhost:8080/admin/manage/clients/update",
+        url: "http://localhost:8080/api/clients/update",
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
