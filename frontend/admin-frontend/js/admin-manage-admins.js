@@ -143,3 +143,8 @@ $("#bulk-container").on("click", "#update-button", function () {
         }
     })
 });
+
+$("#logout-button").on("click", function () {
+    localStorage.clear();
+    window.location.href = "../admin-frontend/admin-log-in.html";
+});

@@ -19,7 +19,7 @@ $("#change-password-button").on("click", function (e) {
         data: JSON.stringify(userDetails),
         success: function (data) {
             localStorage.clear();
-            window.location.href = "../admin-log-in.html";
+            window.location.href = "../admin-frontend/admin-log-in.html";
 
         }
         , error: function () {

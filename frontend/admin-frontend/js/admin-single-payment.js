@@ -34,7 +34,7 @@ $('#myDropdown').on('click', 'a', function () {
 
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/api/subscribers/getSubscriberDuePaymentsByPhone/" + phone,
+        url: "http://localhost:8080/api/subscribers/listDuePaymentsByPhone/" + phone,
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
@@ -70,7 +70,7 @@ $("#proceed").on("click", function () {
     $("#bulk-container").empty();
     var invoices = $.ajax({
         type: 'POST',
-        url: "http://localhost:8080/api/subscribers/getAllSubscribersInBillingPeriod",
+        url: "http://localhost:8080/api/subscribers/listAllPhoneNumbersInBillingPeriod",
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
@@ -125,6 +125,9 @@ $("#generate-payment-button").on("click", function () {
         }
 
     })
+});
 
-
+$("#logout-button").on("click", function () {
+    localStorage.clear();
+    window.location.href = "../admin-frontend/admin-log-in.html";
 });

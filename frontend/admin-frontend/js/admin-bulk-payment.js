@@ -76,5 +76,8 @@ $("#generate-payment-button").on("click", function generateBulkPayment() {
 
     })
 
-
+});
+$("#logout-button").on("click", function () {
+    localStorage.clear();
+    window.location.href = "../admin-frontend/admin-log-in.html";
 });

@@ -81,7 +81,7 @@ public class ManageSubscribersController {
     return subscribersService.getAveragePaidSumBySubscriber(id);
   }
 
-  @PostMapping("/listAllInBillingPeriod")
+  @PostMapping("/listAllPhoneNumbersInBillingPeriod")
   public List<String> getAllSubscribersInBillingPeriod(@RequestBody List<String> dates) {
     List<String> subscribersList = new ArrayList();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");

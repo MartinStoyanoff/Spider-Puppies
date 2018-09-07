@@ -123,5 +123,9 @@ $("#bulk-container").on("click", "#change-password-button", function () {
         }
     })
 
+});
 
+$("#logout-button").on("click", function () {
+    localStorage.clear();
+    window.location.href = "../admin-frontend/admin-log-in.html";
 });
