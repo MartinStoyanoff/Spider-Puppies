@@ -24,14 +24,14 @@ $("#sign-in-button").on("click", function (e) {
                 localStorage.setItem("userName", userName);
                 localStorage.setItem("role", role);
                 localStorage.setItem("token", token);
-                window.location.href = "../admin-change-password.html";
+                window.location.href = "../admin-frontend/admin-change-password.html";
             } else {
                 localStorage.setItem("adminId", adminId);
                 localStorage.setItem("userName", userName);
                 localStorage.setItem("role", role);
                 localStorage.setItem("token", token);
 
-                window.location.href = "../admin-home.html";
+                window.location.href = "../admin-frontend/admin-home.html";
             }
         }
         , error: function () {

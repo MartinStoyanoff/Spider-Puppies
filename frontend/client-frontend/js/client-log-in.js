@@ -24,7 +24,7 @@ $("#sign-in-button").on("click", function (e) {
             localStorage.setItem("role", role);
             localStorage.setItem("token", token);
 
-            window.location.href = "../client-home.html";
+            window.location.href = "../client-frontend/client-home.html";
 
         }
         , error: function () {
