@@ -1,11 +1,10 @@
 $(document).ready(function () {
     $("#top-ten-container").empty();
-    var clientId = localStorage.getItem("clientId")
-    var getTenBest = $.ajax({
+    var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/client/subscribers/getTenBest/"+clientId,
+        url: "http://localhost:8080/admin/home/topTenSubscribers",
         headers: {
-            "Authorization" : "Bearer "+ localStorage.getItem("token")
+            "Authorization": "Bearer " + localStorage.getItem("token")
         },
         success: function (data) {
             var tbody = $("#top-ten-container"),
@@ -13,13 +12,13 @@ $(document).ready(function () {
             $.each(data, function (i, data) {
                 var tr = $('<tr>');
                 $.each(props, function (i, prop) {
-                    if (prop==="avgPerMonth" || prop==="allTimeTurnover") {
+                    if (prop === "avgPerMonth" || prop === "allTimeTurnover") {
                         var num = data[prop].toFixed(2);
                         $('<td>').html(num).appendTo(tr);
                     }
 
                     else
-                    $('<td>').html(data[prop]).appendTo(tr);
+                        $('<td>').html(data[prop]).appendTo(tr);
                 });
                 tbody.append(tr);
             });
@@ -30,20 +29,25 @@ $(document).ready(function () {
 
         }
 
-    })
-    var lastTePaid = $.ajax({
+    });
+    var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/client/invoices/getLastTenPaid/"+clientId,
+        url: "http://localhost:8080/admin/home/lastTenInvoices",
         headers: {
-            "Authorization" : "Bearer "+ localStorage.getItem("token")
+            "Authorization": "Bearer " + localStorage.getItem("token")
         },
         success: function (data) {
             var tbody = $("#bulk-container"),
-                props = ["id","subscriberPhone", "telecomServiceType", "telecomServiceSubscriptionPlan", "price", "currency"];
+                props = ["id", "subscriberPhone", "telecomServiceType", "telecomServiceSubscriptionPlan", "price", "currency"];
             $.each(data, function (i, data) {
                 var tr = $('<tr>');
                 $.each(props, function (i, prop) {
-                    $('<td>').html(data[prop]).appendTo(tr);
+                    if (prop === "price") {
+                        var num = data[prop].toFixed(2)
+                        $('<td>').html(num).appendTo(tr);
+                    }
+                    else
+                        $('<td>').html(data[prop]).appendTo(tr);
                 });
                 tbody.append(tr);
             });

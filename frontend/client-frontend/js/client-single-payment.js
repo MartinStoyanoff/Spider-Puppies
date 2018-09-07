@@ -23,17 +23,17 @@ $(document).ready(function () {
     var clientId = localStorage.getItem("clientId");
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/client/subscribers/getAllWithPendingInvoice/"+clientId,
+        url: "http://localhost:8080/client/subscribers/getAllWithPendingInvoice/" + clientId,
         headers: {
-            "Authorization" : "Bearer "+ localStorage.getItem("token")
+            "Authorization": "Bearer " + localStorage.getItem("token")
         },
         success: function (data) {
             console.log(data);
             var tbody = $("#myDropdown");
-            for (var num in data)
-            {
-                tbody.append ('<a href="#" class="phones">'+data[num]+'</a>');
-            };
+            for (var num in data) {
+                tbody.append('<a href="#" class="phones">' + data[num] + '</a>');
+            }
+            ;
 
         },
         error: function () {
@@ -44,16 +44,16 @@ $(document).ready(function () {
     });
 });
 
- $('#myDropdown').on('click', 'a', function() {
+$('#myDropdown').on('click', 'a', function () {
     var phone = $(this).text();
-     myFunction();
+    myFunction();
     $("#bulk-container").empty();
-    
+
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/client/invoices/findDueInvoice/"+phone,
+        url: "http://localhost:8080/client/invoices/findDueInvoice/" + phone,
         headers: {
-            "Authorization" : "Bearer "+ localStorage.getItem("token")
+            "Authorization": "Bearer " + localStorage.getItem("token")
         },
         success: function (data) {
             console.log(data);
@@ -76,7 +76,6 @@ $(document).ready(function () {
 
     })
 })
-    
 
 
 $("#select-none-button").on("click", function () {
@@ -97,8 +96,8 @@ $("#payment-button").on("click", function payInvoiceByIdList() {
         type: 'PUT',
         url: "http://localhost:8080/client/invoice/payByIdList",
         headers: {
-            "id" : clientId,
-            "Authorization" : "Bearer "+ localStorage.getItem("token")
+            "id": clientId,
+            "Authorization": "Bearer " + localStorage.getItem("token")
         },
         contentType: "application/json",
         data: JSON.stringify(allVals),
@@ -109,8 +108,8 @@ $("#payment-button").on("click", function payInvoiceByIdList() {
                 type: 'GET',
                 url: "http://localhost:8080/aclient/invoice/findAllPendingByClientId/9",
                 success: function (data) {
-                        $('#bulk-container').empty();
-                        console.log("Invoices Paid Successfully");
+                    $('#bulk-container').empty();
+                    console.log("Invoices Paid Successfully");
 
                 },
                 error: function () {

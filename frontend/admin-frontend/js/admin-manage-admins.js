@@ -1,68 +1,65 @@
 var inputText = [];
 
-$("#create-client").on("click", function () {
-    $("#add-client-form").toggle();
+$("#create-admin").on("click", function () {
+    $("#add-admin-form").toggle();
 })
 $(document).ready(function () {
-    clientLoad();
+    adminLoad();
 
 });
-$("#add-client").on("click", function () {
+$("#add-admin").on("click", function () {
     var username = $("#username").val();
     var password = $("#password").val();
-    var fullName = $("#full-name").val();
-    var uic = $("#uic").val();
+    var email = $("#email").val();
     var enabled = 1;
+    var firstLogin = 1;
 
-    var user = {username: username, password: password, enabled: enabled};
-    var client = {user: user, fullName: fullName, unifiedIdentificationCode: uic};
+    var user = {username: username, password: password, enabled: enabled}
+    var admin = {user: user, eMail: email, firstLogin: firstLogin}
 
-    var addClient = $.ajax({
+    var addAdmin = $.ajax({
         crossOrigin: true,
         type: 'POST',
-        url: "http://localhost:8080/admin/manage/clients/add",
+        url: "http://localhost:8080/admin/manage/admins/add",
         headers: {
-            "Authorization" : "Bearer "+ localStorage.getItem("token")
+            "Authorization": "Bearer " + localStorage.getItem("token")
         },
         contentType: "application/json",
-        data: JSON.stringify(client),
+        data: JSON.stringify(admin),
         success: function () {
-            clientLoad();
+            adminLoad();
             $("#username").val('');
             $("#password").val('');
-            $("#full-name").val('');
-            $("#uic").val('');
-            $("#add-client-form").toggle();
+            $("#email").val('');
+            $("#add-admin-form").toggle();
 
         }
     })
 });
 
-function clientLoad() {
+function adminLoad() {
     $("#bulk-container").empty();
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/admin/manage/clients/listAll",
+        url: "http://localhost:8080/admin/manage/admins/listAll",
         headers: {
-            "Authorization" : "Bearer "+ localStorage.getItem("token")
+            "Authorization": "Bearer " + localStorage.getItem("token")
         },
         success: function (data) {
             var tbody = $("#bulk-container")
-            data.forEach(function (client) {
+            data.forEach(function (admin) {
 
-                var userId = client["id"];
-                var username = client["user"]["username"];
-                var full_name = client["fullName"];
-                var uic = client["unifiedIdentificationCode"]
+                var userId = admin["id"];
+                var username = admin["user"]["username"];
+                var eMail = admin["eMail"];
                 var tr = $('<tr>');
 
                 $('<td>').html(username).appendTo(tr);
-                $('<td>').html(full_name).appendTo(tr);
-                $('<td>').html(uic).appendTo(tr);
+                $('<td>').html(eMail).appendTo(tr);
 
 
                 var editButton = "<button class='btn btn-outline-success btn-border-green' id='edit-button' value=" + userId + "> Edit </button>";
-                var deleteButton = "<button class='btn btn-outline-success btn-border-red' id='delete-button' value=" + userId + "> Delete </button>";
+                var deleteButton = "<button class='btn btn-outline-success btn-border-red'id='delete-button' value=" + userId + "> Delete </button>";
                 $('<td>').html(editButton + deleteButton).appendTo(tr);
 
                 tbody.append(tr);
@@ -78,12 +75,12 @@ $("#bulk-container").on("click", "#delete-button", function () {
     var id = this.getAttribute("value")
     var deleteUser = $.ajax({
         type: 'DELETE',
-        url: "http://localhost:8080/admin/manage/clients/delete/" + id,
+        url: "http://localhost:8080/admin/manage/admins/delete/" + id,
         headers: {
-            "Authorization" : "Bearer "+ localStorage.getItem("token")
+            "Authorization": "Bearer " + localStorage.getItem("token")
         },
         success: function () {
-            clientLoad();
+            adminLoad();
 
         },
         error: function () {
@@ -107,40 +104,38 @@ $("#bulk-container").on("click", "#edit-button", function () {
         else {
             $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
         }
-    });
-});
 
+
+    });
+
+
+});
 $("#bulk-container").on("click", "#update-button", function () {
     $(this).parents("tr").find("td:not(:last-child)").each(function () {
         var updatedUsername = $(this.firstChild).val();
-        var updateFullName = $(this.nextSibling.firstChild).val();
-        var updateUIC = $(this.fir).siblings("#uic").val();
+        var updateEmail = $(this.nextSibling.firstChild).val();
         inputText.push(updatedUsername);
-        inputText.push(updateFullName);
-        inputText.push(updateUIC);
+        inputText.push(updateEmail);
 
-    });
-
+    })
     var id = this.getAttribute("value");
     var username = inputText[0];
-    var fullName = inputText[1];
-    var unifiedIdentificationCode = inputText[4];
+    var email = inputText[1];
     var enabled = 1;
-    var firstLogin = 1;
     var user = {username: username, password: "null", enabled: enabled}
-    var client = {id: id, user: user, fullName: fullName, unifiedIdentificationCode:unifiedIdentificationCode}
+    var admin = {id: id, user: user, eMail: email, firstLogin: null}
 
     var updateAdmin = $.ajax({
         type: 'PUT',
-        url: "http://localhost:8080/admin/manage/clients/update",
+        url: "http://localhost:8080/admin/manage/admins/update",
         headers: {
-            "Authorization" : "Bearer "+ localStorage.getItem("token")
+            "Authorization": "Bearer " + localStorage.getItem("token")
         },
         contentType: "application/json",
-        data: JSON.stringify(client),
+        data: JSON.stringify(admin),
         success: function () {
             inputText = [];
-            clientLoad();
+            adminLoad();
 
         },
         error: function () {

@@ -3,9 +3,9 @@ $(document).ready(function () {
     var clientId = localStorage.getItem("clientId")
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/client/invoice/findAllPendingByClientId/"+clientId,
+        url: "http://localhost:8080/client/invoice/findAllPendingByClientId/" + clientId,
         headers: {
-            "Authorization" : "Bearer "+ localStorage.getItem("token")
+            "Authorization": "Bearer " + localStorage.getItem("token")
         },
         success: function (data) {
             var tbody = $("#bulk-container"),
@@ -29,7 +29,6 @@ $(document).ready(function () {
 })
 
 
-
 $("#select-none-button").on("click", function () {
     $("#bulk-container input").removeAttr('checked');
 })
@@ -48,8 +47,8 @@ $("#payment-button").on("click", function payInvoiceByIdList() {
         type: 'PUT',
         url: "http://localhost:8080/client/invoice/payByIdList",
         headers: {
-            "id" : clientId,
-            "Authorization" : "Bearer "+ localStorage.getItem("token")
+            "id": clientId,
+            "Authorization": "Bearer " + localStorage.getItem("token")
         },
         contentType: "application/json",
         data: JSON.stringify(allVals),

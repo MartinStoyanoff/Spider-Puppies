@@ -13,13 +13,13 @@ $("#change-password-button").on("click", function (e) {
         type: 'PUT',
         url: "http://localhost:8080/admin/manage/admins/changePassword",
         headers: {
-            "Authorization" : "Bearer "+ localStorage.getItem("token")
+            "Authorization": "Bearer " + localStorage.getItem("token")
         },
         contentType: "application/json",
         data: JSON.stringify(userDetails),
         success: function (data) {
             localStorage.clear();
-            window.location.href = "/Spider-Puppies/frontend/admin-frontend/log-in.html";
+            window.location.href = "../admin-log-in.html";
 
         }
         , error: function () {

@@ -10,9 +10,9 @@ function adminLoad() {
     $("#bulk-container").empty();
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/admin/manage/admins/findById/"+adminId,
+        url: "http://localhost:8080/admin/manage/admins/findById/" + adminId,
         headers: {
-            "Authorization" : "Bearer "+ localStorage.getItem("token")
+            "Authorization": "Bearer " + localStorage.getItem("token")
         },
         success: function (admin) {
             var tbody = $("#bulk-container")
@@ -86,7 +86,7 @@ $("#bulk-container").on("click", "#update-button", function () {
         type: 'PUT',
         url: "http://localhost:8080/admin/manage/admins/update",
         headers: {
-            "Authorization" : "Bearer "+ localStorage.getItem("token")
+            "Authorization": "Bearer " + localStorage.getItem("token")
         },
         contentType: "application/json",
         data: JSON.stringify(admin),
@@ -100,22 +100,22 @@ $("#bulk-container").on("click", "#update-button", function () {
         }
     })
 });
-$("#bulk-container").on("click","#change-password-button", function () {
-   var adminId = $("#change-password-button").val();
-   var oldPassword = $("#old-password").val();
-   var newPassword = $("#new-password").val();
-   var passwordUpdateInfo = [adminId,oldPassword,newPassword];
+$("#bulk-container").on("click", "#change-password-button", function () {
+    var adminId = $("#change-password-button").val();
+    var oldPassword = $("#old-password").val();
+    var newPassword = $("#new-password").val();
+    var passwordUpdateInfo = [adminId, oldPassword, newPassword];
 
     var updateAdmin = $.ajax({
         type: 'PUT',
         url: "http://localhost:8080/admin/manage/admins/changePassword",
         headers: {
-            "Authorization" : "Bearer "+ localStorage.getItem("token")
+            "Authorization": "Bearer " + localStorage.getItem("token")
         },
         contentType: "application/json",
         data: JSON.stringify(passwordUpdateInfo),
         success: function () {
-            window.location.href = "/Spider-Puppies/frontend/admin-frontend/log-in.html";
+            window.location.href = "../admin-log-in.html";
 
         },
         error: function () {

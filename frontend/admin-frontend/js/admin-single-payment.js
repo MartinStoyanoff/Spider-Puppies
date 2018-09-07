@@ -30,13 +30,13 @@ $("#select-all-button").on("click", function () {
 $('#myDropdown').on('click', 'a', function () {
     var phone = $(this).text();
     myFunction();
-     $("#bulk-container").empty();
+    $("#bulk-container").empty();
 
     var invoices = $.ajax({
         type: 'GET',
         url: "http://localhost:8080/admin/manage/subscribers/getSubscriberDuePaymentsByPhone/" + phone,
         headers: {
-            "Authorization" : "Bearer "+ localStorage.getItem("token")
+            "Authorization": "Bearer " + localStorage.getItem("token")
         },
         success: function (data) {
             var tbody = $("#bulk-container"),
@@ -72,7 +72,7 @@ $("#proceed").on("click", function () {
         type: 'POST',
         url: "http://localhost:8080/admin/manage/subscribers/getAllSubscribersInBillingPeriod",
         headers: {
-            "Authorization" : "Bearer "+ localStorage.getItem("token")
+            "Authorization": "Bearer " + localStorage.getItem("token")
         },
         contentType: "application/json",
         data: JSON.stringify(dates),
@@ -107,7 +107,7 @@ $("#generate-payment-button").on("click", function () {
         type: 'POST',
         url: "http://localhost:8080/admin/manage/invoices/bulkgenerate",
         headers: {
-            "Authorization" : "Bearer "+ localStorage.getItem("token")
+            "Authorization": "Bearer " + localStorage.getItem("token")
         },
         contentType: "application/json",
         data: JSON.stringify(allVals),
