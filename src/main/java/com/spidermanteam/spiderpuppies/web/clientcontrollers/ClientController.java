@@ -32,19 +32,19 @@ public class ClientController {
     this.jwtParser = jwtParser;
   }
 
-  @PutMapping("/invoices/payById")
-  public PaymentReport payInvoiceById(HttpServletRequest request) {
+  @PutMapping("/invoices/payById/{invoiceId}")
+  public PaymentReport payInvoiceById(@PathVariable int invoiceId, HttpServletRequest request) {
     int clientId = jwtParser.getClientIdByUsernameFromToken(request);
-    int invoiceId = Integer.parseInt(request.getHeader("invoiceId"));
     return clientAccessService.payInvoiceByIdAndClientId(invoiceId, clientId);
   }
 
-  @PutMapping("/invoices/payByPhone")
-  public List<PaymentReport> payInvoiceByPhone(HttpServletRequest request) {
+
+  @PutMapping("/invoices/payByPhone/{phone}")
+  public List<PaymentReport> payInvoiceByPhone(@RequestParam String phone, HttpServletRequest request) {
     int clientId = jwtParser.getClientIdByUsernameFromToken(request);
-    String subscribersPhone = request.getHeader("phone");
-    return clientAccessService.payInvoicesByPhoneAndClientId(subscribersPhone, clientId);
+    return clientAccessService.payInvoicesByPhoneAndClientId(phone, clientId);
   }
+
 
   @PutMapping("/invoice/payByIdList")
   public List<PaymentReport> payInvoicesByIdList(@RequestBody List<Integer> idList, HttpServletRequest request) {
@@ -58,8 +58,8 @@ public class ClientController {
     return clientAccessService.payInvoicesByPhoneListAndClientId(phonesList, clientId);
   }
 
-  @GetMapping("/invoice/findAllPendingById")
-  List<InvoiceView> findAllPendingInvoicesByClientId(HttpServletRequest request) {
+  @GetMapping("/invoice/listAllPendingByClientId")
+  List<InvoiceView> listAllPendingInvoicesByClientId(HttpServletRequest request) {
     int clientId = jwtParser.getClientIdByUsernameFromToken(request);
     List<Invoice> invoiceList = clientAccessService.listAllPendingInvoicesByClientId(clientId);
     List<InvoiceView> invoiceViewList = new ArrayList<>();
@@ -67,12 +67,11 @@ public class ClientController {
       InvoiceView invoiceView = new InvoiceView(inv);
       invoiceViewList.add(invoiceView);
     }
-
     return invoiceViewList;
   }
 
-  @GetMapping("/invoice/findAllById")
-  List<InvoiceView> findAllInvoicesByClientId(HttpServletRequest request) {
+  @GetMapping("/invoice/listAllByClientId")
+  List<InvoiceView> listAllInvoicesByClientId(HttpServletRequest request) {
     int clientId = jwtParser.getClientIdByUsernameFromToken(request);
     List<Invoice> invoiceList = clientAccessService.listAllInvoicesByClientId(clientId);
     List<InvoiceView> invoiceViewList = new ArrayList<>();
@@ -83,10 +82,9 @@ public class ClientController {
     return invoiceViewList;
   }
 
-  @GetMapping("/invoices/findDueInvoice")
-  List<InvoiceView> findDueInvoicesByPhone(HttpServletRequest request) {
-    String subscribersPhone = request.getHeader("phone");
-    List<Invoice> invoiceList = clientAccessService.findDueInvoicesByPhone(subscribersPhone);
+  @GetMapping("/invoices/listDueByPhone/{phone}")
+  List<InvoiceView> listDueInvoicesByPhone(@PathVariable String phone) {
+    List<Invoice> invoiceList = clientAccessService.findDueInvoicesByPhone(phone);
     List<InvoiceView> invoiceViewList = new ArrayList<>();
 
     for (Invoice inv : invoiceList) {
@@ -95,8 +93,8 @@ public class ClientController {
     return invoiceViewList;
   }
 
-  @GetMapping("/invoices/getLastTenPaid")
-  List<InvoiceView> invoiceViewList(HttpServletRequest request) {
+  @GetMapping("/invoices/listLastTenPaid")
+  List<InvoiceView> listLastTenPaidInvoice(HttpServletRequest request) {
     int clientId = jwtParser.getClientIdByUsernameFromToken(request);
     List<Invoice> invoiceList = clientAccessService.getLastTenPaidInvoiceByClient(clientId);
     List<InvoiceView> invoiceViewList = new ArrayList<>();
@@ -106,8 +104,8 @@ public class ClientController {
     return invoiceViewList;
   }
 
-  @GetMapping("/subscribers/getTenBest")
-  List<SubscriberShortView> getTenBestSubscribersByTurnoverAndClientId(HttpServletRequest request) {
+  @GetMapping("/subscribers/listTenBest")
+  List<SubscriberShortView> listTenBestSubscribersByTurnoverAndClientId(HttpServletRequest request) {
     int clientId = jwtParser.getClientIdByUsernameFromToken(request);
     List<Subscriber> subscriberList = clientAccessService.getTenBestSubscribersByTurnoverAndClientId(clientId);
     List<SubscriberShortView> bestTenSubscribersList = new ArrayList<>();
@@ -120,8 +118,8 @@ public class ClientController {
     return bestTenSubscribersList;
   }
 
-  @GetMapping("/subscribers/getAllWithPendingInvoice")
-  HashSet<String> getAllWithPendingInvoice(HttpServletRequest request) {
+  @GetMapping("/subscribers/getAllPhoneNumbersWithPendingInvoice")
+  HashSet<String> getAllPhoneNumbersWithPendingInvoice(HttpServletRequest request) {
     int clientId = jwtParser.getClientIdByUsernameFromToken(request);
     List<Invoice> invoices = clientAccessService.listAllPendingInvoicesByClientId(clientId);
     HashSet<String> subscriberPhoneNumbers = new HashSet<>();
@@ -132,12 +130,10 @@ public class ClientController {
     return subscriberPhoneNumbers;
   }
 
-  @GetMapping("/subscribers/findSubscriberFullInfoByPhone//{id}/{phone}")
-  SubscriberView findSubscriberFullInfoByPhoneAndClientId(@RequestParam int subscriberId, @RequestParam String subscriberPhone) {
-    Subscriber subscriber = clientAccessService.getSubscriberByPhoneAndClientId(subscriberPhone,subscriberId);
+  @GetMapping("/subscribers/getSubscriberFullInfoByPhone/{phone}")
+  SubscriberView getSubscriberFullInfoByPhoneAndClientId(@RequestParam String subscribersPhone, HttpServletRequest request) {
+    int clientId = jwtParser.getClientIdByUsernameFromToken(request);
+    Subscriber subscriber = clientAccessService.getSubscriberByPhoneAndClientId(subscribersPhone, clientId);
     return new SubscriberView(subscriber);
   }
 }
-
-
-

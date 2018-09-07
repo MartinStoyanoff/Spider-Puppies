@@ -1,31 +1,5 @@
 $(document).ready(function () {
-    $("#bulk-container").empty();
-    var clientId = localStorage.getItem("clientId")
-    var invoices = $.ajax({
-        type: 'GET',
-        url: "http://localhost:8080/api/invoice/findAllPendingByClientId/" + clientId,
-        headers: {
-            "Authorization": "Bearer " + localStorage.getItem("token")
-        },
-        success: function (data) {
-            var tbody = $("#bulk-container"),
-                props = ["subscriberPhone", "telecomServiceType", "telecomServiceSubscriptionPlan", "price", "currency"];
-            $.each(data, function (i, data) {
-                var tr = $('<tr>');
-                $('<td><input' + " value=" + data["id"] + ' type="checkbox" class="form-check-input" checked="checked">').appendTo(tr);
-                $.each(props, function (i, prop) {
-                    $('<td>').html(data[prop]).appendTo(tr);
-                });
-                tbody.append(tr);
-            });
-
-        },
-        error: function () {
-            console.log("Unsuccessful request");
-
-        }
-
-    })
+    clientBulkLoad();
 })
 
 
@@ -53,22 +27,8 @@ $("#payment-button").on("click", function payInvoiceByIdList() {
         contentType: "application/json",
         data: JSON.stringify(allVals),
         success: function (data) {
-            console.log(data)
             $("#bulk-container").empty();
-            var invoices = $.ajax({
-                type: 'GET',
-                url: "http://localhost:8080/invoice/findAllPendingByClientId/"+clientId,
-                success: function (data) {
-                    $('#bulk-container').empty();
-                    console.log("Invoices Paid Successfully");
-
-                },
-                error: function () {
-                    console.log("Unsuccessful request");
-
-                }
-
-            })
+            clientBulkLoad();
 
         },
         error: function () {
@@ -79,6 +39,36 @@ $("#payment-button").on("click", function payInvoiceByIdList() {
     })
 
 });
+
+function clientBulkLoad() {
+    $("#bulk-container").empty();
+    var clientId = localStorage.getItem("clientId")
+    var invoices = $.ajax({
+        type: 'GET',
+        url: "http://localhost:8080/api/invoice/listAllPendingByClientId",
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
+        success: function (data) {
+            var tbody = $("#bulk-container"),
+                props = ["subscriberPhone", "telecomServiceType", "telecomServiceSubscriptionPlan", "price", "currency"];
+            $.each(data, function (i, data) {
+                var tr = $('<tr>');
+                $('<td><input' + " value=" + data["id"] + ' type="checkbox" class="form-check-input" checked="checked">').appendTo(tr);
+                $.each(props, function (i, prop) {
+                    $('<td>').html(data[prop]).appendTo(tr);
+                });
+                tbody.append(tr);
+            });
+
+        },
+        error: function () {
+            console.log("Unsuccessful request");
+
+        }
+
+    })
+}
 
 $("#logout-button").on("click", function () {
     localStorage.clear();

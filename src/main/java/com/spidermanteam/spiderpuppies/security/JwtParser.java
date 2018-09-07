@@ -36,8 +36,8 @@ public class JwtParser {
     String header = request.getHeader("Authorization");
 
     return Jwts.parser()
-        .setSigningKey(secret.getBytes())
-        .parseClaimsJws(header.replace("Bearer ", ""))
+        .setSigningKey(secret)
+        .parseClaimsJws(header.replace("Bearer ",""))
         .getBody()
         .getSubject();
   }
@@ -51,14 +51,16 @@ public class JwtParser {
     return Long.parseLong(claims.getSubject());
   }
   public int getAdminIdByUsernameFromToken(HttpServletRequest request) {
-    String username = getUsernameFromToken(request);
-    Admin admin = adminService.findAdminByUserUsername(username);
+    long userId = Long.parseLong(getUsernameFromToken(request));
+    User user = userService.findById(userId);
+    Admin admin = adminService.findAdminByUserUsername(user.getUsername());
 
     return admin.getId();
   }
   public int getClientIdByUsernameFromToken(HttpServletRequest request) {
-    String username = getUsernameFromToken(request);
-    Client client = clientService.findClientByUserUsername(username);
+    long userId = Long.parseLong(getUsernameFromToken(request));
+    User user = userService.findById(userId);
+    Client client = clientService.findClientByUserUsername(user.getUsername());
 
     return client.getId();
   }

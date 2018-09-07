@@ -124,7 +124,9 @@ public class SubscriberRepositoryImpl implements SubscriberRepository {
     BigDecimal amount = null;
     try (Session session = sessionFactory.openSession()) {
       session.beginTransaction();
-      List<Double> max = session.createQuery("select avg(i.price) from Subscriber as s join Invoice as i on s.id=i.subscriber.id where i.status=:status")
+      List<Double> max = session.createQuery("SELECT avg(i.price) " +
+          "FROM Subscriber as s JOIN Invoice as i ON s.id=i.subscriber.id where s.id=:id and i.status=:status")
+          .setParameter("id",id)
           .setParameter("status", "1")
           .list();
       amount = BigDecimal.valueOf(max.get(0)).setScale(2, RoundingMode.CEILING);

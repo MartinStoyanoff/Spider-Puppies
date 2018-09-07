@@ -1,9 +1,9 @@
 $(document).ready(function () {
     $("#top-ten-container").empty();
-    var clientId = localStorage.getItem("clientId")
+    var clientId = localStorage.getItem("clientId");
     var getTenBest = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/api/subscribers/getTenBest/" + clientId,
+        url: "http://localhost:8080/api/subscribers/listTenBest",
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
@@ -33,7 +33,7 @@ $(document).ready(function () {
     })
     var lastTePaid = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/api/invoices/getLastTenPaid/" + clientId,
+        url: "http://localhost:8080/api/invoices/listLastTenPaid",
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
