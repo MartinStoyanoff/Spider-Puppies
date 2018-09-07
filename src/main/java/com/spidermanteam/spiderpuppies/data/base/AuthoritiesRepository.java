@@ -4,5 +4,5 @@ import com.spidermanteam.spiderpuppies.models.Authorities;
 
 public interface AuthoritiesRepository {
 
-    Authorities getAuthoritiesByUserName(String username);
+  Authorities getAuthoritiesByUserName(String username);
 }

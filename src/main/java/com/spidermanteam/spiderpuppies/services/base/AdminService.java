@@ -6,18 +6,18 @@ import java.util.List;
 
 public interface AdminService {
 
-    void addAdmin(Admin admin);
+  void addAdmin(Admin admin);
 
-    Admin findAdminById(int id);
+  Admin findAdminById(int id);
 
-    List listAllAdmins();
+  List listAllAdmins();
 
-    void updateAdmin(Admin admin);
+  void updateAdmin(Admin admin);
 
-    void deleteAdmin(int id);
+  void deleteAdmin(int id);
 
-    void changeAdminPassword(List<String> passwordUpdateInfo);
+  void changeAdminPassword(List<String> passwordUpdateInfo);
 
-    Admin findAdminByUserUsername(String username);
+  Admin findAdminByUserUsername(String username);
 
 }

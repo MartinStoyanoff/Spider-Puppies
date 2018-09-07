@@ -14,32 +14,24 @@ import java.util.List;
 @Service
 public class LoginServiceImpl implements LoginService {
 
+  private AuthenticationManager authenticationManager;
+  private JwtTokenProvider tokenProvider;
 
-    private AuthenticationManager authenticationManager;
-    private JwtTokenProvider tokenProvider;
+  @Autowired
+  public LoginServiceImpl(AuthenticationManager authenticationManager, JwtTokenProvider tokenProvider) {
+    this.authenticationManager = authenticationManager;
+    this.tokenProvider = tokenProvider;
+  }
 
+  @Override
+  public String authenticateClient(List<String> singInInfo) {
 
-    @Autowired
-    public LoginServiceImpl(AuthenticationManager authenticationManager, JwtTokenProvider tokenProvider) {
-        this.authenticationManager = authenticationManager;
-        this.tokenProvider = tokenProvider;
-    }
+    UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(singInInfo.get(0), singInInfo.get(1));
 
-    @Override
-    public String authenticateClient(List<String> singInInfo) {
+    Authentication authentication = authenticationManager.authenticate(authRequest);
 
+    SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(
-                singInInfo.get(0), singInInfo.get(1));
-
-
-        Authentication authentication = authenticationManager.authenticate(authRequest);
-
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        String jwt = tokenProvider.generateToken(authentication);
-        return jwt;
-
-    }
+    return tokenProvider.generateToken(authentication);
+  }
 }

@@ -13,37 +13,37 @@ import java.util.List;
 @RequestMapping("/admin/manage/telecomServices")
 public class ManageTelecomServicesController {
 
-    private TelecomServiceService telecomServiceService;
+  private TelecomServiceService telecomServiceService;
 
-    @Autowired
-    public ManageTelecomServicesController(TelecomServiceService telecomServiceService) {
-        this.telecomServiceService = telecomServiceService;
-    }
+  @Autowired
+  public ManageTelecomServicesController(TelecomServiceService telecomServiceService) {
+    this.telecomServiceService = telecomServiceService;
+  }
 
-    @PostMapping("/add")
-    void addTelecomService(@RequestBody TelecomService telecomService) {
-        telecomServiceService.addTelecomService(telecomService);
-    }
+  @PostMapping("/add")
+  void addTelecomService(@RequestBody TelecomService telecomService) {
+    telecomServiceService.addTelecomService(telecomService);
+  }
 
-    @GetMapping("/findById/{id}")
-    TelecomService findTelecomServiceById(@PathVariable("id") String id) {
-        int telecomServiceId = Integer.parseInt(id);
-        return telecomServiceService.findTelecomServiceById(telecomServiceId);
-    }
+  @GetMapping("/findById/{id}")
+  TelecomService findTelecomServiceById(@PathVariable("id") String id) {
+    int telecomServiceId = Integer.parseInt(id);
+    return telecomServiceService.findTelecomServiceById(telecomServiceId);
+  }
 
-    @GetMapping("/listAll")
-    List listAllTelecomServices() {
-        return telecomServiceService.listAllTelecomServices();
-    }
+  @GetMapping("/listAll")
+  List listAllTelecomServices() {
+    return telecomServiceService.listAllTelecomServices();
+  }
 
-    @PutMapping("/update")
-    void updateTelecomService(@RequestBody TelecomService telecomService) {
-        telecomServiceService.updateTelecomService(telecomService);
-    }
+  @PutMapping("/update")
+  void updateTelecomService(@RequestBody TelecomService telecomService) {
+    telecomServiceService.updateTelecomService(telecomService);
+  }
 
-    @DeleteMapping("/delete/{id}")
-    void deleteTelecomService(@PathVariable("id") String id) {
-        int telecomServiceId = Integer.parseInt(id);
-        telecomServiceService.deleteTelecomService(telecomServiceId);
-    }
+  @DeleteMapping("/delete/{id}")
+  void deleteTelecomService(@PathVariable("id") String id) {
+    int telecomServiceId = Integer.parseInt(id);
+    telecomServiceService.deleteTelecomService(telecomServiceId);
+  }
 }

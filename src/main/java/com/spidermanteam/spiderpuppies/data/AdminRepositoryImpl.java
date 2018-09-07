@@ -16,138 +16,138 @@ import java.util.List;
 @Repository
 public class AdminRepositoryImpl implements AdminRepository {
 
-    private SessionFactory sessionFactory;
+  private SessionFactory sessionFactory;
 
-    private BCryptPasswordEncoder passwordEncoder;
+  private BCryptPasswordEncoder passwordEncoder;
 
-    @Autowired
-    public AdminRepositoryImpl(SessionFactory sessionFactory, BCryptPasswordEncoder passwordEncoder) {
-        this.sessionFactory = sessionFactory;
-        this.passwordEncoder = passwordEncoder;
+  @Autowired
+  public AdminRepositoryImpl(SessionFactory sessionFactory, BCryptPasswordEncoder passwordEncoder) {
+    this.sessionFactory = sessionFactory;
+    this.passwordEncoder = passwordEncoder;
+  }
+
+  @Override
+  public void create(Admin admin) {
+    User user = admin.getUser();
+    String encryptPass = passwordEncoder.encode(user.getPassword());
+    System.out.println(user.getPassword());
+    user.setPassword(encryptPass);
+    System.out.println(encryptPass);
+    Authorities authorities = new Authorities(user.getUsername(), "ROLE_ADMIN");
+    try (Session session = sessionFactory.openSession()) {
+      session.beginTransaction();
+      session.save(user);
+      session.save(authorities);
+      session.save(admin);
+      session.getTransaction().commit();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
     }
 
-    @Override
-    public void create(Admin admin) {
-        User user = admin.getUser();
-        String encryptPass = passwordEncoder.encode(user.getPassword());
-        System.out.println(user.getPassword());
-        user.setPassword(encryptPass);
-        System.out.println(encryptPass);
-        Authorities authorities = new Authorities(user.getUsername(), "ROLE_ADMIN");
-        try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
-            session.save(user);
-            session.save(authorities);
-            session.save(admin);
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+  }
 
+  @Override
+  public Admin findById(int id) {
+    Admin admin = new Admin();
+    try (Session session = sessionFactory.openSession()) {
+      session.beginTransaction();
+      admin = session.get(Admin.class, id);
+      session.getTransaction().commit();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return admin;
+  }
+
+  @Override
+  public List<Admin> listAll() {
+    List<Admin> admins = new ArrayList<>();
+    try (Session session = sessionFactory.openSession()) {
+      session.beginTransaction();
+      admins = session.createQuery("from Admin").list();
+      session.getTransaction().commit();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return admins;
+  }
+
+  @Override
+  public void update(Admin admin) {
+    User oldUser = null;
+    Admin oldAdmin = null;
+    try (Session session = sessionFactory.openSession()) {
+      session.beginTransaction();
+      Admin admin1 = session.get(Admin.class, admin.getId());
+      oldUser = admin1.getUser();
+      oldAdmin = admin1;
+      session.getTransaction().commit();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
     }
 
-    @Override
-    public Admin findById(int id) {
-        Admin admin = new Admin();
-        try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
-            admin = session.get(Admin.class, id);
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return admin;
+    try (Session session = sessionFactory.openSession()) {
+      session.beginTransaction();
+      admin.setFirstLogin(oldAdmin.getFirstLogin());
+      User user = admin.getUser();
+      Authorities oldAuthority = new Authorities(oldUser.getUsername(), "ROLE_ADMIN");
+      Authorities newAuthority = new Authorities(admin.getUser().getUsername(), "ROLE_ADMIN");
+      user.setPassword(oldUser.getPassword());
+      user.setId(oldUser.getId());
+      session.delete(oldAuthority);
+      session.save(newAuthority);
+      session.update(user);
+      session.update(admin);
+      session.getTransaction().commit();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
     }
+  }
 
-    @Override
-    public List<Admin> listAll() {
-        List<Admin> admins = new ArrayList<>();
-        try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
-            admins = session.createQuery("from Admin").list();
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return admins;
+  @Override
+  public void delete(int id) {
+    try (Session session = sessionFactory.openSession()) {
+      session.beginTransaction();
+      Admin admin = session.get(Admin.class, id);
+      User user = admin.getUser();
+      Authorities authority = new Authorities(user.getUsername(), "ROLE_ADMIN");
+      session.delete(admin);
+      session.delete(authority);
+      session.delete(user);
+      session.getTransaction().commit();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
     }
+  }
 
-    @Override
-    public void update(Admin admin) {
-        User oldUser = null;
-        Admin oldAdmin = null;
-        try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
-            Admin admin1 = session.get(Admin.class, admin.getId());
-            oldUser = admin1.getUser();
-            oldAdmin=admin1;
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-        try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
-            admin.setFirstLogin(oldAdmin.getFirstLogin());
-            User user = admin.getUser();
-            Authorities oldAuthority = new Authorities(oldUser.getUsername(), "ROLE_ADMIN");
-            Authorities newAuthority = new Authorities(admin.getUser().getUsername(), "ROLE_ADMIN");
-            user.setPassword(oldUser.getPassword());
-            user.setId(oldUser.getId());
-            session.delete(oldAuthority);
-            session.save(newAuthority);
-            session.update(user);
-            session.update(admin);
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+  @Override
+  public void updateAdminPassword(Admin admin) {
+    try (Session session = sessionFactory.openSession()) {
+      session.beginTransaction();
+      User user = admin.getUser();
+      session.update(user);
+      session.update(admin);
+      session.getTransaction().commit();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
     }
+  }
 
-    @Override
-    public void delete(int id) {
-        try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
-            Admin admin = session.get(Admin.class, id);
-            User user = admin.getUser();
-            Authorities authority = new Authorities(user.getUsername(), "ROLE_ADMIN");
-            session.delete(admin);
-            session.delete(authority);
-            session.delete(user);
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+  @Override
+  public Admin findAdminByUserUsername(String username) {
+    Admin admin = new Admin();
+    List<Admin> adminList = new ArrayList<>();
+    try (Session session = sessionFactory.openSession()) {
+      session.beginTransaction();
+      String query = "from Admin as a where a.user.username=:userName";
+      adminList = session.createQuery(query)
+          .setParameter("userName", username).list();
+      session.getTransaction().commit();
+      admin = adminList.get(0);
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+
     }
-
-    @Override
-    public void updateAdminPassword(Admin admin) {
-        try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
-            User user = admin.getUser();
-            session.update(user);
-            session.update(admin);
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    @Override
-    public Admin findAdminByUserUsername(String username) {
-        Admin admin = new Admin();
-        List<Admin> adminList = new ArrayList<>();
-        try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
-            String query = "from Admin as a where a.user.username=:userName";
-            adminList = session.createQuery(query)
-                    .setParameter("userName", username).list();
-            session.getTransaction().commit();
-            admin = adminList.get(0);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-
-        }
-        return admin;
-    }
+    return admin;
+  }
 }

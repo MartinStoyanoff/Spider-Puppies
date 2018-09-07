@@ -7,35 +7,35 @@ import javax.persistence.*;
 @Table(name = "authorities")
 public class Authorities {
 
-    @Id
-    @Column(name = "username")
-    private String username;
+  @Id
+  @Column(name = "username")
+  private String username;
 
-    @Column(name = "authority")
-    private String authority;
+  @Column(name = "authority")
+  private String authority;
 
-    public Authorities() {
-    }
+  public Authorities() {
+  }
 
-    public Authorities(String username, String role) {
-        this.username = username;
-        this.authority = role;
-    }
+  public Authorities(String username, String role) {
+    this.username = username;
+    this.authority = role;
+  }
 
-    public String getUsername() {
-        return username;
-    }
+  public String getUsername() {
+    return username;
+  }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
-    public String getAuthority() {
-        return authority;
-    }
+  public String getAuthority() {
+    return authority;
+  }
 
-    public void setAuthority(String authority) {
-        this.authority = authority;
-    }
+  public void setAuthority(String authority) {
+    this.authority = authority;
+  }
 
 }

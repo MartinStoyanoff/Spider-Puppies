@@ -14,37 +14,36 @@ import java.util.List;
 @RequestMapping("/admin/manage/clients")
 public class ManageClientsController {
 
-    private ClientService clientService;
+  private ClientService clientService;
 
-    @Autowired
-    public ManageClientsController(ClientService clientService) {
-        this.clientService = clientService;
-    }
+  @Autowired
+  public ManageClientsController(ClientService clientService) {
+    this.clientService = clientService;
+  }
 
-    @PostMapping("/add")
-    void addClient(@RequestBody Client client) {
-        clientService.addClient(client);
-    }
+  @PostMapping("/add")
+  void addClient(@RequestBody Client client) {
+    clientService.addClient(client);
+  }
 
-    @GetMapping("/findById/{id}")
-    Client findClientById(@PathVariable int id) {
-        return clientService.findClientById(id);
-    }
+  @GetMapping("/findById/{id}")
+  Client findClientById(@PathVariable int id) {
+    return clientService.findClientById(id);
+  }
 
-    @GetMapping("/listAll")
-    List listAllClients() {
-        return clientService.listAllClients();
-    }
+  @GetMapping("/listAll")
+  List listAllClients() {
+    return clientService.listAllClients();
+  }
 
-    @PutMapping("/update")
-    void updateClient(@RequestBody Client client) {
-        clientService.updateClient(client);
-    }
+  @PutMapping("/update")
+  void updateClient(@RequestBody Client client) {
+    clientService.updateClient(client);
+  }
 
-    @DeleteMapping("/delete/{id}")
-    void deleteClient(@PathVariable int id) {
-        clientService.deleteClient(id);
-    }
-
+  @DeleteMapping("/delete/{id}")
+  void deleteClient(@PathVariable int id) {
+    clientService.deleteClient(id);
+  }
 
 }

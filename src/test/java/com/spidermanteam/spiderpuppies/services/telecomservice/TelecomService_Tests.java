@@ -1,6 +1,5 @@
 package com.spidermanteam.spiderpuppies.services.telecomservice;
 
-import com.spidermanteam.spiderpuppies.data.TelecomServiceRepositoryImpl;
 import com.spidermanteam.spiderpuppies.data.base.GenericRepository;
 import com.spidermanteam.spiderpuppies.models.TelecomService;
 import com.spidermanteam.spiderpuppies.services.TelecomServiceServiceImpl;
@@ -20,91 +19,87 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class TelecomService_Tests {
 
-    @Mock
-    GenericRepository<TelecomService> telecomServiceGenericRepository;
+  @Mock
+  GenericRepository<TelecomService> telecomServiceGenericRepository;
 
-    private TelecomServiceServiceImpl telecomServiceService;
+  private TelecomServiceServiceImpl telecomServiceService;
 
-    @Before
-    public void beforeTest() {
-        telecomServiceService = new TelecomServiceServiceImpl(telecomServiceGenericRepository);
+  @Before
+  public void beforeTest() {
+    telecomServiceService = new TelecomServiceServiceImpl(telecomServiceGenericRepository);
+  }
 
-    }
+  @Test
+  public void addTelecomService_whenTelecomServiceIsPresented_ShouldInvokeCreateRepositoryMethod() {
+    //Arrange
+    TelecomService telecomService = new TelecomService();
 
-    @Test
-    public void addTelecomService_whenTelecomServiceIsPresented_ShouldInvokeCreateRepositoryMethod() {
-       //Arrange
-        TelecomService telecomService = new TelecomService();
+    //Act
+    doNothing().when(telecomServiceGenericRepository).create(isA(TelecomService.class));
+    telecomServiceService.addTelecomService(telecomService);
 
-        //Act
-        doNothing().when(telecomServiceGenericRepository).create(isA(TelecomService.class));
-        telecomServiceService.addTelecomService(telecomService);
+    //Assert
+    verify(telecomServiceGenericRepository, times(1)).create(telecomService);
+  }
 
-        //Assert
-        verify(telecomServiceGenericRepository, times(1)).create(telecomService);
-    }
+  @Test
+  public void findTelecomServiceById_whenTelecomServiceIsPresented_ShouldReturnTelecomService() {
+    //Arrange
+    TelecomService telecomService = new TelecomService();
+    telecomService.setId(1);
 
-    @Test
-    public void findTelecomServiceById_whenTelecomServiceIsPresented_ShouldReturnTelecomService(){
-        //Arrange
-        TelecomService telecomService = new TelecomService();
-        telecomService.setId(1);
+    //Act
+    when(telecomServiceGenericRepository.findById(1)).thenReturn(telecomService);
+    TelecomService actualTelecomService = telecomServiceService.findTelecomServiceById(1);
 
-        //Act
-       when(telecomServiceGenericRepository.findById(1)).thenReturn(telecomService);
-       TelecomService actualTelecomService = telecomServiceService.findTelecomServiceById(1);
+    //Assert
+    Assert.assertEquals(telecomService.getId(), actualTelecomService.getId());
+  }
 
-        //Assert
-        Assert.assertEquals(telecomService.getId(), actualTelecomService.getId());
-    }
-    @Test
-    public void listAllTelecomServices_whenTelecomServiceListIsPresent_ShouldReturnTelecomServiceList(){
+  @Test
+  public void listAllTelecomServices_whenTelecomServiceListIsPresent_ShouldReturnTelecomServiceList() {
 
-       //Arrange
-        TelecomService firstTelecomService = new TelecomService();
-        TelecomService secondTelecomService = new TelecomService();
-        TelecomService thirdTelecomService = new TelecomService();
+    //Arrange
+    TelecomService firstTelecomService = new TelecomService();
+    TelecomService secondTelecomService = new TelecomService();
+    TelecomService thirdTelecomService = new TelecomService();
 
-        List<TelecomService> telecomServiceList = new ArrayList<>();
-        telecomServiceList.add(firstTelecomService);
-        telecomServiceList.add(secondTelecomService);
-        telecomServiceList.add(thirdTelecomService);
+    List<TelecomService> telecomServiceList = new ArrayList<>();
+    telecomServiceList.add(firstTelecomService);
+    telecomServiceList.add(secondTelecomService);
+    telecomServiceList.add(thirdTelecomService);
 
-        //Act
-        when(telecomServiceGenericRepository.listAll()).thenReturn(telecomServiceList);
-        List<TelecomService> actualTelecomServiceList = telecomServiceService.listAllTelecomServices();
+    //Act
+    when(telecomServiceGenericRepository.listAll()).thenReturn(telecomServiceList);
+    List<TelecomService> actualTelecomServiceList = telecomServiceService.listAllTelecomServices();
 
-        //Assert
-        Assert.assertEquals(telecomServiceList,actualTelecomServiceList);
-    }
+    //Assert
+    Assert.assertEquals(telecomServiceList, actualTelecomServiceList);
+  }
 
-    @Test
-    public void updateTelecomService_whenTelecomServiceIsPresented_ShouldInvokeDeleteRepositoryMethod(){
+  @Test
+  public void updateTelecomService_whenTelecomServiceIsPresented_ShouldInvokeDeleteRepositoryMethod() {
 
-        //Act
-        TelecomService telecomService = new TelecomService();
+    //Act
+    TelecomService telecomService = new TelecomService();
 
-        //Arrange
-        doNothing().when(telecomServiceGenericRepository).update(isA(TelecomService.class));
-        telecomServiceService.updateTelecomService(telecomService);
+    //Arrange
+    doNothing().when(telecomServiceGenericRepository).update(isA(TelecomService.class));
+    telecomServiceService.updateTelecomService(telecomService);
 
-        //Assert
-        verify(telecomServiceGenericRepository, times(1)).update(telecomService);
+    //Assert
+    verify(telecomServiceGenericRepository, times(1)).update(telecomService);
+  }
 
+  @Test
+  public void deleteTelecomService_whenTelecomServiceIsPresented_ShouldInvokeDeleteRepositoryMethod() {
 
-    }
-    @Test
-    public void deleteTelecomService_whenTelecomServiceIsPresented_ShouldInvokeDeleteRepositoryMethod(){
+    doNothing().when(telecomServiceGenericRepository).delete(isA(Integer.class));
+    telecomServiceService.deleteTelecomService(1);
 
-        doNothing().when(telecomServiceGenericRepository).delete(isA(Integer.class));
-        telecomServiceService.deleteTelecomService(1);
-
-        //Assert
-        verify(telecomServiceGenericRepository, times(1)).delete(1);
-
-
-    }
-
+    //Assert
+    verify(telecomServiceGenericRepository, times(1)).delete(1);
+  }
 }
 
 

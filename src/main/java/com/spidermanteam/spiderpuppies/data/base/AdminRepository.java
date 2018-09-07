@@ -3,7 +3,7 @@ package com.spidermanteam.spiderpuppies.data.base;
 import com.spidermanteam.spiderpuppies.models.Admin;
 
 public interface AdminRepository extends GenericRepository<Admin> {
-    void updateAdminPassword(Admin admin);
+  void updateAdminPassword(Admin admin);
 
-    Admin findAdminByUserUsername(String username);
+  Admin findAdminByUserUsername(String username);
 }

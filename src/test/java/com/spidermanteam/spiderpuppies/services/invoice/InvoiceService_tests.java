@@ -16,105 +16,102 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class InvoiceService_tests {
 
-    @Mock
-    InvoiceRepository mockRepository;
-    @Mock
-    SubscriberRepository subscriberRepository;
+  @Mock
+  InvoiceRepository mockRepository;
+  @Mock
+  SubscriberRepository subscriberRepository;
 
-    private InvoiceServiceImpl invoiceService;
-    private Invoice invoice;
-
-
-    @Before
-    public void beforeTest() {
-        Client client = new Client(new User("UserName", "Password", (byte) 1), "ClientFullName", "EIK");
-        TelecomService telecomService = new TelecomService("Type", "SubsPlan", BigDecimal.valueOf(0.00), new ArrayList<>());
-        LocalDate date = LocalDate.now();
-        Subscriber subscriber = new Subscriber("SubscPhone", "FirstName", "LastName", "PIN", "Address", new ArrayList<>(), new ArrayList<>(), date, date, client, BigDecimal.valueOf(0.00));
-        invoice = new Invoice(subscriber, telecomService, BigDecimal.TEN, "BGN");
-        invoice.setId(1);
-
-        when(mockRepository.findById(1))
-                .thenReturn(invoice);
-
-        invoiceService = new InvoiceServiceImpl(mockRepository, subscriberRepository);
-    }
-
-    @Test
-    public void findInvoiceById_whenInvoiceIsPresent_ShouldReturnInvoice() throws Exception {
-        //Arrange
-        Invoice actualInvoice = invoiceService.findInvoiceById(1);
-
-        //Act
-        verify(mockRepository)
-                .findById(1);
-
-        //Assert
-        Assert.assertEquals(invoice.getId(), actualInvoice.getId());
-    }
+  private InvoiceServiceImpl invoiceService;
+  private Invoice invoice;
 
 
-    @Test
-    public void listAllInvoice_whenInvoiceListIsPresent_ShouldReturnInvoiceList() throws Exception {
-        //Arrange
-        List<Invoice> invoices = new ArrayList<>(3);
-        invoices.add(new Invoice());
-        invoices.add(new Invoice());
-        invoices.add(new Invoice());
+  @Before
+  public void beforeTest() {
+    Client client = new Client(new User("UserName", "Password", (byte) 1), "ClientFullName", "EIK");
+    TelecomService telecomService = new TelecomService("Type", "SubsPlan", BigDecimal.valueOf(0.00), new ArrayList<>());
+    LocalDate date = LocalDate.now();
+    Subscriber subscriber = new Subscriber("SubscPhone", "FirstName", "LastName", "PIN", "Address", new ArrayList<>(), new ArrayList<>(), date, date, client, BigDecimal.valueOf(0.00));
+    invoice = new Invoice(subscriber, telecomService, BigDecimal.TEN, "BGN");
+    invoice.setId(1);
 
-        //Act
-        when(mockRepository.listAll()).thenReturn(invoices);
-        List result = invoiceService.listAllInvoices();
+    when(mockRepository.findById(1))
+        .thenReturn(invoice);
 
-        //Assert
-        Assert.assertEquals(invoices.size(),result.size());
-    }
-    @Test
-    public void findAllInvoicesByClientId_whenInvoiceListAndClientIdArePresent_ShouldReturnInvoiceList(){
+    invoiceService = new InvoiceServiceImpl(mockRepository, subscriberRepository);
+  }
 
-        //Arrange
-        int requestClientId = 1;
-        Invoice invoiceOne = new Invoice();
-        Client requestedClient = new Client();
-        requestedClient.setId(requestClientId);
-        Subscriber subscriber = new Subscriber();
-        subscriber.setClient(requestedClient);
-        invoiceOne.setSubscriber(subscriber);
-        Invoice invoiceTwo = new Invoice();
-        invoiceTwo.setSubscriber(subscriber);
+  @Test
+  public void findInvoiceById_whenInvoiceIsPresent_ShouldReturnInvoice() throws Exception {
+    //Arrange
+    Invoice actualInvoice = invoiceService.findInvoiceById(1);
 
-        List<Invoice> invoices = new ArrayList<>();
-        invoices.add(invoiceOne);
-        invoices.add(invoiceTwo);
+    //Act
+    verify(mockRepository)
+        .findById(1);
 
-        //Act
-        when(mockRepository.findAllInvoicesByClientId(1)).thenReturn(invoices);
-        List result = invoiceService.findAllInvoicesByClientId(1);
+    //Assert
+    Assert.assertEquals(invoice.getId(), actualInvoice.getId());
+  }
 
-        //Assert
-        Assert.assertEquals(invoices.size(),result.size());
+  @Test
+  public void listAllInvoice_whenInvoiceListIsPresent_ShouldReturnInvoiceList() throws Exception {
+    //Arrange
+    List<Invoice> invoices = new ArrayList<>(3);
+    invoices.add(new Invoice());
+    invoices.add(new Invoice());
+    invoices.add(new Invoice());
 
-    }
+    //Act
+    when(mockRepository.listAll()).thenReturn(invoices);
+    List result = invoiceService.listAllInvoices();
 
-    @Test
-    public void getExchangeRateToBGN_whenCurrencyEURIsProvided_shouldReturnConvertedNumberInBGN(){
+    //Assert
+    Assert.assertEquals(invoices.size(), result.size());
+  }
 
-        //Arrange
-        String currency = "EUR";
-        BigDecimal EURtoBGNrate = BigDecimal.valueOf(1.95583);
+  @Test
+  public void findAllInvoicesByClientId_whenInvoiceListAndClientIdArePresent_ShouldReturnInvoiceList() {
 
-        //Act
-        BigDecimal result = invoiceService.getExchangeRateToBGN(currency);
+    //Arrange
+    int requestClientId = 1;
+    Invoice invoiceOne = new Invoice();
+    Client requestedClient = new Client();
+    requestedClient.setId(requestClientId);
+    Subscriber subscriber = new Subscriber();
+    subscriber.setClient(requestedClient);
+    invoiceOne.setSubscriber(subscriber);
+    Invoice invoiceTwo = new Invoice();
+    invoiceTwo.setSubscriber(subscriber);
 
-        //Assert
-        Assert.assertEquals(EURtoBGNrate, result);
-    }
+    List<Invoice> invoices = new ArrayList<>();
+    invoices.add(invoiceOne);
+    invoices.add(invoiceTwo);
 
+    //Act
+    when(mockRepository.findAllInvoicesByClientId(1)).thenReturn(invoices);
+    List result = invoiceService.findAllInvoicesByClientId(1);
 
+    //Assert
+    Assert.assertEquals(invoices.size(), result.size());
+  }
+
+  @Test
+  public void getExchangeRateToBGN_whenCurrencyEURIsProvided_shouldReturnConvertedNumberInBGN() {
+
+    //Arrange
+    String currency = "EUR";
+    BigDecimal EURtoBGNrate = BigDecimal.valueOf(1.95583);
+
+    //Act
+    BigDecimal result = invoiceService.getExchangeRateToBGN(currency);
+
+    //Assert
+    Assert.assertEquals(EURtoBGNrate, result);
+  }
 }

@@ -17,43 +17,41 @@ import java.io.IOException;
 
 public class JwtTokenFilter extends OncePerRequestFilter {
 
-    @Autowired
-    private JwtTokenProvider jwtTokenProvider;
+  private static final String header = "Authorization";
+  @Autowired
+  MyJWTUserDetailsService userService;
+  @Autowired
+  private JwtTokenProvider jwtTokenProvider;
 
-    @Autowired
-    MyJWTUserDetailsService userService;
+  @Override
+  protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    try {
 
-    private static final String header  = "Authorization";
-    @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        try {
+      String token = getTokenString(request);
 
-            String token = getTokenString(request);
+      if (StringUtils.hasText(token) && jwtTokenProvider.validateToken(token)) {
+        Long userId = jwtTokenProvider.getUserIdFromJwt(token);
 
-            if (StringUtils.hasText(token) && jwtTokenProvider.validateToken(token)) {
-                Long userId = jwtTokenProvider.getUserIdFromJwt(token);
+        UserDetails userDetails = userService.loadUserById(userId);
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-                UserDetails userDetails = userService.loadUserById(userId);
-                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
-                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-            }
-        }catch (Exception ex){
-            System.out.println(ex.getMessage() + "Not able to set user authentication");
-        }
-        filterChain.doFilter(request, response);
+        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+      }
+    } catch (Exception ex) {
+      System.out.println(ex.getMessage() + "Not able to set user authentication");
     }
+    filterChain.doFilter(request, response);
+  }
 
 
-
-    private String getTokenString(HttpServletRequest request) {
-        String bearerToken = request.getHeader(header);
-        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7, bearerToken.length());
-        }
-        return null;
+  private String getTokenString(HttpServletRequest request) {
+    String bearerToken = request.getHeader(header);
+    if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
+      return bearerToken.substring(7, bearerToken.length());
     }
+    return null;
+  }
 
 
 }

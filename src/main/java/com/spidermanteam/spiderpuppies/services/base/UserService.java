@@ -4,7 +4,7 @@ import com.spidermanteam.spiderpuppies.models.User;
 
 public interface UserService {
 
-    User findById(Long id);
+  User findById(Long id);
 
-    String findUserRoleByUserId(Long id);
+  String findUserRoleByUserId(Long id);
 }

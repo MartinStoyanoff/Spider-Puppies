@@ -8,24 +8,23 @@ import java.util.List;
 
 public interface SubscribersService {
 
-    void addSubscriber(Subscriber subscriber);
+  void addSubscriber(Subscriber subscriber);
 
-    Subscriber findSubscriberById(int id);
+  Subscriber findSubscriberById(int id);
 
-    List listAllSubscribers();
+  List listAllSubscribers();
 
-    void updateSubscriber (Subscriber subscriber);
+  void updateSubscriber(Subscriber subscriber);
 
-    void deleteSubscriber (int id);
+  void deleteSubscriber(int id);
 
-    List listAllForDefinedPeriod(LocalDate start, LocalDate end);
+  List listAllForDefinedPeriod(LocalDate start, LocalDate end);
 
-    BigDecimal getHighestPaidSumBySubscriber(int id);
+  BigDecimal getHighestPaidSumBySubscriber(int id);
 
-    BigDecimal getAveragePaidSumBySubscriber(int id);
+  BigDecimal getAveragePaidSumBySubscriber(int id);
 
-    void addTelecomServiceToSubscriber(int subscriberId, int telecomServiceId);
+  void addTelecomServiceToSubscriber(int subscriberId, int telecomServiceId);
 
-    Subscriber getSubscriberByPhone(String phone);
-
+  Subscriber getSubscriberByPhone(String phone);
 }

@@ -1,7 +1,6 @@
 package com.spidermanteam.spiderpuppies.services.client;
 
 import com.spidermanteam.spiderpuppies.data.base.ClientRepository;
-import com.spidermanteam.spiderpuppies.data.base.GenericRepository;
 import com.spidermanteam.spiderpuppies.models.Client;
 import com.spidermanteam.spiderpuppies.services.ClientServiceImpl;
 import org.junit.Assert;
@@ -20,72 +19,72 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class ClientService_tests {
 
-    @Mock
-    ClientRepository clientRepository;
+  @Mock
+  ClientRepository clientRepository;
 
-    private ClientServiceImpl clientService;
+  private ClientServiceImpl clientService;
 
-    @Before
-    public void beforeTest() {
-        clientService = new ClientServiceImpl(clientRepository);
-    }
+  @Before
+  public void beforeTest() {
+    clientService = new ClientServiceImpl(clientRepository);
+  }
 
-    @Test
-    public void addClient_whenClientIsPresented_ShouldInvokeCreateRepositoryMethod(){
-        Client client = new Client();
+  @Test
+  public void addClient_whenClientIsPresented_ShouldInvokeCreateRepositoryMethod() {
+    Client client = new Client();
 
-        doNothing().when(clientRepository).create(isA(Client.class));
-        clientService.addClient(client);
+    doNothing().when(clientRepository).create(isA(Client.class));
+    clientService.addClient(client);
 
-        verify(clientRepository, times(1)).create(client);
-    }
+    verify(clientRepository, times(1)).create(client);
+  }
 
-    @Test
-    public void findClientById_whenClientIdIsPresented_ShouldReturnClient() {
+  @Test
+  public void findClientById_whenClientIdIsPresented_ShouldReturnClient() {
 
+    Client client = new Client();
+    client.setId(1);
 
-        Client client = new Client();
-        client.setId(1);
+    when(clientRepository.findById(1)).thenReturn(client);
+    Client actualClient = clientService.findClientById(1);
 
-        when(clientRepository.findById(1)).thenReturn(client);
-        Client actualClient = clientService.findClientById(1);
+    Assert.assertEquals(client.getId(), actualClient.getId());
+  }
 
-        Assert.assertEquals(client.getId(), actualClient.getId());
-    }
+  @Test
+  public void listAllClients_whenClientsListIsPresented_ShouldReturnListOfClients() {
 
-    @Test
-    public void listAllClients_whenClientsListIsPresented_ShouldReturnListOfClients() {
+    List<Client> clientList = new ArrayList<>();
+    Client firstClient = new Client();
+    Client secondClient = new Client();
+    Client thirdClient = new Client();
 
-        List<Client> clientList = new ArrayList<>();
-        Client firstClient = new Client();
-        Client secondClient = new Client();
-        Client thirdClient = new Client();
+    clientList.add(firstClient);
+    clientList.add(secondClient);
+    clientList.add(thirdClient);
 
-        clientList.add(firstClient);
-        clientList.add(secondClient);
-        clientList.add(thirdClient);
+    when(clientRepository.listAll()).thenReturn(clientList);
+    List<Client> actualClientList = clientService.listAllClients();
 
-        when(clientRepository.listAll()).thenReturn(clientList);
-        List<Client> actualClientList = clientService.listAllClients();
+    Assert.assertEquals(clientList.size(), actualClientList.size());
+  }
 
-        Assert.assertEquals(clientList.size(), actualClientList.size());
-    }
+  @Test
+  public void updateClient_whenClientIsPresented_ShouldInvokeUpdateRepositoryMethod() {
 
-    @Test
-    public void updateClient_whenClientIsPresented_ShouldInvokeUpdateRepositoryMethod() {
+    Client client = new Client();
 
-        Client client = new Client();
+    doNothing().when(clientRepository).update(isA(Client.class));
+    clientService.updateClient(client);
+    verify(clientRepository, times(1)).update(client);
+  }
 
-        doNothing().when(clientRepository).update(isA(Client.class));
-        clientService.updateClient(client);
-        verify(clientRepository, times(1)).update(client);
-    }
-    @Test
-    public void deletSubscriber_whenSubscriberIsPresented_ShouldInvokeDeleteRepositoryMethod(){
+  @Test
+  public void deletSubscriber_whenSubscriberIsPresented_ShouldInvokeDeleteRepositoryMethod() {
 
-        doNothing().when(clientRepository).delete(isA(Integer.class));
-        clientService.deleteClient(1);
+    doNothing().when(clientRepository).delete(isA(Integer.class));
+    clientService.deleteClient(1);
 
-        verify(clientRepository, times(1)).delete(1);
-    }
+    verify(clientRepository, times(1)).delete(1);
+  }
 }

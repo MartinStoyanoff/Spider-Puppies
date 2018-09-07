@@ -5,6 +5,6 @@ import com.spidermanteam.spiderpuppies.models.Client;
 
 public interface ClientRepository extends GenericRepository<Client> {
 
-    Client findClientByUserUserName(String username);
+  Client findClientByUserUserName(String username);
 
 }

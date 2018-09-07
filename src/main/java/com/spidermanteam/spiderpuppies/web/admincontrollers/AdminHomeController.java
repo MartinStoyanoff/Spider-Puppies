@@ -21,35 +21,35 @@ import java.util.List;
 @RequestMapping("/admin/home")
 public class AdminHomeController {
 
-    private InvoiceService invoiceService;
-    private ClientAccessService clientAccessService;
+  private InvoiceService invoiceService;
+  private ClientAccessService clientAccessService;
 
-    @Autowired
-    public AdminHomeController(InvoiceService invoiceService, ClientAccessService clientAccessService) {
-        this.invoiceService = invoiceService;
-        this.clientAccessService = clientAccessService;
-    }
+  @Autowired
+  public AdminHomeController(InvoiceService invoiceService, ClientAccessService clientAccessService) {
+    this.invoiceService = invoiceService;
+    this.clientAccessService = clientAccessService;
+  }
 
-    @GetMapping("/lastTenInvoices")
-    List<InvoiceView> invoiceViewList() {
-        List<Invoice> invoiceList = invoiceService.findLastTenPayments();
-        List<InvoiceView> invoiceViewList = new ArrayList<>();
-        for (Invoice inv : invoiceList) {
-            invoiceViewList.add(new InvoiceView(inv));
-        }
-        return invoiceViewList;
+  @GetMapping("/lastTenInvoices")
+  List<InvoiceView> invoiceViewList() {
+    List<Invoice> invoiceList = invoiceService.findLastTenPayments();
+    List<InvoiceView> invoiceViewList = new ArrayList<>();
+    for (Invoice inv : invoiceList) {
+      invoiceViewList.add(new InvoiceView(inv));
     }
+    return invoiceViewList;
+  }
 
-    @GetMapping("/topTenSubscribers")
-    List<SubscriberShortView> getTenBestSubscribersByTurnover() {
-        List<Subscriber> subscriberList = clientAccessService.getTenBestSubscribersByTurnover();
-        List<SubscriberShortView> bestTenSubscribersList = new ArrayList<>();
-        for (Subscriber sub : subscriberList) {
-            String name = sub.getFirstName() + " " + sub.getLastName();
-            BigDecimal avgPerMonth = clientAccessService.getAvgPriceBySubscriberId(sub.getId());
-            SubscriberShortView subReport = new SubscriberShortView(sub.getPhone(), name, avgPerMonth, sub.getAllTimeTurnover());
-            bestTenSubscribersList.add(subReport);
-        }
-        return bestTenSubscribersList;
+  @GetMapping("/topTenSubscribers")
+  List<SubscriberShortView> getTenBestSubscribersByTurnover() {
+    List<Subscriber> subscriberList = clientAccessService.getTenBestSubscribersByTurnover();
+    List<SubscriberShortView> bestTenSubscribersList = new ArrayList<>();
+    for (Subscriber sub : subscriberList) {
+      String name = sub.getFirstName() + " " + sub.getLastName();
+      BigDecimal avgPerMonth = clientAccessService.getAvgPriceBySubscriberId(sub.getId());
+      SubscriberShortView subReport = new SubscriberShortView(sub.getPhone(), name, avgPerMonth, sub.getAllTimeTurnover());
+      bestTenSubscribersList.add(subReport);
     }
+    return bestTenSubscribersList;
+  }
 }

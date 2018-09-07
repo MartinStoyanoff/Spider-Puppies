@@ -9,42 +9,42 @@ import java.util.List;
 
 public interface ClientAccessService {
 
-    PaymentReport payInvoiceByIdAndClientId(int invoiceId, int clientId);
+  PaymentReport payInvoiceByIdAndClientId(int invoiceId, int clientId);
 
-    List<PaymentReport> payInvoicesByPhoneAndClientId(String phone, int clientId);
+  List<PaymentReport> payInvoicesByPhoneAndClientId(String phone, int clientId);
 
-    List<PaymentReport> payInvoicesByIdListAndClientId(List<Integer> invoiceIdList, int clientId);
+  List<PaymentReport> payInvoicesByIdListAndClientId(List<Integer> invoiceIdList, int clientId);
 
-    List<PaymentReport> payInvoicesByPhoneListAndClientId(List<String> phonesList, int clientId);
+  List<PaymentReport> payInvoicesByPhoneListAndClientId(List<String> phonesList, int clientId);
 
-    List<PaymentReport> payAllPendingInvoicesByClient(int clientId);
+  List<PaymentReport> payAllPendingInvoicesByClient(int clientId);
 
-    List<Invoice> listAllPendingInvoicesByClientId(int clientId);
+  List<Invoice> listAllPendingInvoicesByClientId(int clientId);
 
-    List<Invoice> listAllInvoicesByClientId(int clientId);
+  List<Invoice> listAllInvoicesByClientId(int clientId);
 
-    Subscriber getSubscriberByPhoneAndClientId(String phone, int clientId);
+  Subscriber getSubscriberByPhoneAndClientId(String phone, int clientId);
 
-    BigDecimal getMaxPriceBySubscriberId(int subscriberId);
+  BigDecimal getMaxPriceBySubscriberId(int subscriberId);
 
-    BigDecimal getAvgPriceBySubscriberId(int subscriberId);
+  BigDecimal getAvgPriceBySubscriberId(int subscriberId);
 
-    List<Invoice> getLastTenPaidInvoiceBySubscriberId(int subscriberId);
+  List<Invoice> getLastTenPaidInvoiceBySubscriberId(int subscriberId);
 
-    List<Invoice> getLastTenPaidInvoiceByClient(int clientId);
+  List<Invoice> getLastTenPaidInvoiceByClient(int clientId);
 
-    List<Subscriber> getTenBestSubscribersByTurnoverAndClientId(int clientId);
+  List<Subscriber> getTenBestSubscribersByTurnoverAndClientId(int clientId);
 
-    List<Subscriber> getTenBestSubscribersByTurnover();
+  List<Subscriber> getTenBestSubscribersByTurnover();
 
-    PaymentReport payInvoice(Invoice invoice, PaymentReport paymentReport);
+  PaymentReport payInvoice(Invoice invoice, PaymentReport paymentReport);
 
-    boolean currencyCheck(Invoice invoice);
+  boolean currencyCheck(Invoice invoice);
 
-    void invoiceCurrencyConverter(Invoice invoice);
+  void invoiceCurrencyConverter(Invoice invoice);
 
-    BigDecimal getAveragePaidSumBySubscriber(int id);
+  BigDecimal getAveragePaidSumBySubscriber(int id);
 
-    List<Invoice> findDueInvoicesByPhone(String phone) ;
+  List<Invoice> findDueInvoicesByPhone(String phone);
 
 }

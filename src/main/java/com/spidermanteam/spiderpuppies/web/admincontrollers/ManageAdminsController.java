@@ -13,44 +13,40 @@ import java.util.List;
 @RequestMapping("/admin/manage/admins")
 public class ManageAdminsController {
 
-    private AdminService adminService;
+  private AdminService adminService;
 
-    @Autowired
-    public ManageAdminsController(AdminService adminService){
-        this.adminService=adminService;
-    }
+  @Autowired
+  public ManageAdminsController(AdminService adminService) {
+    this.adminService = adminService;
+  }
 
-    @PostMapping("/add")
-    void addAdmin(@RequestBody Admin admin){
-        adminService.addAdmin(admin);
-    }
+  @PostMapping("/add")
+  void addAdmin(@RequestBody Admin admin) {
+    adminService.addAdmin(admin);
+  }
 
-    @GetMapping("/findById/{id}")
-    public Admin findAdminById(@PathVariable int id) {
-        return adminService.findAdminById(id);
-    }
+  @GetMapping("/findById/{id}")
+  public Admin findAdminById(@PathVariable int id) {
+    return adminService.findAdminById(id);
+  }
 
-    @GetMapping("/listAll")
-    List listAllAdmins(){
-        return adminService.listAllAdmins();
-    }
+  @GetMapping("/listAll")
+  List listAllAdmins() {
+    return adminService.listAllAdmins();
+  }
 
-    @PutMapping("/update")
-    void updateAdmin(@RequestBody Admin admin){
-        adminService.updateAdmin(admin);
-    }
+  @PutMapping("/update")
+  void updateAdmin(@RequestBody Admin admin) {
+    adminService.updateAdmin(admin);
+  }
 
-    @DeleteMapping("/delete/{id}")
-    void deleteAdmin(@PathVariable int id){
-        adminService.deleteAdmin(id);
+  @DeleteMapping("/delete/{id}")
+  void deleteAdmin(@PathVariable int id) {
+    adminService.deleteAdmin(id);
+  }
 
-    }
-    @PutMapping("/changePassword")
-    void changePassword(@RequestBody List<String> passwordUpdateInfo){
-        adminService.changeAdminPassword(passwordUpdateInfo);
-
-    }
-
-
-
+  @PutMapping("/changePassword")
+  void changePassword(@RequestBody List<String> passwordUpdateInfo) {
+    adminService.changeAdminPassword(passwordUpdateInfo);
+  }
 }

@@ -21,84 +21,83 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class AdminService_tests {
 
-    @Mock
-    AdminRepository adminRepository;
+  @Mock
+  AdminRepository adminRepository;
 
-    private AdminServiceImpl adminService;
-    private BCryptPasswordEncoder passwordEncoder;
+  private AdminServiceImpl adminService;
+  private BCryptPasswordEncoder passwordEncoder;
 
-    @Before
-    public void beforeTest() {
-        adminService = new AdminServiceImpl(adminRepository, passwordEncoder);
-    }
+  @Before
+  public void beforeTest() {
+    adminService = new AdminServiceImpl(adminRepository, passwordEncoder);
+  }
 
-    @Test
-    public void addAdmin_whenSubscriberIsPresented_ShouldInvokeCreateRepositoryMethod(){
-        Admin admin = new Admin();
+  @Test
+  public void addAdmin_whenSubscriberIsPresented_ShouldInvokeCreateRepositoryMethod() {
+    Admin admin = new Admin();
 
-        doNothing().when(adminRepository).create(isA(Admin.class));
-        adminService.addAdmin(admin);
+    doNothing().when(adminRepository).create(isA(Admin.class));
+    adminService.addAdmin(admin);
 
-        verify(adminRepository, times(1)).create(admin);
-    }
+    verify(adminRepository, times(1)).create(admin);
+  }
 
-    @Test
-    public void findAdminById_whenAdminIdIsPresented_ShouldReturnAdmin() {
-
-
-        Admin admin = new Admin();
-        admin.setId(1);
-
-        when(adminRepository.findById(1)).thenReturn(admin);
-        Admin actualAdmin = adminService.findAdminById(1);
-
-        Assert.assertEquals(admin.getId(), actualAdmin.getId());
-    }
+  @Test
+  public void findAdminById_whenAdminIdIsPresented_ShouldReturnAdmin() {
 
 
-    @Test
-    public void listAllAdmins_whenAdminsListIsPresented_ShouldReturnListOfAdmins() {
+    Admin admin = new Admin();
+    admin.setId(1);
 
-        List<Admin> adminList = new ArrayList<>();
-        Admin firstAdmin = new Admin();
-        Admin secondAdmin = new Admin();
-        Admin thirdAdmin = new Admin();
+    when(adminRepository.findById(1)).thenReturn(admin);
+    Admin actualAdmin = adminService.findAdminById(1);
 
-        adminList.add(firstAdmin);
-        adminList.add(secondAdmin);
-        adminList.add(thirdAdmin);
+    Assert.assertEquals(admin.getId(), actualAdmin.getId());
+  }
 
-        when(adminRepository.listAll()).thenReturn(adminList);
-        List<Admin> actualAdminList = adminService.listAllAdmins();
+  @Test
+  public void listAllAdmins_whenAdminsListIsPresented_ShouldReturnListOfAdmins() {
 
-        Assert.assertEquals(adminList.size(), actualAdminList.size());
-    }
+    List<Admin> adminList = new ArrayList<>();
+    Admin firstAdmin = new Admin();
+    Admin secondAdmin = new Admin();
+    Admin thirdAdmin = new Admin();
 
-    @Test
-    public void updateAdmin_whenAdminIsPresented_ShouldInvokeUpdateRepositoryMethod() {
+    adminList.add(firstAdmin);
+    adminList.add(secondAdmin);
+    adminList.add(thirdAdmin);
 
-        Admin admin = new Admin();
+    when(adminRepository.listAll()).thenReturn(adminList);
+    List<Admin> actualAdminList = adminService.listAllAdmins();
 
-        doNothing().when(adminRepository).update(isA(Admin.class));
-        adminService.updateAdmin(admin);
-        verify(adminRepository, times(1)).update(admin);
-    }
-    @Test
-    public void deletSubscriber_whenSubscriberIsPresented_ShouldInvokeDeleteRepositoryMethod(){
+    Assert.assertEquals(adminList.size(), actualAdminList.size());
+  }
 
-        doNothing().when(adminRepository).delete(isA(Integer.class));
-        adminService.deleteAdmin(1);
+  @Test
+  public void updateAdmin_whenAdminIsPresented_ShouldInvokeUpdateRepositoryMethod() {
 
-        verify(adminRepository, times(1)).delete(1);
-    }
+    Admin admin = new Admin();
 
-    @Test
-    public void changeAdminPassword_whenListIsPassed_shouldInvokeUpdateRepositoryMethod(){
-        Admin admin = new Admin();
+    doNothing().when(adminRepository).update(isA(Admin.class));
+    adminService.updateAdmin(admin);
+    verify(adminRepository, times(1)).update(admin);
+  }
 
-        doNothing().when(adminRepository).update(isA(Admin.class));
-        adminService.updateAdmin(admin);
-        verify(adminRepository, times(1)).update(admin);
-    }
+  @Test
+  public void deletSubscriber_whenSubscriberIsPresented_ShouldInvokeDeleteRepositoryMethod() {
 
+    doNothing().when(adminRepository).delete(isA(Integer.class));
+    adminService.deleteAdmin(1);
+
+    verify(adminRepository, times(1)).delete(1);
+  }
+
+  @Test
+  public void changeAdminPassword_whenListIsPassed_shouldInvokeUpdateRepositoryMethod() {
+    Admin admin = new Admin();
+
+    doNothing().when(adminRepository).update(isA(Admin.class));
+    adminService.updateAdmin(admin);
+    verify(adminRepository, times(1)).update(admin);
+  }
 }
