@@ -23,7 +23,7 @@ $(document).ready(function () {
     var clientId = localStorage.getItem("clientId");
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/client/subscribers/getAllWithPendingInvoice/" + clientId,
+        url: "http://localhost:8080/subscribers/getAllWithPendingInvoice/" + clientId,
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
@@ -54,7 +54,7 @@ $('#myDropdown').on('click', 'a', function () {
 
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/client/invoices/findDueInvoice/" + phone,
+        url: "http://localhost:8080/invoices/findDueInvoice/" + phone,
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
@@ -75,7 +75,7 @@ $('#myDropdown').on('click', 'a', function () {
             console.log(phone);
             var personalDetails = $.ajax({
                 type: 'GET',
-                url: "http://localhost:8080/client/subscribers/findSubscriberFullInfoByPhone",
+                url: "http://localhost:8080/subscribers/findSubscriberFullInfoByPhone",
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem("token"),
                     "id": clientId,
@@ -181,7 +181,7 @@ $("#payment-button").on("click", function payInvoiceByIdList() {
     var payment = $.ajax({
         crossOrigin: true,
         type: 'PUT',
-        url: "http://localhost:8080/client/invoice/payByIdList",
+        url: "http://localhost:8080/invoice/payByIdList",
         headers: {
             "id": clientId,
             "Authorization": "Bearer " + localStorage.getItem("token")
@@ -193,7 +193,7 @@ $("#payment-button").on("click", function payInvoiceByIdList() {
             $("#bulk-container").empty();
             var invoices = $.ajax({
                 type: 'GET',
-                url: "http://localhost:8080/aclient/invoice/findAllPendingByClientId/9",
+                url: "http://localhost:8080/invoice/findAllPendingByClientId/"+clientId,
                 success: function (data) {
                     $('#bulk-container').empty();
                     console.log("Invoices Paid Successfully");

@@ -6,6 +6,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -15,20 +16,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@Component
 public class JwtTokenFilter extends OncePerRequestFilter {
 
   private static final String header = "Authorization";
 
-  private MyJWTUserDetailsService userService;
-  private JwtParser jwtParser;
-  private JwtTokenProvider jwtTokenProvider;
-
   @Autowired
-  public JwtTokenFilter(MyJWTUserDetailsService userService, JwtParser jwtParser, JwtTokenProvider jwtTokenProvider) {
-    this.userService = userService;
-    this.jwtParser = jwtParser;
-    this.jwtTokenProvider = jwtTokenProvider;
-  }
+  private MyJWTUserDetailsService userService;
+  @Autowired
+  private JwtParser jwtParser;
+  @Autowired
+  private JwtTokenProvider jwtTokenProvider;
 
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {

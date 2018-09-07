@@ -3,7 +3,7 @@ $(document).ready(function () {
     var clientId = localStorage.getItem("clientId")
     var getTenBest = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/client/subscribers/getTenBest/" + clientId,
+        url: "http://localhost:8080/subscribers/getTenBest/" + clientId,
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
@@ -33,7 +33,7 @@ $(document).ready(function () {
     })
     var lastTePaid = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/client/invoices/getLastTenPaid/" + clientId,
+        url: "http://localhost:8080/invoices/getLastTenPaid/" + clientId,
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },

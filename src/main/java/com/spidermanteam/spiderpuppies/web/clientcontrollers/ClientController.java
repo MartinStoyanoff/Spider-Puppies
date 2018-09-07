@@ -32,9 +32,6 @@ public class ClientController {
     this.jwtParser = jwtParser;
   }
 
-  @Autowired
-
-
   @PutMapping("/invoices/payById")
   public PaymentReport payInvoiceById(HttpServletRequest request) {
     int clientId = jwtParser.getClientIdByUsernameFromToken(request);
@@ -48,7 +45,6 @@ public class ClientController {
     String subscribersPhone = request.getHeader("phone");
     return clientAccessService.payInvoicesByPhoneAndClientId(subscribersPhone, clientId);
   }
-
 
   @PutMapping("/invoice/payByIdList")
   public List<PaymentReport> payInvoicesByIdList(@RequestBody List<Integer> idList, HttpServletRequest request) {
@@ -110,7 +106,6 @@ public class ClientController {
     return invoiceViewList;
   }
 
-
   @GetMapping("/subscribers/getTenBest")
   List<SubscriberShortView> getTenBestSubscribersByTurnoverAndClientId(HttpServletRequest request) {
     int clientId = jwtParser.getClientIdByUsernameFromToken(request);
@@ -144,7 +139,6 @@ public class ClientController {
     Subscriber subscriber = clientAccessService.getSubscriberByPhoneAndClientId(subscribersPhone, clientId);
     return new SubscriberView(subscriber);
   }
-
 }
 
 

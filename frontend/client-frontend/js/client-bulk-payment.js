@@ -3,7 +3,7 @@ $(document).ready(function () {
     var clientId = localStorage.getItem("clientId")
     var invoices = $.ajax({
         type: 'GET',
-        url: "http://localhost:8080/client/invoice/findAllPendingByClientId/" + clientId,
+        url: "http://localhost:8080/invoice/findAllPendingByClientId/" + clientId,
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("token")
         },
@@ -57,7 +57,7 @@ $("#payment-button").on("click", function payInvoiceByIdList() {
             $("#bulk-container").empty();
             var invoices = $.ajax({
                 type: 'GET',
-                url: "http://localhost:8080/aclient/invoice/findAllPendingByClientId/9",
+                url: "http://localhost:8080/invoice/findAllPendingByClientId/9",
                 success: function (data) {
                     $('#bulk-container').empty();
                     console.log("Invoices Paid Successfully");
