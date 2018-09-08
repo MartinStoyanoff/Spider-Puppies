@@ -17,7 +17,7 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class TelecomService_Tests {
+public class TelecomServiceAllTests {
 
   @Mock
   GenericRepository<TelecomService> telecomServiceGenericRepository;

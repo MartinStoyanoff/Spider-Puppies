@@ -15,7 +15,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UserService_Tests {
+public class UserServiceAllTests {
 
   @Mock
   private UserRepository userRepository;

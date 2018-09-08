@@ -131,6 +131,9 @@ public class ClientAccessServiceImpl implements ClientAccessService {
 
   @Override
   public PaymentReport payInvoice(Invoice invoice, PaymentReport paymentReport) {
+    if(invoice.getSubscriber()==null || invoice.getCurrency()==null || invoice.getStatus() == null || invoice.getId()+""==null){
+      return  paymentReport;
+    }
     if (!currencyCheck(invoice)) {
       invoiceCurrencyConverter(invoice);
       if (invoice.getCurrency().contains("Not_Supported")) {
@@ -184,6 +187,7 @@ public class ClientAccessServiceImpl implements ClientAccessService {
       default:
         String updateCurrency = invoice.getCurrency() + "Not_Supported";
         invoice.setCurrency(updateCurrency);
+        return;
     }
     invoice.setPrice(invoicePrice);
     invoice.setCurrency("BGN");

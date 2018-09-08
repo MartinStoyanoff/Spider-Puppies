@@ -19,7 +19,7 @@ import static org.mockito.Mockito.*;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class AdminService_tests {
+public class AdminServiceAllTests {
 
   @Mock
   AdminRepository adminRepository;

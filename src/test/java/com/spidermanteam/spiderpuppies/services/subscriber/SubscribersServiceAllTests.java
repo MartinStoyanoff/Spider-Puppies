@@ -22,7 +22,7 @@ import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class SubscribersService_Tests {
+public class SubscribersServiceAllTests {
 
   @Mock
   SubscriberRepository subscriberRepository;
