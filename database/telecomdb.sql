@@ -25,12 +25,13 @@ CREATE TABLE IF NOT EXISTS `admins` (
   PRIMARY KEY (`id`),
   KEY `FK_admins_users` (`user_id`),
   CONSTRAINT `FK_admins_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
--- Dumping data for table telecomdb.admins: ~0 rows (approximately)
+-- Dumping data for table telecomdb.admins: ~2 rows (approximately)
 /*!40000 ALTER TABLE `admins` DISABLE KEYS */;
 INSERT INTO `admins` (`id`, `user_id`, `e_mail`, `first_login`) VALUES
-	(7, 19, 'gosho@palavnik.bg', 0);
+	(23, 40, 'veselin_georgiev@yahoo.com', 0),
+	(24, 41, 'ivanIvanoc@gmail.com', 1);
 /*!40000 ALTER TABLE `admins` ENABLE KEYS */;
 
 -- Dumping structure for table telecomdb.authorities
@@ -40,24 +41,18 @@ CREATE TABLE IF NOT EXISTS `authorities` (
   UNIQUE KEY `username_authority` (`username`,`authority`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table telecomdb.authorities: ~14 rows (approximately)
+-- Dumping data for table telecomdb.authorities: ~9 rows (approximately)
 /*!40000 ALTER TABLE `authorities` DISABLE KEYS */;
 INSERT INTO `authorities` (`username`, `authority`) VALUES
-	('Allianz', 'ROLE_CLIENT'),
+	('Allianzaaaa', 'ROLE_CLIENT'),
+	('banka', 'ROLE_CLIENT'),
 	('Dragan', 'ROLE_CLIENT'),
-	('FiBank', 'ROLE_ADMIN'),
-	('generic_client', 'ROLE_ADMIN'),
+	('DSK', 'ROLE_CLIENT'),
 	('gosho', 'ROLE_CLIENT'),
-	('GoshoPalaviq', 'ROLE_ADMIN'),
-	('Ivcho', 'ROLE_ADMIN'),
-	('Kiro', 'ROLE_ADMIN'),
+	('ivanIvanov', 'ROLE_ADMIN'),
 	('misho', 'ROLE_CLIENT'),
-	('mitko', 'ROLE_ADMIN'),
-	('pesho', 'ROLE_ADMIN'),
-	('RBB', 'ROLE_ADMIN'),
 	('Societe', 'ROLE_CLIENT'),
-	('TestUser1', 'ROLE_ADMIN'),
-	('TestUser2', 'ROLE_ADMIN');
+	('veselin', 'ROLE_ADMIN');
 /*!40000 ALTER TABLE `authorities` ENABLE KEYS */;
 
 -- Dumping structure for table telecomdb.clients
@@ -69,15 +64,17 @@ CREATE TABLE IF NOT EXISTS `clients` (
   PRIMARY KEY (`id`),
   KEY `FK_clients_users` (`user_id`),
   CONSTRAINT `FK_clients_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
--- Dumping data for table telecomdb.clients: ~3 rows (approximately)
+-- Dumping data for table telecomdb.clients: ~6 rows (approximately)
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
 INSERT INTO `clients` (`id`, `user_id`, `full_name`, `uic`) VALUES
-	(8, 3, 'Allianz Bank Bulgaria ', '1433192423'),
+	(8, 3, 'Allianz Bank Bulgariaaaaa', '14332222'),
 	(9, 4, 'First Investment Bank', '831094393'),
 	(12, 13, 'Dragan', '444'),
-	(14, 22, 'Sociate', '8888888888');
+	(14, 22, 'Sociate', '8888888888'),
+	(15, 43, 'DSK', '1222333333'),
+	(17, 45, 'Banka', '11222');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 
 -- Dumping structure for table telecomdb.invoices
@@ -96,16 +93,27 @@ CREATE TABLE IF NOT EXISTS `invoices` (
   KEY `FK_invoices_subscribers` (`subscriber_id`),
   CONSTRAINT `FK_invoices_subscribers` FOREIGN KEY (`subscriber_id`) REFERENCES `subscribers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_invoices_telecom_services` FOREIGN KEY (`telecom_service`) REFERENCES `telecom_services` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
 
--- Dumping data for table telecomdb.invoices: ~5 rows (approximately)
+-- Dumping data for table telecomdb.invoices: ~16 rows (approximately)
 /*!40000 ALTER TABLE `invoices` DISABLE KEYS */;
 INSERT INTO `invoices` (`id`, `subscriber_id`, `telecom_service`, `status`, `price`, `currency`, `start_date`, `end_date`, `payment_date`) VALUES
-	(16, 2, 13, 1, 19, 'BGN', '2018-07-16', '2018-08-16', '2018-08-21'),
-	(17, 3, 10, 0, 9, 'BGN', '2018-07-16', '2018-08-16', '2018-08-21'),
-	(18, 2, 13, 0, 19, 'BGN', '2018-07-16', '2018-08-16', '2018-08-21'),
-	(19, 2, 13, 1, 19, 'BGN', '2018-07-16', '2018-08-16', '2018-08-21'),
-	(20, 3, 10, 0, 9, 'BGN', '2018-07-16', '2018-08-16', '2018-08-21');
+	(63, 2, 13, 1, 19, 'BGN', '2018-07-16', '2018-08-16', '2018-09-08'),
+	(64, 3, 10, 0, 9, 'BGN', '2018-07-16', '2018-08-16', NULL),
+	(65, 2, 13, 1, 19, 'BGN', '2018-08-16', '2018-09-16', '2018-09-08'),
+	(66, 3, 10, 1, 9, 'BGN', '2018-08-16', '2018-09-16', '2018-09-08'),
+	(67, 2, 13, 1, 19, 'BGN', '2018-09-16', '2018-10-16', '2018-09-08'),
+	(68, 3, 10, 0, 9, 'BGN', '2018-09-16', '2018-10-16', NULL),
+	(69, 2, 13, 0, 19, 'BGN', '2018-10-16', '2018-11-16', NULL),
+	(70, 3, 10, 0, 9, 'BGN', '2018-10-16', '2018-11-16', NULL),
+	(71, 2, 13, 1, 19, 'BGN', '2018-11-16', '2018-12-16', '2018-09-08'),
+	(72, 3, 10, 0, 9, 'BGN', '2018-11-16', '2018-12-16', NULL),
+	(73, 2, 13, 0, 19, 'BGN', '2018-12-16', '2019-01-16', NULL),
+	(74, 3, 10, 0, 9, 'BGN', '2018-12-16', '2019-01-16', NULL),
+	(75, 2, 13, 0, 19, 'BGN', '2019-01-16', '2019-02-16', NULL),
+	(76, 3, 10, 0, 9, 'BGN', '2019-01-16', '2019-02-16', NULL),
+	(77, 2, 13, 1, 19, 'BGN', '2019-02-16', '2019-03-16', '2018-09-08'),
+	(78, 2, 13, 0, 19, 'BGN', '2019-03-16', '2019-04-16', NULL);
 /*!40000 ALTER TABLE `invoices` ENABLE KEYS */;
 
 -- Dumping structure for table telecomdb.services_subscribers
@@ -149,8 +157,8 @@ CREATE TABLE IF NOT EXISTS `subscribers` (
 -- Dumping data for table telecomdb.subscribers: ~2 rows (approximately)
 /*!40000 ALTER TABLE `subscribers` DISABLE KEYS */;
 INSERT INTO `subscribers` (`id`, `phone`, `first_name`, `last_name`, `pin`, `address`, `invoice`, `first_activation_date`, `billing_date`, `client`, `all_time_turnover`) VALUES
-	(2, '0897902770', 'Martin', 'Ivanov', '9933881133', 'gore na chereshata', NULL, '2015-07-16', '2018-07-16', 9, 0),
-	(3, '0897220145', 'Veselin', 'Georgiev', '2114124490', 'dolu pod chereshata', NULL, '2015-07-16', '2018-07-16', 12, 0);
+	(2, '0897902770', 'Martin', 'Ivanov', '9933881133', 'gore na chereshata', NULL, '2018-07-16', '2019-04-16', 15, 95),
+	(3, '0897220145', 'Veselin', 'Georgiev', '2114124490', 'dolu pod chereshata', NULL, '2018-07-16', '2019-02-16', 15, 9);
 /*!40000 ALTER TABLE `subscribers` ENABLE KEYS */;
 
 -- Dumping structure for table telecomdb.telecom_services
@@ -195,29 +203,21 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(68) NOT NULL,
   `enabled` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
--- Dumping data for table telecomdb.users: ~17 rows (approximately)
+-- Dumping data for table telecomdb.users: ~10 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `username`, `password`, `enabled`) VALUES
-	(1, 'admin', '{noop}admin', 1),
-	(2, 'administrator', '{noop}admins', 1),
-	(3, 'Allianz', '{noop}ClientPasswod1', 1),
+	(3, 'Allianzaaaa', '{noop}ClientPasswod1', 1),
 	(4, 'FiBank', '{noop}first', 1),
-	(5, 'generic_client', 'Test', 1),
-	(6, 'gosho', '{noop}pass2', 1),
-	(7, 'Ivan', 'Test', 1),
-	(8, 'Ivcho', 'Test', 1),
-	(9, 'Kiro', 'Test', 1),
-	(10, 'misho', '{noop}pass3', 1),
-	(11, 'mitko', '{noop}neepi4', 1),
-	(12, 'pesho', '{noop}pass1', 1),
 	(13, 'Dragan', '{noop}pass', 1),
 	(14, 'TestUser2', '{noop}TestPassword2', 1),
-	(15, 'vesko', '{noop}veskoepi4', 1),
 	(16, 'TestUser1', '{noop}TestPassword1', 1),
-	(19, 'GoshoPalaviq', '{noop}Test', 1),
-	(22, 'Societe', '{noop}pass', 1);
+	(22, 'Societe', '{noop}pass', 1),
+	(40, 'veselin', '$2a$10$luJRBb2pYBvFtiWTXrYalODTnm6MjhN8jzgzkYAp9ZIJNa1NlLwmK', 1),
+	(41, 'ivanIvanov', '$2a$10$UntEHhmyYeO6piF5r5qmtOr.AOxV9sgxgCwcOePVY8QHWTHmXuvoG', 1),
+	(43, 'DSK', '$2a$10$D.q.eik3/2b9JAMZLJUyrugU7LxRzzM.y2axD4V0Utx6L7.DPw2S6', 1),
+	(45, 'banka', '$2a$10$iSYcUf26Xb2kn31gk87YG.iNUYkqLgKimxVVYAsPV36UozhGU8ltm', 1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
