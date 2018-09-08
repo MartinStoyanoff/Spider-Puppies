@@ -1,5 +1,6 @@
 package com.spidermanteam.spiderpuppies.services.clientaccess;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.spidermanteam.spiderpuppies.data.base.InvoiceRepository;
 import com.spidermanteam.spiderpuppies.data.base.SubscriberRepository;
 import com.spidermanteam.spiderpuppies.models.*;
@@ -175,17 +176,18 @@ public class ClientAccessServiceAllTests {
   }
 
   @Test
-  public void getMaxPriceBySubscriberId_whenSubscriberIdIsPresented_ShouldReturnMaxPrice(){
+  public void getMaxPriceBySubscriberId_whenSubscriberIdIsPresented_ShouldReturnMaxPrice() {
     BigDecimal maxPrice = new BigDecimal(22.22);
 
     when(subscriberRepository.getHighestPaidSumBySubscriber(1)).thenReturn(maxPrice);
 
     BigDecimal actualPrice = clientAccessService.getMaxPriceBySubscriberId(1);
 
-    Assert.assertEquals( new BigDecimal(22.22),actualPrice);
+    Assert.assertEquals(new BigDecimal(22.22), actualPrice);
   }
+
   @Test
-  public void getLastTenPaidInvoiceBySubscriberId_whenSubscriberIdIsPresented_ShouldReturnInvoiceList(){
+  public void getLastTenPaidInvoiceBySubscriberId_whenSubscriberIdIsPresented_ShouldReturnInvoiceList() {
 
     List<Invoice> invoiceList = new ArrayList<>();
     invoiceList.add(new Invoice());
@@ -194,11 +196,11 @@ public class ClientAccessServiceAllTests {
     when(invoiceRepository.findLastTenPaymentsBySubscriberId(1)).thenReturn(invoiceList);
     List<Invoice> actualInvoiceList = clientAccessService.getLastTenPaidInvoiceBySubscriberId(1);
 
-    Assert.assertEquals(invoiceList.size(),actualInvoiceList.size());
+    Assert.assertEquals(invoiceList.size(), actualInvoiceList.size());
   }
 
   @Test
-  public void getLastTenPaidInvoiceByClientId_whenSubscriberIdIsPresented_ShouldReturnInvoiceList(){
+  public void getLastTenPaidInvoiceByClientId_whenSubscriberIdIsPresented_ShouldReturnInvoiceList() {
 
     List<Invoice> invoiceList = new ArrayList<>();
     invoiceList.add(new Invoice());
@@ -208,10 +210,11 @@ public class ClientAccessServiceAllTests {
     when(invoiceRepository.findLastTenPaymentsByClientId(1)).thenReturn(invoiceList);
     List<Invoice> actualInvoiceList = clientAccessService.getLastTenPaidInvoiceByClient(1);
 
-    Assert.assertEquals(invoiceList.size(),actualInvoiceList.size());
+    Assert.assertEquals(invoiceList.size(), actualInvoiceList.size());
   }
+
   @Test
-  public void getTenBestSubscribersByTurnoverAndClientId_whenClientIdIsPresented_ShouldReturnSubscriberList(){
+  public void getTenBestSubscribersByTurnoverAndClientId_whenClientIdIsPresented_ShouldReturnSubscriberList() {
 
     List<Subscriber> subscriberList = new ArrayList<>();
     subscriberList.add(new Subscriber());
@@ -220,10 +223,11 @@ public class ClientAccessServiceAllTests {
     when(subscriberRepository.getTenBestSubscribersByTurnoverAndClientId(1)).thenReturn(subscriberList);
     List<Subscriber> actualSubscribersList = clientAccessService.getTenBestSubscribersByTurnoverAndClientId(1);
 
-    Assert.assertEquals(subscriberList.size(),actualSubscribersList.size());
+    Assert.assertEquals(subscriberList.size(), actualSubscribersList.size());
   }
+
   @Test
-  public void getTenBestSubscribersByTurnover_whenSubscriberIsPresented_ShouldReturnSubscribersList(){
+  public void getTenBestSubscribersByTurnover_whenSubscriberIsPresented_ShouldReturnSubscribersList() {
     List<Subscriber> subscriberList = new ArrayList<>();
     subscriberList.add(new Subscriber());
     subscriberList.add(new Subscriber());
@@ -233,8 +237,77 @@ public class ClientAccessServiceAllTests {
     when(subscriberRepository.getTenBestSubscribersByTurnover()).thenReturn(subscriberList);
     List<Subscriber> actualSubscriberList = clientAccessService.getTenBestSubscribersByTurnover();
 
-    Assert.assertEquals(subscriberList.size(),actualSubscriberList.size());
+    Assert.assertEquals(subscriberList.size(), actualSubscriberList.size());
+  }
+
+  @Test
+  public void currencyCheck_whenInvoiceCurrencyIsBgn_ShouldReturnTrue(){
+    Invoice invoice = new Invoice();
+    invoice.setCurrency("BGN");
+
+    boolean check = clientAccessService.currencyCheck(invoice);
+
+    Assert.assertTrue(check);
+
+  }
+  @Test
+  public void currencyCheck_whenInvoiceCurrencyIsNotBgn_ShouldReturnFalse(){
+    Invoice invoice = new Invoice();
+    invoice.setCurrency("DDD");
+
+    boolean check = clientAccessService.currencyCheck(invoice);
+
+    Assert.assertFalse(check);
+  }
+  @Test
+  public void invoiceCurrencyConverter_whenInvoiceCurrencyIsEur_ShouldConvertedToBgnInvoice(){
+  Invoice invoice = new Invoice();
+  invoice.setCurrency("EUR");
+  invoice.setPrice(BigDecimal.valueOf(10));
+
+  clientAccessService.invoiceCurrencyConverter(invoice);
+
+  Assert.assertEquals("BGN",invoice.getCurrency());
+  Assert.assertEquals("19.55830",invoice.getPrice()+"");
+
+  }
+  @Test
+  public void invoiceCurrencyConverter_whenInvoiceCurrencyIsGbp_ShouldConvertedToBgnInvoice(){
+    Invoice invoice = new Invoice();
+    invoice.setCurrency("GBP");
+    invoice.setPrice(BigDecimal.valueOf(10));
+
+    clientAccessService.invoiceCurrencyConverter(invoice);
+
+    Assert.assertEquals("BGN",invoice.getCurrency());
+    Assert.assertEquals("21.68330",invoice.getPrice()+"");
+
   }
 }
+
+//  @Override
+//  public void invoiceCurrencyConverter(Invoice invoice) {
+//    BigDecimal invoicePrice = invoice.getPrice();
+//    switch (invoice.getCurrency().toLowerCase()) {
+//      case "eur":
+//        invoicePrice = invoicePrice.multiply(BigDecimal.valueOf(1.95583));
+//        break;
+//      case "gbp":
+//        invoicePrice = invoicePrice.multiply(BigDecimal.valueOf(2.16833));
+//        break;
+//      case "usd":
+//        invoicePrice = invoicePrice.multiply(BigDecimal.valueOf(1.68781));
+//        break;
+//      case "chf":
+//        invoicePrice = invoicePrice.multiply(BigDecimal.valueOf(1.71594));
+//        break;
+//      default:
+//        String updateCurrency = invoice.getCurrency() + "Not_Supported";
+//        invoice.setCurrency(updateCurrency);
+//        return;
+//    }
+//
+//
+//}
 
 
