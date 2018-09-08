@@ -20,10 +20,6 @@ public class UserServiceImpl implements UserService {
     this.authoritiesRepository = authoritiesRepository;
   }
 
-  public UserServiceImpl(UserRepository userRepository) {
-    this.userRepository = userRepository;
-  }
-
   @Override
   public User findById(Long id) {
     return userRepository.findUserById(id);
