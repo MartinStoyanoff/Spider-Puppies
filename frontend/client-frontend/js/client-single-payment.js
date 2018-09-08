@@ -61,7 +61,7 @@ $('#myDropdown').on('click', 'a', function () {
         success: function (data) {
             console.log(data);
             var tbody = $("#bulk-container"),
-                props = ["subscriberPhone", "telecomServiceType", "telecomServiceSubscriptionPlan", "price", "currency"];
+                props = ["id","subscriberPhone", "telecomServiceType", "telecomServiceSubscriptionPlan", "price", "currency"];
             $.each(data, function (i, data) {
                 var tr = $('<tr>');
                 $('<td><input' + " value=" + data["id"] + ' type="checkbox" class="form-check-input" checked="checked">').appendTo(tr);
@@ -70,17 +70,16 @@ $('#myDropdown').on('click', 'a', function () {
                 });
                 tbody.append(tr);
             });
-            var clientId = localStorage.getItem("clientId");
-            console.log(clientId);
-            console.log(phone);
-            var personalDetails = $.ajax({
+
+            var getDetailsAjas = $.ajax({
                 type: 'GET',
                 url: "http://localhost:8080/api/subscribers/getSubscriberFullInfoByPhone/"+phone,
                 headers: {
-                    "Authorization": "Bearer " + localStorage.getItem("token"),
+                    "Authorization": "Bearer " + localStorage.getItem("token")
                 },
                 success: function (data) {
                     $('#subscriber-info-container').removeAttr("style");
+                    $('#invoice-history-table').removeAttr("style");
                     var fullName = data["firstName"] + " " + data["lastName"];
                     var pin = data["personalIdentificationNumber"];
                     var address = data["address"];
@@ -144,8 +143,25 @@ $('#myDropdown').on('click', 'a', function () {
                     // ---------------------------------------
 
                     var invoices = data["invoices"];
+                    var invoiceHistoryTbody = $("#invoice-history-container"),
+                        props = ["id","startDate","endDate","paymentDate", "telecomServiceType", "telecomServiceSubscriptionPlan", "price", "currency"];
 
+                    $("#invoice-history-add-phone").text("Invoice history for "+phone);
+                    for (var k = invoices.length-1; k >= 0; k--) {
+                        var tr = $('<tr>');
+                        var inv = invoices[k];
+                        $.each(props, function (i, prop) {
+                            if(prop==="paymentDate"&& inv[prop]===null) {
+                                $('<td>').html("Pending").appendTo(tr);
+                            }
+                            else{
+                                $('<td>').html(inv[prop]).appendTo(tr);
 
+                            }
+                        });
+                        invoiceHistoryTbody.append(tr);
+
+                    }
 
                 },
                 error: function () {
@@ -153,7 +169,6 @@ $('#myDropdown').on('click', 'a', function () {
                 }
             });
 
-            // var getPersonalDetails = (function () {
         },
         error: function () {
             console.log("Unsuccessful request");

@@ -79,10 +79,12 @@
         <div class="flex justify-content-between">
             <div class="left-content ">
                 <div class="table-container">
+                    <h3>Invoices for payment</h3>
                     <table class="table table-striped table-hover table-bordered">
                         <thead class="thead-dark">
                         <tr>
-                            <th scope="col">SubscriberID</th>
+                            <th scope="col">Select</th>
+                            <th scope="col">Invoice ID</th>
                             <th scope="col">Subscriber</th>
                             <th scope="col">Telecom Service</th>
                             <th scope="col">Plan</th>
@@ -92,12 +94,29 @@
                         </thead>
                         <tbody id="bulk-container"></tbody>
                     </table>
+                    <div id="invoice-history-table" class="table-container" style="display:none">
+                        <h3 id="invoice-history-add-phone">Invoice history</h3>
+                        <table  class="table table-striped table-hover table-bordered">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Invoice ID</th>
+                                <th scope="col">Start date</th>
+                                <th scope="col">End date</th>
+                                <th scope="col">Payment date</th>
+                                <th scope="col">Telecom Service</th>
+                                <th scope="col">Plan</th>
+                                <th scope="col">Sum</th>
+                                <th scope="col">Currency</th>
+                            </tr>
+                            </thead>
+                            <tbody id="invoice-history-container"></tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div class="right-content sidebar-sticky" id="subscriber-info-container" style="display:none">
+            <div class="right-content sidebar-sticky" id="subscriber-info-container" style="display:none" >
                 <div class="bg-light sidebar p-4" id="personal-info-container">
                 </div>
-
                 <div class="table-container-services" id="table-container-services">
                     <h3>Active Telecom Services</h3>
                     <table class="table table-striped table-hover table-bordered">
@@ -113,6 +132,7 @@
                 </div>
             </div>
         </div>
+
     </main>
 </div>
 <footer></footer>

@@ -131,9 +131,9 @@ public class ClientController {
   }
 
   @GetMapping("/subscribers/getSubscriberFullInfoByPhone/{phone}")
-  SubscriberView getSubscriberFullInfoByPhoneAndClientId(@RequestParam String subscribersPhone, HttpServletRequest request) {
+  SubscriberView getSubscriberFullInfoByPhoneAndClientId(@PathVariable String phone, HttpServletRequest request) {
     int clientId = jwtParser.getClientIdByUsernameFromToken(request);
-    Subscriber subscriber = clientAccessService.getSubscriberByPhoneAndClientId(subscribersPhone, clientId);
+    Subscriber subscriber = clientAccessService.getSubscriberByPhoneAndClientId(phone, clientId);
     return new SubscriberView(subscriber);
   }
 }
