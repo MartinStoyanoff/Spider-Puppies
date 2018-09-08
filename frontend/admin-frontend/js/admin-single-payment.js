@@ -50,6 +50,103 @@ $('#myDropdown').on('click', 'a', function () {
                 $('<td>').html(currency).appendTo(tr);
                 tbody.append(tr);
             });
+            var getDetailsAjas = $.ajax({
+                type: 'GET',
+                url: "http://localhost:8080/api/subscribers/getSubscriberByPhone/"+phone,
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("token")
+                },
+                success: function (data) {
+                    $('#subscriber-info-container').removeAttr("style");
+                    $('#invoice-history-table').removeAttr("style");
+                    var fullName = data["firstName"] + " " + data["lastName"];
+                    var pin = data["personalIdentificationNumber"];
+                    var address = data["address"];
+                    var firstActivation = data["firstServiceActivationDate"];
+                    var nextBillingDate = data["billingDate"];
+                    var totalPaidAmount = data["allTimeTurnover"].toFixed(2);
+
+                    var personalDetailsBody = $('#personal-info-container');
+                    var detailsHeader = "<h3>Subscriber Personal Details</h3>";
+                    personalDetailsBody.append(detailsHeader);
+
+                    var fullNameElement = "<p>Full Name</p>" + "<p>" + fullName + "</p>";
+                    var div = "<div class='flex justify-content-between'>"+fullNameElement+"</div>";
+                    personalDetailsBody.append(div);
+                    div = ('');
+
+
+                    var pinElement = "<p>PIN</p>" + "<p>" + pin + "</p>";
+                    div = "<div class='flex justify-content-between'>"+pinElement+"</div>";
+                    personalDetailsBody.append(div);
+                    div = ('');
+
+
+                    var addressElement = "<p>Address</p>" + "<p>" + address + "</p>";
+                    div = "<div class='flex justify-content-between'>"+addressElement+"</div>";
+                    personalDetailsBody.append(div);
+                    div = ('');
+
+
+                    var firstActivationElement = "<p>First Activation Date</p>" + "<p>" + firstActivation + "</p>";
+                    div = "<div class='flex justify-content-between'>"+firstActivationElement+"</div>";
+                    personalDetailsBody.append(div);
+                    div = ('');
+
+                    var nextBillingElement = "<p>Next Billing Date</p>" + "<p>" + nextBillingDate + "</p>";
+                    div = "<div class='flex justify-content-between'>"+nextBillingElement+"</div>";
+                    personalDetailsBody.append(div);
+                    div = ('');
+
+                    var totalPaidElement = "<p>Total Paid Amount (BGN)</p>" + "<p>" + totalPaidAmount + "</p>";
+                    div = "<div class='flex justify-content-between'>"+totalPaidElement+"</div>";
+                    personalDetailsBody.append(div);
+                    div = ('');
+
+
+                    // ---------------------------------------
+
+                    var telecomServicesList = data["telecomServices"];
+
+                    var serviceProps = ["type", "subscriptionPlan", "price"];
+
+                    var serviceContainer = $('#services-container');
+                    $.each(telecomServicesList, function(i, telecomServicesList){
+                        var tr = $('<tr>');
+                        $.each(serviceProps, function (i, serviceProp) {
+                            $('<td>').html(telecomServicesList[serviceProp]).appendTo(tr);
+                        });
+                        serviceContainer.append(tr);
+                    });
+
+                    // ---------------------------------------
+
+                    var invoices = data["invoices"];
+                    var invoiceHistoryTbody = $("#invoice-history-container"),
+                        props = ["id","startDate","endDate","paymentDate", "telecomServiceType", "telecomServiceSubscriptionPlan", "price", "currency"];
+
+                    $("#invoice-history-add-phone").text("Invoice history for "+phone);
+                    for (var k = invoices.length-1; k >= 0; k--) {
+                        var tr = $('<tr>');
+                        var inv = invoices[k];
+                        $.each(props, function (i, prop) {
+                            if(prop==="paymentDate"&& inv[prop]===null) {
+                                $('<td>').html("Pending").appendTo(tr);
+                            }
+                            else{
+                                $('<td>').html(inv[prop]).appendTo(tr);
+
+                            }
+                        });
+                        invoiceHistoryTbody.append(tr);
+
+                    }
+
+                },
+                error: function () {
+                    console.log("Unsuccessful request");
+                }
+            });
 
         },
         error: function () {

@@ -103,7 +103,7 @@ public class ManageSubscribersController {
     subscribers.add(subscriber);
     return MappingHelper.mapSubscriberToPaymentLines(subscribers);
   }
-  @GetMapping("/subscribers/getSubscriberByPhone/{phone}")
+  @GetMapping("/getSubscriberByPhone/{phone}")
   SubscriberView getSubscriberFullInfoByPhoneAndClientId(@PathVariable String phone) {
     Subscriber subscriber = subscribersService.getSubscriberByPhone(phone);
     return new SubscriberView(subscriber);
