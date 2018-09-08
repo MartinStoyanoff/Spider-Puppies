@@ -165,7 +165,7 @@ public class InvoiceServiceAllTests {
   public void getExchangeRateToBGN_whenCurrencyUsdIsProvided_shouldReturnConvertedNumberInUsd() {
 
     //Arrange
-    String currency = "CHF";
+    String currency = "USD";
     BigDecimal usdToBgnRate = BigDecimal.valueOf(1.68781);
 
     //Act
