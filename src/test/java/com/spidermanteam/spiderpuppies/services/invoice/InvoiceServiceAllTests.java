@@ -106,21 +106,21 @@ public class InvoiceServiceAllTests {
   }
 
   @Test
-  public void getExchangeRateToBGN_whenCurrencyEURIsProvided_shouldReturnConvertedNumberInBGN() {
+  public void getExchangeRateToBGN_whenCurrencyEurIsProvided_shouldReturnConvertedNumberInBgn() {
 
     //Arrange
     String currency = "EUR";
-    BigDecimal EURtoBGNrate = BigDecimal.valueOf(1.95583);
+    BigDecimal eurToBgnRate = BigDecimal.valueOf(1.95583);
 
     //Act
     BigDecimal result = invoiceService.getExchangeRateToBGN(currency);
 
     //Assert
-    Assert.assertEquals(EURtoBGNrate, result);
+    Assert.assertEquals(eurToBgnRate, result);
   }
 
   @Test
-  public void addInvoice_whenSubscriberIdAndCurrencyArePresented_ShouldAddOneMotnthToSubscriberBillingDate() {
+  public void addInvoice_whenSubscriberIdAndCurrencyArePresented_ShouldAddOneMonthToSubscriberBillingDate() {
     String currency = "BGN";
     LocalDate billingDate = subscriber.getBillingDate();
     subscriber.getTelecomServices().add(telecomService);
@@ -132,6 +132,47 @@ public class InvoiceServiceAllTests {
 
     Assert.assertEquals(subscriber.getBillingDate(), billingDate.plusMonths(1));
 
+  }
+  @Test
+  public void getExchangeRateToBGN_whenCurrencyGbpIsProvided_shouldReturnConvertedNumberInBgn() {
+
+    //Arrange
+    String currency = "GBP";
+    BigDecimal gbpToBgnRate = BigDecimal.valueOf(2.16833);
+
+    //Act
+    BigDecimal result = invoiceService.getExchangeRateToBGN(currency);
+
+    //Assert
+    Assert.assertEquals(gbpToBgnRate, result);
+  }
+
+  @Test
+  public void getExchangeRateToBGN_whenCurrencyChfIsProvided_shouldReturnConvertedNumberInBgn() {
+
+    //Arrange
+    String currency = "CHF";
+    BigDecimal chfToBgnRate = BigDecimal.valueOf(1.71594);
+
+    //Act
+    BigDecimal result = invoiceService.getExchangeRateToBGN(currency);
+
+    //Assert
+    Assert.assertEquals(chfToBgnRate, result);
+  }
+
+  @Test
+  public void getExchangeRateToBGN_whenCurrencyUsdIsProvided_shouldReturnConvertedNumberInUsd() {
+
+    //Arrange
+    String currency = "CHF";
+    BigDecimal usdToBgnRate = BigDecimal.valueOf(1.68781);
+
+    //Act
+    BigDecimal result = invoiceService.getExchangeRateToBGN(currency);
+
+    //Assert
+    Assert.assertEquals(usdToBgnRate, result);
   }
 
 }

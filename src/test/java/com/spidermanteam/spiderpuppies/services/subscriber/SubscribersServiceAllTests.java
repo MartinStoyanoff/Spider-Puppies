@@ -153,28 +153,3 @@ public class SubscribersServiceAllTests {
     Assert.assertEquals(2,subscriber.getTelecomServices().size());
   }
 }
-
-//  @Override
-//  public void addTelecomServiceToSubscriber(int subscriberId, int telecomServiceId) {
-//    Subscriber subscriber = subscriberRepository.findById(subscriberId);
-//    TelecomService telecomService = telecomServiceRepository.findById(telecomServiceId);
-//    LocalDate billingDate = subscriber.getBillingDate();
-//    LocalDate currentDay = LocalDate.now();
-//    long daysForPay = DAYS.between(currentDay, billingDate);
-//    LocalDate previousBillingDate = billingDate.minusMonths(1);
-//    long daysUsedService = DAYS.between(billingDate, previousBillingDate);
-//    List<TelecomService> telecomServices = subscriber.getTelecomServices();
-//    for (TelecomService ts : telecomServices) {
-//      BigDecimal telecomServicePricePerDay = ts.getPrice().divide(BigDecimal.valueOf(daysUsedService));
-//      BigDecimal priceForInvoicing = telecomServicePricePerDay.multiply(BigDecimal.valueOf(daysForPay));
-//      Invoice invoice = new Invoice(subscriber, telecomService, priceForInvoicing, "BGN");
-//      subscriber.getInvoices().add(invoice);
-//      invoiceRepository.create(invoice);
-//      BigDecimal currentAllTimeTurnover = subscriber.getAllTimeTurnover();
-//      subscriber.setAllTimeTurnover(currentAllTimeTurnover.add(priceForInvoicing));
-//    }
-//    subscriber.getTelecomServices().add(telecomService);
-//    subscriber.setBillingDate(currentDay.plusMonths(1));
-//  }
-//
-//
