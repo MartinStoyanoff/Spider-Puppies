@@ -58,9 +58,9 @@ public class ClientAccessServiceAllTests {
     paymentReport.setStatus(PaymentReportStatus.FAILED_INVOICE_OR_CLIENT_NOT_EXIST);
 
     when(invoiceRepository.findByIdAndClientId(1, 1)).thenReturn(invoice);
-    PaymentReport actualInvoice = clientAccessService.payInvoice(invoice, paymentReport);
+    PaymentReport actualPaymentReport = clientAccessService.payInvoiceByIdAndClientId(1, 1);
 
-    Assert.assertEquals("SUCCESSFULLY_PAID", paymentReport.getStatus() + "");
+    Assert.assertEquals("SUCCESSFULLY_PAID", actualPaymentReport.getStatus() + "");
 
   }
 
