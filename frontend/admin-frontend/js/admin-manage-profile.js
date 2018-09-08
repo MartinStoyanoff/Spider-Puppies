@@ -115,7 +115,7 @@ $("#bulk-container").on("click", "#change-password-button", function () {
         contentType: "application/json",
         data: JSON.stringify(passwordUpdateInfo),
         success: function () {
-            window.location.href = "../admin-log-in.html";
+            window.location.href = "../admin-frontend/admin-log-in.html";
 
         },
         error: function () {

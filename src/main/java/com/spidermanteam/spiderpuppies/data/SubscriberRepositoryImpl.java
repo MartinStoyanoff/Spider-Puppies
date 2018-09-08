@@ -121,7 +121,7 @@ public class SubscriberRepositoryImpl implements SubscriberRepository {
 
   @Override
   public BigDecimal getAveragePaidSumBySubscriber(int id) {
-    BigDecimal amount = null;
+    BigDecimal amount = BigDecimal.ZERO;
     try (Session session = sessionFactory.openSession()) {
       session.beginTransaction();
       List<Double> max = session.createQuery("SELECT avg(i.price) " +
@@ -187,7 +187,7 @@ public class SubscriberRepositoryImpl implements SubscriberRepository {
           .list();
       session.getTransaction().commit();
     } catch (Exception e) {
-      System.out.println(e.getMessage());
+      System.out.println("error");
     }
     return subscriberList;
   }
