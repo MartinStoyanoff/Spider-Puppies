@@ -333,7 +333,7 @@ public class ClientAccessServiceAllTests {
   invoiceList.add(invoice);
 
   when(invoiceRepository.findInvoicesByPhoneAndClientId("088",1)).thenReturn(invoiceList);
-  clientAccessService.payInvoicesByPhoneAndClientId("088",1);
+  clientAccessService.payInvoicesByPhoneListAndClientId(phoneList,1);
 
   Assert.assertEquals("1",invoice.getStatus());
 
