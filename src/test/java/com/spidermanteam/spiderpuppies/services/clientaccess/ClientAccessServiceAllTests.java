@@ -283,31 +283,29 @@ public class ClientAccessServiceAllTests {
     Assert.assertEquals("21.68330",invoice.getPrice()+"");
 
   }
+  @Test
+  public void invoiceCurrencyConverter_whenInvoiceCurrencyIsUsd_ShouldConvertedToBgnInvoice(){
+    Invoice invoice = new Invoice();
+    invoice.setCurrency("USD");
+    invoice.setPrice(BigDecimal.valueOf(10));
+
+    clientAccessService.invoiceCurrencyConverter(invoice);
+
+    Assert.assertEquals("BGN",invoice.getCurrency());
+    Assert.assertEquals("16.87810",invoice.getPrice()+"");
+
+  }
+
+  @Test
+  public void invoiceCurrencyConverter_whenInvoiceCurrencyIsChf_ShouldConvertedToBgnInvoice(){
+    Invoice invoice = new Invoice();
+    invoice.setCurrency("CHF");
+    invoice.setPrice(BigDecimal.valueOf(10));
+
+    clientAccessService.invoiceCurrencyConverter(invoice);
+
+    Assert.assertEquals("BGN",invoice.getCurrency());
+    Assert.assertEquals("17.15940",invoice.getPrice()+"");
+
+  }
 }
-
-//  @Override
-//  public void invoiceCurrencyConverter(Invoice invoice) {
-//    BigDecimal invoicePrice = invoice.getPrice();
-//    switch (invoice.getCurrency().toLowerCase()) {
-//      case "eur":
-//        invoicePrice = invoicePrice.multiply(BigDecimal.valueOf(1.95583));
-//        break;
-//      case "gbp":
-//        invoicePrice = invoicePrice.multiply(BigDecimal.valueOf(2.16833));
-//        break;
-//      case "usd":
-//        invoicePrice = invoicePrice.multiply(BigDecimal.valueOf(1.68781));
-//        break;
-//      case "chf":
-//        invoicePrice = invoicePrice.multiply(BigDecimal.valueOf(1.71594));
-//        break;
-//      default:
-//        String updateCurrency = invoice.getCurrency() + "Not_Supported";
-//        invoice.setCurrency(updateCurrency);
-//        return;
-//    }
-//
-//
-//}
-
-
