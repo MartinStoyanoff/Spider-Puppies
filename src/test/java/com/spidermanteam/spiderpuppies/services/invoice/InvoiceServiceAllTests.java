@@ -14,7 +14,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.mockito.Mockito.*;
 
@@ -133,6 +135,7 @@ public class InvoiceServiceAllTests {
     Assert.assertEquals(subscriber.getBillingDate(), billingDate.plusMonths(1));
 
   }
+
   @Test
   public void getExchangeRateToBGN_whenCurrencyGbpIsProvided_shouldReturnConvertedNumberInBgn() {
 
@@ -176,7 +179,7 @@ public class InvoiceServiceAllTests {
   }
 
   @Test
-  public void deleteInvoice_whenInvoiceIsPresented_ShouldInvokeDeleteRepositoryMethod(){
+  public void deleteInvoice_whenInvoiceIsPresented_ShouldInvokeDeleteRepositoryMethod() {
 
     doNothing().when(mockRepository).delete(isA(Integer.class));
     invoiceService.deleteInvoice(1);
@@ -185,7 +188,7 @@ public class InvoiceServiceAllTests {
   }
 
   @Test
-  public void updateInvoice_whenInvoiceIsPresented_ShouldInvokeUpdateRepositoryMethod(){
+  public void updateInvoice_whenInvoiceIsPresented_ShouldInvokeUpdateRepositoryMethod() {
     Invoice invoice = new Invoice();
 
     doNothing().when(mockRepository).update(isA(Invoice.class));
@@ -193,14 +196,61 @@ public class InvoiceServiceAllTests {
 
     verify(mockRepository, times(1)).update(invoice);
   }
+
   @Test
-  public void findAllPendingInvoicesByClientId_whenClientIdIsPresented_ShouldReturnInvoiceList(){
+  public void findAllPendingInvoicesByClientId_whenClientIdIsPresented_ShouldReturnInvoiceList() {
     List<Invoice> invoiceList = new ArrayList<>();
     invoiceList.add(new Invoice());
     invoiceList.add(new Invoice());
 
     when(mockRepository.findAllPendingInvoicesByClientId(1)).thenReturn(invoiceList);
     List<Invoice> actualInvoiceList = invoiceService.findAllPendingInvoicesByClientId(1);
+
+    Assert.assertEquals(invoiceList.size(), actualInvoiceList.size());
+
+  }
+
+  @Test
+  public void generateBulkPayment_whenInvoiceInfoListIsPresented_ShouldUpdateSubscriberWithIdBillingDate() {
+    HashMap<String, String> invoiceInfoList = new HashMap<>();
+    invoiceInfoList.put("1", "BGN");
+
+    subscriber.getTelecomServices().add(telecomService);
+    when(subscriberRepository.findById(1)).thenReturn(subscriber);
+    LocalDate billingDate = subscriber.getBillingDate();
+    for (Map.Entry<String, String> entry : invoiceInfoList.entrySet()) {
+      String subscriberId = entry.getKey();
+      String currency = entry.getValue();
+
+      doNothing().when(mockRepository).create(isA(Invoice.class));
+      doNothing().when(subscriberRepository).update(isA(Subscriber.class));
+      invoiceService.addInvoice(subscriberId, currency);
+    }
+    Assert.assertEquals(subscriber.getBillingDate(), billingDate.plusMonths(1));
+
+  }
+  @Test
+  public void findLastTenPaymentsBySubscriberId_whenSubscriberIdIsPresented_ShouldReturnInvoiceList(){
+  List<Invoice> invoiceList = new ArrayList<>();
+  invoiceList.add(new Invoice());
+  invoiceList.add(new Invoice());
+  invoiceList.add(new Invoice());
+
+  when(mockRepository.findLastTenPaymentsBySubscriberId(1)).thenReturn(invoiceList);
+
+  List<Invoice> actualList = invoiceService.findLastTenPaymentsBySubscriberId(1);
+
+  Assert.assertEquals(invoiceList.size(),actualList.size());
+  }
+
+  @Test
+  public void findLastTenPayments_whenInvoicesArePresented_ShouldReturnInvoiceList(){
+    List<Invoice> invoiceList = new ArrayList<>();
+    invoiceList.add(new Invoice());
+    invoiceList.add(new Invoice());
+
+    when(mockRepository.findLastTenPayments()).thenReturn(invoiceList);
+    List<Invoice> actualInvoiceList = invoiceService.findLastTenPayments();
 
     Assert.assertEquals(invoiceList.size(),actualInvoiceList.size());
 
