@@ -16,8 +16,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class InvoiceServiceAllTests {
@@ -29,14 +28,19 @@ public class InvoiceServiceAllTests {
 
   private InvoiceServiceImpl invoiceService;
   private Invoice invoice;
+  private Client client;
+  private TelecomService telecomService;
+  private LocalDate date;
+  private Subscriber subscriber;
 
 
   @Before
   public void beforeTest() {
-    Client client = new Client(new User("UserName", "Password", (byte) 1), "ClientFullName", "EIK");
-    TelecomService telecomService = new TelecomService("Type", "SubsPlan", BigDecimal.valueOf(0.00), new ArrayList<>());
-    LocalDate date = LocalDate.now();
-    Subscriber subscriber = new Subscriber("SubscPhone", "FirstName", "LastName", "PIN", "Address", new ArrayList<>(), new ArrayList<>(), date, date, client, BigDecimal.valueOf(0.00));
+    client = new Client(new User("UserName", "Password", (byte) 1), "ClientFullName", "EIK");
+    telecomService = new TelecomService("Type", "SubsPlan", BigDecimal.valueOf(0.00), new ArrayList<>());
+    telecomService.setId(1);
+    date = LocalDate.now();
+    subscriber = new Subscriber("SubscPhone", "FirstName", "LastName", "PIN", "Address", new ArrayList<>(), new ArrayList<>(), date, date, client, BigDecimal.valueOf(0.00));
     invoice = new Invoice(subscriber, telecomService, BigDecimal.TEN, "BGN");
     invoice.setId(1);
 
@@ -113,5 +117,21 @@ public class InvoiceServiceAllTests {
 
     //Assert
     Assert.assertEquals(EURtoBGNrate, result);
+  }
+
+  @Test
+  public void addInvoice_whenSubscriberIdAndCurrencyArePresented_ShouldAddOneMotnthToSubscriberBillingDate() {
+    String currency = "BGN";
+    LocalDate billingDate = subscriber.getBillingDate();
+    subscriber.getTelecomServices().add(telecomService);
+    when(subscriberRepository.findById(1)).thenReturn(subscriber);
+    doNothing().when(mockRepository).create(isA(Invoice.class));
+    doNothing().when(subscriberRepository).update(isA(Subscriber.class));
+
+    invoiceService.addInvoice("1", currency);
+
+    Assert.assertEquals(subscriber.getBillingDate(), billingDate.plusMonths(1));
+
+
   }
 }
