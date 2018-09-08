@@ -323,6 +323,7 @@ public class ClientAccessServiceAllTests {
 
   }
 
+  @Test
   public void payInvoicesByPhoneListAndClientId_whenPhoneListAndClientIdArePresented_ShouldChangeInvoiceStatusToPaid(){
   List<String> phoneList = new ArrayList<>();
   phoneList.add("088");
