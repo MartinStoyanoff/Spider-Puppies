@@ -3,8 +3,7 @@ package com.spidermanteam.spiderpuppies.services.subscriber;
 import com.spidermanteam.spiderpuppies.data.base.GenericRepository;
 import com.spidermanteam.spiderpuppies.data.base.InvoiceRepository;
 import com.spidermanteam.spiderpuppies.data.base.SubscriberRepository;
-import com.spidermanteam.spiderpuppies.models.Subscriber;
-import com.spidermanteam.spiderpuppies.models.TelecomService;
+import com.spidermanteam.spiderpuppies.models.*;
 import com.spidermanteam.spiderpuppies.services.SubscriberServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
@@ -135,6 +134,47 @@ public class SubscribersServiceAllTests {
 
     Assert.assertEquals(averageSum, actualAverageSum);
   }
+  @Test
+  public void addTelecomServiceToSubscriber_whenSubscriberIdAndTelecomServiceIdArePresented_ShouldAddTelecomServiceToSubscriber(){
+    Client client = new Client(new User("UserName", "Password", (byte) 1), "ClientFullName", "EIK");
+    TelecomService telecomService = new TelecomService("Type", "SubsPlan", BigDecimal.valueOf(10.00), new ArrayList<>());
+    telecomService.setId(1);
+    LocalDate date = LocalDate.now();
+    Subscriber subscriber = new Subscriber("SubscPhone", "FirstName", "LastName", "PIN", "Address", new ArrayList<>(), new ArrayList<>(), date, date, client, BigDecimal.valueOf(0.00));
+    subscriber.setId(1);
+    subscriber.getTelecomServices().add(telecomService);
+
+    when(subscriberRepository.findById(1)).thenReturn(subscriber);
+    when(telecomServiceGenericRepository.findById(1)).thenReturn(telecomService);
+    doNothing().when(invoiceRepository).create(isA(Invoice.class));
+
+    subscribersService.addTelecomServiceToSubscriber(1,1);
+
+    Assert.assertEquals(2,subscriber.getTelecomServices().size());
+  }
 }
 
-
+//  @Override
+//  public void addTelecomServiceToSubscriber(int subscriberId, int telecomServiceId) {
+//    Subscriber subscriber = subscriberRepository.findById(subscriberId);
+//    TelecomService telecomService = telecomServiceRepository.findById(telecomServiceId);
+//    LocalDate billingDate = subscriber.getBillingDate();
+//    LocalDate currentDay = LocalDate.now();
+//    long daysForPay = DAYS.between(currentDay, billingDate);
+//    LocalDate previousBillingDate = billingDate.minusMonths(1);
+//    long daysUsedService = DAYS.between(billingDate, previousBillingDate);
+//    List<TelecomService> telecomServices = subscriber.getTelecomServices();
+//    for (TelecomService ts : telecomServices) {
+//      BigDecimal telecomServicePricePerDay = ts.getPrice().divide(BigDecimal.valueOf(daysUsedService));
+//      BigDecimal priceForInvoicing = telecomServicePricePerDay.multiply(BigDecimal.valueOf(daysForPay));
+//      Invoice invoice = new Invoice(subscriber, telecomService, priceForInvoicing, "BGN");
+//      subscriber.getInvoices().add(invoice);
+//      invoiceRepository.create(invoice);
+//      BigDecimal currentAllTimeTurnover = subscriber.getAllTimeTurnover();
+//      subscriber.setAllTimeTurnover(currentAllTimeTurnover.add(priceForInvoicing));
+//    }
+//    subscriber.getTelecomServices().add(telecomService);
+//    subscriber.setBillingDate(currentDay.plusMonths(1));
+//  }
+//
+//

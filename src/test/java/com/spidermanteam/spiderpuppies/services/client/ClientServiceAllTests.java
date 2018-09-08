@@ -80,7 +80,7 @@ public class ClientServiceAllTests {
   }
 
   @Test
-  public void deletSubscriber_whenSubscriberIsPresented_ShouldInvokeDeleteRepositoryMethod() {
+  public void deleteSubscriber_whenSubscriberIsPresented_ShouldInvokeDeleteRepositoryMethod() {
 
     doNothing().when(clientRepository).delete(isA(Integer.class));
     clientService.deleteClient(1);

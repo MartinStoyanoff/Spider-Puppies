@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -86,7 +87,7 @@ public class SubscriberServiceImpl implements SubscribersService {
     List<TelecomService> telecomServices = subscriber.getTelecomServices();
     for (TelecomService ts : telecomServices) {
 
-      BigDecimal telecomServicePricePerDay = ts.getPrice().divide(BigDecimal.valueOf(daysUsedService));
+      BigDecimal telecomServicePricePerDay = ts.getPrice().divide(BigDecimal.valueOf(daysUsedService), 2, RoundingMode.HALF_UP);
       BigDecimal priceForInvoicing = telecomServicePricePerDay.multiply(BigDecimal.valueOf(daysForPay));
 
       Invoice invoice = new Invoice(subscriber, telecomService, priceForInvoicing, "BGN");
