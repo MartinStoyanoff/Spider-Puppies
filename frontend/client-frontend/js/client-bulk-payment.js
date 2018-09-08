@@ -51,7 +51,7 @@ function clientBulkLoad() {
         },
         success: function (data) {
             var tbody = $("#bulk-container"),
-                props = ["subscriberPhone", "telecomServiceType", "telecomServiceSubscriptionPlan", "price", "currency"];
+                props = ["id","subscriberPhone", "telecomServiceType", "telecomServiceSubscriptionPlan", "price", "currency"];
             $.each(data, function (i, data) {
                 var tr = $('<tr>');
                 $('<td><input' + " value=" + data["id"] + ' type="checkbox" class="form-check-input" checked="checked">').appendTo(tr);
