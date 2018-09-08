@@ -60,7 +60,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 
   @Override
   public void deleteInvoice(int id) {
-    invoiceRepository.listAll();
+    invoiceRepository.delete(id);
   }
 
   @Override

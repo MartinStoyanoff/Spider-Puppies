@@ -175,4 +175,35 @@ public class InvoiceServiceAllTests {
     Assert.assertEquals(usdToBgnRate, result);
   }
 
+  @Test
+  public void deleteInvoice_whenInvoiceIsPresented_ShouldInvokeDeleteRepositoryMethod(){
+
+    doNothing().when(mockRepository).delete(isA(Integer.class));
+    invoiceService.deleteInvoice(1);
+
+    verify(mockRepository, times(1)).delete(1);
+  }
+
+  @Test
+  public void updateInvoice_whenInvoiceIsPresented_ShouldInvokeUpdateRepositoryMethod(){
+    Invoice invoice = new Invoice();
+
+    doNothing().when(mockRepository).update(isA(Invoice.class));
+    invoiceService.updateInvoice(invoice);
+
+    verify(mockRepository, times(1)).update(invoice);
+  }
+  @Test
+  public void findAllPendingInvoicesByClientId_whenClientIdIsPresented_ShouldReturnInvoiceList(){
+    List<Invoice> invoiceList = new ArrayList<>();
+    invoiceList.add(new Invoice());
+    invoiceList.add(new Invoice());
+
+    when(mockRepository.findAllPendingInvoicesByClientId(1)).thenReturn(invoiceList);
+    List<Invoice> actualInvoiceList = invoiceService.findAllPendingInvoicesByClientId(1);
+
+    Assert.assertEquals(invoiceList.size(),actualInvoiceList.size());
+
+  }
 }
+
