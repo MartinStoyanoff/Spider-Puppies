@@ -31,6 +31,8 @@ $('#myDropdown').on('click', 'a', function () {
     var phone = $(this).text();
     myFunction();
     $("#bulk-container").empty();
+    $('#personal-info-container').empty();
+    $('#services-container').empty();
 
     var invoices = $.ajax({
         type: 'GET',
