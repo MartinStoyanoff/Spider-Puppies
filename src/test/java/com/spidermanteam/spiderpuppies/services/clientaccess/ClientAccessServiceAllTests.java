@@ -308,4 +308,54 @@ public class ClientAccessServiceAllTests {
     Assert.assertEquals("17.15940",invoice.getPrice()+"");
 
   }
+  @Test
+  public void  payInvoicesByIdListAndClientId_whenInvoiceIdListAndClientIdArePresented_ShouldInvokeChangeInvoiceStatusToPaid(){
+    List<Integer> idList = new ArrayList<>();
+    idList.add(1);
+    Invoice invoice = new Invoice(subscriber,telecomService,BigDecimal.TEN,"BGN");
+    invoice.setId(1);
+    invoice.setStatus("0");
+
+    when(invoiceRepository.findByIdAndClientId(1,1)).thenReturn(invoice);
+    clientAccessService.payInvoicesByIdListAndClientId(idList,1);
+
+    Assert.assertEquals(invoice.getStatus(),"1");
+
+  }
+
+  public void payInvoicesByPhoneListAndClientId_whenPhoneListAndClientIdArePresented_ShouldChangeInvoiceStatusToPaid(){
+  List<String> phoneList = new ArrayList<>();
+  phoneList.add("088");
+  List<Invoice> invoiceList = new ArrayList<>();
+  Invoice invoice = new Invoice(subscriber,telecomService,BigDecimal.TEN,"BGN");
+  invoice.setId(1);
+  invoice.setStatus("0");
+  invoiceList.add(invoice);
+
+  when(invoiceRepository.findInvoicesByPhoneAndClientId("088",1)).thenReturn(invoiceList);
+  clientAccessService.payInvoicesByPhoneAndClientId("088",1);
+
+  Assert.assertEquals("1",invoice.getStatus());
+
+  }
+  @Test
+  public void payAllPendingInvoicesByClient_whenClientIdIsPresented_ShouldChangeInvoiceStatusOfAllPendingInvoices(){
+    List<Invoice> pendingInvoices = new ArrayList<>();
+    Invoice firstInvoice = new Invoice(subscriber,telecomService,BigDecimal.TEN,"BGN");
+    firstInvoice.setStatus("0");
+    firstInvoice.setId(1);
+    Invoice seoondInvoice = new Invoice(subscriber,telecomService,BigDecimal.TEN,"BGN");
+    seoondInvoice.setStatus("0");
+    seoondInvoice.setId(2);
+
+    pendingInvoices.add(firstInvoice);
+    pendingInvoices.add(seoondInvoice);
+
+    when(invoiceRepository.findAllPendingInvoicesByClientId(1)).thenReturn(pendingInvoices);
+    clientAccessService.payAllPendingInvoicesByClient(1);
+
+    Assert.assertEquals("1",firstInvoice.getStatus());
+    Assert.assertEquals("1",seoondInvoice.getStatus());
+
+  }
 }

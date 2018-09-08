@@ -132,6 +132,6 @@ public class InvoiceServiceAllTests {
 
     Assert.assertEquals(subscriber.getBillingDate(), billingDate.plusMonths(1));
 
-
   }
+
 }
