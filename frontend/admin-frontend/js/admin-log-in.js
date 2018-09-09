@@ -34,8 +34,9 @@ $("#sign-in-button").on("click", function (e) {
                 window.location.href = "../admin-frontend/admin-home.html";
             }
         }
-        , error: function () {
-            console.log("Unsuccessful request");
+        , error: function (data) {
+            alert("Wrong Username or Password");
+            window.location.href = "../admin-frontend/admin-log-in.html";
         }
     })
 });

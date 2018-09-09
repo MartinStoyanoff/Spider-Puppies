@@ -28,7 +28,8 @@ $("#sign-in-button").on("click", function (e) {
 
         }
         , error: function () {
-            console.log("Unsuccessful request");
+            alert("Wrong Username or Password");
+            window.location.href = "../client-frontend/client-log-in.html";
         }
     })
 });
