@@ -14,4 +14,6 @@ Payment system API for Telecoms
 ## Database Diagram
 ![alt text](https://github.com/MartinStoyanoff/Spider-Puppies/blob/master/diagrams/telecomdb.png)
 ## Contionious integration
-https://travis-ci.org/#
+[![Build Status](https://travis-ci.org/MartinStoyanoff/Spider-Puppies.svg?branch=master)](https://travis-ci.org/MartinStoyanoff/Spider-Puppies)
+
+
