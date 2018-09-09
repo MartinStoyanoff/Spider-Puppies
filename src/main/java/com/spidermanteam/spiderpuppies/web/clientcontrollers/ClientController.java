@@ -1,5 +1,6 @@
 package com.spidermanteam.spiderpuppies.web.clientcontrollers;
 
+import com.spidermanteam.spiderpuppies.exceptions.InvalidInputException;
 import com.spidermanteam.spiderpuppies.models.Invoice;
 import com.spidermanteam.spiderpuppies.models.Subscriber;
 import com.spidermanteam.spiderpuppies.models.reporting.InvoiceView;
@@ -9,7 +10,10 @@ import com.spidermanteam.spiderpuppies.models.reporting.SubscriberView;
 import com.spidermanteam.spiderpuppies.security.JwtParser;
 import com.spidermanteam.spiderpuppies.services.base.ClientAccessService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -135,5 +139,26 @@ public class ClientController {
     int clientId = jwtParser.getClientIdByUsernameFromToken(request);
     Subscriber subscriber = clientAccessService.getSubscriberByPhoneAndClientId(phone, clientId);
     return new SubscriberView(subscriber);
+  }
+
+  @ExceptionHandler(MethodArgumentNotValidException.class)
+  @ResponseBody
+  public ResponseEntity handleInvalidExtensionSpecException(MethodArgumentNotValidException e) {
+    e.printStackTrace();
+    return ResponseEntity
+        .status(HttpStatus.BAD_REQUEST)
+        .body(e.getBindingResult()
+            .getFieldErrors()
+            .stream()
+            .map(x -> x.getDefaultMessage())
+            .toArray());
+  }
+
+  @ExceptionHandler
+  ResponseEntity handleExtensionNotFoundException(InvalidInputException e) {
+    e.printStackTrace();
+    return ResponseEntity
+        .status(HttpStatus.BAD_REQUEST)
+        .body(e.getMessage());
   }
 }

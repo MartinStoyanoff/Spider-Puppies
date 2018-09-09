@@ -42,7 +42,7 @@ public class ClientAccessServiceImpl implements ClientAccessService {
   @Override
   public List<PaymentReport> payInvoicesByPhoneAndClientId(String phone, int clientId) {
     List<Invoice> invoiceList = invoiceRepository.findInvoicesByPhone(phone);
-    if (invoiceList == null) {
+    if (invoiceList.size() == 0) {
       throw new InvalidInputException("Phone number is not correct");
     }
     List<PaymentReport> paymentReportList = new ArrayList<>();
@@ -77,9 +77,6 @@ public class ClientAccessServiceImpl implements ClientAccessService {
     List<PaymentReport> paymentReportList = new ArrayList<>();
     for (String phone : phonesList) {
       List<Invoice> invoiceList = invoiceRepository.findInvoicesByPhoneAndClientId(phone, clientId);
-      if (invoiceList.size() == 0) {
-        throw new InvalidInputException(phone + "is not valid");
-      }
       for (Invoice invoice : invoiceList) {
         PaymentReport paymentReport = new PaymentReport(invoice.getSubscriber().getPhone(), invoice.getId(), PaymentReportStatus.FAILED_INVOICE_OR_CLIENT_NOT_EXIST);
         paymentReportList.add(payInvoice(invoice, paymentReport));
