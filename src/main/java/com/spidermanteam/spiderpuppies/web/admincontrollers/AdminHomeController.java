@@ -31,7 +31,7 @@ public class AdminHomeController {
   }
 
   @GetMapping("/lastTenInvoices")
-  List<InvoiceView> invoiceViewList() {
+  List<InvoiceView> listLastTenInvoices() {
     List<Invoice> invoiceList = invoiceService.findLastTenPayments();
     List<InvoiceView> invoiceViewList = new ArrayList<>();
     for (Invoice inv : invoiceList) {
@@ -41,7 +41,7 @@ public class AdminHomeController {
   }
 
   @GetMapping("/topTenSubscribers")
-  List<SubscriberShortView> getTenBestSubscribersByTurnover() {
+  List<SubscriberShortView> listTenBestSubscribersByTurnover() {
     List<Subscriber> subscriberList = clientAccessService.getTenBestSubscribersByTurnover();
     List<SubscriberShortView> bestTenSubscribersList = new ArrayList<>();
     for (Subscriber sub : subscriberList) {

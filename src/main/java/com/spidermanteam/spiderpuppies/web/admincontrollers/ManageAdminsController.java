@@ -46,7 +46,11 @@ public class ManageAdminsController {
   }
 
   @PutMapping("/changePassword")
-  void changePassword(@RequestBody List<String> passwordUpdateInfo) {
+  void changeAdminPassword(@RequestBody List<String> passwordUpdateInfo) {
     adminService.changeAdminPassword(passwordUpdateInfo);
+  }
+  @GetMapping("/findByUsername/{username}")
+  void findAdminByUserUsername(@PathVariable String username){
+    adminService.findAdminByUserUsername(username);
   }
 }

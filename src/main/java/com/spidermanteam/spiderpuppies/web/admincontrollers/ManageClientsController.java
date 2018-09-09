@@ -46,4 +46,8 @@ public class ManageClientsController {
     clientService.deleteClient(id);
   }
 
+  @GetMapping("/findByUsername/{username}")
+  Client findClientByUserUsername(@PathVariable String username){
+    return clientService.findClientByUserUsername(username);
+  }
 }
