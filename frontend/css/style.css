@@ -227,3 +227,21 @@ tbody {
 .table-container-services{
     width: 99%;
 }
+.header-title{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+nav ul{
+    float:left;
+}
+
+nav span{
+    float:right;
+}
+
+nav:after{
+    content: "";
+    display: block;
+    clear:both;
+}
+
