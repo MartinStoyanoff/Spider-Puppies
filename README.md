@@ -13,3 +13,5 @@ Payment system API for Telecoms
 - Subscriber details and invoice history
 ## Database Diagram
 ![alt text](https://github.com/MartinStoyanoff/Spider-Puppies/blob/master/diagrams/telecomdb.png)
+## Contionious integration
+https://travis-ci.org/#
