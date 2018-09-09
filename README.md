@@ -1,5 +1,5 @@
-# Spider-Puppies
-Payment system API for Telecoms [![Build Status](https://travis-ci.org/MartinStoyanoff/Spider-Puppies.svg?branch=master)](https://travis-ci.org/MartinStoyanoff/Spider-Puppies)
+# Spider-Puppies [![Build Status](https://travis-ci.org/MartinStoyanoff/Spider-Puppies.svg?branch=master)](https://travis-ci.org/MartinStoyanoff/Spider-Puppies)
+Payment system API for Telecoms 
 ## Admin panel
 - Statistics - Top 10 payers, last 10 invoices
 - Bulk generation of invoices
