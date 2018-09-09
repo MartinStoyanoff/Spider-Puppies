@@ -1,0 +1,1501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="1546.338541832501" y="1381.0">com.spidermanteam.spiderpuppies.models.Admin</node>
+    <node x="8217.223722257997" y="1370.0">com.spidermanteam.spiderpuppies.models.TelecomService</node>
+    <node x="6422.200597800627" y="2582.0">com.spidermanteam.spiderpuppies.data.SubscriberRepositoryImpl</node>
+    <node x="4355.83216734101" y="2582.0">com.spidermanteam.spiderpuppies.services.ClientServiceImpl</node>
+    <node x="947.0543478260879" y="1881.0">com.spidermanteam.spiderpuppies.data.base.AuthoritiesRepository</node>
+    <node x="8224.545164133531" y="2560.0">com.spidermanteam.spiderpuppies.services.SubscriberServiceImpl</node>
+    <node x="4706.83216734101" y="2472.0">com.spidermanteam.spiderpuppies.models.reporting.SubscriberView</node>
+    <node x="6935.138097800627" y="896.0">com.spidermanteam.spiderpuppies.models.Subscriber</node>
+    <node x="285.0543478260879" y="2571.0">com.spidermanteam.spiderpuppies.services.UserServiceImpl</node>
+    <node x="9717.330070384029" y="2582.0">com.spidermanteam.spiderpuppies.services.TelecomServiceServiceImpl</node>
+    <node x="5747.998834007678" y="3100.0">com.spidermanteam.spiderpuppies.web.admincontrollers.AdminHomeController</node>
+    <node x="5101.785338298945" y="1815.0">com.spidermanteam.spiderpuppies.models.reporting.PaymentLine</node>
+    <node x="1885.6484335370405" y="3078.0">com.spidermanteam.spiderpuppies.security.JwtTokenFilter</node>
+    <node x="6569.513097800627" y="1392.0">com.spidermanteam.spiderpuppies.models.reporting.PaymentReport</node>
+    <node x="9474.330070384029" y="2582.0">com.spidermanteam.spiderpuppies.data.InvoiceRepositoryImpl</node>
+    <node x="281.82500256253115" y="3089.0">com.spidermanteam.spiderpuppies.services.user.UserServiceAllTests</node>
+    <node x="4224.33216734101" y="3100.0">com.spidermanteam.spiderpuppies.services.client.ClientServiceAllTests</node>
+    <node x="263.0543478260879" y="1881.0">com.spidermanteam.spiderpuppies.data.base.UserRepository</node>
+    <node x="8815.29558762541" y="1881.0">com.spidermanteam.spiderpuppies.data.base.InvoiceRepository</node>
+    <node x="992.2908085561166" y="3089.0">com.spidermanteam.spiderpuppies.services.admin.AdminServiceAllTests</node>
+    <node x="1255.116847826087" y="2571.0">com.spidermanteam.spiderpuppies.services.AdminServiceImpl</node>
+    <node x="5271.165500674344" y="3111.0">com.spidermanteam.spiderpuppies.web.admincontrollers.ManageSubscribersController</node>
+    <node x="613.0543478260879" y="2571.0">com.spidermanteam.spiderpuppies.data.AdminRepositoryImpl</node>
+    <node x="3609.1186716322786" y="2549.0">com.spidermanteam.spiderpuppies.models.reporting.UserResponse</node>
+    <node x="3244.1186716322786" y="1881.0">com.spidermanteam.spiderpuppies.services.base.UserService</node>
+    <node x="0.0" y="3419.0">com.spidermanteam.spiderpuppies.configuration.WebConfig</node>
+    <node x="2031.3559168515776" y="1381.0">com.spidermanteam.spiderpuppies.security.models.JwtUser</node>
+    <node x="1882.116847826087" y="2582.0">com.spidermanteam.spiderpuppies.data.AuthoritiesRepositoryImpl</node>
+    <node x="5009.83216734101" y="2549.0">com.spidermanteam.spiderpuppies.models.reporting.SubscriberShortView</node>
+    <node x="1161.471014492754" y="1881.0">com.spidermanteam.spiderpuppies.data.base.AdminRepository</node>
+    <node x="7267.490963637308" y="3045.0">com.spidermanteam.spiderpuppies.services.clientaccess.ClientAccessServiceAllTests</node>
+    <node x="4341.028422784882" y="323.0">com.spidermanteam.spiderpuppies.models.Client</node>
+    <node x="2128.3949752227836" y="3300.0">com.spidermanteam.spiderpuppies.configuration.JwtSecurity</node>
+    <node x="5964.588097800626" y="1881.0">com.spidermanteam.spiderpuppies.services.base.SubscribersService</node>
+    <node x="5481.588097800626" y="1881.0">com.spidermanteam.spiderpuppies.services.base.ClientAccessService</node>
+    <node x="9088.29558762541" y="2571.0">com.spidermanteam.spiderpuppies.services.InvoiceServiceImpl</node>
+    <node x="3783.1186716322786" y="2549.0">com.spidermanteam.spiderpuppies.security.JwtParser</node>
+    <node x="2485.690100203707" y="2571.0">com.spidermanteam.spiderpuppies.data.ClientRepositoryImpl</node>
+    <node x="9815.984732089777" y="3100.0">com.spidermanteam.spiderpuppies.services.telecomservice.TelecomServiceAllTests</node>
+    <node x="7148.973402342362" y="268.0">com.spidermanteam.spiderpuppies.models.Invoice</node>
+    <node x="3373.1186716322786" y="2582.0">com.spidermanteam.spiderpuppies.web.admincontrollers.ManageClientsController</node>
+    <node x="8671.569769688827" y="1425.0">com.spidermanteam.spiderpuppies.data.base.GenericRepository</node>
+    <node x="4017.1186716322786" y="1881.0">com.spidermanteam.spiderpuppies.data.base.ClientRepository</node>
+    <node x="3092.1186716322786" y="1881.0">com.spidermanteam.spiderpuppies.services.base.AdminService</node>
+    <node x="6315.588097800626" y="1881.0">com.spidermanteam.spiderpuppies.services.base.InvoiceService</node>
+    <node x="2411.522583518244" y="3100.0">com.spidermanteam.spiderpuppies.services.LoginServiceImpl</node>
+    <node x="7520.843433619972" y="2582.0">com.spidermanteam.spiderpuppies.web.admincontrollers.ManageTelecomServicesController</node>
+    <node x="0.0" y="2582.0">com.spidermanteam.spiderpuppies.data.UserRepositoryImpl</node>
+    <node x="2113.940100203707" y="1837.0">com.spidermanteam.spiderpuppies.security.models.JwtUserDetails</node>
+    <node x="1820.734375165834" y="0.0">com.spidermanteam.spiderpuppies.models.User</node>
+    <node x="8321.435678779737" y="1870.0">com.spidermanteam.spiderpuppies.data.TelecomServiceRepositoryImpl</node>
+    <node x="3029.690100203707" y="2593.0">com.spidermanteam.spiderpuppies.services.base.LoginService</node>
+    <node x="5424.165500674344" y="2593.0">com.spidermanteam.spiderpuppies.objectmapping</node>
+    <node x="6130.588097800626" y="1859.0">com.spidermanteam.spiderpuppies.models.reporting.InvoiceRequestModel</node>
+    <node x="1566.116847826087" y="2560.0">com.spidermanteam.spiderpuppies.security.service.MyJWTUserDetailsService</node>
+    <node x="7893.843433619972" y="1881.0">com.spidermanteam.spiderpuppies.data.base.SubscriberRepository</node>
+    <node x="6090.485674999282" y="2560.0">com.spidermanteam.spiderpuppies.web.admincontrollers.ManageInvoicesController</node>
+    <node x="5652.588097800626" y="1760.0">com.spidermanteam.spiderpuppies.models.reporting.InvoiceView</node>
+    <node x="6619.138097800627" y="984.0">com.spidermanteam.spiderpuppies.models.reporting.PaymentReportStatus</node>
+    <node x="8813.274315143373" y="3034.0">com.spidermanteam.spiderpuppies.services.invoice.InvoiceServiceAllTests</node>
+    <node x="4173.118671632279" y="1881.0">com.spidermanteam.spiderpuppies.configuration.HibernateConfig</node>
+    <node x="7958.223722257997" y="3078.0">com.spidermanteam.spiderpuppies.services.subscriber.SubscribersServiceAllTests</node>
+    <node x="4559.33216734101" y="3100.0">com.spidermanteam.spiderpuppies.web.clientcontrollers.ClientController</node>
+    <node x="2270.690100203707" y="2571.0">com.spidermanteam.spiderpuppies.security.JwtTokenProvider</node>
+    <node x="3167.0949201449484" y="3078.0">com.spidermanteam.spiderpuppies.web.admincontrollers.LoginController</node>
+    <node x="10277.984732089777" y="3122.0">com.spidermanteam.spiderpuppies.security.JwtAuthenticationEntryPoint</node>
+    <node x="7578.1267669533045" y="1881.0">com.spidermanteam.spiderpuppies.services.base.TelecomServiceService</node>
+    <node x="1135.5052084991676" y="1403.0">com.spidermanteam.spiderpuppies.models.Authorities</node>
+    <node x="3556.5677084991676" y="1881.0">com.spidermanteam.spiderpuppies.services.base.ClientService</node>
+    <node x="2796.690100203707" y="2582.0">com.spidermanteam.spiderpuppies.web.admincontrollers.ManageAdminsController</node>
+    <node x="7036.360674999282" y="2571.0">com.spidermanteam.spiderpuppies.services.ClientAccessServiceImpl</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.LoginController" target="com.spidermanteam.spiderpuppies.services.base.UserService">
+      <point x="-16.384615384615245" y="-59.0" />
+      <point x="3257.210304760333" y="2934.0" />
+      <point x="3276.3177084991676" y="2934.0" />
+      <point x="-21.59999999999991" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.client.ClientServiceAllTests" target="com.spidermanteam.spiderpuppies.data.base.ClientRepository">
+      <point x="-96.80000000000018" y="-37.0" />
+      <point x="4248.532167341011" y="3014.0" />
+      <point x="4067.7436716322786" y="3014.0" />
+      <point x="-16.875" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.clientcontrollers.ClientController" target="com.spidermanteam.spiderpuppies.models.reporting.InvoiceView">
+      <point x="63.23076923076951" y="-37.0" />
+      <point x="4759.56293657178" y="2984.0" />
+      <point x="4988.33216734101" y="2984.0" />
+      <point x="4988.33216734101" y="2412.0" />
+      <point x="5757.1992089117375" y="2412.0" />
+      <point x="-29.888888888888687" y="136.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.SubscriberRepositoryImpl" target="com.spidermanteam.spiderpuppies.models.Subscriber">
+      <point x="-27.875" y="-26.0" />
+      <point x="6505.825597800627" y="2332.0" />
+      <point x="6531.4106749992825" y="2332.0" />
+      <point x="6531.4106749992825" y="1320.0" />
+      <point x="7030.4899496524795" y="1320.0" />
+      <point x="-40.14814814814781" y="147.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.ClientAccessServiceImpl" target="com.spidermanteam.spiderpuppies.services.base.ClientAccessService">
+      <point x="-130.94999999999982" y="-37.0" />
+      <point x="7050.9106749992825" y="2232.0" />
+      <point x="5617.488097800626" y="2232.0" />
+      <point x="60.399999999999636" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.security.JwtParser" target="com.spidermanteam.spiderpuppies.models.Admin">
+      <point x="47.333333333333485" y="-59.0" />
+      <point x="3936.952004965612" y="2432.0" />
+      <point x="3965.5677084991676" y="2432.0" />
+      <point x="3965.5677084991676" y="1550.0" />
+      <point x="1660.338541832501" y="1550.0" />
+      <point x="48.0" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.ClientAccessServiceImpl" target="com.spidermanteam.spiderpuppies.models.Invoice">
+      <point x="14.550000000000182" y="-37.0" />
+      <point x="7196.4106749992825" y="2332.0" />
+      <point x="7216.638097800627" y="2332.0" />
+      <point x="7216.638097800627" y="876.0" />
+      <point x="7257.438919583741" y="876.0" />
+      <point x="-8.03448275862047" y="114.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.InvoiceRepositoryImpl" target="com.spidermanteam.spiderpuppies.data.base.InvoiceRepository">
+      <point x="-74.33333333333303" y="-26.0" />
+      <point x="9511.496737050697" y="2062.0" />
+      <point x="8950.195587625409" y="2062.0" />
+      <point x="63.899999999999636" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.ClientRepositoryImpl" target="com.spidermanteam.spiderpuppies.data.base.ClientRepository">
+      <point x="121.25" y="-37.0" />
+      <point x="2752.440100203707" y="2452.0" />
+      <point x="4033.9936716322786" y="2452.0" />
+      <point x="-50.625" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.ClientServiceImpl" target="com.spidermanteam.spiderpuppies.models.Client">
+      <point x="90.75" y="-26.0" />
+      <point x="4567.58216734101" y="2452.0" />
+      <point x="4556.743671632279" y="2452.0" />
+      <point x="4556.743671632279" y="736.0" />
+      <point x="4464.928422784882" y="736.0" />
+      <point x="5.899999999999636" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.ManageInvoicesController" target="com.spidermanteam.spiderpuppies.models.reporting.InvoiceRequestModel">
+      <point x="0.0" y="-48.0" />
+      <point x="6225.485674999282" y="2282.0" />
+      <point x="6213.088097800626" y="2282.0" />
+      <point x="0.0" y="37.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.base.SubscriberRepository" target="com.spidermanteam.spiderpuppies.models.Subscriber">
+      <point x="-40.0" y="-15.0" />
+      <point x="7933.843433619972" y="1320.0" />
+      <point x="7110.786245948775" y="1320.0" />
+      <point x="40.14814814814781" y="147.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.admin.AdminServiceAllTests" target="com.spidermanteam.spiderpuppies.services.AdminServiceImpl">
+      <point x="83.14285714285734" y="-48.0" />
+      <point x="1220.9336656989744" y="3004.0" />
+      <point x="1327.866847826087" y="3004.0" />
+      <point x="-72.75" y="37.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.user.UserServiceAllTests" target="com.spidermanteam.spiderpuppies.services.UserServiceImpl">
+      <point x="18.5" y="-48.0" />
+      <point x="448.32500256253115" y="2984.0" />
+      <point x="507.0543478260879" y="2984.0" />
+      <point x="74.0" y="37.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.base.InvoiceService" target="com.spidermanteam.spiderpuppies.models.Invoice">
+      <point x="0.0" y="-15.0" />
+      <point x="6377.088097800626" y="816.0" />
+      <point x="7209.2320230320165" y="816.0" />
+      <point x="-56.24137931034511" y="114.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.ManageClientsController" target="com.spidermanteam.spiderpuppies.models.Client">
+      <point x="-68.0" y="-26.0" />
+      <point x="3407.1186716322786" y="2432.0" />
+      <point x="3233.6186716322786" y="2432.0" />
+      <point x="3233.6186716322786" y="666.0" />
+      <point x="4370.528422784882" y="666.0" />
+      <point x="-88.5" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.ManageTelecomServicesController" target="com.spidermanteam.spiderpuppies.services.base.TelecomServiceService">
+      <point x="-102.66666666666606" y="-26.0" />
+      <point x="7572.176766953306" y="2362.0" />
+      <point x="7662.1267669533045" y="2362.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.models.reporting.SubscriberView" target="com.spidermanteam.spiderpuppies.models.reporting.InvoiceView">
+      <point x="116.14285714285688" y="-136.0" />
+      <point x="4958.475024483867" y="2402.0" />
+      <point x="5727.310320022849" y="2402.0" />
+      <point x="-59.777777777777374" y="136.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.security.JwtTokenProvider" target="com.spidermanteam.spiderpuppies.security.models.JwtUserDetails">
+      <point x="0.0" y="-37.0" />
+      <point x="84.75" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.subscriber.SubscribersServiceAllTests" target="com.spidermanteam.spiderpuppies.models.Invoice">
+      <point x="-78.92857142857065" y="-59.0" />
+      <point x="8100.295150829426" y="2784.0" />
+      <point x="7883.343433619972" y="2784.0" />
+      <point x="7883.343433619972" y="666.0" />
+      <point x="7281.542367859603" y="666.0" />
+      <point x="16.06896551724094" y="114.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.AdminHomeController" target="com.spidermanteam.spiderpuppies.services.base.InvoiceService">
+      <point x="123.30000000000018" y="-37.0" />
+      <point x="6008.298834007677" y="3014.0" />
+      <point x="6392.5356749992825" y="3014.0" />
+      <point x="6392.5356749992825" y="2312.0" />
+      <point x="6401.688097800627" y="2312.0" />
+      <point x="24.600000000000364" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.AdminServiceImpl" target="com.spidermanteam.spiderpuppies.services.base.AdminService">
+      <point x="109.125" y="-37.0" />
+      <point x="1509.741847826087" y="2412.0" />
+      <point x="3100.690100203707" y="2412.0" />
+      <point x="-51.42857142857156" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.base.SubscribersService" target="com.spidermanteam.spiderpuppies.models.Subscriber">
+      <point x="0.0" y="-15.0" />
+      <point x="6037.088097800626" y="1300.0" />
+      <point x="7010.415875578405" y="1300.0" />
+      <point x="-60.222222222222626" y="147.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.clientaccess.ClientAccessServiceAllTests" target="com.spidermanteam.spiderpuppies.models.Client">
+      <point x="-70.11764705882342" y="-92.0" />
+      <point x="7346.373316578484" y="2974.0" />
+      <point x="6924.638097800627" y="2974.0" />
+      <point x="6924.638097800627" y="716.0" />
+      <point x="4488.528422784882" y="716.0" />
+      <point x="29.5" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.InvoiceServiceImpl" target="com.spidermanteam.spiderpuppies.models.Subscriber">
+      <point x="64.66666666666697" y="-37.0" />
+      <point x="9298.462254292075" y="2432.0" />
+      <point x="9400.79558762541" y="2432.0" />
+      <point x="9400.79558762541" y="1210.0" />
+      <point x="7201.119579282109" y="1210.0" />
+      <point x="130.48148148148175" y="147.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.AdminHomeController" target="com.spidermanteam.spiderpuppies.models.reporting.InvoiceView">
+      <point x="-13.699999999999818" y="-37.0" />
+      <point x="5871.298834007677" y="2894.0" />
+      <point x="5808.588431478705" y="2894.0" />
+      <point x="5808.588431478705" y="2412.0" />
+      <point x="5816.976986689515" y="2412.0" />
+      <point x="29.888888888888687" y="136.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.invoice.InvoiceServiceAllTests" target="com.spidermanteam.spiderpuppies.models.User">
+      <point x="136.40625" y="-103.0" />
+      <point x="9095.180565143373" y="3014.0" />
+      <point x="9463.830070384029" y="3014.0" />
+      <point x="9463.830070384029" y="138.0" />
+      <point x="1969.430027339747" y="138.0" />
+      <point x="72.695652173913" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.TelecomServiceServiceImpl" target="com.spidermanteam.spiderpuppies.services.base.TelecomServiceService">
+      <point x="-160.79999999999927" y="-26.0" />
+      <point x="9757.53007038403" y="2052.0" />
+      <point x="7729.326766953305" y="2052.0" />
+      <point x="67.20000000000073" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.clientaccess.ClientAccessServiceAllTests" target="com.spidermanteam.spiderpuppies.models.TelecomService">
+      <point x="87.64705882352973" y="-92.0" />
+      <point x="7504.138022460837" y="3004.0" />
+      <point x="7488.343433619972" y="3004.0" />
+      <point x="7488.343433619972" y="1600.0" />
+      <point x="8259.484591823215" y="1600.0" />
+      <point x="-65.73913043478206" y="70.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.security.JwtParser" target="com.spidermanteam.spiderpuppies.services.base.AdminService">
+      <point x="-94.66666666666652" y="-59.0" />
+      <point x="3794.952004965612" y="2422.0" />
+      <point x="3186.404385917993" y="2422.0" />
+      <point x="34.28571428571422" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.ClientServiceImpl" target="com.spidermanteam.spiderpuppies.services.base.ClientService">
+      <point x="-90.75" y="-26.0" />
+      <point x="4386.08216734101" y="2362.0" />
+      <point x="3664.281994213453" y="2362.0" />
+      <point x="49.714285714285325" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.base.InvoiceRepository" target="com.spidermanteam.spiderpuppies.models.Invoice">
+      <point x="35.5" y="-15.0" />
+      <point x="8921.79558762541" y="616.0" />
+      <point x="7321.714781652707" y="616.0" />
+      <point x="56.24137931034511" y="114.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.base.InvoiceRepository" target="com.spidermanteam.spiderpuppies.data.base.GenericRepository">
+      <point x="-35.5" y="-15.0" />
+      <point x="8850.79558762541" y="1740.0" />
+      <point x="8756.660678779735" y="1740.0" />
+      <point x="13.090909090909008" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.AdminServiceImpl" target="com.spidermanteam.spiderpuppies.data.base.AdminRepository">
+      <point x="-36.375" y="-37.0" />
+      <point x="1364.241847826087" y="2422.0" />
+      <point x="1283.971014492754" y="2422.0" />
+      <point x="52.5" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.ClientServiceImpl" target="com.spidermanteam.spiderpuppies.data.base.ClientRepository">
+      <point x="-30.25" y="-26.0" />
+      <point x="4446.58216734101" y="2352.0" />
+      <point x="4101.493671632279" y="2352.0" />
+      <point x="16.875" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.models.reporting.SubscriberView" target="com.spidermanteam.spiderpuppies.models.TelecomService">
+      <point x="0.0" y="-136.0" />
+      <point x="4842.33216734101" y="1580.0" />
+      <point x="8240.701983127563" y="1580.0" />
+      <point x="-84.52173913043407" y="70.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.ManageSubscribersController" target="com.spidermanteam.spiderpuppies.objectmapping">
+      <point x="75.14285714285688" y="-26.0" />
+      <point x="5477.808357817201" y="3014.0" />
+      <point x="5504.165500674344" y="3014.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.clientcontrollers.ClientController" target="com.spidermanteam.spiderpuppies.models.reporting.SubscriberShortView">
+      <point x="126.46153846153811" y="-37.0" />
+      <point x="4822.793705802549" y="3014.0" />
+      <point x="5090.83216734101" y="3014.0" />
+      <point x="-27.0" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.invoice.InvoiceServiceAllTests" target="com.spidermanteam.spiderpuppies.models.Client">
+      <point x="-9.09375" y="-103.0" />
+      <point x="8949.680565143373" y="2934.0" />
+      <point x="9055.79558762541" y="2934.0" />
+      <point x="9055.79558762541" y="606.0" />
+      <point x="4547.528422784882" y="606.0" />
+      <point x="88.5" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.AdminRepositoryImpl" target="com.spidermanteam.spiderpuppies.data.base.AdminRepository">
+      <point x="121.25" y="-37.0" />
+      <point x="879.8043478260879" y="2432.0" />
+      <point x="1178.971014492754" y="2432.0" />
+      <point x="-52.5" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.LoginController" target="com.spidermanteam.spiderpuppies.services.base.AdminService">
+      <point x="-65.53846153846143" y="-59.0" />
+      <point x="3208.056458606487" y="2974.0" />
+      <point x="3155.190100203707" y="2974.0" />
+      <point x="3155.190100203707" y="2432.0" />
+      <point x="3152.1186716322786" y="2432.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.models.Invoice" target="com.spidermanteam.spiderpuppies.models.TelecomService">
+      <point x="24.10344827586232" y="114.0" />
+      <point x="7289.576850618224" y="656.0" />
+      <point x="8320.9131487624" y="656.0" />
+      <point x="8320.9131487624" y="1260.0" />
+      <point x="8379.223722257997" y="1260.0" />
+      <point x="54.0" y="-70.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.security.service.MyJWTUserDetailsService" target="com.spidermanteam.spiderpuppies.data.base.UserRepository">
+      <point x="-131.55555555555566" y="-48.0" />
+      <point x="1582.5612922705313" y="2332.0" />
+      <point x="359.0543478260879" y="2332.0" />
+      <point x="32.0" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.models.Admin" target="com.spidermanteam.spiderpuppies.models.User">
+      <point x="-33.0" y="-59.0" />
+      <point x="1579.338541832501" y="1350.0" />
+      <point x="1606.838541832501" y="1350.0" />
+      <point x="1606.838541832501" y="238.0" />
+      <point x="1883.516983861486" y="238.0" />
+      <point x="-13.217391304347984" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.AdminServiceImpl" target="com.spidermanteam.spiderpuppies.models.Admin">
+      <point x="36.375" y="-37.0" />
+      <point x="1436.991847826087" y="2402.0" />
+      <point x="1612.338541832501" y="2402.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.InvoiceServiceImpl" target="com.spidermanteam.spiderpuppies.models.TelecomService">
+      <point x="32.33333333333303" y="-37.0" />
+      <point x="9266.128920958741" y="2072.0" />
+      <point x="9066.79558762541" y="2072.0" />
+      <point x="9066.79558762541" y="1630.0" />
+      <point x="8381.571548344953" y="1630.0" />
+      <point x="56.34782608695605" y="70.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.clientaccess.ClientAccessServiceAllTests" target="com.spidermanteam.spiderpuppies.models.reporting.PaymentReport">
+      <point x="-140.23529411764684" y="-92.0" />
+      <point x="7276.255669519661" y="3014.0" />
+      <point x="6682.763097800627" y="3014.0" />
+      <point x="6682.763097800627" y="1550.0" />
+      <point x="6658.263097800627" y="1550.0" />
+      <point x="-17.75" y="48.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.ManageAdminsController" target="com.spidermanteam.spiderpuppies.services.base.AdminService">
+      <point x="0.0" y="-26.0" />
+      <point x="2903.190100203707" y="2422.0" />
+      <point x="3117.8329573465644" y="2422.0" />
+      <point x="-34.28571428571422" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.user.UserServiceAllTests" target="com.spidermanteam.spiderpuppies.data.base.AuthoritiesRepository">
+      <point x="129.5" y="-48.0" />
+      <point x="559.3250025625312" y="3014.0" />
+      <point x="925.5543478260879" y="3014.0" />
+      <point x="925.5543478260879" y="2422.0" />
+      <point x="1014.5543478260879" y="2422.0" />
+      <point x="-13.5" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.configuration.HibernateConfig" target="com.spidermanteam.spiderpuppies.models.Client">
+      <point x="0.0" y="-15.0" />
+      <point x="4241.118671632279" y="1680.0" />
+      <point x="4245.332957346564" y="1680.0" />
+      <point x="4245.332957346564" y="726.0" />
+      <point x="4441.328422784882" y="726.0" />
+      <point x="-17.699999999999818" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.ManageSubscribersController" target="com.spidermanteam.spiderpuppies.models.reporting.PaymentLine">
+      <point x="-37.57142857142935" y="-26.0" />
+      <point x="5365.094072102915" y="2954.0" />
+      <point x="5236.33216734101" y="2954.0" />
+      <point x="5236.33216734101" y="2352.0" />
+      <point x="5132.952004965611" y="2352.0" />
+      <point x="-62.33333333333394" y="81.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.clientaccess.ClientAccessServiceAllTests" target="com.spidermanteam.spiderpuppies.models.reporting.PaymentReportStatus">
+      <point x="-105.17647058823513" y="-92.0" />
+      <point x="7311.314493049073" y="2994.0" />
+      <point x="6793.013097800627" y="2994.0" />
+      <point x="6793.013097800627" y="1220.0" />
+      <point x="6796.638097800627" y="1220.0" />
+      <point x="35.5" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.clientaccess.ClientAccessServiceAllTests" target="com.spidermanteam.spiderpuppies.models.Subscriber">
+      <point x="-52.58823529411802" y="-92.0" />
+      <point x="7363.90272834319" y="2964.0" />
+      <point x="7006.4106749992825" y="2964.0" />
+      <point x="7006.4106749992825" y="1340.0" />
+      <point x="7050.5640237265525" y="1340.0" />
+      <point x="-20.074074074073906" y="147.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.models.reporting.PaymentReport" target="com.spidermanteam.spiderpuppies.models.reporting.PaymentReportStatus">
+      <point x="-53.25" y="-48.0" />
+      <point x="6622.763097800627" y="1220.0" />
+      <point x="6654.638097800627" y="1220.0" />
+      <point x="-106.5" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.ManageInvoicesController" target="com.spidermanteam.spiderpuppies.services.base.TelecomServiceService">
+      <point x="122.72727272727298" y="-48.0" />
+      <point x="6348.212947726555" y="2352.0" />
+      <point x="7628.526766953304" y="2352.0" />
+      <point x="-33.600000000000364" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.configuration.HibernateConfig" target="com.spidermanteam.spiderpuppies.models.Invoice">
+      <point x="19.42857142857156" y="-15.0" />
+      <point x="4260.54724306085" y="1530.0" />
+      <point x="4309.4767882768165" y="1530.0" />
+      <point x="4309.4767882768165" y="746.0" />
+      <point x="7152.990643721672" y="746.0" />
+      <point x="-112.48275862068931" y="114.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.models.TelecomService" target="com.spidermanteam.spiderpuppies.models.Subscriber">
+      <point x="-90.0" y="-70.0" />
+      <point x="8235.223722257997" y="1300.0" />
+      <point x="7130.86032002285" y="1300.0" />
+      <point x="60.222222222222626" y="147.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.ManageInvoicesController" target="com.spidermanteam.spiderpuppies.services.base.InvoiceService">
+      <point x="24.54545454545496" y="-48.0" />
+      <point x="6250.031129544737" y="2302.0" />
+      <point x="6352.488097800626" y="2302.0" />
+      <point x="-24.600000000000364" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.base.AuthoritiesRepository" target="com.spidermanteam.spiderpuppies.models.Authorities">
+      <point x="0.0" y="-15.0" />
+      <point x="1028.054347826088" y="1630.0" />
+      <point x="1205.1718751658345" y="1630.0" />
+      <point x="-6.333333333333371" y="37.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.UserServiceImpl" target="com.spidermanteam.spiderpuppies.data.base.UserRepository">
+      <point x="-42.28571428571428" y="-37.0" />
+      <point x="390.76863354037323" y="2442.0" />
+      <point x="337.7210144927549" y="2442.0" />
+      <point x="10.666666666666629" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.configuration.JwtSecurity" target="com.spidermanteam.spiderpuppies.security.JwtTokenProvider">
+      <point x="82.5" y="-37.0" />
+      <point x="2375.8949752227836" y="3280.0" />
+      <point x="2367.7001811594205" y="3280.0" />
+      <point x="0.0" y="37.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.AdminHomeController" target="com.spidermanteam.spiderpuppies.services.base.ClientAccessService">
+      <point x="-68.5" y="-37.0" />
+      <point x="5816.498834007678" y="2914.0" />
+      <point x="5619.765500674344" y="2914.0" />
+      <point x="5619.765500674344" y="2372.0" />
+      <point x="5557.088097800626" y="2372.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.invoice.InvoiceServiceAllTests" target="com.spidermanteam.spiderpuppies.data.base.InvoiceRepository">
+      <point x="-118.21875" y="-103.0" />
+      <point x="8840.555565143373" y="2874.0" />
+      <point x="8961.995587625408" y="2874.0" />
+      <point x="8961.995587625408" y="2432.0" />
+      <point x="8907.595587625408" y="2432.0" />
+      <point x="21.300000000000182" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.subscriber.SubscribersServiceAllTests" target="com.spidermanteam.spiderpuppies.services.SubscriberServiceImpl">
+      <point x="78.92857142857065" y="-59.0" />
+      <point x="8258.152293686568" y="2814.0" />
+      <point x="8325.045164133531" y="2814.0" />
+      <point x="-100.5" y="48.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.UserServiceImpl" target="com.spidermanteam.spiderpuppies.models.User">
+      <point x="-126.85714285714312" y="-37.0" />
+      <point x="306.1972049689448" y="2432.0" />
+      <point x="252.5543478260879" y="2432.0" />
+      <point x="252.5543478260879" y="188.0" />
+      <point x="1850.4735056006166" y="188.0" />
+      <point x="-46.26086956521749" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.SubscriberServiceImpl" target="com.spidermanteam.spiderpuppies.services.base.SubscribersService">
+      <point x="-184.25" y="-48.0" />
+      <point x="8241.295164133531" y="2182.0" />
+      <point x="6095.088097800626" y="2182.0" />
+      <point x="58.0" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.models.reporting.InvoiceView" target="com.spidermanteam.spiderpuppies.models.Invoice">
+      <point x="0.0" y="-136.0" />
+      <point x="5787.088097800626" y="786.0" />
+      <point x="7185.128574756155" y="786.0" />
+      <point x="-80.34482758620652" y="114.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.client.ClientServiceAllTests" target="com.spidermanteam.spiderpuppies.models.Client">
+      <point x="-48.399999999999636" y="-37.0" />
+      <point x="4296.93216734101" y="3004.0" />
+      <point x="4162.618671632279" y="3004.0" />
+      <point x="4162.618671632279" y="716.0" />
+      <point x="4429.528422784882" y="716.0" />
+      <point x="-29.5" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.configuration.HibernateConfig" target="com.spidermanteam.spiderpuppies.models.TelecomService">
+      <point x="58.285714285714675" y="-15.0" />
+      <point x="4299.404385917993" y="1560.0" />
+      <point x="8221.919374431911" y="1560.0" />
+      <point x="-103.30434782608609" y="70.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.base.AdminRepository" target="com.spidermanteam.spiderpuppies.data.base.GenericRepository">
+      <point x="35.0" y="-15.0" />
+      <point x="1266.471014492754" y="1690.0" />
+      <point x="8678.115224234281" y="1690.0" />
+      <point x="-65.45454545454504" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.TelecomServiceRepositoryImpl" target="com.spidermanteam.spiderpuppies.models.TelecomService">
+      <point x="0.0" y="-26.0" />
+      <point x="8432.935678779737" y="1670.0" />
+      <point x="8353.397635301475" y="1670.0" />
+      <point x="28.173913043478024" y="70.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.ManageSubscribersController" target="com.spidermanteam.spiderpuppies.services.base.SubscribersService">
+      <point x="37.57142857142935" y="-26.0" />
+      <point x="5440.236929245773" y="3014.0" />
+      <point x="5413.665500674344" y="3014.0" />
+      <point x="5413.665500674344" y="2442.0" />
+      <point x="5979.088097800626" y="2442.0" />
+      <point x="-58.0" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.models.reporting.SubscriberView" target="com.spidermanteam.spiderpuppies.models.Invoice">
+      <point x="-116.14285714285688" y="-136.0" />
+      <point x="4726.189310198153" y="2352.0" />
+      <point x="4630.33216734101" y="2352.0" />
+      <point x="4630.33216734101" y="766.0" />
+      <point x="7169.059609238913" y="766.0" />
+      <point x="-96.41379310344837" y="114.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.UserRepositoryImpl" target="com.spidermanteam.spiderpuppies.models.User">
+      <point x="-74.33333333333303" y="-26.0" />
+      <point x="37.16666666666697" y="2452.0" />
+      <point x="93.71823569215667" y="2452.0" />
+      <point x="93.71823569215667" y="148.0" />
+      <point x="1824.038722991921" y="148.0" />
+      <point x="-72.695652173913" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.subscriber.SubscribersServiceAllTests" target="com.spidermanteam.spiderpuppies.models.TelecomService">
+      <point x="15.785714285713766" y="-59.0" />
+      <point x="8195.00943654371" y="2824.0" />
+      <point x="8177.333207611793" y="2824.0" />
+      <point x="8177.333207611793" y="1650.0" />
+      <point x="8306.441113562345" y="1650.0" />
+      <point x="-18.782608695652016" y="70.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.invoice.InvoiceServiceAllTests" target="com.spidermanteam.spiderpuppies.data.base.SubscriberRepository">
+      <point x="-136.40625" y="-103.0" />
+      <point x="8822.368065143373" y="2764.0" />
+      <point x="8088.723722257997" y="2764.0" />
+      <point x="8088.723722257997" y="2402.0" />
+      <point x="7981.843433619972" y="2402.0" />
+      <point x="8.0" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.SubscriberServiceImpl" target="com.spidermanteam.spiderpuppies.models.Invoice">
+      <point x="50.25" y="-48.0" />
+      <point x="8475.795164133531" y="2382.0" />
+      <point x="8617.410678779735" y="2382.0" />
+      <point x="8617.410678779735" y="626.0" />
+      <point x="7313.680298894085" y="626.0" />
+      <point x="48.20689655172373" y="114.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.security.JwtParser" target="com.spidermanteam.spiderpuppies.services.base.ClientService">
+      <point x="23.666666666666515" y="-59.0" />
+      <point x="3913.285338298945" y="2372.0" />
+      <point x="3647.7105656420244" y="2372.0" />
+      <point x="33.14285714285688" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.ManageAdminsController" target="com.spidermanteam.spiderpuppies.models.Admin">
+      <point x="-71.0" y="-26.0" />
+      <point x="2832.190100203707" y="2392.0" />
+      <point x="2663.190100203707" y="2392.0" />
+      <point x="2663.190100203707" y="1580.0" />
+      <point x="1624.338541832501" y="1580.0" />
+      <point x="12.0" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.invoice.InvoiceServiceAllTests" target="com.spidermanteam.spiderpuppies.models.Subscriber">
+      <point x="-63.65625" y="-103.0" />
+      <point x="8895.118065143373" y="2904.0" />
+      <point x="9022.79558762541" y="2904.0" />
+      <point x="9022.79558762541" y="1240.0" />
+      <point x="7171.008468170998" y="1240.0" />
+      <point x="100.37037037037044" y="147.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.InvoiceServiceImpl" target="com.spidermanteam.spiderpuppies.models.Invoice">
+      <point x="129.33333333333303" y="-37.0" />
+      <point x="9363.128920958741" y="2452.0" />
+      <point x="9422.79558762541" y="2452.0" />
+      <point x="9422.79558762541" y="566.0" />
+      <point x="7337.783747169948" y="566.0" />
+      <point x="72.31034482758605" y="114.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.base.UserService" target="com.spidermanteam.spiderpuppies.models.User">
+      <point x="0.0" y="-15.0" />
+      <point x="3298.1186716322786" y="218.0" />
+      <point x="1916.560462122356" y="218.0" />
+      <point x="19.826086956521976" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.user.UserServiceAllTests" target="com.spidermanteam.spiderpuppies.models.User">
+      <point x="-129.5" y="-48.0" />
+      <point x="300.32500256253115" y="3014.0" />
+      <point x="233.5" y="3014.0" />
+      <point x="233.5" y="168.0" />
+      <point x="1837.256114296269" y="168.0" />
+      <point x="-59.47826086956502" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.admin.AdminServiceAllTests" target="com.spidermanteam.spiderpuppies.data.base.AdminRepository">
+      <point x="41.57142857142844" y="-48.0" />
+      <point x="1179.362237127545" y="3014.0" />
+      <point x="1213.971014492754" y="3014.0" />
+      <point x="-17.5" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.security.JwtTokenFilter" target="com.spidermanteam.spiderpuppies.security.JwtParser">
+      <point x="88.0" y="-59.0" />
+      <point x="2105.6484335370405" y="3004.0" />
+      <point x="3818.6186716322786" y="3004.0" />
+      <point x="-71.0" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.clientaccess.ClientAccessServiceAllTests" target="com.spidermanteam.spiderpuppies.models.User">
+      <point x="70.11764705882342" y="-92.0" />
+      <point x="7486.608610696131" y="3014.0" />
+      <point x="7477.343433619972" y="3014.0" />
+      <point x="7477.343433619972" y="158.0" />
+      <point x="1956.2126360353996" y="158.0" />
+      <point x="59.478260869565474" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.clientaccess.ClientAccessServiceAllTests" target="com.spidermanteam.spiderpuppies.data.base.InvoiceRepository">
+      <point x="140.23529411764684" y="-92.0" />
+      <point x="7556.7262577549545" y="2834.0" />
+      <point x="8735.215224234282" y="2834.0" />
+      <point x="8735.215224234282" y="2452.0" />
+      <point x="8879.195587625409" y="2452.0" />
+      <point x="-7.100000000000364" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.telecomservice.TelecomServiceAllTests" target="com.spidermanteam.spiderpuppies.data.base.GenericRepository">
+      <point x="184.16666666666606" y="-37.0" />
+      <point x="10221.151398756443" y="3014.0" />
+      <point x="10162.830070384029" y="3014.0" />
+      <point x="10162.830070384029" y="1550.0" />
+      <point x="8809.024315143371" y="1550.0" />
+      <point x="65.45454545454504" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.ClientAccessServiceImpl" target="com.spidermanteam.spiderpuppies.models.Subscriber">
+      <point x="-14.550000000000182" y="-37.0" />
+      <point x="7167.310674999282" y="2192.0" />
+      <point x="7070.638097800627" y="2192.0" />
+      <point x="0.0" y="147.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.AdminHomeController" target="com.spidermanteam.spiderpuppies.models.reporting.SubscriberShortView">
+      <point x="-95.89999999999964" y="-37.0" />
+      <point x="5789.098834007678" y="2924.0" />
+      <point x="5198.83216734101" y="2924.0" />
+      <point x="81.0" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.clientaccess.ClientAccessServiceAllTests" target="com.spidermanteam.spiderpuppies.data.base.SubscriberRepository">
+      <point x="122.70588235294144" y="-92.0" />
+      <point x="7539.196845990249" y="2984.0" />
+      <point x="7510.343433619972" y="2984.0" />
+      <point x="7510.343433619972" y="2402.0" />
+      <point x="7949.843433619972" y="2402.0" />
+      <point x="-24.0" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.objectmapping" target="com.spidermanteam.spiderpuppies.models.Subscriber">
+      <point x="20.0" y="-15.0" />
+      <point x="5524.165500674344" y="2322.0" />
+      <point x="5471.088097800626" y="2322.0" />
+      <point x="5471.088097800626" y="1270.0" />
+      <point x="6980.304764467293" y="1270.0" />
+      <point x="-90.33333333333303" y="147.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.security.service.MyJWTUserDetailsService" target="com.spidermanteam.spiderpuppies.security.models.JwtUserDetails">
+      <point x="131.55555555555566" y="-48.0" />
+      <point x="1845.6724033816427" y="2402.0" />
+      <point x="2198.690100203707" y="2402.0" />
+      <point x="-84.75" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.ClientAccessServiceImpl" target="com.spidermanteam.spiderpuppies.models.reporting.PaymentReport">
+      <point x="-72.75" y="-37.0" />
+      <point x="7109.110674999282" y="2212.0" />
+      <point x="7039.263097800627" y="2212.0" />
+      <point x="7039.263097800627" y="1550.0" />
+      <point x="6764.763097800627" y="1550.0" />
+      <point x="88.75" y="48.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.LoginController" target="com.spidermanteam.spiderpuppies.services.base.LoginService">
+      <point x="-81.92307692307713" y="-59.0" />
+      <point x="3191.6718432218713" y="2984.0" />
+      <point x="3125.5234335370405" y="2984.0" />
+      <point x="38.333333333333485" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.SubscriberRepositoryImpl" target="com.spidermanteam.spiderpuppies.models.Invoice">
+      <point x="-83.625" y="-26.0" />
+      <point x="6450.075597800627" y="2332.0" />
+      <point x="6494.01330521608" y="2332.0" />
+      <point x="6494.01330521608" y="826.0" />
+      <point x="7217.266505790638" y="826.0" />
+      <point x="-48.20689655172373" y="114.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.ManageInvoicesController" target="com.spidermanteam.spiderpuppies.models.reporting.InvoiceView">
+      <point x="-122.72727272727298" y="-48.0" />
+      <point x="6102.758402272009" y="2282.0" />
+      <point x="5876.754764467294" y="2282.0" />
+      <point x="89.66666666666697" y="136.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.clientcontrollers.ClientController" target="com.spidermanteam.spiderpuppies.security.JwtParser">
+      <point x="-105.38461538461524" y="-37.0" />
+      <point x="4590.947551956395" y="2984.0" />
+      <point x="3960.6186716322786" y="2984.0" />
+      <point x="71.0" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.security.JwtParser" target="com.spidermanteam.spiderpuppies.models.Client">
+      <point x="94.66666666666652" y="-59.0" />
+      <point x="3984.285338298945" y="2442.0" />
+      <point x="3987.5677084991676" y="2442.0" />
+      <point x="3987.5677084991676" y="686.0" />
+      <point x="4394.128422784883" y="686.0" />
+      <point x="-64.89999999999964" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.ClientRepositoryImpl" target="com.spidermanteam.spiderpuppies.models.User">
+      <point x="-24.25" y="-37.0" />
+      <point x="2606.940100203707" y="2402.0" />
+      <point x="2614.3177084991676" y="2402.0" />
+      <point x="2614.3177084991676" y="228.0" />
+      <point x="1909.951766470182" y="228.0" />
+      <point x="13.217391304347984" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.ManageInvoicesController" target="com.spidermanteam.spiderpuppies.models.Invoice">
+      <point x="-24.54545454545496" y="-48.0" />
+      <point x="6200.940220453827" y="2242.0" />
+      <point x="6120.088097800626" y="2242.0" />
+      <point x="6120.088097800626" y="806.0" />
+      <point x="7201.197540273396" y="806.0" />
+      <point x="-64.27586206896558" y="114.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.ClientRepositoryImpl" target="com.spidermanteam.spiderpuppies.models.Authorities">
+      <point x="-121.25" y="-37.0" />
+      <point x="2509.940100203707" y="2382.0" />
+      <point x="2592.3177084991676" y="2382.0" />
+      <point x="2592.3177084991676" y="1600.0" />
+      <point x="1255.8385418325006" y="1600.0" />
+      <point x="44.33333333333303" y="37.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.models.Invoice" target="com.spidermanteam.spiderpuppies.models.Subscriber">
+      <point x="-24.10344827586232" y="114.0" />
+      <point x="7241.369954066499" y="856.0" />
+      <point x="7138.388097800627" y="856.0" />
+      <point x="67.75" y="-147.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.LoginController" target="com.spidermanteam.spiderpuppies.models.Client">
+      <point x="98.30769230769238" y="-59.0" />
+      <point x="3371.902612452641" y="3014.0" />
+      <point x="4006.6186716322786" y="3014.0" />
+      <point x="4006.6186716322786" y="696.0" />
+      <point x="4405.928422784882" y="696.0" />
+      <point x="-53.100000000000364" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.AdminHomeController" target="com.spidermanteam.spiderpuppies.models.Subscriber">
+      <point x="68.5" y="-37.0" />
+      <point x="5954.088097800626" y="1290.0" />
+      <point x="7000.378838541368" y="1290.0" />
+      <point x="-70.25925925925912" y="147.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.subscriber.SubscribersServiceAllTests" target="com.spidermanteam.spiderpuppies.models.User">
+      <point x="205.21428571428623" y="-59.0" />
+      <point x="8384.438007972283" y="2864.0" />
+      <point x="8950.995587625408" y="2864.0" />
+      <point x="8950.995587625408" y="2452.0" />
+      <point x="8989.79558762541" y="2452.0" />
+      <point x="8989.79558762541" y="148.0" />
+      <point x="1962.821331687573" y="148.0" />
+      <point x="66.08695652173901" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.UserServiceImpl" target="com.spidermanteam.spiderpuppies.data.base.AuthoritiesRepository">
+      <point x="84.57142857142856" y="-37.0" />
+      <point x="517.6257763975163" y="2412.0" />
+      <point x="987.5543478260879" y="2412.0" />
+      <point x="-40.5" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.SubscriberServiceImpl" target="com.spidermanteam.spiderpuppies.data.base.InvoiceRepository">
+      <point x="150.75" y="-48.0" />
+      <point x="8576.295164133531" y="2432.0" />
+      <point x="8850.79558762541" y="2432.0" />
+      <point x="-35.5" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.telecomservice.TelecomServiceAllTests" target="com.spidermanteam.spiderpuppies.services.TelecomServiceServiceImpl">
+      <point x="-184.16666666666606" y="-37.0" />
+      <point x="9852.818065423111" y="3014.0" />
+      <point x="9817.830070384029" y="3014.0" />
+      <point x="-100.5" y="26.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.telecomservice.TelecomServiceAllTests" target="com.spidermanteam.spiderpuppies.models.TelecomService">
+      <point x="-36.83333333333394" y="-37.0" />
+      <point x="10000.151398756443" y="3004.0" />
+      <point x="10129.830070384029" y="3004.0" />
+      <point x="10129.830070384029" y="1580.0" />
+      <point x="8409.745461388431" y="1580.0" />
+      <point x="84.52173913043407" y="70.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.security.service.MyJWTUserDetailsService" target="com.spidermanteam.spiderpuppies.models.Authorities">
+      <point x="0.0" y="-48.0" />
+      <point x="1714.116847826087" y="2292.0" />
+      <point x="1459.7283085561166" y="2292.0" />
+      <point x="1459.7283085561166" y="1630.0" />
+      <point x="1217.8385418325006" y="1630.0" />
+      <point x="6.33333333333303" y="37.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.configuration.HibernateConfig" target="com.spidermanteam.spiderpuppies.models.Subscriber">
+      <point x="38.85714285714312" y="-15.0" />
+      <point x="4279.975814489422" y="1540.0" />
+      <point x="4619.33216734101" y="1540.0" />
+      <point x="4619.33216734101" y="1230.0" />
+      <point x="6940.1566163191455" y="1230.0" />
+      <point x="-130.48148148148175" y="147.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.SubscriberServiceImpl" target="com.spidermanteam.spiderpuppies.models.TelecomService">
+      <point x="-50.25" y="-48.0" />
+      <point x="8375.295164133531" y="2142.0" />
+      <point x="8272.810678779737" y="2142.0" />
+      <point x="8272.810678779737" y="1670.0" />
+      <point x="8325.223722257997" y="1670.0" />
+      <point x="0.0" y="70.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.base.AdminService" target="com.spidermanteam.spiderpuppies.models.Admin">
+      <point x="0.0" y="-15.0" />
+      <point x="3152.1186716322786" y="1570.0" />
+      <point x="1636.338541832501" y="1570.0" />
+      <point x="24.0" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.AdminRepositoryImpl" target="com.spidermanteam.spiderpuppies.models.User">
+      <point x="-121.25" y="-37.0" />
+      <point x="637.3043478260879" y="2342.0" />
+      <point x="401.5543478260879" y="2342.0" />
+      <point x="401.5543478260879" y="208.0" />
+      <point x="1863.6908969049646" y="208.0" />
+      <point x="-33.043478260869506" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.security.models.JwtUser" target="com.spidermanteam.spiderpuppies.models.User">
+      <point x="0.0" y="-59.0" />
+      <point x="2107.3559168515776" y="238.0" />
+      <point x="1903.343070818008" y="238.0" />
+      <point x="6.608695652173992" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.clientaccess.ClientAccessServiceAllTests" target="com.spidermanteam.spiderpuppies.models.Invoice">
+      <point x="52.58823529411802" y="-92.0" />
+      <point x="7469.079198931426" y="2904.0" />
+      <point x="7412.360674999282" y="2904.0" />
+      <point x="7412.360674999282" y="866.0" />
+      <point x="7273.507885100982" y="866.0" />
+      <point x="8.03448275862047" y="114.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.base.ClientRepository" target="com.spidermanteam.spiderpuppies.data.base.GenericRepository">
+      <point x="33.75" y="-15.0" />
+      <point x="4118.368671632279" y="1700.0" />
+      <point x="8691.206133325191" y="1700.0" />
+      <point x="-52.36363636363603" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.base.UserRepository" target="com.spidermanteam.spiderpuppies.models.User">
+      <point x="0.0" y="-15.0" />
+      <point x="327.0543478260879" y="198.0" />
+      <point x="1857.0822012527906" y="198.0" />
+      <point x="-39.6521739130435" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.TelecomServiceServiceImpl" target="com.spidermanteam.spiderpuppies.data.base.GenericRepository">
+      <point x="160.79999999999927" y="-26.0" />
+      <point x="10079.130070384028" y="2432.0" />
+      <point x="9921.558797901993" y="2432.0" />
+      <point x="9921.558797901993" y="1590.0" />
+      <point x="8795.933406052463" y="1590.0" />
+      <point x="52.36363636363603" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.subscriber.SubscribersServiceAllTests" target="com.spidermanteam.spiderpuppies.models.Client">
+      <point x="-142.07142857142935" y="-59.0" />
+      <point x="8037.152293686568" y="2804.0" />
+      <point x="7861.343433619972" y="2804.0" />
+      <point x="7861.343433619972" y="686.0" />
+      <point x="4523.928422784882" y="686.0" />
+      <point x="64.89999999999964" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.SubscriberRepositoryImpl" target="com.spidermanteam.spiderpuppies.data.base.SubscriberRepository">
+      <point x="83.625" y="-26.0" />
+      <point x="6617.325597800627" y="2372.0" />
+      <point x="7901.843433619972" y="2372.0" />
+      <point x="-72.0" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.configuration.JwtSecurity" target="com.spidermanteam.spiderpuppies.security.JwtAuthenticationEntryPoint">
+      <point x="137.5" y="-37.0" />
+      <point x="2430.8949752227836" y="3280.0" />
+      <point x="10375.984732089777" y="3280.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.LoginController" target="com.spidermanteam.spiderpuppies.models.reporting.UserResponse">
+      <point x="81.92307692307713" y="-59.0" />
+      <point x="3355.5179970680256" y="2994.0" />
+      <point x="3724.6186716322786" y="2994.0" />
+      <point x="38.5" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.UserServiceImpl" target="com.spidermanteam.spiderpuppies.services.base.UserService">
+      <point x="126.85714285714289" y="-37.0" />
+      <point x="559.911490683231" y="2442.0" />
+      <point x="3254.918671632279" y="2442.0" />
+      <point x="-43.19999999999982" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.models.reporting.SubscriberView" target="com.spidermanteam.spiderpuppies.models.Subscriber">
+      <point x="-77.42857142857156" y="-136.0" />
+      <point x="4764.903595912439" y="2342.0" />
+      <point x="4663.33216734101" y="2342.0" />
+      <point x="4663.33216734101" y="1250.0" />
+      <point x="6960.2306903932185" y="1250.0" />
+      <point x="-110.40740740740785" y="147.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.ManageInvoicesController" target="com.spidermanteam.spiderpuppies.services.base.SubscribersService">
+      <point x="-73.63636363636397" y="-48.0" />
+      <point x="6151.849311362918" y="2262.0" />
+      <point x="6037.088097800626" y="2262.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.base.SubscriberRepository" target="com.spidermanteam.spiderpuppies.data.base.GenericRepository">
+      <point x="40.0" y="-15.0" />
+      <point x="8013.843433619972" y="1710.0" />
+      <point x="8704.2970424161" y="1710.0" />
+      <point x="-39.272727272727025" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.AdminRepositoryImpl" target="com.spidermanteam.spiderpuppies.models.Authorities">
+      <point x="-72.75" y="-37.0" />
+      <point x="685.8043478260879" y="2362.0" />
+      <point x="837.0651002037075" y="2362.0" />
+      <point x="837.0651002037075" y="1610.0" />
+      <point x="1179.8385418325006" y="1610.0" />
+      <point x="-31.66666666666697" y="37.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.ClientAccessServiceImpl" target="com.spidermanteam.spiderpuppies.data.base.InvoiceRepository">
+      <point x="130.94999999999982" y="-37.0" />
+      <point x="7312.810674999282" y="2422.0" />
+      <point x="8836.595587625408" y="2422.0" />
+      <point x="-49.69999999999982" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.LoginController" target="com.spidermanteam.spiderpuppies.services.base.ClientService">
+      <point x="32.769230769230944" y="-59.0" />
+      <point x="3306.3641509141794" y="2964.0" />
+      <point x="3587.6186716322786" y="2964.0" />
+      <point x="3587.6186716322786" y="2432.0" />
+      <point x="3597.996279927739" y="2432.0" />
+      <point x="-16.57142857142844" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.user.UserServiceAllTests" target="com.spidermanteam.spiderpuppies.data.base.UserRepository">
+      <point x="-55.5" y="-48.0" />
+      <point x="374.32500256253115" y="2994.0" />
+      <point x="274.5543478260879" y="2994.0" />
+      <point x="274.5543478260879" y="2452.0" />
+      <point x="295.0543478260879" y="2452.0" />
+      <point x="-32.0" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.base.ClientAccessService" target="com.spidermanteam.spiderpuppies.models.Invoice">
+      <point x="-50.33333333333303" y="-15.0" />
+      <point x="5506.754764467294" y="1530.0" />
+      <point x="4652.33216734101" y="1530.0" />
+      <point x="4652.33216734101" y="776.0" />
+      <point x="7177.094091997534" y="776.0" />
+      <point x="-88.3793103448279" y="114.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.objectmapping" target="com.spidermanteam.spiderpuppies.models.reporting.PaymentLine">
+      <point x="-20.0" y="-15.0" />
+      <point x="5484.165500674344" y="2332.0" />
+      <point x="5257.618671632279" y="2332.0" />
+      <point x="62.33333333333394" y="81.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.InvoiceServiceImpl" target="com.spidermanteam.spiderpuppies.services.base.InvoiceService">
+      <point x="-129.33333333333303" y="-37.0" />
+      <point x="9104.462254292075" y="2122.0" />
+      <point x="6426.288097800627" y="2122.0" />
+      <point x="49.19999999999982" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.security.models.JwtUserDetails" target="com.spidermanteam.spiderpuppies.security.models.JwtUser">
+      <point x="0.0" y="-59.0" />
+      <point x="2283.440100203707" y="1680.0" />
+      <point x="2158.0225835182446" y="1680.0" />
+      <point x="50.66666666666674" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.subscriber.SubscribersServiceAllTests" target="com.spidermanteam.spiderpuppies.models.Subscriber">
+      <point x="-205.21428571428623" y="-59.0" />
+      <point x="7974.009436543711" y="2824.0" />
+      <point x="7839.343433619972" y="2824.0" />
+      <point x="7839.343433619972" y="1340.0" />
+      <point x="7090.7121718747" y="1340.0" />
+      <point x="20.074074074073906" y="147.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.configuration.HibernateConfig" target="com.spidermanteam.spiderpuppies.models.Admin">
+      <point x="-38.85714285714312" y="-15.0" />
+      <point x="4202.261528775136" y="1530.0" />
+      <point x="1672.338541832501" y="1530.0" />
+      <point x="60.0" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.security.JwtTokenFilter" target="com.spidermanteam.spiderpuppies.security.service.MyJWTUserDetailsService">
+      <point x="-88.0" y="-59.0" />
+      <point x="1929.6484335370405" y="3014.0" />
+      <point x="1788.116847826087" y="3014.0" />
+      <point x="74.0" y="48.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.SubscriberServiceImpl" target="com.spidermanteam.spiderpuppies.data.base.SubscriberRepository">
+      <point x="-117.25" y="-48.0" />
+      <point x="8308.295164133531" y="2162.0" />
+      <point x="8013.843433619972" y="2162.0" />
+      <point x="40.0" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.base.ClientAccessService" target="com.spidermanteam.spiderpuppies.models.reporting.PaymentReport">
+      <point x="50.33333333333303" y="-15.0" />
+      <point x="5607.42143113396" y="1550.0" />
+      <point x="6622.763097800627" y="1550.0" />
+      <point x="-53.25" y="48.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.base.ClientRepository" target="com.spidermanteam.spiderpuppies.models.Client">
+      <point x="-33.75" y="-15.0" />
+      <point x="4050.8686716322786" y="706.0" />
+      <point x="4417.728422784881" y="706.0" />
+      <point x="-41.30000000000018" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.security.JwtParser" target="com.spidermanteam.spiderpuppies.services.base.UserService">
+      <point x="-47.333333333333485" y="-59.0" />
+      <point x="3842.285338298945" y="2402.0" />
+      <point x="3319.7186716322785" y="2402.0" />
+      <point x="21.59999999999991" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.clientcontrollers.ClientController" target="com.spidermanteam.spiderpuppies.models.reporting.PaymentReport">
+      <point x="-42.153846153845734" y="-37.0" />
+      <point x="4654.178321187164" y="3004.0" />
+      <point x="4674.33216734101" y="3004.0" />
+      <point x="4674.33216734101" y="1540.0" />
+      <point x="6587.263097800627" y="1540.0" />
+      <point x="-88.75" y="48.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.SubscriberServiceImpl" target="com.spidermanteam.spiderpuppies.data.base.GenericRepository">
+      <point x="117.25" y="-48.0" />
+      <point x="8542.795164133531" y="2402.0" />
+      <point x="8668.615224234281" y="2402.0" />
+      <point x="8668.615224234281" y="1740.0" />
+      <point x="8743.569769688827" y="1740.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.security.service.MyJWTUserDetailsService" target="com.spidermanteam.spiderpuppies.security.models.JwtUser">
+      <point x="98.66666666666697" y="-48.0" />
+      <point x="1812.783514492754" y="2382.0" />
+      <point x="2074.6449752227836" y="2382.0" />
+      <point x="2074.6449752227836" y="1680.0" />
+      <point x="2107.3559168515776" y="1680.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.clientcontrollers.ClientController" target="com.spidermanteam.spiderpuppies.models.reporting.SubscriberView">
+      <point x="42.153846153845734" y="-37.0" />
+      <point x="4738.486013494856" y="2974.0" />
+      <point x="4808.45716734101" y="2974.0" />
+      <point x="-33.875" y="136.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.base.ClientAccessService" target="com.spidermanteam.spiderpuppies.models.Subscriber">
+      <point x="0.0" y="-15.0" />
+      <point x="5557.088097800626" y="1280.0" />
+      <point x="6990.34180150433" y="1280.0" />
+      <point x="-80.29629629629653" y="147.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.clientcontrollers.ClientController" target="com.spidermanteam.spiderpuppies.models.Subscriber">
+      <point x="-63.23076923076951" y="-37.0" />
+      <point x="4633.101398110241" y="3014.0" />
+      <point x="4619.33216734101" y="3014.0" />
+      <point x="4619.33216734101" y="1550.0" />
+      <point x="4641.33216734101" y="1550.0" />
+      <point x="4641.33216734101" y="1240.0" />
+      <point x="6950.193653356182" y="1240.0" />
+      <point x="-120.44444444444434" y="147.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.AdminRepositoryImpl" target="com.spidermanteam.spiderpuppies.models.Admin">
+      <point x="72.75" y="-37.0" />
+      <point x="831.3043478260879" y="2392.0" />
+      <point x="870.0651002037075" y="2392.0" />
+      <point x="870.0651002037075" y="1650.0" />
+      <point x="1564.338541832501" y="1650.0" />
+      <point x="-48.0" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.AuthoritiesRepositoryImpl" target="com.spidermanteam.spiderpuppies.data.base.AuthoritiesRepository">
+      <point x="-74.33333333333326" y="-26.0" />
+      <point x="1919.283514492754" y="2282.0" />
+      <point x="1095.554347826088" y="2282.0" />
+      <point x="67.5" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.configuration.JwtSecurity" target="com.spidermanteam.spiderpuppies.security.service.MyJWTUserDetailsService">
+      <point x="-137.5" y="-37.0" />
+      <point x="2155.8949752227836" y="3280.0" />
+      <point x="1656.3559168515776" y="3280.0" />
+      <point x="1656.3559168515776" y="3014.0" />
+      <point x="1640.116847826087" y="3014.0" />
+      <point x="-74.0" y="48.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.configuration.HibernateConfig" target="com.spidermanteam.spiderpuppies.models.Authorities">
+      <point x="-58.285714285714675" y="-15.0" />
+      <point x="4182.8329573465635" y="1540.0" />
+      <point x="1281.1718751658345" y="1540.0" />
+      <point x="69.66666666666663" y="37.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.TelecomServiceServiceImpl" target="com.spidermanteam.spiderpuppies.models.TelecomService">
+      <point x="0.0" y="-26.0" />
+      <point x="9918.330070384029" y="2452.0" />
+      <point x="9883.630070384028" y="2452.0" />
+      <point x="9883.630070384028" y="1610.0" />
+      <point x="8400.354157040605" y="1610.0" />
+      <point x="75.13043478260806" y="70.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.ManageSubscribersController" target="com.spidermanteam.spiderpuppies.models.Subscriber">
+      <point x="0.0" y="-26.0" />
+      <point x="5402.665500674344" y="2944.0" />
+      <point x="5349.588097800626" y="2944.0" />
+      <point x="5349.588097800626" y="1260.0" />
+      <point x="6970.267727430257" y="1260.0" />
+      <point x="-100.37037037037044" y="147.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.ManageSubscribersController" target="com.spidermanteam.spiderpuppies.models.reporting.SubscriberView">
+      <point x="-112.71428571428623" y="-26.0" />
+      <point x="5289.951214960058" y="2974.0" />
+      <point x="4876.20716734101" y="2974.0" />
+      <point x="33.875" y="136.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.ClientAccessServiceImpl" target="com.spidermanteam.spiderpuppies.data.base.SubscriberRepository">
+      <point x="72.75" y="-37.0" />
+      <point x="7254.610674999282" y="2392.0" />
+      <point x="7933.843433619972" y="2392.0" />
+      <point x="-40.0" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.models.Subscriber" target="com.spidermanteam.spiderpuppies.models.Client">
+      <point x="-67.75" y="-147.0" />
+      <point x="7002.888097800627" y="696.0" />
+      <point x="4512.128422784883" y="696.0" />
+      <point x="53.100000000000364" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.clientcontrollers.ClientController" target="com.spidermanteam.spiderpuppies.models.Invoice">
+      <point x="-84.30769230769238" y="-37.0" />
+      <point x="4612.024475033319" y="3014.0" />
+      <point x="4608.33216734101" y="3014.0" />
+      <point x="4608.33216734101" y="756.0" />
+      <point x="7161.025126480293" y="756.0" />
+      <point x="-104.44827586206884" y="114.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.models.Client" target="com.spidermanteam.spiderpuppies.models.User">
+      <point x="-59.0" y="-59.0" />
+      <point x="4400.028422784882" y="178.0" />
+      <point x="1942.9952447310516" y="178.0" />
+      <point x="46.26086956521749" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.subscriber.SubscribersServiceAllTests" target="com.spidermanteam.spiderpuppies.data.base.InvoiceRepository">
+      <point x="142.07142857142935" y="-59.0" />
+      <point x="8321.295150829426" y="2844.0" />
+      <point x="8890.195587625409" y="2844.0" />
+      <point x="8890.195587625409" y="2452.0" />
+      <point x="8893.39558762541" y="2452.0" />
+      <point x="7.100000000000364" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.ClientRepositoryImpl" target="com.spidermanteam.spiderpuppies.models.Client">
+      <point x="72.75" y="-37.0" />
+      <point x="2703.940100203707" y="2402.0" />
+      <point x="2791.9427084991676" y="2402.0" />
+      <point x="2791.9427084991676" y="656.0" />
+      <point x="4358.728422784881" y="656.0" />
+      <point x="-100.30000000000018" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.invoice.InvoiceServiceAllTests" target="com.spidermanteam.spiderpuppies.services.InvoiceServiceImpl">
+      <point x="27.28125" y="-103.0" />
+      <point x="8986.055565143373" y="2954.0" />
+      <point x="9161.04558762541" y="2954.0" />
+      <point x="-72.75" y="37.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.ClientAccessServiceImpl" target="com.spidermanteam.spiderpuppies.models.reporting.PaymentReportStatus">
+      <point x="-43.649999999999636" y="-37.0" />
+      <point x="7138.210674999283" y="2202.0" />
+      <point x="7050.263097800627" y="2202.0" />
+      <point x="7050.263097800627" y="1220.0" />
+      <point x="6867.638097800627" y="1220.0" />
+      <point x="106.5" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.models.Subscriber" target="com.spidermanteam.spiderpuppies.models.TelecomService">
+      <point x="90.33333333333303" y="147.0" />
+      <point x="7160.971431133959" y="1270.0" />
+      <point x="8343.223722257997" y="1270.0" />
+      <point x="18.0" y="-70.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.base.AdminRepository" target="com.spidermanteam.spiderpuppies.models.Admin">
+      <point x="-35.0" y="-15.0" />
+      <point x="1196.471014492754" y="1680.0" />
+      <point x="1600.338541832501" y="1680.0" />
+      <point x="-12.0" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.AdminHomeController" target="com.spidermanteam.spiderpuppies.models.Invoice">
+      <point x="41.100000000000364" y="-37.0" />
+      <point x="5926.098834007678" y="3014.0" />
+      <point x="5943.088097800626" y="3014.0" />
+      <point x="5943.088097800626" y="796.0" />
+      <point x="7193.163057514776" y="796.0" />
+      <point x="-72.31034482758605" y="114.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.InvoiceRepositoryImpl" target="com.spidermanteam.spiderpuppies.models.Invoice">
+      <point x="74.33333333333303" y="-26.0" />
+      <point x="9660.16340371736" y="2452.0" />
+      <point x="9652.463737801243" y="2452.0" />
+      <point x="9652.463737801243" y="516.0" />
+      <point x="7377.956160963051" y="516.0" />
+      <point x="112.48275862068931" y="114.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.security.JwtTokenFilter" target="com.spidermanteam.spiderpuppies.security.JwtTokenProvider">
+      <point x="0.0" y="-59.0" />
+      <point x="2017.6484335370405" y="2994.0" />
+      <point x="2290.190100203707" y="2994.0" />
+      <point x="-78.0" y="37.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.InvoiceServiceImpl" target="com.spidermanteam.spiderpuppies.data.base.InvoiceRepository">
+      <point x="0.0" y="-37.0" />
+      <point x="9233.79558762541" y="2082.0" />
+      <point x="8935.995587625408" y="2082.0" />
+      <point x="49.69999999999982" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.configuration.HibernateConfig" target="com.spidermanteam.spiderpuppies.models.User">
+      <point x="-19.42857142857156" y="-15.0" />
+      <point x="4221.690100203707" y="1680.0" />
+      <point x="4234.332957346564" y="1680.0" />
+      <point x="4234.332957346564" y="188.0" />
+      <point x="1936.3865490788776" y="188.0" />
+      <point x="39.6521739130435" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.LoginServiceImpl" target="com.spidermanteam.spiderpuppies.services.base.LoginService">
+      <point x="105.66666666666674" y="-37.0" />
+      <point x="2675.6892501849106" y="2994.0" />
+      <point x="3048.8567668703736" y="2994.0" />
+      <point x="-38.333333333333485" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.admin.AdminServiceAllTests" target="com.spidermanteam.spiderpuppies.models.User">
+      <point x="-83.14285714285779" y="-48.0" />
+      <point x="1054.6479514132589" y="2994.0" />
+      <point x="936.5543478260879" y="2994.0" />
+      <point x="936.5543478260879" y="228.0" />
+      <point x="1876.9082882093126" y="228.0" />
+      <point x="-19.82608695652152" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.configuration.JwtSecurity" target="com.spidermanteam.spiderpuppies.security.JwtTokenFilter">
+      <point x="-27.5" y="-37.0" />
+      <point x="2265.8949752227836" y="3260.0" />
+      <point x="2083.6484335370405" y="3260.0" />
+      <point x="66.0" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.AuthoritiesRepositoryImpl" target="com.spidermanteam.spiderpuppies.models.Authorities">
+      <point x="74.33333333333348" y="-26.0" />
+      <point x="2067.9501811594205" y="2392.0" />
+      <point x="2103.440100203707" y="2392.0" />
+      <point x="2103.440100203707" y="1610.0" />
+      <point x="1243.1718751658345" y="1610.0" />
+      <point x="31.66666666666697" y="37.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.ManageInvoicesController" target="com.spidermanteam.spiderpuppies.models.Subscriber">
+      <point x="73.63636363636397" y="-48.0" />
+      <point x="6299.122038635646" y="2322.0" />
+      <point x="6457.428228017424" y="2322.0" />
+      <point x="6457.428228017424" y="1310.0" />
+      <point x="7020.452912615441" y="1310.0" />
+      <point x="-50.18518518518522" y="147.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.UserRepositoryImpl" target="com.spidermanteam.spiderpuppies.data.base.UserRepository">
+      <point x="74.33333333333331" y="-26.0" />
+      <point x="185.83333333333303" y="2442.0" />
+      <point x="273.7210144927549" y="2442.0" />
+      <point x="-53.333333333333314" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.models.Subscriber" target="com.spidermanteam.spiderpuppies.models.Invoice">
+      <point x="-22.58333333333303" y="-147.0" />
+      <point x="7048.054764467293" y="836.0" />
+      <point x="7225.300988549258" y="836.0" />
+      <point x="-40.17241379310326" y="114.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.LoginController" target="com.spidermanteam.spiderpuppies.models.Admin">
+      <point x="-32.769230769230944" y="-59.0" />
+      <point x="3240.8256893757175" y="2954.0" />
+      <point x="3222.6186716322786" y="2954.0" />
+      <point x="3222.6186716322786" y="1560.0" />
+      <point x="1648.338541832501" y="1560.0" />
+      <point x="36.0" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.admin.AdminServiceAllTests" target="com.spidermanteam.spiderpuppies.models.Admin">
+      <point x="0.0" y="-48.0" />
+      <point x="1137.7908085561166" y="3014.0" />
+      <point x="1150.971014492754" y="3014.0" />
+      <point x="1150.971014492754" y="1670.0" />
+      <point x="1588.338541832501" y="1670.0" />
+      <point x="-24.0" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.InvoiceServiceImpl" target="com.spidermanteam.spiderpuppies.data.base.SubscriberRepository">
+      <point x="-64.66666666666697" y="-37.0" />
+      <point x="9169.128920958741" y="2102.0" />
+      <point x="8045.843433619972" y="2102.0" />
+      <point x="72.0" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.client.ClientServiceAllTests" target="com.spidermanteam.spiderpuppies.services.ClientServiceImpl">
+      <point x="48.399999999999636" y="-37.0" />
+      <point x="4393.73216734101" y="3014.0" />
+      <point x="4416.33216734101" y="3014.0" />
+      <point x="-60.5" y="26.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.ManageClientsController" target="com.spidermanteam.spiderpuppies.services.base.ClientService">
+      <point x="68.0" y="-26.0" />
+      <point x="3543.1186716322786" y="2442.0" />
+      <point x="3581.4248513563107" y="2442.0" />
+      <point x="-33.14285714285688" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.invoice.InvoiceServiceAllTests" target="com.spidermanteam.spiderpuppies.models.TelecomService">
+      <point x="-100.03125" y="-103.0" />
+      <point x="8858.743065143373" y="2884.0" />
+      <point x="8989.79558762541" y="2884.0" />
+      <point x="8989.79558762541" y="2432.0" />
+      <point x="8967.79558762541" y="2432.0" />
+      <point x="8967.79558762541" y="1660.0" />
+      <point x="8362.788939649301" y="1660.0" />
+      <point x="37.56521739130403" y="70.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.SubscriberServiceImpl" target="com.spidermanteam.spiderpuppies.models.Subscriber">
+      <point x="-83.75" y="-48.0" />
+      <point x="8341.795164133531" y="2152.0" />
+      <point x="8206.723722257997" y="2152.0" />
+      <point x="8206.723722257997" y="1310.0" />
+      <point x="7120.823282985812" y="1310.0" />
+      <point x="50.18518518518522" y="147.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.UserServiceImpl" target="com.spidermanteam.spiderpuppies.models.Authorities">
+      <point x="0.0" y="-37.0" />
+      <point x="433.0543478260879" y="1580.0" />
+      <point x="1141.8385418325006" y="1580.0" />
+      <point x="-69.66666666666697" y="37.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.security.JwtParser" target="com.spidermanteam.spiderpuppies.models.User">
+      <point x="71.0" y="-59.0" />
+      <point x="3960.6186716322786" y="2442.0" />
+      <point x="3976.5677084991676" y="2442.0" />
+      <point x="3976.5677084991676" y="198.0" />
+      <point x="1929.7778534267036" y="198.0" />
+      <point x="33.043478260869506" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.LoginServiceImpl" target="com.spidermanteam.spiderpuppies.security.JwtTokenProvider">
+      <point x="0.0" y="-37.0" />
+      <point x="2570.022583518244" y="2984.0" />
+      <point x="2446.190100203707" y="2984.0" />
+      <point x="78.0" y="37.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.user.UserServiceAllTests" target="com.spidermanteam.spiderpuppies.models.Authorities">
+      <point x="55.5" y="-48.0" />
+      <point x="485.32500256253115" y="2994.0" />
+      <point x="591.5543478260879" y="2994.0" />
+      <point x="591.5543478260879" y="1590.0" />
+      <point x="1154.5052084991676" y="1590.0" />
+      <point x="-57.0" y="37.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.subscriber.SubscribersServiceAllTests" target="com.spidermanteam.spiderpuppies.data.base.SubscriberRepository">
+      <point x="-47.35714285714312" y="-59.0" />
+      <point x="8131.866579400854" y="2774.0" />
+      <point x="7970.843433619972" y="2774.0" />
+      <point x="7970.843433619972" y="2402.0" />
+      <point x="7965.843433619972" y="2402.0" />
+      <point x="-8.0" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.subscriber.SubscribersServiceAllTests" target="com.spidermanteam.spiderpuppies.data.base.GenericRepository">
+      <point x="173.64285714285688" y="-59.0" />
+      <point x="8352.866579400854" y="2854.0" />
+      <point x="8901.195587625409" y="2854.0" />
+      <point x="8901.195587625409" y="2442.0" />
+      <point x="8978.79558762541" y="2442.0" />
+      <point x="8978.79558762541" y="1650.0" />
+      <point x="8769.751587870645" y="1650.0" />
+      <point x="26.181818181818016" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.data.TelecomServiceRepositoryImpl" target="com.spidermanteam.spiderpuppies.data.base.GenericRepository">
+      <point x="74.33333333333394" y="-26.0" />
+      <point x="8507.269012113069" y="1720.0" />
+      <point x="8717.38795150701" y="1720.0" />
+      <point x="-26.181818181818016" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.clientaccess.ClientAccessServiceAllTests" target="com.spidermanteam.spiderpuppies.services.ClientAccessServiceImpl">
+      <point x="0.0" y="-92.0" />
+      <point x="7416.490963637308" y="2934.0" />
+      <point x="7254.610674999282" y="2934.0" />
+      <point x="72.75" y="37.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.LoginController" target="com.spidermanteam.spiderpuppies.models.User">
+      <point x="16.384615384615245" y="-59.0" />
+      <point x="3289.9795355295637" y="2954.0" />
+      <point x="3362.6186716322786" y="2954.0" />
+      <point x="3362.6186716322786" y="208.0" />
+      <point x="1923.1691577745296" y="208.0" />
+      <point x="26.434782608695514" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.base.TelecomServiceService" target="com.spidermanteam.spiderpuppies.models.TelecomService">
+      <point x="0.0" y="-15.0" />
+      <point x="7662.1267669533045" y="1620.0" />
+      <point x="8278.267200518867" y="1620.0" />
+      <point x="-46.95652173913004" y="70.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.security.service.MyJWTUserDetailsService" target="com.spidermanteam.spiderpuppies.models.User">
+      <point x="32.88888888888869" y="-48.0" />
+      <point x="1747.0057367149757" y="2362.0" />
+      <point x="2020.8559168515776" y="2362.0" />
+      <point x="2020.8559168515776" y="248.0" />
+      <point x="1896.734375165834" y="248.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.security.service.MyJWTUserDetailsService" target="com.spidermanteam.spiderpuppies.data.base.AuthoritiesRepository">
+      <point x="-32.888888888888914" y="-48.0" />
+      <point x="1681.2279589371983" y="2302.0" />
+      <point x="1068.554347826088" y="2302.0" />
+      <point x="40.5" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.admincontrollers.ManageTelecomServicesController" target="com.spidermanteam.spiderpuppies.models.TelecomService">
+      <point x="102.66666666666606" y="-26.0" />
+      <point x="7777.510100286638" y="2362.0" />
+      <point x="7802.926766953306" y="2362.0" />
+      <point x="7802.926766953306" y="1630.0" />
+      <point x="8287.658504866693" y="1630.0" />
+      <point x="-37.56521739130403" y="70.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.invoice.InvoiceServiceAllTests" target="com.spidermanteam.spiderpuppies.models.Invoice">
+      <point x="118.21875" y="-103.0" />
+      <point x="9076.993065143373" y="3004.0" />
+      <point x="9452.830070384029" y="3004.0" />
+      <point x="9452.830070384029" y="536.0" />
+      <point x="7361.88719544581" y="536.0" />
+      <point x="96.41379310344837" y="114.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.objectmapping" target="com.spidermanteam.spiderpuppies.models.TelecomService">
+      <point x="60.0" y="-15.0" />
+      <point x="5564.165500674344" y="2432.0" />
+      <point x="5932.088097800626" y="2432.0" />
+      <point x="5932.088097800626" y="1590.0" />
+      <point x="8250.093287475389" y="1590.0" />
+      <point x="-75.13043478260806" y="70.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.web.clientcontrollers.ClientController" target="com.spidermanteam.spiderpuppies.services.base.ClientAccessService">
+      <point x="0.0" y="-37.0" />
+      <point x="4696.33216734101" y="2372.0" />
+      <point x="5526.888097800627" y="2372.0" />
+      <point x="-30.199999999999818" y="15.0" />
+    </edge>
+    <edge source="com.spidermanteam.spiderpuppies.services.base.ClientService" target="com.spidermanteam.spiderpuppies.models.Client">
+      <point x="0.0" y="-15.0" />
+      <point x="3614.5677084991676" y="676.0" />
+      <point x="4382.328422784882" y="676.0" />
+      <point x="-76.69999999999982" y="59.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.1" x="450.5" y="305.99999999999994" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

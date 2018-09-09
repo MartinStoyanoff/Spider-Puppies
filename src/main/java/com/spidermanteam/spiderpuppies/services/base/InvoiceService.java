@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface InvoiceService {
+
   void addInvoice(String subscriberId, String currency);
 
   Invoice findInvoiceById(int id);

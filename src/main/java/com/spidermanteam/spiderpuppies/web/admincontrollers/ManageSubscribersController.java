@@ -53,15 +53,8 @@ public class ManageSubscribersController {
     subscribersService.deleteSubscriber(id);
   }
 
-  /*
-   * /admin/bulkpayment
-   *
-   * /admin/singlepayment - Load Button -
-   *
-   * */
   @PostMapping("/listAllDuePayments")
-  List listAllForDefinedPeriod(@RequestBody List<String> dates) {
-    List<PaymentLine> subscribersList = new ArrayList();
+  List<PaymentLine> listAllForDefinedPeriod(@RequestBody List<String> dates) {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
     LocalDate startDate = LocalDate.parse(dates.get(0), formatter);
@@ -103,9 +96,15 @@ public class ManageSubscribersController {
     subscribers.add(subscriber);
     return MappingHelper.mapSubscriberToPaymentLines(subscribers);
   }
+
   @GetMapping("/getSubscriberByPhone/{phone}")
   SubscriberView getSubscriberFullInfoByPhoneAndClientId(@PathVariable String phone) {
     Subscriber subscriber = subscribersService.getSubscriberByPhone(phone);
     return new SubscriberView(subscriber);
+  }
+
+  @PostMapping("/addTelecomServiceToSubscriber/{subscriberId}/{telecomServiceId}")
+  public void addTelecomServiceToSubscriber(@PathVariable int subscriberId, @PathVariable int telecomServiceId) {
+    subscribersService.addTelecomServiceToSubscriber(subscriberId, telecomServiceId);
   }
 }

@@ -82,7 +82,7 @@ public class ManageInvoicesController {
   }
 
   @GetMapping("/lastTen/{id}")
-  public List<InvoiceView> findLastTenPaymentsBySubscriber(@PathVariable int id) {
+  public List<InvoiceView> findLastTenPaymentsBySubscriberId(@PathVariable int id) {
     Subscriber subscriber = subscribersService.findSubscriberById(id);
     List<Invoice> invoices = invoiceService.findLastTenPaymentsBySubscriberId(subscriber.getId());
     List<InvoiceView> invoiceViews = new ArrayList();
@@ -92,4 +92,26 @@ public class ManageInvoicesController {
     }
     return invoiceViews;
   }
+  @GetMapping("/findAllPendingByClientId/{id}")
+  public List<InvoiceView> findAllPendingInvoicesByClientId(@PathVariable int id){
+    List<Invoice> invoiceList = invoiceService.findAllPendingInvoicesByClientId(id);
+    List<InvoiceView> invoiceViews = new ArrayList();
+    for (Invoice inv : invoiceList) {
+      InvoiceView invoiceView = new InvoiceView(inv);
+      invoiceViews.add(invoiceView);
+    }
+    return invoiceViews;
+  }
+
+  @GetMapping("/findLastTenPaid")
+  public List<InvoiceView> findLastTenPayments(){
+    List<Invoice> invoiceList = invoiceService.findLastTenPayments();
+    List<InvoiceView> invoiceViews = new ArrayList();
+    for (Invoice inv : invoiceList) {
+      InvoiceView invoiceView = new InvoiceView(inv);
+      invoiceViews.add(invoiceView);
+    }
+    return invoiceViews;
+  }
+
 }

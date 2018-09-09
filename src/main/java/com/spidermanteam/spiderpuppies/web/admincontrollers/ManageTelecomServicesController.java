@@ -32,7 +32,7 @@ public class ManageTelecomServicesController {
   }
 
   @GetMapping("/listAll")
-  List listAllTelecomServices() {
+  List<TelecomService> listAllTelecomServices() {
     return telecomServiceService.listAllTelecomServices();
   }
 
