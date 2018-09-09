@@ -2,6 +2,7 @@ package com.spidermanteam.spiderpuppies.services;
 
 import com.spidermanteam.spiderpuppies.data.base.InvoiceRepository;
 import com.spidermanteam.spiderpuppies.data.base.SubscriberRepository;
+import com.spidermanteam.spiderpuppies.exceptions.InvalidInputException;
 import com.spidermanteam.spiderpuppies.models.Invoice;
 import com.spidermanteam.spiderpuppies.models.Subscriber;
 import com.spidermanteam.spiderpuppies.models.reporting.PaymentReport;
@@ -31,6 +32,9 @@ public class ClientAccessServiceImpl implements ClientAccessService {
   @Override
   public PaymentReport payInvoiceByIdAndClientId(int invoiceId, int clientId) {
     Invoice invoice = invoiceRepository.findByIdAndClientId(invoiceId, clientId);
+    if (invoice == null) {
+      throw new InvalidInputException("Invoice id is not correct");
+    }
     PaymentReport paymentReport = new PaymentReport(invoice.getSubscriber().getPhone(), invoiceId, PaymentReportStatus.FAILED_INVOICE_OR_CLIENT_NOT_EXIST);
     return payInvoice(invoice, paymentReport);
   }
@@ -38,6 +42,9 @@ public class ClientAccessServiceImpl implements ClientAccessService {
   @Override
   public List<PaymentReport> payInvoicesByPhoneAndClientId(String phone, int clientId) {
     List<Invoice> invoiceList = invoiceRepository.findInvoicesByPhone(phone);
+    if (invoiceList == null) {
+      throw new InvalidInputException("Phone number is not correct");
+    }
     List<PaymentReport> paymentReportList = new ArrayList<>();
     for (Invoice invoice : invoiceList) {
       PaymentReport paymentReport = new PaymentReport(invoice.getSubscriber().getPhone(), invoice.getId(), PaymentReportStatus.FAILED_INVOICE_OR_CLIENT_NOT_EXIST);
@@ -48,6 +55,10 @@ public class ClientAccessServiceImpl implements ClientAccessService {
 
   @Override
   public List<PaymentReport> payInvoicesByIdListAndClientId(List<Integer> invoiceIdList, int clientId) {
+    if (invoiceIdList.size() == 0) {
+      throw new InvalidInputException("Invoice id list is empty");
+    }
+
     List<PaymentReport> paymentReportList = new ArrayList<>();
     for (int id : invoiceIdList) {
       Invoice invoice = invoiceRepository.findByIdAndClientId(id, clientId);
@@ -60,9 +71,15 @@ public class ClientAccessServiceImpl implements ClientAccessService {
 
   @Override
   public List<PaymentReport> payInvoicesByPhoneListAndClientId(List<String> phonesList, int clientId) {
+    if (phonesList.size() == 0) {
+      throw new InvalidInputException("Phone list is empty");
+    }
     List<PaymentReport> paymentReportList = new ArrayList<>();
     for (String phone : phonesList) {
       List<Invoice> invoiceList = invoiceRepository.findInvoicesByPhoneAndClientId(phone, clientId);
+      if (invoiceList.size() == 0) {
+        throw new InvalidInputException(phone + "is not valid");
+      }
       for (Invoice invoice : invoiceList) {
         PaymentReport paymentReport = new PaymentReport(invoice.getSubscriber().getPhone(), invoice.getId(), PaymentReportStatus.FAILED_INVOICE_OR_CLIENT_NOT_EXIST);
         paymentReportList.add(payInvoice(invoice, paymentReport));
@@ -131,8 +148,8 @@ public class ClientAccessServiceImpl implements ClientAccessService {
 
   @Override
   public PaymentReport payInvoice(Invoice invoice, PaymentReport paymentReport) {
-    if(invoice.getSubscriber()==null || invoice.getCurrency()==null || invoice.getStatus() == null || invoice.getId()+""==null){
-      return  paymentReport;
+    if (invoice.getSubscriber() == null || invoice.getCurrency() == null || invoice.getStatus() == null || invoice.getId() + "" == null) {
+      return paymentReport;
     }
     if (!currencyCheck(invoice)) {
       invoiceCurrencyConverter(invoice);

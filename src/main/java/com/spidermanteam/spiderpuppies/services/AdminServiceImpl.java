@@ -1,6 +1,7 @@
 package com.spidermanteam.spiderpuppies.services;
 
 import com.spidermanteam.spiderpuppies.data.base.AdminRepository;
+import com.spidermanteam.spiderpuppies.exceptions.InvalidInputException;
 import com.spidermanteam.spiderpuppies.models.Admin;
 import com.spidermanteam.spiderpuppies.services.base.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,11 +49,15 @@ public class AdminServiceImpl implements AdminService {
 
   @Override
   public void changeAdminPassword(List<String> passwordUpdateInfo) {
+    if (passwordUpdateInfo.size() != 3) {
+      throw new InvalidInputException("Invalid input data");
+    }
     int adminId = Integer.parseInt(passwordUpdateInfo.get(0));
     String oldPassword = passwordUpdateInfo.get(1);
     String newPassword = passwordEncoder.encode(passwordUpdateInfo.get(2));
-
-
+    if (adminId == 0 || oldPassword == null || newPassword == null) {
+      throw new InvalidInputException("Invalid input data");
+    }
     Admin admin = adminRepository.findById(adminId);
 
     String adminPass = admin.getUser().getPassword();
