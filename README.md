@@ -1,7 +1,5 @@
 # Spider-Puppies [![Build Status](https://travis-ci.org/MartinStoyanoff/Spider-Puppies.svg?branch=master)](https://travis-ci.org/MartinStoyanoff/Spider-Puppies)
-Payment system API for Telecoms 
-
-##Project outline
+## Payment system API for Telecoms 
 ![alt text](https://github.com/MartinStoyanoff/Spider-Puppies/blob/master/diagrams/Project%20outline.png)
 
 ## Admin panel
